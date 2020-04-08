@@ -51,7 +51,7 @@ def getTenant(headers):
 
 def getToken(headers):
     token=headers.get("Authentication")
-    if token.conains(","):
+    if token != "null" and token != "" and token != None and token.conains(","):
         token=token.split(",")[1]
         return token
     return None
