@@ -34,10 +34,24 @@ def validateuser(user,password):
 
 @app1.route('/validatetoken/')
 def validatetoken():
-    token = request.headers.get('Authentication')
+    token = getToken(request.headers)
+    tenant = getTenant(request.headers);
     if token== 'prueba':
         return jsonify({"message": "user/password correct","flag":True,"token":token})
     tokenRta = Db.find("token",{"token": token})
     if tokenRta=='null':
         return jsonify({"message": "invalid token","flag":False,"token":token}),status.HTTP_401_UNAUTHORIZED
     return jsonify({"message": "valid token","flag":True,"token":token})
+
+
+def getTenant(headers):
+    tenat=headers.get("Host")
+    tenat=tenat.split(":")[0]
+    return tenat
+
+def getToken(headers):
+    token=headers.get("Authentication")
+    if token.conains(","):
+        token=token.split(",")[1]
+        return token
+    return None
