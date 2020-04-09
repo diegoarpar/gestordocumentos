@@ -17,8 +17,11 @@ app1 = Blueprint('app11', __name__)
 def hello_world():
     return 'Hello World!'
 
-@app1.route('/authentication/validateuser/<user>/<password>')
-def validateuser(user,password):
+@app1.route('/authentication/validateuser/',methods = ['POST'])
+def validateUser():
+    data = request.get_json()
+    password=data["password"]
+    user=data["user"]
     password = sha256(password.encode('utf-8').rstrip()).hexdigest()
     objectToFind={"user": user,"password":password}
     userRta = Db.find("usersdb",objectToFind)
@@ -31,8 +34,12 @@ def validateuser(user,password):
     Db.insert("token",objectToinsert)
     return jsonify({"message": "user/password correct","flag":True,"token":token})
 
-@app1.route('/authentication/changePassword/<user>/<currentpassword>/<newpassword>')
-def changePassword(user,currentpassword,newpassword):
+@app1.route('/authentication/changePassword/',methods = ['POST'])
+def changePassword():
+    data = request.get_json()
+    currentpassword=data["currentpassword"]
+    newpassword=data["newpassword"]
+    user=data["user"]
     password = sha256(currentpassword.encode('utf-8').rstrip()).hexdigest()
     newpassword= sha256(newpassword.encode('utf-8').rstrip()).hexdigest()
     token = getToken(request.headers)
@@ -48,6 +55,22 @@ def changePassword(user,currentpassword,newpassword):
     userRta["password"]=newpassword
     Db.update("usersdb",objectToFind,userRta)
     return jsonify({"message": "password changed","flag":True})
+
+@app1.route('/authentication/createuser/',methods = ['POST'])
+def createUser():
+    data = request.get_json()
+    password=data["password"]
+    user=data["user"]
+    email=data["email"]
+    password = sha256(password.encode('utf-8').rstrip()).hexdigest()
+    objectToFind={"user": user}
+    userRta = Db.find("usersdb",objectToFind)
+    if userRta=="null":
+        userToInsert={"user":user, "password":password, "email":email}
+        Db.insert("usersdb",userToInsert)
+        return jsonify({"message": "user created","flag":True})
+    token=str(uuid.uuid1())
+    return jsonify({"message": "user not created ","flag":True})
 
 @app1.route('/authentication/validatetoken/')
 def validateUserToken():
@@ -76,3 +99,4 @@ def validateToken(token):
     if tokenRta=='null':
         return jsonify({"message": "invalid token","flag":False,"token":token}),status.HTTP_401_UNAUTHORIZED
     return jsonify({"message": "valid token","flag":True,"token":token})
+
