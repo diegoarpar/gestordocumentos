@@ -47,15 +47,11 @@ def changePassword(user,currentpassword,newpassword):
     return jsonify({"message": "password changed","flag":True})
 
 @app1.route('/authentication/validatetoken/')
-def validatetoken():
+def validateUserToken():
     token = getToken(request.headers)
     tenant = getTenant(request.headers);
-    if token== 'prueba':
-        return jsonify({"message": "user/password correct","flag":True,"token":token})
-    tokenRta = Db.find("token",{"token": token})
-    if tokenRta=='null':
-        return jsonify({"message": "invalid token","flag":False,"token":token}),status.HTTP_401_UNAUTHORIZED
-    return jsonify({"message": "valid token","flag":True,"token":token})
+    tokenRta = validateToken(token)
+    return tokenRta
 
 
 def getTenant(headers):
@@ -69,3 +65,11 @@ def getToken(headers):
         token=token.split(",")[1]
         return token
     return None
+
+def validateToken(token):
+    if token== 'prueba':
+        return jsonify({"message": "token correct","flag":True,"token":token})
+    tokenRta = Db.find("token",{"token": token})
+    if tokenRta=='null':
+        return jsonify({"message": "invalid token","flag":False,"token":token}),status.HTTP_401_UNAUTHORIZED
+    return jsonify({"message": "valid token","flag":True,"token":token})
