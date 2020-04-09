@@ -16,12 +16,11 @@ app1 = Blueprint('app11', __name__)
 def hello_world():
     return 'Hello World!'
 
-@app1.route('/validateuser/<user>/<password>')
+@app1.route('/authentication/validateuser/<user>/<password>')
 def validateuser(user,password):
     password = sha256(password.encode('utf-8').rstrip()).hexdigest()
     objectToFind={"user": user,"password":password}
     userRta = Db.find("usersdb",objectToFind)
-    request.headers.get('Authentication')
     token=str(uuid.uuid1())
     if user == 'prueba':
         return jsonify({"message": "user/password correct","flag":True,"token":token})
@@ -31,8 +30,23 @@ def validateuser(user,password):
     Db.insert("token",objectToinsert)
     return jsonify({"message": "user/password correct","flag":True,"token":token})
 
+@app1.route('/authentication/changePassword/<user>/<currentpassword>/<newpassword>')
+def changePassword(user,currentpassword,newpassword):
+    password = sha256(currentpassword.encode('utf-8').rstrip()).hexdigest()
+    newpassword= sha256(newpassword.encode('utf-8').rstrip()).hexdigest()
+    token = getToken(request.headers)
+    tenant = getTenant(request.headers);
+    objectToFind={"user": user,"password":password}
+    userRta = Db.find("usersdb",objectToFind)
+    if user == 'prueba':
+        return jsonify({"message": "user/password correct","flag":True})
+    if userRta=='null':
+        return jsonify({"message": "password not changed","flag":False,"token":token}),status.HTTP_401_UNAUTHORIZED
+    userRta.password=newpassword
+    Db.insert(userRta)
+    return jsonify({"message": "password changed","flag":True})
 
-@app1.route('/validatetoken/')
+@app1.route('/authentication/validatetoken/')
 def validatetoken():
     token = getToken(request.headers)
     tenant = getTenant(request.headers);
