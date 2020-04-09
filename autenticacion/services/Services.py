@@ -9,6 +9,7 @@ from hashlib import sha256
 from flask import jsonify
 import datetime
 import uuid
+from bson.json_util import dumps, loads
 
 app1 = Blueprint('app11', __name__)
 
@@ -38,12 +39,14 @@ def changePassword(user,currentpassword,newpassword):
     tenant = getTenant(request.headers);
     objectToFind={"user": user,"password":password}
     userRta = Db.find("usersdb",objectToFind)
+    objectToFind= loads(Db.find("usersdb",objectToFind))
     if user == 'prueba':
         return jsonify({"message": "user/password correct","flag":True})
     if userRta=='null':
         return jsonify({"message": "password not changed","flag":False,"token":token}),status.HTTP_401_UNAUTHORIZED
-    userRta.password=newpassword
-    Db.insert(userRta)
+    userRta=loads(userRta)
+    userRta["password"]=newpassword
+    Db.update("usersdb",objectToFind,userRta)
     return jsonify({"message": "password changed","flag":True})
 
 @app1.route('/authentication/validatetoken/')

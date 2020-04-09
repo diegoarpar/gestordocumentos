@@ -23,6 +23,9 @@ def configureMongoDB(app,config):
 def insert(collection,object):
     mongo.db[collection].insert_one(object)
 
+def update(collection,object, newObject):
+    mongo.db[collection].update_one(object,{ "$set":newObject})
+
 def find(collection,object):
     rta=mongo.db[collection].find_one(object)
     return dumps(rta)
