@@ -2,7 +2,8 @@ from flask import Flask
 
 import configparser
 from flask_cors import CORS
-
+import sys
+sys.path.append('../')
 
 
 
