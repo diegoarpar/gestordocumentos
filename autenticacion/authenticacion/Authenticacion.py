@@ -2,7 +2,8 @@ from flask import Flask
 
 import configparser
 from flask_cors import CORS
-from db import Db
+
+
 from services.Services import app1
 
 app = Flask(__name__)
@@ -19,6 +20,7 @@ if __name__ == '__main__':
     else:
         appDebug=True
 
+    from db import Db
     Db.configureMongoDB(app,config)
     #cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
     cors = CORS(app, resources={"*": {"origins": "*"}})
