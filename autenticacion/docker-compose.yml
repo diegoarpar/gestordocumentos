@@ -11,7 +11,7 @@ services:
       - authenticationdatabase
     networks:
       - authenticationnet
-      - kong-network
+      - kong_kong-network
     links:
      - authenticationdatabase
    
@@ -32,10 +32,10 @@ services:
      - "127.0.0.1:27019:27017"
     networks:
       - authenticationnet
-      - kong-network
+      - kong_kong-network
  
 networks:
   authenticationnet:
     driver: bridge
-  kong-network:
-    driver: bridge
+  kong_kong-network:
+    external: true
