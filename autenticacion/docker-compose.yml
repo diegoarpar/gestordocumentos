@@ -5,6 +5,8 @@ services:
     build: 
       context: ./
       dockerfile: Dockerfile
+      args:
+        - buildno=1
     ports:
       - "5000:5000"
     depends_on:

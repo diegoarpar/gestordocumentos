@@ -27,7 +27,7 @@ def validateUser():
     data = request.get_json()
     password=data["password"]
     user=data["user"]
-    password = sha256(password.encode('utf-8').rstrip()).hexdigest()
+    #password = sha256(password.encode('utf-8').rstrip()).hexdigest()
     objectToFind={"user": user,"password":password}
     userRta = Db.find("usersdb",objectToFind)
     token=str(uuid.uuid1())
@@ -48,11 +48,11 @@ def changePassword():
     currentpassword=data["currentpassword"]
     newpassword=data["newpassword"]
     user=data["user"]
-    password = sha256(currentpassword.encode('utf-8').rstrip()).hexdigest()
-    newpassword= sha256(newpassword.encode('utf-8').rstrip()).hexdigest()
+    #currentpassword = sha256(currentpassword.encode('utf-8').rstrip()).hexdigest()
+    #newpassword= sha256(newpassword.encode('utf-8').rstrip()).hexdigest()
     token = getToken(request.headers)
     tenant = getTenant(request.headers);
-    objectToFind={"user": user,"password":password}
+    objectToFind={"user": user,"password":currentpassword}
     userRta = Db.find("usersdb",objectToFind)
     objectToFind= loads(Db.find("usersdb",objectToFind))
     if user == 'prueba':
@@ -70,7 +70,7 @@ def createUser():
     password=data["password"]
     user=data["user"]
     email=data["email"]
-    password = sha256(password.encode('utf-8').rstrip()).hexdigest()
+    #password = sha256(password.encode('utf-8').rstrip()).hexdigest()
     objectToFind={"user": user}
     userRta = Db.find("usersdb",objectToFind)
     if userRta=="null":
