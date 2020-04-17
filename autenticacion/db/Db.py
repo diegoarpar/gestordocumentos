@@ -12,6 +12,7 @@ def configureMongoDB(app,config):
     mongoHead=config['mongoApp']['Head']
     fullUri=mongoHead + userdb + ":" + passdb +"@"+ uri + database
     app.config["MONGO_URI"] =fullUri
+    print("full mongo uri"+fullUri)
 
     try:
         global mongo
