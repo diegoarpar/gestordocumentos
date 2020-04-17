@@ -5,8 +5,6 @@ from flask_cors import CORS
 import sys
 sys.path.append('../')
 
-
-
 app = Flask(__name__)
 
 

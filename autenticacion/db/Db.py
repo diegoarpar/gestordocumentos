@@ -1,5 +1,7 @@
 from flask_pymongo import PyMongo
 from bson.json_util import dumps
+import sys
+sys.path.append('../')
 
 def configureMongoDB(app,config):
 

@@ -12,6 +12,8 @@ import uuid
 from bson.json_util import dumps, loads
 import configparser
 import requests
+import sys
+sys.path.append('../')
 
 app1 = Blueprint('app11', __name__)
 
