@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
       args:
         - buildno=1
-    image: authenticationgestor_20200417:
+    image: authenticationgestor_20200417
     ports:
       - "5000:5000"
     depends_on:
