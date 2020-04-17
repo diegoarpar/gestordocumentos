@@ -22,7 +22,8 @@ services:
 #      - "7444:8444"
       - "127.0.0.1:7001:8001"
       - "127.0.0.1:7444:8444"
-
+    networks:
+      - kong-network
   # kong database
   kong-database:
     image: postgres:9.6
@@ -34,7 +35,8 @@ services:
       - ./db:/var/lib/postgresql/data
     ports:
      - "5432:5432"
-
+    networks:
+      - kong-network
   phppgadmin_kong:
     image: dockage/phppgadmin
     ports:
@@ -46,3 +48,9 @@ services:
       PHP_PG_ADMIN_SERVER_HOST: "kong-database"
       PHP_PG_ADMIN_SERVER_PORT: "5432"
       PHP_PG_ADMIN_SERVER_DEFAULT_DB: "kong"
+    networks:
+      - kong-network
+
+networks:
+  kong-network:
+    driver: bridge
