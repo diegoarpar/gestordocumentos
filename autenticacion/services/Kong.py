@@ -17,11 +17,6 @@ sys.path.append('../')
 
 app2 = Blueprint('app12', __name__)
 
-@app2.route('/helloworld')
-def hello_world():
-    return 'Hello World!'
-
-
 @app2.route('/kongkong/registerservice/',methods = ['POST'])
 def registerservice():
     config = configparser.ConfigParser()
