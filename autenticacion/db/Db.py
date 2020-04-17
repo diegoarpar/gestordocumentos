@@ -17,8 +17,8 @@ def configureMongoDB(app,config):
         global mongo
         mongo = PyMongo(app)
         print ("mongo connected")
-    except:
-        print ("mongo no connection")
+    except Exception as e:
+        print ("mongo no connection"++ str(e))
 
     return mongo
 
