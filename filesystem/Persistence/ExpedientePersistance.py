@@ -1,32 +1,25 @@
 import Helper.MongoDBHelper as mongoHelper
+import Utilities.DataParser as dataParser
+import
 
-NOMBRE_COLLECCION = "GestorDocumental"
-PERSONA_COLL = "Persona"
+NOMBRE_BD = "GestorDocumental"
+EXPEDIENTE_COLL = "Expediente"
+
+def asociarExpedienteCarpeta(expediente):
+    conexionMongo = mongoHelper.getConnection("127.0.0.1", "27017")
+    expedienteColl = mongoHelper.getCollection(conexionMongo, NOMBRE_BD, EXPEDIENTE_COLL)
+    resultado = expedienteColl.update_one({"_id":expediente["_id"]}, expediente)
+    mongoHelper.closeConnection(conexionMongo)
+
+    return resultado
 
 
-def crearCarpetaDocumental(persona):
+def consultarExpediente(expediente):
     conexionMongo = mongoHelper.getConnection("localhost", "27017")
-    personaColl = mongoHelper.getCollection(conexionMongo, NOMBRE_COLLECCION, PERSONA_COLL)
-    queryFindOne = {"numeroDocumento":persona.tipoDocumento, "numeroDocumento":persona.tipoDOcumento}
-    resultado = personaColl.find_one(queryFindOne)
-    if resultado is None:
-        #crear cliente
-        persona = personaColl.insert_one(persona)
-        conexionMongo.close()
-        return persona
-    else:
-        conexionMongo.close()
-        return resultado
-
-
-def consultarCarpetaCliente(tipoDocumento, numeroDocumento):
-    conexionMongo = mongoHelper.getConnection("localhost", "27017")
-    query = {"tipoDocumento":tipoDocumento, "numeroDocumento":numeroDocumento}
-    documentCollection = mongoHelper.getCollection(conexionMongo, "DocumentStore", "Document")
-    carpetaCliente = documentCollection.find_one(query)
-    mongoHelper.closeConnection()
-
-    return carpetaCliente
+    filtroConsulta = dataParser.generarFiltro(expediente)
+    expediente = mongoHelper.getCollection(conexionMongo, NOMBRE_BD, EXPEDIENTE_COLL)
+    return expediente
 
 if __name__ == "__main__":
-    carpeta = consultarCarpetaCliente("cc", "123456788")
+    #fff
+    print("Hola")
