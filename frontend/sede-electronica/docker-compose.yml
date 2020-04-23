@@ -15,7 +15,7 @@ services:
 
 networks:
   forntendnet:
-    external: bridge
+    driver: bridge
   autenticacion_authenticationnet:
     external: true
   kong_kong-network:
