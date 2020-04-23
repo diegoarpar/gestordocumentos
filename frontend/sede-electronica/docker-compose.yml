@@ -1,7 +1,7 @@
 version: '2'
 services:
   #authentication services
-  authenticationgestor:
+  sedeelectronicagestor:
     build:
       context: ./
       dockerfile: Dockerfile
