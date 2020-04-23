@@ -1,0 +1,22 @@
+version: '2'
+services:
+  #authentication services
+  authenticationgestor:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: sedeelectronica:23042020_1
+    ports:
+      - "6060:6060"
+    networks:
+      - authenticationnet
+      - kong_kong-network
+
+
+networks:
+  forntendnet:
+    external: bridge
+  autenticacion_authenticationnet:
+    external: true
+  kong_kong-network:
+    external: true
