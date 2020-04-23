@@ -9,10 +9,19 @@ function App(props) {
   const [mainContainer, setMainContainer] = useState(props.mc);
   const [portalContainer1, setPortalContainer1] = useState(props.pc1);
   const [portalContainer2, setPortalContainer2] = useState(props.pc2);
+  const [data, setPostRId] = useState({id:""});
 
   function login(){
 
-    alert("Gracias por ingresar");
+    
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: 'React Hooks POST Request Example' })
+    };
+    fetch('https://jsonplaceholder.typicode.com/posts', requestOptions)
+        .then(response => response.json())
+        .then(data => {setPostRId(data.id); alert("Gracias por ingresar"+data.id);});
   }
   function findDocument(){
 
