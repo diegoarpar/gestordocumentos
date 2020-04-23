@@ -9,13 +9,13 @@ services:
     ports:
       - "6060:6060"
     networks:
-      - authenticationnet
+      - autenticacion_authenticationnet
       - kong_kong-network
-      - frontendnet
+      - frontendnetsedelectornica
 
 
 networks:
-  frontendnet:
+  frontendnetsedelectornica:
     driver: bridge
   autenticacion_authenticationnet:
     external: true
