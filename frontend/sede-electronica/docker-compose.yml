@@ -11,10 +11,11 @@ services:
     networks:
       - authenticationnet
       - kong_kong-network
+      - frontendnet
 
 
 networks:
-  forntendnet:
+  frontendnet:
     driver: bridge
   autenticacion_authenticationnet:
     external: true
