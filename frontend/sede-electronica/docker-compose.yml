@@ -5,9 +5,9 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    image: sedeelectronica:23042020_3
+    image: sedeelectronica:23042020_4
     ports:
-      - "6060:3000"
+      - "6060:5000"
     networks:
       - autenticacion_authenticationnet
       - kong_kong-network
