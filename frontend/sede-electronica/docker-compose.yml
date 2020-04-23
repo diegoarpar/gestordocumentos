@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     image: sedeelectronica:23042020_2
     ports:
-      - "6060:6060"
+      - "6060:3000"
     networks:
       - autenticacion_authenticationnet
       - kong_kong-network
