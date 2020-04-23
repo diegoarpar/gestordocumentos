@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-debugger;
+
 const node1 = document.createElement('div'); 
 node1.id="another-root1"; 
 document.body.appendChild(node1);
