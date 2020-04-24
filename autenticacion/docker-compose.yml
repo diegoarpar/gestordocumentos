@@ -5,7 +5,7 @@ services:
     build: 
       context: ./
       dockerfile: Dockerfile
-    image: authenticationgestor:24200417_2
+    image: authenticationgestor:24200417_3
     ports:
       - "5000:5000"
     depends_on:
