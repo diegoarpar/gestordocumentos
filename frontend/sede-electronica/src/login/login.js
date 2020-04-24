@@ -22,7 +22,7 @@ function LoginForm(props) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(userLogin)
     };
-    fetch('http://authenticationgestor:5000/authentication/validateuser/', requestOptions)
+    fetch('http://kong:8000/authentication/validateuser/', requestOptions)
         .then(response => response.json())
         .then(data => {setPost(data); onClickProps(data);});
         
