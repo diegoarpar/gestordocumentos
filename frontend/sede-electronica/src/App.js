@@ -47,7 +47,7 @@ function App(props) {
           <LoginApp portalContainer={portalContainer1} onClick={login}/>
       </div>
       <div>
-          <FindFileApp portalContainer={portalContainer2} onClick={findDocument}/>
+          <FindFileApp portalContainer={portalContainer1} onClick={findDocument}/>
       </div>
     </div>
   );
