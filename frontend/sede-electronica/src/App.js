@@ -43,10 +43,14 @@ function App(props) {
           Learn React
         </a>
       </header>
-      { ReactDOM.createPortal(<Login  
-                pc={portalContainer1} onClick={login}/>, portalContainer1) }
-      { ReactDOM.createPortal(<Files  
-      pc={portalContainer2} onClick={findDocument} />, portalContainer2) }
+      <div>
+          { ReactDOM.createPortal(<Login
+                    pc={portalContainer1} onClick={login}/>, portalContainer1) }
+      </div>
+      <div>
+          { ReactDOM.createPortal(<Files
+          pc={portalContainer2} onClick={findDocument} />, portalContainer2) }
+      </div>
     </div>
   );
 }
