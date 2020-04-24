@@ -44,15 +44,25 @@ function App(props) {
         </a>
       </header>
       <div>
-          { ReactDOM.createPortal(<Login
-                    pc={portalContainer1} onClick={login}/>, portalContainer1) }
+          <LoginApp portalContainer={portalContainer1} onClick={login}/>
       </div>
       <div>
-          { ReactDOM.createPortal(<Files
-          pc={portalContainer2} onClick={findDocument} />, portalContainer2) }
+          <FindFileApp portalContainer={portalContainer2} onClick={findDocument}/>
       </div>
     </div>
   );
 }
 
+function LoginApp(props){
+  const portalContainer = props.portalContainer;
+  const onClickLogin = props.onClick;
+    return ReactDOM.createPortal(<Login
+      pc={portalContainer} onClick={onClickLogin}/>, portalContainer);
+}
+function FindFileApp(props){
+  const portalContainer = props.portalContainer;
+  const onClickDocument = props.onClick;
+    return ReactDOM.createPortal(<Files
+      pc={portalContainer} onClick={onClickDocument} />, portalContainer);
+}
 export default App;
