@@ -1,6 +1,6 @@
 import React,{ useState,useEffect } from 'react';
 import '../App.css';
-import Input from '@material-ui/core/Input';
+import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import Divider from '@material-ui/core/Divider';
@@ -8,26 +8,42 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import SHA256 from 'js-sha256'
 
 import Slide from '@material-ui/core/Slide';
 
 
 
 function LoginForm(props) {
-  const onClick= props.onClick;
+  const onClickProps= props.onClick;
+  const onClick= function o (event){
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userLogin)
+    };
+    fetch('http://authenticationgestor:5000/authentication/validateuser/', requestOptions)
+        .then(response => response.json())
+        .then(data => {setPost(data); onClickProps(data);});
+        
+    
+  };
+  const [userLogin,setUserLogin]=useState({});
+  const [data,setPost]=useState({});
     return (
-        <div className="LoginForm">
-          <label>Usuario: </label>
-          <Input></Input>
-          <label>Contraseña: </label>
-          <Input type='password'></Input>
-          <Button variant="contained" color="primary" onClick={onClick}>Ingresar al sistema</Button>
-        </div>
+        <form className="LoginForm" >
+          
+          <TextField name ="Tuser" label="Usuario" onChange={(e)=>{setUserLogin({user:e.target.value, password:userLogin.password})}}></TextField >
+          <TextField name ="Tpassword" label="Contraseña" type='password' onChange={(e)=>{setUserLogin({user:userLogin.user,password:SHA256(e.target.value)})}}></TextField >
+          <Button variant="contained" color="primary" 
+              onClick={(e) => {onClick(e)}}>Ingresar al sistema
+              </Button>
+        </form>
     );
   }
 
   const Transition = React.forwardRef(function Transition(props, ref) {
-    debugger;
+    
     return <Slide direction="up" ref={ref} {...props} />;
   });
 
@@ -61,11 +77,13 @@ function LoginForm(props) {
                 Cerrar
               </Button>
             </Toolbar>
+            
           </AppBar>
          
-          <LoginForm  onClick={onClick}></LoginForm>
-          
+         
+          <LoginForm  onClick={onClick}></LoginForm>  
         </Dialog>
+        
       </div>
     );
   }
