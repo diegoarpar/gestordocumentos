@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12b2b311-c256-499f-9ecb-4448db93b10c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../signature/Signature.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../signature/config/configDigitalSignature.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../signature/db/Db.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../signature/services/Services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kong/NewServices.sh" beforeDir="false" afterPath="$PROJECT_DIR$/kong/NewServices.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/Kong.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/Kong.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/sede-electronica/src/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/sede-electronica/src/login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../signature/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../signature/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,12 +16,6 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>mongodb://mongoadmin:secret@192.168.0.16:27018/admin</find>
-      <find>gest</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -323,7 +319,28 @@
       <option name="project" value="LOCAL" />
       <updated>1587151990015</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="authentication with Kong">
+      <created>1587760458665</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1587760458665</updated>
+    </task>
+    <task id="LOCAL-00037" summary="authentication with Kong">
+      <created>1587761045873</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1587761045873</updated>
+    </task>
+    <task id="LOCAL-00038" summary="authentication with Kong">
+      <created>1587765618283</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1587765618283</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -339,10 +356,34 @@
     <option name="LAST_COMMIT_MESSAGE" value="authentication with Kong" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="282" y="0" key="CommitChangelistDialog2" timestamp="1587765616794">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="282" y="0" key="CommitChangelistDialog2/0.0.1366.728/-1280.-393.1280.984@0.0.1366.728" timestamp="1587765616794" />
     <state x="-860" y="-147" key="FileChooserDialogImpl" timestamp="1587415737949">
       <screen x="-1280" y="-393" width="1280" height="984" />
     </state>
     <state x="-860" y="-147" key="FileChooserDialogImpl/0.0.1366.728/-1280.-393.1280.984@-1280.-393.1280.984" timestamp="1587415737949" />
+    <state width="1323" height="163" key="GridCell.Tab.0.bottom" timestamp="1587770910605">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="163" key="GridCell.Tab.0.bottom/0.0.1366.728/-1280.-393.1280.984@0.0.1366.728" timestamp="1587770910605" />
+    <state width="1323" height="163" key="GridCell.Tab.0.center" timestamp="1587770910605">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="163" key="GridCell.Tab.0.center/0.0.1366.728/-1280.-393.1280.984@0.0.1366.728" timestamp="1587770910605" />
+    <state width="1323" height="163" key="GridCell.Tab.0.left" timestamp="1587770910605">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="163" key="GridCell.Tab.0.left/0.0.1366.728/-1280.-393.1280.984@0.0.1366.728" timestamp="1587770910605" />
+    <state width="1323" height="163" key="GridCell.Tab.0.right" timestamp="1587770910605">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="163" key="GridCell.Tab.0.right/0.0.1366.728/-1280.-393.1280.984@0.0.1366.728" timestamp="1587770910605" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1587765692049">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728/-1280.-393.1280.984@0.0.1366.728" timestamp="1587765692049" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
