@@ -1,7 +1,10 @@
-import os, configparser, Persistence.PersonaPersistance as PersonaPersistance
+import os, configparser
+import Persistence.PersonaPersistance as PersonaPersistance
+import Persistence.ExpedientePersistance as ExpedientePersistance
+import Persistence.DocumentoPersistance as DocumentoPersistance
 from flask import Blueprint, request, jsonify
 from werkzeug.utils import secure_filename
-from bson.json_util import dumps,RELAXED_JSON_OPTIONS
+from bson.json_util import dumps
 
 
 fileManager_BP = Blueprint("FileManager", __name__)
@@ -25,6 +28,12 @@ def consultarCarpetaCliente():
     res.status_code = 200
 
     return res
+
+@fileManager_BP.route('/carpetaDocumental/cliente', methods=['GET'])
+def consultarDocumentosCliente():
+    inputData = request.get_json()
+
+
 
 @fileManager_BP.route('/multipart-upload', methods=['POST'])
 def upload():

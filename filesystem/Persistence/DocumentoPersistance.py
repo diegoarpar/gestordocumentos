@@ -9,10 +9,10 @@ DOCUMENTO_COLL = "Documento"
 def consultarDocumento(expediente):
     conexionMongo = mongoHelper.getConnection("localhost", "27017")
     filtroConsulta = dataParser.generarFiltro(expediente)
-    expedienteCol = mongoHelper.getCollection(conexionMongo, NOMBRE_BD, DOCUMENTO_COLL)
-    expedientes = expedienteCol.find(filtroConsulta)
+    documentoCol = mongoHelper.getCollection(conexionMongo, NOMBRE_BD, DOCUMENTO_COLL)
+    documentos = documentoCol.find(filtroConsulta)
 
-    resultado = [x for x in expedientes]
+    resultado = [x for x in documentos]
 
     return resultado
 

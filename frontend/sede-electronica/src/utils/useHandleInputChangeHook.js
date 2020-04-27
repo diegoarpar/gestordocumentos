@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import Files from "../files/files";
 
-export const useHandleInputChangeHook = () => {
+const useHandleInputChangeHook = () => {
     const [input, setInput] = useState({});
 
     const handleInputChange = (e) => setInput({
@@ -10,3 +11,4 @@ export const useHandleInputChangeHook = () => {
 
     return [input, handleInputChange]
 };
+export default useHandleInputChangeHook;
