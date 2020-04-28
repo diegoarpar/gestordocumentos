@@ -102,7 +102,7 @@ public class UTILS {
 
     public static HashMap getTenant(HttpServletRequest request,HashMap criterial){
         String tenant="";
-        if(request.getHeader("Authorization").split(",").length>1) {
+        if(request.getHeader("Authorization")!=null&&request.getHeader("Authorization").split(",").length>1) {
              tenant = request.getHeader("Authorization").split(",")[1];
         }
         criterial.put("tenant",tenant);
@@ -147,6 +147,10 @@ public class UTILS {
         }
         out.flush();
         out.close();
+    }
+
+    public static void createFolder(String folder) throws IOException {
+        new File (folder).mkdirs();
     }
 
     public static String getToken(@Context HttpServletRequest req) {

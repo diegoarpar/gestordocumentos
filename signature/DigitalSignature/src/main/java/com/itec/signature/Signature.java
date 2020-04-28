@@ -28,7 +28,8 @@ public class Signature extends  Application<ConfigurationApp> {
 
        if(args.length > 0) new Signature().run(args);
        else{
-        new Signature().run(new String[] { "server","./src/main/java/com/itec/garantias/configSignature.yml" });
+           System.out.println(System.getProperty("user.dir"));
+        new Signature().run(new String[] { "server","DigitalSignature/src/main/java/com/itec/signature/configSignature.yml" });
        }
     }
 
@@ -39,7 +40,6 @@ public class Signature extends  Application<ConfigurationApp> {
            configureCors(e);
 
         e.jersey().register(MultiPartFeature.class);
-        e.jersey().register(GarantiasServices.class);
         e.jersey().register(UploadServices.class);
         e.jersey().register(GZipEncoder.class);
         e.jersey().register(EncodingFilter.class);

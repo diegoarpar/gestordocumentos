@@ -81,9 +81,7 @@ public class FactoryMongo {
         ConfigurationApp.dbm.removeGarantias(getCollection(collection,c),  getMongoClient(), c);
     }
 
-    public List<DBObject> getMetadata(HashMap c){
-        return ConfigurationApp.dbm.getListMetadata(getCollection(UTILS.COLLECTION_ARCHIVO,c), getDatabase(), c);
-    }
+
 
 
 

@@ -4,11 +4,6 @@ import com.itec.configuration.ConfigurationApp;
 import com.mongodb.DB;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import net.sf.jasperreports.engine.JRException;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.sql.*;
 import java.util.Map;
 import java.util.Properties;
@@ -28,7 +23,7 @@ public class MongoDbConnection implements Connection {
     private DB mongoDatabase;
 
     public MongoDbConnection(MongoClient mongoURI)
-            throws JRException {
+            throws Exception {
         this.username = ConfigurationApp.DATABASE_USER;
         this.password = ConfigurationApp.DATABASE_PASS;
         this.mongoDatabaseName=ConfigurationApp.DATABASE_NAME;
@@ -36,16 +31,16 @@ public class MongoDbConnection implements Connection {
         setDatabase();
     }
 
-    private void create(MongoClient mongoClient) throws JRException {
+    private void create(MongoClient mongoClient) throws Exception {
 
         try {
             client = mongoClient;
         } catch (Exception e) {
-            throw new JRException("Cannot create connection: " + e, e);
+            throw new Exception("Cannot create connection: " + e, e);
         }
     }
 
-    private void setDatabase() throws JRException {
+    private void setDatabase() throws Exception {
         if (client == null) {
             return;
         }
@@ -89,20 +84,20 @@ public class MongoDbConnection implements Connection {
         return client;
     }
 
-    public String test() throws JRException {
+    public String test() throws Exception{
         if (mongoDatabaseName == null) {
-            throw new JRException("Invalid Mongo URI");
+            throw new Exception("Invalid Mongo URI");
         }
 
         if (mongoDatabase == null) {
-            throw new JRException("No mongo database");
+            throw new Exception("No mongo database");
         }
 
         try {
             return "Connection test successful.\n" + "Mongo database name: "
                     + mongoDatabase.getName();
         } catch (Exception e) {
-            throw new JRException("Cannot test connection: " + e, e);
+            throw new Exception("Cannot test connection: " + e, e);
         }
     }
 

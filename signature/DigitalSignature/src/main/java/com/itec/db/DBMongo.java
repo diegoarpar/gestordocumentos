@@ -11,7 +11,6 @@ import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSInputFile;
 import com.mongodb.util.JSON;
-import org.adrianwalker.multilinestring.Multiline;
 import org.bson.types.ObjectId;
 
 import java.io.InputStream;
@@ -108,8 +107,7 @@ public class DBMongo {
         for (var key in this) { emit(key, null);}
      }
      */
-    @Multiline
-    private static String map;
+
 
 
 
@@ -118,17 +116,9 @@ public class DBMongo {
             for (var key in this) { return null;}
           }
      */
-    @Multiline
-    private static String reduce;
 
-    public List getListMetadata(DBCollection dbCollection, DB dataBase,  HashMap criterial){
-        MapReduceCommand cmd = new MapReduceCommand(dbCollection, map, reduce,
-            "garantias_keys" , MapReduceCommand.OutputType.INLINE, null);
-        MapReduceOutput out = dbCollection.mapReduce(cmd);
-        DBCollection dbCollection1 = dataBase.getCollection("garantias_keys");
-        ArrayList dbCollectionLista = (ArrayList)dbCollection1.distinct("_id");
-        return dbCollectionLista;
-    }
+
+
 
     public List<DBObject> searchMetadata(DBCollection collection, ArrayList<HashMapKeyValue> criterial){
         List<DBObject> data= new ArrayList<>();

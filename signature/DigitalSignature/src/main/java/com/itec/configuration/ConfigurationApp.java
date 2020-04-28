@@ -24,6 +24,8 @@ public class ConfigurationApp extends Configuration {
     public static String URL_CMS="";
     public static String REPORT_PATH="";
     public static String URL_BATCHER="";
+    public static String P12PASSWORD="";
+    public static String P12LOCATION="";
 
 
     @NotEmpty
@@ -154,6 +156,25 @@ public class ConfigurationApp extends Configuration {
         APP_USER=parameter;
         this.appUser=parameter;
     }
+
+    @JsonProperty("p12Password")
+    public  String getP12Password(){
+        return P12PASSWORD;
+    }
+    @JsonProperty ("p12Password")
+    public  void setP12Password(String parameter){
+        P12PASSWORD=parameter;
+    }
+
+    @JsonProperty("p12Location")
+    public  String getP12Location(){
+        return P12PASSWORD;
+    }
+    @JsonProperty ("p12Location")
+    public  void setP12Location(String parameter){
+        P12LOCATION=parameter;
+    }
+
 
     @JsonProperty ("reportPath")
     public  void setReportPath(String parameter){
