@@ -15,7 +15,7 @@ import java.security.cert.Certificate;
 
 public class TestSignature {
 
-    @Test
+    //@Test
     public void testSignature() throws IOException, GeneralSecurityException {
         String path=ConfigurationApp.UPLOAD_FILE_PATH;
         String password="password";

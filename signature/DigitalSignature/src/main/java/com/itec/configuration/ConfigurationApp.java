@@ -26,6 +26,7 @@ public class ConfigurationApp extends Configuration {
     public static String URL_BATCHER="";
     public static String P12PASSWORD="";
     public static String P12LOCATION="";
+    public static String CRLLOCATION="";
 
 
     @NotEmpty
@@ -173,6 +174,15 @@ public class ConfigurationApp extends Configuration {
     @JsonProperty ("p12Location")
     public  void setP12Location(String parameter){
         P12LOCATION=parameter;
+    }
+
+    @JsonProperty("crlLocation")
+    public  String getCRLLocation(){
+        return CRLLOCATION;
+    }
+    @JsonProperty ("crlLocation")
+    public  void setCRLLocation(String parameter){
+        CRLLOCATION=parameter;
     }
 
 

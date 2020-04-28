@@ -32,18 +32,18 @@ public class Sign {
         PdfSigner signer = new PdfSigner(reader, new FileOutputStream(dest), new StampingProperties());
 
         // Create the signature appearance
-        Rectangle rect = new Rectangle(36, 648, 200, 100);
-        PdfSignatureAppearance appearance = signer.getSignatureAppearance();
-        appearance
-                .setReason(reason)
-                .setLocation(location)
+        //Rectangle rect = new Rectangle(36, 648, 200, 100);
+        //PdfSignatureAppearance appearance = signer.getSignatureAppearance();
+        //appearance
+        //        .setReason(reason)
+        //        .setLocation(location);
 
                 // Specify if the appearance before field is signed will be used
                 // as a background for the signed field. The "false" value is the default value.
-                .setReuseAppearance(false)
-                .setPageRect(rect)
-                .setPageNumber(1);
-        signer.setFieldName("sig");
+                //.setReuseAppearance(false);
+                //.setPageRect(rect)
+                //.setPageNumber(1);
+        //signer.setFieldName("sig");
 
         //IExternalSignature pks = new PrivateKeySignature(pk, digestAlgorithm, provider);
 

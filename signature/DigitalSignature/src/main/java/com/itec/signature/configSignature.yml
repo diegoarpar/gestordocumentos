@@ -11,6 +11,7 @@ urlAutentication: http://localhost:2022/autentication/
 urlCMS: http://localhost:2024/CMS/
 p12Password: password
 p12Location: D:\Descargas\key.p12
+crlLocation: D:\Descargas\crl\
 
 
 defaultName: ${DW_DEFAULT_NAME:-Stranger}
