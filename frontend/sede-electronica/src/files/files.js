@@ -1,9 +1,7 @@
 import React,{ useState,useEffect } from 'react';
 import '../App.css';
-import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -12,66 +10,135 @@ import ArrowBack from '@material-ui/icons/ArrowBack';
 import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import useHandleInputChangeHook from '../utils/useHandleInputChangeHook'
 
 function FileSearchDisplay(props){
-    const queryData = props.queryData;
-    const [results, setResults] = useState(null);
+    const info = props.data;
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            width: '100%',
+        },
+        heading: {
+            fontSize: theme.typography.pxToRem(15),
+            fontWeight: theme.typography.fontWeightRegular,
+        },
+        table: {
+            minWidth: 650,
+        },
+    }));
+    const classes = useStyles();
 
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(props.queryData)
-    };
-    fetch('http://localhost:5000/authentication/validateuser/', requestOptions)
-        .then(response => response.json())
-        .then(
-            data => {
-                setResults(data);
-                console.log("Respuesta Servicio " + results);
-            }
+    if(info === null || info === undefined){
+        return (<div/>)
+    }else {
+        return (
+            <Grid container alignItems={"center"} direction={"column"} spacing={2} xs={12}>
+                <Grid item xs={12}>
+                    <Paper elevation={5}>
+                        <div>
+                            <br/>
+                        </div>
+                        <Typography>Carpeta Única</Typography>
+                        <Typography>{info.primerNombre + " " + info.segundoNombre + " " + info.primerApellido}</Typography>
+                        <Typography>{info.tipoDocumento + " " + info.numeroDocumento}</Typography>
+                        {info.expedientes.map((expediente) => (
+                            <div className={classes.root}>
+                                <ExpansionPanel>
+                                    <ExpansionPanelSummary
+                                        expandIcon={<ExpandMoreIcon />}
+                                        aria-controls="panel1a-content"
+                                        id="panel1a-header">
+                                        <Typography className={classes.heading}>Expediente:     {expediente.nombre}</Typography>
+                                    </ExpansionPanelSummary>
+                                    <ExpansionPanelDetails>
+                                        <TableContainer component={Paper}>
+                                            <Table className={classes.table} aria-label="simple table">
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <TableCell>Nombre</TableCell>
+                                                        <TableCell align="right">Tipo</TableCell>
+                                                        <TableCell align="right">Digitalizado</TableCell>
+                                                        <TableCell align="right">Ruta</TableCell>
+                                                    </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+                                                    {expediente.documentos.map((documento) => (
+                                                        <TableRow key={documento._id}>
+                                                            <TableCell component="th" scope="row">
+                                                                {documento.nombre}
+                                                            </TableCell>
+                                                            <TableCell align="right">{documento.tipo}</TableCell>
+                                                            <TableCell align="right">{documento.digitalizado}</TableCell>
+                                                            <TableCell align="right">{documento.rutaDigital}</TableCell>
+                                                        </TableRow>
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
+                                    </ExpansionPanelDetails>
+                                </ExpansionPanel>
+                            </div>
+                        ))}
+                    </Paper>
+                </Grid>
+            </Grid>
         );
-    if(props.search && results){
-        return(<div/>);
-    }else{
-        return(<div/>);
     }
-
 }
 
 function FilesForm(props) {
     const [formData, setFormData] = useHandleInputChangeHook({});
-    const [doSearch,setDoSearch] = useState(false);
-    const onClick = (e) => {
-        alert("codigo: " +formData.codDocumento + " Numero" + formData.numeroDocumento);
+    const [results,setResults] = useState(null);
+    const onClick = () => {
+        const requestOptions = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(formData)
+        };
+        fetch('http://localhost:5000/carpetaDocumental/cliente', requestOptions)
+            .then(response => response.json())
+            .then(
+                data => {
+                    setResults(data);
+                    console.log("Respuesta Servicio " + data.primerNombre);
+                }
+            );
     };
 
     return (
         <div>
-            <Grid container alignItems={"center"} direction={"column"} spacing={2} >
+            <Grid container alignItems={"center"} direction={"column"} spacing={2}>
                <Grid item>
                </Grid>
                 <Grid item xs={12}>
                    <Grid container justify={"center"} alignItems={"center"} spacing={2}>
                         <Grid xs={6} item>
-                            <TextField label="Código Documento" name={"codDocumento"} variant="outlined" onChange={setFormData}/>
+                            <TextField label="Código Documento" name={"tipoDocumento"} variant="outlined" onChange={setFormData}/>
                         </Grid>
                        <Grid xs={6} item>
                            <TextField label="Número Documento" name={"numeroDocumento"} variant="outlined" onChange={setFormData}/>
                        </Grid>
                    </Grid>
                </Grid>
-                <Grid xs={12} item alignContent={"center"} direction={"column"}>
+                <Grid xs={12} item>
                     <Button variant="contained" color="primary" onClick={onClick}>
                         <ArrowForwardIos/>
                     </Button>
                 </Grid>
             </Grid>
-            <Grid container>
-                <Grid item>
-                    <FileSearchDisplay queryData={formData} search={doSearch}/>
-                </Grid>
-            </Grid>
+            <FileSearchDisplay data={results}/>
         </div>
     );
   }
@@ -79,15 +146,15 @@ function FilesForm(props) {
 function Files(props) {
     const onClick= props.onClick;
     const [open, setOpen] = React.useState(false);
-  
+
     const handleClickOpen = () => {
       setOpen(true);
     };
-  
+
     const handleClose = () => {
       setOpen(false);
     };
-  
+
     return (
       <div>
         <Button variant="outlined" color="primary" onClick={handleClickOpen}>
