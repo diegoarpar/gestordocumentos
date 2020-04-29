@@ -61,13 +61,14 @@ function LoginForm(props) {
                       }}
                       inputProps={{
                         type: "text",
+                        onChange: (e) => {setUserLogin({user:e.target.value, password:userLogin.password})},
                         endAdornment: (
                           <InputAdornment position="end">
                             <People className={classes.inputIconsColor} />
                           </InputAdornment>
                         )
-                      }}
-                      onChange={(e)=>{setUserLogin({user:e.target.value, password:userLogin.password})}}
+                      }
+                    }
                     />
                     <CustomInput
                       labelText="Password"
@@ -77,6 +78,7 @@ function LoginForm(props) {
                       }}
                       inputProps={{
                         type: "password",
+                        onChange: (e) => {setUserLogin({user:userLogin.user,password:SHA256(e.target.value)})},
                         endAdornment: (
                           <InputAdornment position="end">
                             <Password className={classes.inputIconsColor} />
@@ -84,7 +86,6 @@ function LoginForm(props) {
                         ),
                         autoComplete: "off"
                       }}
-                      onChange={(e)=>{setUserLogin({user:userLogin.user,password:SHA256(e.target.value)})}}
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
