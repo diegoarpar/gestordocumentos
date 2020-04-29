@@ -1,5 +1,5 @@
 import React,{ useState,useEffect } from 'react';
-import '../App.css';
+
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
@@ -22,7 +22,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import useHandleInputChangeHook from '../utils/useHandleInputChangeHook'
+import useHandleInputChangeHook from '../../utils/useHandleInputChangeHook'
 
 function FileSearchDisplay(props){
     const info = props.data;
@@ -167,7 +167,7 @@ function Files(props) {
                         <ArrowBack />
                     </IconButton>
                     <Typography variant="h6">
-                        Consultar documento
+                        Consultar Documento
                     </Typography>
                 </Toolbar>
             </AppBar>

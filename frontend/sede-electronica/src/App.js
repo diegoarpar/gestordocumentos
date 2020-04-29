@@ -2,8 +2,10 @@ import React,{ useState,useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
-import Login from './login/login'
-import Files from './files/files'
+import Login from './views/login/login.js';
+import Files from './views/files/files.js';
+import LandingPage from './views/landingPage/landingPage.js';
+import Footer from "components/Footer/Footer.js";
 
 function App(props) {
   const [mainContainer, setMainContainer] = useState(props.mc);
@@ -24,26 +26,18 @@ function App(props) {
   }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
       <div>
-          <LoginApp portalContainer={portalContainer1} onClick={login}/>
+
+        <div>
+            <LoginApp portalContainer={portalContainer1} onClick={login}/>
+        </div>
+        <div>
+            <FindFileApp portalContainer={portalContainer1} onClick={findDocument}/>
+        </div>
+        
+        
       </div>
-      <div>
-          <FindFileApp portalContainer={portalContainer1} onClick={findDocument}/>
-      </div>
+
     </div>
   );
 }
