@@ -6,9 +6,9 @@ NOMBRE_BD = "GestorDocumental"
 DOCUMENTO_COLL = "Documento"
 
 
-def consultarDocumento(expediente):
+def consultarDocumento(documento):
     conexionMongo = mongoHelper.getConnection("localhost", "27017")
-    filtroConsulta = dataParser.generarFiltro(expediente)
+    filtroConsulta = dataParser.generarFiltro(documento)
     documentoCol = mongoHelper.getCollection(conexionMongo, NOMBRE_BD, DOCUMENTO_COLL)
     documentos = documentoCol.find(filtroConsulta)
 

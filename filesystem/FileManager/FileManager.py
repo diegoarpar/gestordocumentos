@@ -1,10 +1,12 @@
 import os, configparser
+from builtins import quit
+
 import Persistence.PersonaPersistance as PersonaPersistance
 import Persistence.ExpedientePersistance as ExpedientePersistance
 import Persistence.DocumentoPersistance as DocumentoPersistance
 from flask import Blueprint, request, jsonify
 from werkzeug.utils import secure_filename
-from bson.json_util import dumps
+from bson.json_util import dumps,loads
 
 
 fileManager_BP = Blueprint("FileManager", __name__)
@@ -19,10 +21,19 @@ def crearCarpetaCliente():
 
     return res
 
-@fileManager_BP.route('/carpetaDocumental/', methods=['GET'])
+@fileManager_BP.route('/carpetaDocumental/cliente', methods=['POST'])
 def consultarCarpetaCliente():
     inputData = request.get_json()
     carpeta = PersonaPersistance.consultarCarpetaCliente(inputData)
+    queryExpediente = {"_personaRef": carpeta["_id"]}
+    expedientes = ExpedientePersistance.consultarExpediente(queryExpediente)
+    carpeta["expedientes"] = []
+    for expediente in expedientes:
+        queryDocumento = {"_expedienteRef":expediente["_id"]}
+        documentos = DocumentoPersistance.consultarDocumento(queryDocumento)
+        expediente["documentos"] = documentos
+        carpeta["expedientes"].append(expediente)
+
     res = jsonify({})
     res.set_data(dumps(carpeta))
     res.status_code = 200

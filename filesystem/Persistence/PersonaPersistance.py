@@ -14,10 +14,10 @@ def crearCarpetaDocumental(persona):
     if resultado is None:
         #crear cliente
         persona = personaColl.insert_one(persona)
-        mongoHelper.closeConnection()
+        mongoHelper.closeConnection(conexionMongo)
         return persona
     else:
-        mongoHelper.closeConnection()
+        mongoHelper.closeConnection(conexionMongo)
         return resultado
 
 
