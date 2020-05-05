@@ -26,6 +26,7 @@ import CardBody from "components/Card/CardBody.js";
 
 
 import Slide from '@material-ui/core/Slide';
+import UsersServices from '../../services/userServices'
 
 const useStyles = makeStyles(styles);
 
@@ -33,18 +34,15 @@ const useStyles = makeStyles(styles);
 
 function LoginForm(props) {
   const onClickProps= props.onClick;
+  
   const onClick= function o (event){
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(userLogin)
-    };
-    fetch('http://192.168.0.16:8000/authentication/validateuser/', requestOptions)
-        .then(response => response.json())
+    const  headers = { 'Content-Type': 'application/json' };
+    UsersServices.LogIn(userLogin,headers )
         .then(data => {setPost(data); onClickProps(data);});
         
     
   };
+
   const [userLogin,setUserLogin]=useState({});
   const [data,setPost]=useState({});
   const classes = useStyles();
@@ -89,7 +87,7 @@ function LoginForm(props) {
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    <Button simple color="primary" size="lg" onClick={(e) => {onClick(e)}}>
+                    <Button  color="primary"  onClick={(e) => {onClick(e)}}>
                       Iniciar Sesión
                     </Button>
                   </CardFooter>

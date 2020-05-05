@@ -9,6 +9,12 @@ function  UsersServices  () {
     
    
 }
+async function  LogIn(data){
+    return axios.post("http://192.168.0.16:8000/authentication/validateuser/",data)
+    .then(data =>{
+        return data.data
+    })
+}
 async function  GetData(){
     return axios.get("http://localhost:5000/authentication/users/")
     .then(data =>{
@@ -16,11 +22,11 @@ async function  GetData(){
     })
 }
 
-async function  CreateUser(data){
-    return axios.post("http://localhost:5000/authentication/users/",data)
+async function  CreateUser(data, headers){
+    return axios.post("http://localhost:5000/authentication/users/",data,{headers:headers})
     .then(data =>{
         return data.data
     })
 }
 
-export default  {GetData,CreateUser,UsersServices};
+export default  {GetData,CreateUser,LogIn,UsersServices};
