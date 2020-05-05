@@ -66,8 +66,8 @@ function App(props) {
     SessionCookie.SetSessionCookie(t);
     setSessionUser(t);
     console.log(t);
-    history.push('/userAdministration');
-    history.go();
+    //history.push('/userAdministration');
+    //history.go();
     
   }
 
