@@ -50,3 +50,7 @@
 div#another-root1 {
   display: inline-flex;
 }
+
+.modalClass {
+  background-color: white;
+}
