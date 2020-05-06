@@ -7,7 +7,7 @@ PERSONA_COLL = "Persona"
 
 
 def crearCarpetaDocumental(persona):
-    conexionMongo = mongoHelper.getConnection("localhost", "27017")
+    conexionMongo = mongoHelper.getConnection("mongoService", "27017")
     personaColl = mongoHelper.getCollection(conexionMongo, NOMBRE_BD, PERSONA_COLL)
     queryFindOne = dataParser.generarFiltro(persona)
     resultado = personaColl.find_one(queryFindOne)
@@ -22,7 +22,7 @@ def crearCarpetaDocumental(persona):
 
 
 def consultarCarpetaCliente(persona):
-    conexionMongo = mongoHelper.getConnection("localhost", "27017")
+    conexionMongo = mongoHelper.getConnection("mongoService", "27017")
     query = dataParser.generarFiltro(persona)
     documentCollection = mongoHelper.getCollection(conexionMongo, NOMBRE_BD, PERSONA_COLL)
     carpetaCliente = documentCollection.find_one(query)

@@ -7,7 +7,7 @@ DOCUMENTO_COLL = "Documento"
 
 
 def consultarDocumento(documento):
-    conexionMongo = mongoHelper.getConnection("localhost", "27017")
+    conexionMongo = mongoHelper.getConnection("mongoService", "27017")
     filtroConsulta = dataParser.generarFiltro(documento)
     documentoCol = mongoHelper.getCollection(conexionMongo, NOMBRE_BD, DOCUMENTO_COLL)
     documentos = documentoCol.find(filtroConsulta)

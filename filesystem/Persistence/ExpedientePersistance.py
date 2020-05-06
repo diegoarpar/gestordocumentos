@@ -6,7 +6,7 @@ NOMBRE_BD = "GestorDocumental"
 EXPEDIENTE_COLL = "Expediente"
 
 def asociarExpedienteCarpeta(expediente):
-    conexionMongo = mongoHelper.getConnection("127.0.0.1", "27017")
+    conexionMongo = mongoHelper.getConnection("mongoService", "27017")
     expedienteColl = mongoHelper.getCollection(conexionMongo, NOMBRE_BD, EXPEDIENTE_COLL)
     resultado = expedienteColl.update_one({"_id": expediente["_id"]}, expediente)
     mongoHelper.closeConnection(conexionMongo)
@@ -15,7 +15,7 @@ def asociarExpedienteCarpeta(expediente):
 
 
 def consultarExpediente(expediente):
-    conexionMongo = mongoHelper.getConnection("localhost", "27017")
+    conexionMongo = mongoHelper.getConnection("mongoService", "27017")
     filtroConsulta = dataParser.generarFiltro(expediente)
     expedienteCol = mongoHelper.getCollection(conexionMongo, NOMBRE_BD, EXPEDIENTE_COLL)
     expedientes = expedienteCol.find(filtroConsulta)
