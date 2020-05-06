@@ -1,4 +1,5 @@
 import * as Cookies from "js-cookie";
+import UsersServices from "../services/userServices"
 
 const SetSessionCookie = (session: any): void => {
   Cookies.remove("session");
@@ -17,8 +18,33 @@ const GetSessionCookie: any = () => {
   }
 };
 
+const SetSessionCookieTenant = (session: any): void => {
+  Cookies.remove("tenant");
+  if(!!session)
+  Cookies.set("tenant", session);
+  //Cookies.set("session", session, { expires: session.expires_in });
+};
+
+const GetSessionCookieTenant: any = () => {
+  const sessionCookie = Cookies.get("tenant");
+
+  if (sessionCookie === undefined) {
+    UsersServices.GetTenant({"url":window.location.hostname}).then(
+      (data)=>{
+        if(data!=null){
+          SetSessionCookieTenant(data);
+          return data;
+        }
+      }
+    )
+    return {};
+  } else {
+    return JSON.parse(sessionCookie);
+  }
+};
+
 const SessionCookie= () => {
    
   };
 
-export default  {SetSessionCookie,GetSessionCookie,SessionCookie};
+export default  {SetSessionCookie,GetSessionCookie,SetSessionCookieTenant,GetSessionCookieTenant,SessionCookie};

@@ -335,7 +335,7 @@ const UserInformation=(props)=>{
 }
 
 const RolesTable=(props)=>{
-  const [userInformation, setUserInformation] = useState(props.rowInformation);
+  const [userInformation, setUserInformation] = useState(props.userInformation);
 
   useEffect(() => {
     if(userInformation!=null)

@@ -14,14 +14,14 @@ import configparser
 import requests
 import sys
 sys.path.append('../')
-
+from utils import Utils as utils
 app3 = Blueprint('app3', __name__)
 
 @app3.route('/authentication/users/',methods = ['GET'])
-def validateUser():
+def getUsers():
     data = request.get_json()
     objectToFind={}
-    userRta = Db.findMultiple("usersdb",objectToFind)
+    userRta = Db.findMultiple(utils.getTenant(request)+"_usersdb",objectToFind)
     return userRta
 
 @app3.route('/authentication/updateUser/',methods = ['POST'])
@@ -30,21 +30,8 @@ def updateUser():
     userQuery=data["userQuery"]
     userNewData=data["userNewData"]
 
-    userRta = Db.find("usersdb",userQuery)
+    userRta = Db.find(utils.getTenant(request)+"_usersdb",userQuery)
     if userRta!="null":
-        Db.update("usersdb",userQuery,userNewData)
+        Db.update(utils.getTenant(request)+"_usersdb",userQuery,userNewData)
         return jsonify({"message": "user created","flag":True})
-    token=str(uuid.uuid1())
     return jsonify({"message": "user not created ","flag":True})
-
-def getTenant(headers):
-    tenat=headers.get("Host")
-    tenat=tenat.split(":")[0]
-    return tenat
-
-def getToken(headers):
-    token=headers.get("Authentication")
-    if token != "null" and token != "" and token != None and token.conains(","):
-        token=token.split(",")[1]
-        return token
-    return None
