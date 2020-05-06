@@ -24,6 +24,18 @@ def validateUser():
     userRta = Db.findMultiple("usersdb",objectToFind)
     return userRta
 
+@app3.route('/authentication/updateUser/',methods = ['POST'])
+def updateUser():
+    data = request.get_json()
+    userQuery=data["userQuery"]
+    userNewData=data["userNewData"]
+
+    userRta = Db.find("usersdb",userQuery)
+    if userRta!="null":
+        Db.update("usersdb",userQuery,userNewData)
+        return jsonify({"message": "user created","flag":True})
+    token=str(uuid.uuid1())
+    return jsonify({"message": "user not created ","flag":True})
 
 def getTenant(headers):
     tenat=headers.get("Host")
