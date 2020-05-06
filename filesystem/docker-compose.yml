@@ -1,0 +1,42 @@
+version: '2'
+services:
+  #authentication services
+  authenticationgestor:
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    image: authenticationgestor:24200417_4
+    ports:
+      - "5000:5000"
+    depends_on:
+      - authenticationdatabase
+    networks:
+      - authenticationnet
+      - kong_kong-network
+    links:
+     - authenticationdatabase
+   
+  # authentication database
+  authenticationdatabase:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "mongoadmin"
+      MONGO_INITDB_ROOT_PASSWORD: "secret"
+      MONGO_INITDB_DATABASE: "admin"
+      MONGO_NON_ROOT_USERNAME: "gestor"
+      MONGO_NON_ROOT_PASSWORD: "secret"
+      DATA_DIR: /data/db
+    volumes:
+      - ./db:/data/db
+    ports:
+     - "0.0.0.0:27018:27017"
+     - "127.0.0.1:27019:27017"
+    networks:
+      - authenticationnet
+      - kong_kong-network
+ 
+networks:
+  authenticationnet:
+    driver: bridge
+  kong_kong-network:
+    external: true
