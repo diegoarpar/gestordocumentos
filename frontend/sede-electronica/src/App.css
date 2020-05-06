@@ -55,4 +55,7 @@ div#another-root1 {
   background-color: white;
   padding-left: 40px;
   padding-right: 40px;
+  overflow-y: scroll;
+  overflow: scroll;
+  height: 100%;
 }

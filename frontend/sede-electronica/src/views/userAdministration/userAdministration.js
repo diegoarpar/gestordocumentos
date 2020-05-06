@@ -14,6 +14,7 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Password from "@material-ui/icons/VpnKey";
 import People from "@material-ui/icons/People";
+import SHA256 from 'js-sha256';
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "../../assets/jss/material-kit-react/views/loginPage.js";
 
@@ -55,10 +56,12 @@ function UserAdministration(props) {
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [open, setOpen] = React.useState(false);
     const [modalType, setModalType] = React.useState();
+    const [rowInformation, setRowInformation] = React.useState();
+    const [newUser, setNewUser] = React.useState();
 
     const handleOpen = (e,type,row) => {
-      console.log(row);
-         setModalType(type);
+        setRowInformation(row);
+        setModalType(type);
         setOpen(true);
       };
     const handleClose = () => {
@@ -66,7 +69,20 @@ function UserAdministration(props) {
     }; 
     
     const handleCreateUser = (e,data,type) => {
-      alert();
+      let dataPost={
+          "user":data.user,
+          "password":SHA256(data.password),
+          "documentType":data.documentType,
+          "documentNumber":data.documentNumber,
+          "email":data.email
+      };
+      if(type=='C'){
+        UsersServices.CreateUser(dataPost);
+        setNewUser(dataPost);
+      }else if (type=='M'){
+        dataPost._id=data._id;
+        setNewUser(dataPost);
+      }
       };
     
     const handleChangePage = (event, newPage) => {
@@ -84,7 +100,8 @@ function UserAdministration(props) {
             setUsers(d);
         })    
         
-        },[]);
+        },[newUser]);
+    
 
     return (
     <div>
@@ -159,7 +176,10 @@ function UserAdministration(props) {
             <p id="simple-modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </p>
-            <UserInformation modalType={modalType} handleClick={handleCreateUser} onClose={handleClose}/>
+            <UserInformation rowInformation={rowInformation} 
+                            modalType={modalType} 
+                            handleClick={handleCreateUser} 
+                            onClose={handleClose}/>
         </div>
     </Modal>
     </div>
@@ -169,11 +189,12 @@ function UserAdministration(props) {
 
 const UserInformation=(props)=>{
   
-  const [userName, setUserName] = useState();
-  const [password, setPassword] = useState();
-  const [documentType, setDocumentType] = useState();
-  const [documentNumber, setDocumentNumber] = useState();
-  const [email, setEmail] = useState();
+  const [userName, setUserName] = useState(props.rowInformation.user);
+  const [userId, setUserId] = useState(props.rowInformation._id);
+  const [password, setPassword] = useState(props.rowInformation.password);
+  const [documentType, setDocumentType] = useState(props.rowInformation.documentType);
+  const [documentNumber, setDocumentNumber] = useState(props.rowInformation.documentNumber);
+  const [email, setEmail] = useState(props.rowInformation.email);
   const [modalType, setModalType] = useState(props.modalType);
   const classes = useStyles;
   const handleClick=props.handleClick;
@@ -188,6 +209,7 @@ const UserInformation=(props)=>{
             }}
             inputProps={{
               type: "text",
+              defaultValue:userName,
               onChange: (e) => {setUserName(e.target.value)},
               endAdornment: (
                 <InputAdornment position="end">
@@ -206,6 +228,7 @@ const UserInformation=(props)=>{
             }}
             inputProps={{
               type: "password",
+              defaultValue:password,
               onChange: (e) => {setPassword(e.target.value)},
               endAdornment: (
                 <InputAdornment position="end">
@@ -223,6 +246,7 @@ const UserInformation=(props)=>{
             }}
             inputProps={{
               type: "text",
+              defaultValue:documentType,
               onChange: (e) => {setDocumentType(e.target.value)},
               endAdornment: (
                 <InputAdornment position="end">
@@ -240,6 +264,7 @@ const UserInformation=(props)=>{
             }}
             inputProps={{
               type: "text",
+              defaultValue:documentNumber,
               onChange: (e) => {setDocumentNumber(e.target.value)},
               endAdornment: (
                 <InputAdornment position="end">
@@ -257,6 +282,7 @@ const UserInformation=(props)=>{
             }}
             inputProps={{
               type: "text",
+              defaultValue:email,
               onChange: (e) => {setEmail(e.target.value)},
               endAdornment: (
                 <InputAdornment position="end">
@@ -268,7 +294,7 @@ const UserInformation=(props)=>{
           />
           {modalType=="C"&&<Button variant="contained" color="primary"  
             onClick={(e) => {
-              handleClick(e,{"userName":userName,
+              handleClick(e,{"user":userName,
                             "password":password,
                             "documentType":documentType,
                             "documentNumber":documentNumber,
@@ -281,11 +307,12 @@ const UserInformation=(props)=>{
           }
           {modalType=="M"&&<Button variant="contained" color="primary"  
             onClick={(e) => {
-              handleClick(e,{"userName":userName,
+              handleClick(e,{"user":userName,
                             "password":password,
                             "documentType":documentType,
                             "documentNumber":documentNumber,
-                            "email":email
+                            "email":email,
+                            "_id":userId
                             },"M");
               
               }}>
