@@ -10,6 +10,13 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
+import CustomInput from "components/CustomInput/CustomInput.js";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Password from "@material-ui/icons/VpnKey";
+import People from "@material-ui/icons/People";
+import { makeStyles } from "@material-ui/core/styles";
+import styles from "../../assets/jss/material-kit-react/views/loginPage.js";
+
 
 
 
@@ -47,13 +54,20 @@ function UserAdministration(props) {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [open, setOpen] = React.useState(false);
+    const [modalType, setModalType] = React.useState();
 
-    const handleOpen = () => {
+    const handleOpen = (e,type,row) => {
+      console.log(row);
+         setModalType(type);
         setOpen(true);
       };
     const handleClose = () => {
     setOpen(false);
-    };  
+    }; 
+    
+    const handleCreateUser = (e,data,type) => {
+      alert();
+      };
     
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -74,7 +88,7 @@ function UserAdministration(props) {
 
     return (
     <div>
-        <Button variant="contained" color="primary"  onClick={(e) => {handleOpen(e)}}>
+        <Button variant="contained" color="primary"  onClick={(e) => {handleOpen(e,"C",{})}}>
                             Nuevo Usuario
                             </Button>
       <Paper >
@@ -108,8 +122,9 @@ function UserAdministration(props) {
                     }else if(column.id=="modifyInfo"){
                         return (
                         <TableCell  align={column.align}>
-                            <Button variant="contained" simple="true" color="primary"  onClick={(e) => {handleOpen(e)}}>
-                            Modificar
+                            <Button variant="contained" simple="true" color="primary"  
+                            onClick={(e) => {handleOpen(e,"M",row)}}>
+                            Ver Detalles
                             </Button>
                             
                         </TableCell>
@@ -144,12 +159,148 @@ function UserAdministration(props) {
             <p id="simple-modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </p>
-            
+            <UserInformation modalType={modalType} handleClick={handleCreateUser} onClose={handleClose}/>
         </div>
     </Modal>
     </div>
       );
 
+}
+
+const UserInformation=(props)=>{
+  
+  const [userName, setUserName] = useState();
+  const [password, setPassword] = useState();
+  const [documentType, setDocumentType] = useState();
+  const [documentNumber, setDocumentNumber] = useState();
+  const [email, setEmail] = useState();
+  const [modalType, setModalType] = useState(props.modalType);
+  const classes = useStyles;
+  const handleClick=props.handleClick;
+  const handleClose=props.onClose;
+
+  return (<div>
+          <CustomInput
+            labelText="Nombre de Usuario..."
+            id="setUserName"
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              type: "text",
+              onChange: (e) => {setUserName(e.target.value)},
+              endAdornment: (
+                <InputAdornment position="end">
+                  <People className={classes.inputIconsColor} />
+                </InputAdornment>
+              )
+            }
+          }
+          />
+
+          <CustomInput
+            labelText="Contraseña..."
+            id="setPassword"
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              type: "password",
+              onChange: (e) => {setPassword(e.target.value)},
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Password className={classes.inputIconsColor} />
+                </InputAdornment>
+              )
+            }
+          }
+          />
+           <CustomInput
+            labelText="Tipo de documento..."
+            id="setDocumentType"
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              type: "text",
+              onChange: (e) => {setDocumentType(e.target.value)},
+              endAdornment: (
+                <InputAdornment position="end">
+                  <People className={classes.inputIconsColor} />
+                </InputAdornment>
+              )
+            }
+          }
+          />
+          <CustomInput
+            labelText="Número de documento..."
+            id="setDocumentNumber"
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              type: "text",
+              onChange: (e) => {setDocumentNumber(e.target.value)},
+              endAdornment: (
+                <InputAdornment position="end">
+                  <People className={classes.inputIconsColor} />
+                </InputAdornment>
+              )
+            }
+          }
+          />
+          <CustomInput
+            labelText="Correo Electrónico..."
+            id="setEmail"
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              type: "text",
+              onChange: (e) => {setEmail(e.target.value)},
+              endAdornment: (
+                <InputAdornment position="end">
+                  <People className={classes.inputIconsColor} />
+                </InputAdornment>
+              )
+            }
+          }
+          />
+          {modalType=="C"&&<Button variant="contained" color="primary"  
+            onClick={(e) => {
+              handleClick(e,{"userName":userName,
+                            "password":password,
+                            "documentType":documentType,
+                            "documentNumber":documentNumber,
+                            "email":email
+                            },"C");
+              
+              }}>
+                            Agregar
+          </Button>
+          }
+          {modalType=="M"&&<Button variant="contained" color="primary"  
+            onClick={(e) => {
+              handleClick(e,{"userName":userName,
+                            "password":password,
+                            "documentType":documentType,
+                            "documentNumber":documentNumber,
+                            "email":email
+                            },"M");
+              
+              }}>
+                            Guardar Cambios
+          </Button>
+          }
+          <Button variant="contained" color="secondary"  
+              onClick={(e) => {
+                handleClose();
+
+              }}>
+              Cerrar
+          </Button>
+
+  </div>);
 }
 
 export default UserAdministration;
