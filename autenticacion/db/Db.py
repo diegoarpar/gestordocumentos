@@ -33,6 +33,10 @@ def find(collection,object):
     rta=mongo.db[collection].find_one(object)
     return dumps(rta)
 
+def remove(collection,object):
+    rta=mongo.db[collection].delete(object)
+    return dumps(rta)
+
 def findMultiple(collection,object):
     rta=mongo.db[collection].find(object)
     return dumps(rta)
