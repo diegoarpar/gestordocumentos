@@ -75,6 +75,7 @@ def createUser():
     userRta = Db.find("usersdb",objectToFind)
     if userRta=="null":
         userToInsert={"user":user, "password":password, "email":email}
+        userToInsert=data
         Db.insert("usersdb",userToInsert)
         return jsonify({"message": "user created","flag":True})
     token=str(uuid.uuid1())
