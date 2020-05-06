@@ -80,7 +80,11 @@ function UserAdministration(props) {
         UsersServices.CreateUser(dataPost);
         setNewUser(dataPost);
       }else if (type=='M'){
-        dataPost._id=data._id;
+        dataPost.password=rowInformation.password;
+        UsersServices.UpdateUser({
+                        "userQuery":{"user":dataPost.user,"_id":dataPost._id},
+                        "userNewData":dataPost
+                        });
         setNewUser(dataPost);
       }
       };
@@ -172,14 +176,14 @@ function UserAdministration(props) {
         
     >
         <div className="modalClass">
-            <h2 id="simple-modal-title">Text in a modal</h2>
-            <p id="simple-modal-description">
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </p>
+            <h2 id="modalTitle">Información del usuario</h2>
             <UserInformation rowInformation={rowInformation} 
                             modalType={modalType} 
                             handleClick={handleCreateUser} 
                             onClose={handleClose}/>
+            <RolesTable userInformation={rowInformation}>
+
+            </RolesTable>
         </div>
     </Modal>
     </div>
@@ -330,4 +334,21 @@ const UserInformation=(props)=>{
   </div>);
 }
 
+const RolesTable=(props)=>{
+  const [userInformation, setUserInformation] = useState(props.rowInformation);
+
+  useEffect(() => {
+    if(userInformation!=null)
+    UsersServices.GetRoles({"user":userInformation.user})
+    .then(d=>{
+        
+    })    
+    
+    },[userInformation]);
+
+  return (
+    <div>
+    </div>
+  );
+}
 export default UserAdministration;
