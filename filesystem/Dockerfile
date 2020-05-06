@@ -6,7 +6,6 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /usr/src/app
-#CMD [ "cd","authenticacion"]
-#CMD [ "ls"]
-CMD ["sh","-c","cd authenticacion &&  ls &&  python Authenticacion.py"]
+
+CMD ["sh","-c","flask run -h 0.0.0.0"]
 EXPOSE 5000
