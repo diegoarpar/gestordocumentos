@@ -1,0 +1,26 @@
+version: '2'
+services:
+  #authentication services
+  portaladministraciongestor:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: portaladministracion:06052020_1
+    ports:
+      - "7070:5000"
+    networks:
+      - frontendnetportaladministracion
+      - sede-electronica_frontendnetsedelectornicat
+      - kong_kong-network
+      - frontendnetsedelectornica
+
+
+networks:
+  frontendnetportaladministracion:
+    driver: bridge
+  autenticacion_authenticationnet:
+    external: true
+  kong_kong-network:
+    external: true
+  sede-electronica_frontendnetsedelectornica:
+    external: true
