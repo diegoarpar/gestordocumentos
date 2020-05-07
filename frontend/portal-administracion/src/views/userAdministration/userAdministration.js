@@ -17,21 +17,20 @@ import People from "@material-ui/icons/People";
 import SHA256 from 'js-sha256';
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "../../assets/jss/material-kit-react/views/loginPage.js";
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
 
 
 
 
-const columns = [
-    { id: 'user', label: 'Usuario', minWidth: 170 },
-    { id: 'email', label: 'Correo', minWidth: 100 },
-    {
-      id: 'modifyInfo',
-      label: 'Modificar Información',
-      minWidth: 170,
-      align: 'right'
-      
-    }
-  ];
+
 
   const useStyles = {
     root: {
@@ -54,7 +53,17 @@ function UserAdministration(props) {
     const [modalType, setModalType] = React.useState();
     const [rowInformation, setRowInformation] = React.useState();
     const [newUser, setNewUser] = React.useState();
-
+    const columns = [
+      { id: 'user', label: 'Usuario', minWidth: 170 },
+      { id: 'email', label: 'Correo', minWidth: 100 },
+      {
+        id: 'modifyInfo',
+        label: 'Modificar Información',
+        minWidth: 170,
+        align: 'right'
+        
+      }
+    ];
     const handleOpen = (e,type,row) => {
         setRowInformation(row);
         setModalType(type);
@@ -117,7 +126,7 @@ function UserAdministration(props) {
             <TableRow>
               {columns.map((column) => (
                 <TableCell
-                  
+                  key={column.id}
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
                 >
@@ -134,13 +143,13 @@ function UserAdministration(props) {
                     const value = row[column.id];
                     if(column.id!="modifyInfo"){
                         return (
-                        <TableCell  align={column.align}>
+                        <TableCell  align={column.align} key={column.id}>
                             {column.format && typeof value === 'number' ? column.format(value) : value}
                         </TableCell>
                         );
                     }else if(column.id=="modifyInfo"){
                         return (
-                        <TableCell  align={column.align}>
+                        <TableCell  align={column.align} key={column.id}>
                             <Button variant="contained" simple="true" color="primary"  
                             onClick={(e) => {handleOpen(e,"M",row)}}>
                             Ver Detalles
@@ -175,13 +184,11 @@ function UserAdministration(props) {
     >
         <div className="modalClass">
             <h2 id="modalTitle">Información del usuario</h2>
-            <UserInformation rowInformation={rowInformation} 
-                            modalType={modalType} 
-                            handleClick={handleCreateUser} 
-                            onClose={handleClose}/>
-            <RolesTable userInformation={rowInformation}>
-
-            </RolesTable>
+            
+            <TabsContainer rowInformation={rowInformation} 
+                                    modalType={modalType} 
+                                    handleCreateUser={handleCreateUser} 
+                                    handleClose={handleClose}/>
         </div>
     </Modal>
     </div>
@@ -376,19 +383,336 @@ const UserInformation=(props)=>{
 
 const RolesTable=(props)=>{
   const [userInformation, setUserInformation] = useState(props.userInformation);
-  
+  const [rows, setUserRoles] = useState([]);
+  const [page, setPage] = React.useState(0);
+  const [rol, setRol] = React.useState(-1);
+  const [contRoles, setContRoles] = React.useState(0);
+  const [rolItem, setRolItem] = React.useState();
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const columns = [
+    { id: 'roleName', label: 'Nombre del Rol', minWidth: 170 },
+    { id: 'roleDescription', label: 'Descripción', minWidth: 170 },
+    { id: 'delete', label: 'Eliminar', minWidth: 170 }
+    
+  ];
+  const roleList = [
+    { id: 'administrador', label: 'Administrador', minWidth: 170 },
+    { id: 'ciudadano', label: 'Ciudadano', minWidth: 170 },
+    { id: 'archivo', label: 'Archivo', minWidth: 170 },
+    { id: 'ventanilla', label: 'Ventanilla', minWidth: 170 },
+    { id: 'gestordecasos', label: 'Gestor de Casos', minWidth: 170 }
+  ];
+  const handleChangeList = (e) => {
+    setRol(e.target.value);
+    setRolItem(roleList[e.target.value]);
+  };
+  const handleCreateRol = (e) => {
+    UsersServices.SaveRoles({"roleName":rolItem.id, 
+                            "roleDescription":rolItem.label, 
+                             "user":userInformation.user});
+    setContRoles(contRoles+1);
+  };
+  const handleDelete = (rolItem) => {
+    debugger;
+    UsersServices.DeleteRoles({"roleName":rolItem.roleName, 
+                            "roleDescription":rolItem.roleDescription, 
+                             "user":userInformation.user});
+    setContRoles(contRoles+1);
+  };
+
+  const handleChangePage = (event, newPage) => {
+      setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+      setRowsPerPage(+event.target.value);
+      setPage(0);
+    };
   useEffect(() => {
     if(userInformation!=null&&!!userInformation.user)
     UsersServices.GetRoles({"user":userInformation.user})
     .then(d=>{
-        
+      setUserRoles(d);
     })    
     
-    },[userInformation]);
+    },[contRoles]);
 
   return (
     <div>
+      <div>
+      <FormControl >
+        <InputLabel id="selectRole">Rol</InputLabel>
+        <Select
+          id="imple-select"
+          value={rol}
+          onChange={handleChangeList}
+        >
+          {roleList.map((item,index) => (
+                <MenuItem key={item.id}  value={index}>{item.label}</MenuItem>
+              ))}
+          
+        </Select>
+      </FormControl>
+      <Button variant="contained" simple="true" color="primary"  
+                            onClick={(e) => {handleCreateRol(e)}}>
+                            Agregar Rol
+                            </Button>
+      </div>
+      <Paper >
+      <TableContainer >
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow>
+              {columns.map((column) => (
+                <TableCell 
+                  key={column.id}
+                  align={column.align}
+                  style={{ minWidth: column.minWidth }}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+              return (
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.roleName}>
+                  {columns.map((column) => {
+                    const value = row[column.id];
+                    if(column.id!="delete"){
+                        return (
+                        <TableCell  align={column.align} key={column.id}>
+                            {column.format && typeof value === 'number' ? column.format(value) : value}
+                        </TableCell>
+                        );
+                    }else if (column.id=="delete"){
+                      return (
+                        <TableCell  align={column.align} key={column.id}>
+                            <Button variant="contained" simple="true" color="primary"  
+                            onClick={(e) => {handleDelete(row)}}>
+                              Eliminar
+                            </Button>
+                        </TableCell>
+                        );
+                    }
+                  })}
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={handleChangeRowsPerPage}
+      />
+    </Paper>
     </div>
   );
 }
+
+const PortalTable=(props)=>{
+  const [userInformation, setUserInformation] = useState(props.userInformation);
+  const [rows, setUserPortals] = useState([]);
+  const [page, setPage] = React.useState(0);
+  const [portal, setPortal] = React.useState();
+  const [portalItem, setPortalItem] = React.useState();
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [countPortal, setCountPortal] = React.useState(0);
+  const columns = [
+    { id: 'portalName', label: 'Nombre del Rol', minWidth: 170 },
+    { id: 'portalDescription', label: 'Descripción', minWidth: 170 },
+    { id: 'delete', label: 'Eliminar', minWidth: 170 }
+    
+  ];
+  const portalList = [
+    { id: 'sedeElectronica', label: 'Sede Electrónica', minWidth: 170 },
+    { id: 'ventanillaUnica', label: 'Ventanilla Única', minWidth: 170 },
+    { id: 'archivo', label: 'Archivo', minWidth: 170 },
+    { id: 'administracion', label: 'Administración', minWidth: 170 },
+    { id: 'gestordecasos', label: 'Gestor de Casos', minWidth: 170 }
+  ];
+
+  const handleChangeList = (e) => {
+    setPortal(e.target.value);
+    setPortalItem(portalList[e.target.value]);
+  };
+  const handleCreatePortal = (e) => {
+    UsersServices.SavePortals({"portalName":portalItem.id, 
+                            "portalDescription":portalItem.label, 
+                             "user":userInformation.user});
+    setCountPortal(countPortal+1);
+  };
+  const handleDeletePortal = (portalItem) => {
+    debugger;
+    UsersServices.DeletePortals({"portalName":portalItem.portalName, 
+                            "portalDescription":portalItem.portalDescription, 
+                             "user":userInformation.user});
+    setCountPortal(countPortal+1);
+  };
+
+  const handleChangePage = (event, newPage) => {
+      setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+      setRowsPerPage(+event.target.value);
+      setPage(0);
+    };
+  useEffect(() => {
+    if(userInformation!=null&&!!userInformation.user)
+    UsersServices.GetPortals({"user":userInformation.user})
+    .then(d=>{
+      setUserPortals(d);
+    })    
+    
+    },[countPortal]);
+
+  return (
+    <div>
+      <div>
+      <FormControl >
+        <InputLabel id="selectRole">Portal</InputLabel>
+        <Select
+          id="imple-select"
+          value={portal}
+          onChange={handleChangeList}
+        >
+          {portalList.map((item,index) => (
+                <MenuItem key={item.id}  value={index}>{item.label}</MenuItem>
+              ))}
+          
+        </Select>
+      </FormControl>
+      <Button variant="contained" simple="true" color="primary"  
+                            onClick={(e) => {handleCreatePortal(e)}}>
+                            Agregar Rol
+                            </Button>
+      </div>
+      <Paper >
+      <TableContainer >
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow>
+              {columns.map((column) => (
+                <TableCell
+                  key={column.id}
+                  align={column.align}
+                  style={{ minWidth: column.minWidth }}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+              return (
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.user}>
+                  {columns.map((column) => {
+                    const value = row[column.id];
+                    if(column.id!="delete"){
+                        return (
+                        <TableCell  align={column.align} key={column.id}>
+                            {column.format && typeof value === 'number' ? column.format(value) : value}
+                        </TableCell>
+                        );
+                    }else if (column.id=="delete"){
+                      return (
+                        <TableCell  align={column.align} key={column.id}>
+                            <Button variant="contained" simple="true" color="primary"  
+                            onClick={(e) => {handleDeletePortal(row)}}>
+                              Eliminar
+                            </Button>
+                        </TableCell>
+                        );
+                    }
+                  })}
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={handleChangeRowsPerPage}
+      />
+    </Paper>
+    </div>
+  );
+}
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography component={'span'} variant={'body2'}>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+const TabsContainer =(props)=>{
+  const [value, setValue] = React.useState(0);
+  const [rowInformation, setRowInformation] = React.useState(props.rowInformation);
+  const [modalType, setModalType] = React.useState(props.modalType);
+  const handleCreateUser=props.handleCreateUser;
+  const handleClose=props.handleClose;
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  return (
+      <div>
+          <AppBar position="static">
+            <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+              <Tab label="Datos Básicos" {...a11yProps(0)} />
+              <Tab label="Roles" {...a11yProps(1)} />
+              <Tab label="Acceso a Portales" {...a11yProps(2)} />
+            </Tabs>
+          </AppBar>
+          <TabPanel value={value} index={0}>
+                  <div>
+                  <UserInformation rowInformation={rowInformation} 
+                                    modalType={modalType} 
+                                    handleClick={handleCreateUser} 
+                                    onClose={handleClose}/>
+                    </div>
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+                <RolesTable userInformation={rowInformation}>  </RolesTable>
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+              <PortalTable userInformation={rowInformation}>  </PortalTable>
+          </TabPanel>
+          
+          </div>
+      );
+  }
 export default UserAdministration;

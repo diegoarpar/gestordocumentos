@@ -6,6 +6,7 @@ import {  Switch, Route,Redirect,Link   } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom"
 import { createBrowserHistory } from "history";
 import UserAdministration from './views/userAdministration/userAdministration';
+import CustomizedMenus from './views/menus/menu';
 import SessionCookie from './utils/session';
 import Button from '@material-ui/core/Button';
 import ReactDOM from 'react-dom';
@@ -53,8 +54,6 @@ function App(props) {
     SessionCookie.SetSessionCookie(t);
     setSessionUser(t);
     console.log(t);
-    //history.push('/userAdministration');
-    //history.go();   
   }
 
   function logOut (){
@@ -68,7 +67,7 @@ function App(props) {
       <div className="App">
         <div>
           {!!userInSession?
-            "Bienvenido "+userInSession.user:"Bienvenido"
+            "Bienvenido al portal de administración "+userInSession.user:"Bienvenido al portal de administración "
 
           }
           {userInSession&&
@@ -77,6 +76,10 @@ function App(props) {
            </Button>
 
           }
+          {!!userInSession&&
+            <CustomizedMenus history={history}/>
+
+          } 
 
           <div>
           {!userInSession&&
@@ -88,7 +91,7 @@ function App(props) {
 
           </div>
           <Routes historyp={history}/>
-
+          
         </div>
 
       </div>

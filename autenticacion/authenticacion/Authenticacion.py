@@ -12,6 +12,7 @@ from services.Kong import app2
 from services.ServicesUserAdministrator import app3
 from services.ServicesRoles import app4
 from services.ServicesTenant import app5
+from services.ServicesPortals import app6
 from db import Db
 
 if __name__ == '__main__':
@@ -34,6 +35,7 @@ if __name__ == '__main__':
     app.register_blueprint(app3)
     app.register_blueprint(app4)
     app.register_blueprint(app5)
+    app.register_blueprint(app6)
     cors = CORS(app, resources={"*": {"origins": "*"}})
     app.run(host=appHost,port=appPort,debug=appDebug)
 

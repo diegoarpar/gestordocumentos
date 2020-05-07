@@ -79,7 +79,7 @@ async function  DeleteRoles(data){
     var headers={'Content-Type': 'application/json'}
     headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
     headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
-    return axios.delete(hostServices+"/authentication/roles/",data,{headers:headers})
+    return axios.post(hostServices+"/authentication/roles/delete/",data,{headers:headers})
     .then(data =>{
         return data.data
     })
@@ -93,6 +93,36 @@ async function  GetTenant(data){
         return data.data
     })
 }
+
+
+async function GetPortals(data){
+    var headers={'Content-Type': 'application/json'}
+    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
+    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    return axios.post(hostServices+"/authentication/portals/",data,{headers:headers})
+    .then(data =>{
+        return data.data
+    })
+}
+async function  SavePortals(data){
+    var headers={'Content-Type': 'application/json'}
+    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
+    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    return axios.put(hostServices+"/authentication/portals/",data,{headers:headers})
+    .then(data =>{
+        return data.data
+    })
+}
+async function  DeletePortals(data){
+    var headers={'Content-Type': 'application/json'}
+    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
+    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    return axios.post(hostServices+"/authentication/portals/delete/",data,{headers:headers})
+    .then(data =>{
+        return data.data
+    })
+}
+
 export default  {GetData,
     CreateUser,
     ChangePassword,
@@ -102,5 +132,8 @@ export default  {GetData,
     SaveRoles,
     UsersServices,
     GetTenant,
-    DeleteRoles
+    DeleteRoles,
+    GetPortals,
+    SavePortals,
+    DeletePortals
 };

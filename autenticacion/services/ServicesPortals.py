@@ -16,23 +16,23 @@ import sys
 sys.path.append('../')
 from utils import Utils as utils
 
-app4 = Blueprint('app4', __name__)
+app6 = Blueprint('app6', __name__)
 
-@app4.route('/authentication/roles/',methods = ['POST'])
+@app6.route('/authentication/portals/',methods = ['POST'])
 def getRoles():
     data = request.get_json()
-    rta = Db.findMultiple(utils.getTenant(request)+"_userroles",data)
+    rta = Db.findMultiple(utils.getTenant(request)+"_userportals",data)
     return rta
 
-@app4.route('/authentication/roles/',methods = ['PUT'])
+@app6.route('/authentication/portals/',methods = ['PUT'])
 def saveRoles():
     data = request.get_json()
-    rta = Db.insert(utils.getTenant(request)+"_userroles",data)
+    rta = Db.insert(utils.getTenant(request)+"_userportals",data)
     return {"messaage":"tenant agregado","flag":True}
 
-@app4.route('/authentication/roles/delete/',methods = ['POST'])
+@app6.route('/authentication/portals/delete/',methods = ['POST'])
 def deleteRoles():
     data = request.get_json()
-    rta = Db.remove(utils.getTenant(request)+"_userroles",data)
+    rta = Db.remove(utils.getTenant(request)+"_userportals",data)
     return rta
 

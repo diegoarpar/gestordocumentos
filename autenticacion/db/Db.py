@@ -34,7 +34,7 @@ def find(collection,object):
     return dumps(rta)
 
 def remove(collection,object):
-    rta=mongo.db[collection].delete(object)
+    rta=mongo.db[collection].remove(object)
     return dumps(rta)
 
 def findMultiple(collection,object):
