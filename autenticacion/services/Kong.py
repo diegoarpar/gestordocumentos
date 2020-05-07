@@ -1,18 +1,9 @@
-from flask import request
-from flask import jsonify
 from flask import Blueprint
-from db import Db
-from flask_api import status
-from flask_api import status
 from flask import request
-from hashlib import sha256
-from flask import jsonify
-import datetime
-import uuid
-from bson.json_util import dumps, loads
-import configparser
 import requests
 import sys
+from utils import Utils
+
 sys.path.append('../')
 
 app2 = Blueprint('app12', __name__)
@@ -123,8 +114,7 @@ def createPluginCorsRoute(urlHost,routeId,hosts):
     return resp
 
 def createHosts():
-    config = configparser.ConfigParser()
-    config.read('../config/configAutentication.ini')
+    config = Utils.getConfigurations("")
     amPort=config['am']['Port']
     amHost=config['am']['Host']
     amProtocol=config['am']['Protocol']

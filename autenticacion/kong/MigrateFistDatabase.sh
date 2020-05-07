@@ -1,5 +1,5 @@
 docker run --rm \
-     --network=kong_kong-net \
+     --network=kong_kong-network \
      -e "KONG_DATABASE=postgres" \
      -e "KONG_PG_HOST=kong-database" \
      -e "KONG_PG_PASSWORD=kong" \

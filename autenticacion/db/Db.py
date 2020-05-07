@@ -2,41 +2,55 @@ from flask_pymongo import PyMongo
 from bson.json_util import dumps
 import sys
 sys.path.append('../')
+from utils import Utils
+from flask import g
 
-def configureMongoDB(app,config):
+def configureMongoDB(app):
+    global  appCopy
+    appCopy=app
 
+def getMongoConnection(tenant):
+    g.db = getMongoConnectionCXT(tenant)
+    return g.db
+
+def getMongoConnectionCXT(tenant):
+    config = Utils.getConfigurations(tenant);
     uri=config['mongoApp']['Uri']
     database=config['mongoApp']['Database']
     userdb=config['mongoApp']['User']
     passdb=config['mongoApp']['Password']
     mongoHead=config['mongoApp']['Head']
     fullUri=mongoHead + userdb + ":" + passdb +"@"+ uri + database
-    app.config["MONGO_URI"] =fullUri
-    print("full mongo uri"+fullUri)
-
+    appCopy.config["MONGO_URI"] =fullUri
     try:
         global mongo
-        mongo = PyMongo(app)
-        print ("mongo connected")
+        mongo = PyMongo(appCopy)
+        #print ("mongo connected")
     except Exception as e:
+        print("full mongo uri"+fullUri)
         print ("mongo no connection"+ str(e))
-
     return mongo
 
-def insert(collection,object):
-    mongo.db[collection].insert_one(object)
+def insert(collection,object,tenant):
+    getMongoConnection(tenant)
+    mongo.db[tenant+"_"+collection].insert_one(object)
 
-def update(collection,object, newObject):
-    mongo.db[collection].update_one(object,{ "$set":newObject})
+def update(collection,object, newObject,tenant):
+    getMongoConnection(tenant)
+    mongo.db[tenant+"_"+collection].update_one(object,{ "$set":newObject})
 
-def find(collection,object):
-    rta=mongo.db[collection].find_one(object)
+def find(collection,object,tenant):
+    getMongoConnection(tenant)
+    rta=mongo.db[tenant+"_"+collection].find_one(object)
     return dumps(rta)
 
-def remove(collection,object):
-    rta=mongo.db[collection].remove(object)
+def remove(collection,object,tenant):
+    getMongoConnection(tenant)
+    rta=mongo.db[tenant+"_"+collection].remove(object)
     return dumps(rta)
 
-def findMultiple(collection,object):
-    rta=mongo.db[collection].find(object)
+def findMultiple(collection,object,tenant):
+    getMongoConnection(tenant)
+    rta=mongo.db[tenant+"_"+collection].find(object)
+
     return dumps(rta)

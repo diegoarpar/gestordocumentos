@@ -18,21 +18,22 @@ from utils import Utils as utils
 
 app6 = Blueprint('app6', __name__)
 
+collection="userportals"
 @app6.route('/authentication/portals/',methods = ['POST'])
 def getRoles():
     data = request.get_json()
-    rta = Db.findMultiple(utils.getTenant(request)+"_userportals",data)
+    rta = Db.findMultiple(collection,data,utils.getTenant(request))
     return rta
 
 @app6.route('/authentication/portals/',methods = ['PUT'])
 def saveRoles():
     data = request.get_json()
-    rta = Db.insert(utils.getTenant(request)+"_userportals",data)
+    rta = Db.insert(collection,data,utils.getTenant(request))
     return {"messaage":"tenant agregado","flag":True}
 
 @app6.route('/authentication/portals/delete/',methods = ['POST'])
 def deleteRoles():
     data = request.get_json()
-    rta = Db.remove(utils.getTenant(request)+"_userportals",data)
+    rta = Db.remove(collection,data,utils.getTenant(request))
     return rta
 

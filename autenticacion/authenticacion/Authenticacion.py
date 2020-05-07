@@ -1,23 +1,22 @@
 from flask import Flask
 
-import configparser
+from utils import Utils
 from flask_cors import CORS
 import sys
 
 sys.path.append('../')
 app = Flask(__name__)
 
-from services.Services import app1
+from services.ServicesUsers import app1
 from services.Kong import app2
-from services.ServicesUserAdministrator import app3
+from services.ServicesUserManage import app3
 from services.ServicesRoles import app4
 from services.ServicesTenant import app5
 from services.ServicesPortals import app6
 from db import Db
 
 if __name__ == '__main__':
-    config = configparser.ConfigParser()
-    config.read('../config/configAutentication.ini')
+    config = Utils.getConfigurations("")
 
     appPort=config['app']['Port']
     appHost=config['app']['Host']
@@ -26,7 +25,7 @@ if __name__ == '__main__':
     else:
         appDebug=True
 
-    Db.configureMongoDB(app,config)
+    Db.configureMongoDB(app)
     #cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 

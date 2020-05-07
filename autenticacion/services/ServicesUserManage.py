@@ -3,71 +3,38 @@ from db import Db
 from flask_api import status
 from flask import request
 from flask import jsonify
-from bson.json_util import dumps, loads
 import configparser
 import requests
 import sys
 sys.path.append('../')
 from utils import Utils as utils
+app3 = Blueprint('app3', __name__)
 
-app1 = Blueprint('app11', __name__)
+collection="usersdb"
 
-@app1.route('/helloworld')
-def hello_world():
-    return 'Hello World!'
-
-
-@app1.route('/authentication/validateuser/',methods = ['POST'])
-def validateUser():
-    data = request.get_json()
-    password=data["password"]
-    user=data["user"]
-    #password = sha256(password.encode('utf-8').rstrip()).hexdigest()
-    objectToFind={"user": user,"password":password}
-    userRta = Db.find(utils.getTenant(request)+"_usersdb",objectToFind)
-
-    if userRta=='null':
-        return jsonify({"message": "user/password incorrect","flag":False}),status.HTTP_401_UNAUTHORIZED
-    return registerConsumerGetToken(user)
-
-@app1.route('/authentication/changePassword/',methods = ['POST'])
-def changePassword():
-    data = request.get_json()
-    currentpassword=data["currentpassword"]
-    newpassword=data["newpassword"]
-    user=data["user"]
-    objectToFind={"user": user,"password":currentpassword}
-    userRta = Db.find("usersdb",objectToFind)
-    objectToFind= loads(Db.find(utils.getTenant(request)+"_usersdb",objectToFind))
-    if userRta=='null':
-        return jsonify({"message": "password not changed","flag":False,"token":token}),status.HTTP_401_UNAUTHORIZED
-    userRta=loads(userRta)
-    userRta["password"]=newpassword
-    Db.update(utils.getTenant(request)+"_usersdb",objectToFind,userRta)
-    return jsonify({"message": "password changed","flag":True})
-
-@app1.route('/authentication/createuser/',methods = ['POST'])
-def createUser():
-    data = request.get_json()
-    user=data["user"]
-    objectToFind={"user": user}
-    userRta = Db.find(utils.getTenant(request)+"_usersdb",objectToFind)
-    if userRta=="null":
-        Db.insert(utils.getTenant(request)+"_usersdb",data)
-        return jsonify({"message": "user created","flag":True})
-    return jsonify({"message": "user not created ","flag":True})
-
-@app1.route('/authentication/refreshtoken/',methods = ['POST'])
+@app3.route('/authentication/refreshtoken/',methods = ['POST'])
 def refreshToken():
     data = request.get_json()
     user=data["user"]
     token=data["refresh_token"]
     return refreshTokenUser(user,token)
 
+@app3.route('/authentication/validateuser/',methods = ['POST'])
+def validateUser():
+    data = request.get_json()
+    password=data["password"]
+    user=data["user"]
+    #password = sha256(password.encode('utf-8').rstrip()).hexdigest()
+    objectToFind={"user": user,"password":password}
+    userRta = Db.find(collection,objectToFind,utils.getTenant(request))
+
+    if userRta=='null':
+        return jsonify({"message": "user/password incorrect","flag":False}),status.HTTP_401_UNAUTHORIZED
+    return registerConsumerGetToken(user)
 
 def registerConsumerGetToken(user):
     config = configparser.ConfigParser()
-    config.read('../config/configAutentication.ini')
+    config.read('../config/_configAutentication.ini')
 
     amPort=config['am']['Port']
     amHost=config['am']['Host']
@@ -76,6 +43,7 @@ def registerConsumerGetToken(user):
 
     jsonInfo={"username":user,"custom_id":user}
     resp = requests.post(amProtocol+'://'+amHost+":"+amPort+'/consumers/', json=jsonInfo)
+    consumerId=""
     if resp.status_code != 201:
         print ('POST /consumer/ {}'+format(resp.status_code))
         if resp.status_code == 400 or resp.status_code == 409:
@@ -89,7 +57,7 @@ def registerConsumerGetToken(user):
 
 
     jsonInfo={"name":"gestor","client_id":user,"client_secret":user,"redirect_uris":["http://192.168.0.16:7001"]}
-    resp = requests.post(amProtocol+'://'+amHost+":"+amPort+'/consumers/'+consumerId+"/oauth2", json=jsonInfo)
+    resp = requests.post(amProtocol+'://'+amHost+":"+amPort+"/consumers/"+consumerId+"/oauth2", json=jsonInfo)
     oauthId=""
     if resp.status_code != 201:
         print ('POST /oatuh credential/ {}'+format(resp.status_code))
@@ -112,7 +80,7 @@ def registerConsumerGetToken(user):
 
 def refreshTokenUser(user,token):
     config = configparser.ConfigParser()
-    config.read('../config/configAutentication.ini')
+    config.read('../config/_configAutentication.ini')
 
     amPort=config['am']['Port']
     amHost=config['am']['Host']
