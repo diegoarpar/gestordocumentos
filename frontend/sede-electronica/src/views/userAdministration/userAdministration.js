@@ -33,10 +33,6 @@ const columns = [
     }
   ];
 
-  function createData(name, code, population, size) {
-    const density = population / size;
-    return { name, code, population, size, density };
-  }
   const useStyles = {
     root: {
       width: '100%',
@@ -74,6 +70,8 @@ function UserAdministration(props) {
           "password":SHA256(data.password),
           "documentType":data.documentType,
           "documentNumber":data.documentNumber,
+          "name":data.name,
+          "lastName":data.lastName,
           "email":data.email
       };
       if(type=='C'){
@@ -199,12 +197,50 @@ const UserInformation=(props)=>{
   const [documentType, setDocumentType] = useState(props.rowInformation.documentType);
   const [documentNumber, setDocumentNumber] = useState(props.rowInformation.documentNumber);
   const [email, setEmail] = useState(props.rowInformation.email);
+  const [name, setName] = useState(props.rowInformation.name);
+  const [lastName, setLastName] = useState(props.rowInformation.lastName);
   const [modalType, setModalType] = useState(props.modalType);
   const classes = useStyles;
   const handleClick=props.handleClick;
   const handleClose=props.onClose;
 
   return (<div>
+          <CustomInput
+            labelText="Nombre ..."
+            id="setName"
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              type: "text",
+              defaultValue:name,
+              onChange: (e) => {setName(e.target.value)},
+              endAdornment: (
+                <InputAdornment position="end">
+                  <People className={classes.inputIconsColor} />
+                </InputAdornment>
+              )
+            }
+          }
+          />
+          <CustomInput
+            labelText="Apellido..."
+            id="setLastName"
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              type: "text",
+              defaultValue:lastName,
+              onChange: (e) => {setLastName(e.target.value)},
+              endAdornment: (
+                <InputAdornment position="end">
+                  <People className={classes.inputIconsColor} />
+                </InputAdornment>
+              )
+            }
+          }
+          />
           <CustomInput
             labelText="Nombre de Usuario..."
             id="setUserName"
@@ -300,6 +336,8 @@ const UserInformation=(props)=>{
             onClick={(e) => {
               handleClick(e,{"user":userName,
                             "password":password,
+                            "name":name,
+                            "lastName":lastName,
                             "documentType":documentType,
                             "documentNumber":documentNumber,
                             "email":email
@@ -313,6 +351,8 @@ const UserInformation=(props)=>{
             onClick={(e) => {
               handleClick(e,{"user":userName,
                             "password":password,
+                            "name":name,
+                            "lastName":lastName,
                             "documentType":documentType,
                             "documentNumber":documentNumber,
                             "email":email,
@@ -336,9 +376,9 @@ const UserInformation=(props)=>{
 
 const RolesTable=(props)=>{
   const [userInformation, setUserInformation] = useState(props.userInformation);
-
+  
   useEffect(() => {
-    if(userInformation!=null)
+    if(userInformation!=null&&!!userInformation.user)
     UsersServices.GetRoles({"user":userInformation.user})
     .then(d=>{
         
