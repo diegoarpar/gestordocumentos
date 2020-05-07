@@ -36,8 +36,7 @@ function LoginForm(props) {
   const onClickProps= props.onClick;
   
   const onClick= function o (event){
-    const  headers = { 'Content-Type': 'application/json' };
-    UsersServices.LogIn(userLogin,headers )
+    UsersServices.LogIn(userLogin )
         .then(data => {setPost(data); onClickProps(data);});
         
     

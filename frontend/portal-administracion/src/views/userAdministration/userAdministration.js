@@ -614,7 +614,7 @@ const PortalTable=(props)=>{
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.user}>
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.portalName}>
                   {columns.map((column) => {
                     const value = row[column.id];
                     if(column.id!="delete"){

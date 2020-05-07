@@ -86,8 +86,6 @@ async function  DeleteRoles(data){
 }
 async function  GetTenant(data){
     var headers={'Content-Type': 'application/json'}
-    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
-    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
     return axios.post(hostServices+"/authentication/tenant/",data,{headers:headers})
     .then(data =>{
         return data.data
