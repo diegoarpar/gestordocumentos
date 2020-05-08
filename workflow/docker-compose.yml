@@ -1,7 +1,7 @@
 version: '2'
 services:
   #authentication services
-  authenticationgestor:
+  activiti-app:
     build: 
       context: ./
       dockerfile: Dockerfile

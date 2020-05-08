@@ -8,4 +8,4 @@ RUN wget
 COPY ./warms /usr/local/tomcat/webapps
 
 CMD ["sh","-c","catalina.sh run"]
-EXPOSE 5000
+EXPOSE 8888
