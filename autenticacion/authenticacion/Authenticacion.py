@@ -1,6 +1,6 @@
 from flask import Flask
 
-from utils import Utils
+
 from flask_cors import CORS
 import sys
 
@@ -14,6 +14,7 @@ from services.ServicesRoles import app4
 from services.ServicesTenant import app5
 from services.ServicesPortals import app6
 from db import Db
+from utils import Utils
 
 if __name__ == '__main__':
     config = Utils.getConfigurations("")
