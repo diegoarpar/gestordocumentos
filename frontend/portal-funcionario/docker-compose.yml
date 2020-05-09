@@ -1,0 +1,23 @@
+version: '2'
+services:
+  #authentication services
+  portalfuncionariogestor:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: portalfuncionariogestor:06052020_1
+    ports:
+      - "5050:5000"
+    networks:
+      - frontendnetportalfuncionario
+      - kong_kong-network
+      - autenticacion_authenticationnet
+
+
+networks:
+  frontendnetportalfuncionario:
+    driver: bridge
+  autenticacion_authenticationnet:
+    external: true
+  kong_kong-network:
+    external: true
