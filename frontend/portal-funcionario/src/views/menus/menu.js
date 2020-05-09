@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
+
 const StyledMenu = withStyles({
     paper: {
       border: '1px solid #d3d4d5',
@@ -70,15 +71,21 @@ function CustomizedMenus(props) {
             <ListItemIcon>
               
             </ListItemIcon>
-            <ListItemText primary="Administración de usuarios" 
-                onClick={(e)=>{history.push('/userAdministration'); history.go();}} 
+            <ListItemText primary="Ventanilla de radicación" 
+                onClick={(e)=>{history.push('/ventanillaRadicacion'); history.go();}} 
             />
           </StyledMenuItem>
           <StyledMenuItem>
             <ListItemIcon>
               
             </ListItemIcon>
-            <ListItemText primary="Administración de trámites" />
+            <ListItemText primary="Trámites" />
+          </StyledMenuItem>
+          <StyledMenuItem>
+            <ListItemIcon>
+              
+            </ListItemIcon>
+            
           </StyledMenuItem>
           <StyledMenuItem>
             <ListItemIcon>
