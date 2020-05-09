@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     image: activiti-tomcat:06052020_1
     ports:
-      - "8888:8080"
+      - "0.0.0.0:8888:8080"
     depends_on:
       - activiti-mysql
     networks:
@@ -17,11 +17,12 @@ services:
   activiti-phpmyadmin:
     image: phpmyadmin/phpmyadmin:5.0.2-fpm-alpine
     environment:
-      MYSQL_ROOT_PASSWORD: "activiti"
+      MYSQL_ROOT_PASSWORD: activiti
       PMA_HOST: activiti-mysql
       PMA_PORT: 3306
+      PMA_ARBITRARY: 0
     ports:
-      - "82:80"
+      - "0.0.0.0:82:80"
     depends_on:
       - activiti-mysql
     networks:
@@ -31,10 +32,10 @@ services:
   activiti-mysql:
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: "activiti"
-      MYSQL_USER: "activiti"
-      MYSQL_PASSWORD: "activiti"
-      MYSQL_DATABASE: "activiti6ui"
+      MYSQL_ROOT_PASSWORD: activiti
+      MYSQL_USER: activiti
+      MYSQL_PASSWORD: activiti
+      MYSQL_DATABASE: activiti6ui
     volumes:
       - ./db:/var/lib/mysql
     ports:
@@ -45,3 +46,5 @@ services:
 networks:
   activiti-network:
     driver: bridge
+  kong-network:
+    external: true

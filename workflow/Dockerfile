@@ -1,6 +1,6 @@
-FROM tomcat:9.0.34-jdk14-openjdk-oracle
+FROM tomcat:jdk8
 
-WORKDIR /usr/src/app
+#WORKDIR /usr/src/app
 
 #CMD [ "cd","authenticacion"]
 
