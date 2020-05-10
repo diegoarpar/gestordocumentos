@@ -190,13 +190,7 @@ const UserInformation=(props)=>{
                             Guardar Cambios
           </Button>
           }
-          <Button variant="contained" color="secondary"  
-              onClick={(e) => {
-                handleClose();
-
-              }}>
-              Cerrar
-          </Button>
+          
 
   </div>);
 }

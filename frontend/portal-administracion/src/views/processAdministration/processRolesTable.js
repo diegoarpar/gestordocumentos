@@ -12,7 +12,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import UsersServices from '../../services/userServices'
+import ProcessRolesServices from '../../services/processServicesRoles'
 import ParametricServices from '../../services/parametricvaluesService'
 
 
@@ -27,47 +27,52 @@ import ParametricServices from '../../services/parametricvaluesService'
 
 
 const RolesProcessTable=(props)=>{
-  const [userInformation, setUserInformation] = useState(props.userInformation);
-  const [rows, setUserRoles] = useState([]);
+  const [information, setInformation] = useState(props.information);
+  const [rows, setRows] = useState([]);
   const [page, setPage] = useState(0);
-  const [rol, setRol] = useState(-1);
-  const [contRoles, setContRoles] = useState(0);
-  const [rolItem, setRolItem] = useState();
+  const [listIndex, setListIndex] = useState(-1);
+  const [listIndexSN, setListIndexSN] = useState(-1);
+  const [cont, setCont] = useState(0);
+  const [itemList, setItemList] = useState();
   const [rowsPerPage, setRowsPerPage] = useState(20);
-  const [roleList, setRoleList] = useState([]);
+  const [list, setList] = useState([]);
+  const [listSN, setListSN] = useState([{"id":"S","label":"S"},{"id":"N","label":"N"}]);
+  
   const columns = [
     { id: 'roleName', label: 'Nombre del Rol', minWidth: 170 },
     { id: 'roleDescription', label: 'Descripción', minWidth: 170 },
+    { id: 'initProcess', label: 'Inicia Proceso', minWidth: 170 },
     { id: 'delete', label: 'Eliminar', minWidth: 170 }
     
   ];
-  /*const roleList = [
-    { id: 'administrador', label: 'Administrador', minWidth: 170 },
-    { id: 'ciudadano', label: 'Ciudadano', minWidth: 170 },
-    { id: 'archivo', label: 'Archivo', minWidth: 170 },
-    { id: 'ventanilla', label: 'Ventanilla', minWidth: 170 },
-    { id: 'gestordecasos', label: 'Gestor de Casos', minWidth: 170 }
-  ];*/
   
   const handleChangeList = (e) => {
-    setRol(e.target.value);
-    setRolItem(roleList[e.target.value]);
+    setListIndex(e.target.value);
+    setItemList(list[e.target.value]);
   };
-  const handleCreateRol = (e) => {
-    UsersServices.SaveProcessRoles({"roleName":rolItem.id, 
-                            "roleDescription":rolItem.label, 
-                             "user":userInformation.user}).then(d=>{
-                              setContRoles(contRoles+1);
+  const handleChangeListSN = (e) => {
+    setListIndexSN(e.target.value);
+  };
+  const handleClick = (e) => {
+    
+    ProcessRolesServices.CreateProcessRoles({
+                            "roleName":itemList.id, 
+                            "roleDescription":itemList.label, 
+                            "process":information.name,
+                            "initProcess":listIndexSN
+                            }).then(d=>{
+                              setCont(cont+1);
                             });
     
   };
-  const handleDelete = (rolItem) => {
-    UsersServices.DeleteProcessRoles({"roleName":rolItem.roleName, 
-                            "roleDescription":rolItem.roleDescription, 
-                             "user":userInformation.user}).then(d=>{
-                              setContRoles(contRoles+1);
+  const handleDelete = (item) => {
+    ProcessRolesServices.DeleteProcessRoles({
+                            "roleName":item.roleName, 
+                            "process":information.name
+                            }).then(d=>{
+                              setCont(cont+1);
                             });
-    setContRoles(contRoles+1);
+                            setCont(cont+1);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -79,20 +84,20 @@ const RolesProcessTable=(props)=>{
       setPage(0);
     };
   useEffect(() => {
-    if(userInformation!=null&&!!userInformation.user)
-    UsersServices.GetProcessRoles({"user":userInformation.user})
+    if(information!=null&&!!information.name)
+    ProcessRolesServices.GetProcessesRoles({"process":information.process})
     .then(d=>{
-      setUserRoles(d);
+      setRows(d);
     })    
     ParametricServices.GetParametric({"type":"ROL_PROCESO"}).then((data)=>{
       
-      setRoleList(data);
+      setList(data);
       data.map((row)=>{  
-        setRoleList(roleList =>[...roleList, {"id":row.name,"label":row.description}]);
+        setList(list =>[...list, {"id":row.name,"label":row.description}]);
         });
       });
       
-    },[contRoles]);
+    },[cont]);
 
   return (
     <div>
@@ -101,17 +106,30 @@ const RolesProcessTable=(props)=>{
         <InputLabel id="selectRole">Rol</InputLabel>
         <Select
           id="imple-select"
-          value={rol}
+          value={listIndex}
           onChange={handleChangeList}
         >
-          {roleList.map((item,index) => (
+          {list.map((item,index) => (
                 <MenuItem key={item.id}  value={index}>{item.label}</MenuItem>
               ))}
           
         </Select>
       </FormControl>
+      <FormControl >
+        <InputLabel id="selectRoleInit">Rol de Inicio</InputLabel>
+        <Select
+          id="imple-select2"
+          value={listIndexSN}
+          onChange={handleChangeListSN}
+        >
+          {listSN.map((item,index) => (
+                <MenuItem key={item.id}  value={item.label}>{item.label}</MenuItem>
+              ))}
+          
+        </Select>
+      </FormControl>
       <Button variant="contained" simple="true" color="primary"  
-                            onClick={(e) => {handleCreateRol(e)}}>
+                            onClick={(e) => {handleClick(e)}}>
                             Agregar Rol
                             </Button>
       </div>

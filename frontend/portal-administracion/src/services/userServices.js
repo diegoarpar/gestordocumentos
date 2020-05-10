@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 var hostServices="http://192.168.0.16:8000";
-hostServices="http://192.168.0.16:5000";
+hostServices="http://192.168.0.12:5000";
 function  UsersServices  () {
     
    
@@ -118,6 +118,34 @@ async function  DeletePortals(data){
     })
 }
 
+async function GetProcessRoles(data){
+    var headers={'Content-Type': 'application/json'}
+    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
+    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    return axios.post(hostServices+"/authentication/processroles/",data,{headers:headers})
+    .then(data =>{
+        return data.data
+    })
+}
+async function  SaveProcessRoles(data){
+    var headers={'Content-Type': 'application/json'}
+    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
+    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    return axios.put(hostServices+"/authentication/processroles/",data,{headers:headers})
+    .then(data =>{
+        return data.data
+    })
+}
+async function  DeleteProcessRoles(data){
+    var headers={'Content-Type': 'application/json'}
+    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
+    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    return axios.post(hostServices+"/authentication/processroles/delete/",data,{headers:headers})
+    .then(data =>{
+        return data.data
+    })
+}
+
 export default  {GetData,
     CreateUser,
     ChangePassword,
@@ -130,5 +158,8 @@ export default  {GetData,
     DeleteRoles,
     GetPortals,
     SavePortals,
-    DeletePortals
+    DeletePortals,
+    GetProcessRoles,
+    SaveProcessRoles,
+    DeleteProcessRoles
 };

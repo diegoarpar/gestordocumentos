@@ -19,6 +19,7 @@ import Box from '@material-ui/core/Box';
 import ParametricServices from '../../services/parametricvaluesService'
 import ParametricInformation from './parametricInformation'
 import Modal from '@material-ui/core/Modal';
+import a11yProps from "../../utils/a11yProps"
 
   const useStyles = {
     root: {
@@ -200,12 +201,6 @@ const ParametricAdministrationTable=(props)=>{
 
 
 
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 

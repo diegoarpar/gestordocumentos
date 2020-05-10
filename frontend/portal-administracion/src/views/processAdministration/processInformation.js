@@ -3,6 +3,14 @@ import Button from '@material-ui/core/Button';
 import CustomInput from "components/CustomInput/CustomInput.js";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import People from "@material-ui/icons/People";
+import a11yProps from "../../utils/a11yProps";
+
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import ProcessRolesTable from "./processRolesTable";
 
   const useStyles = {
     root: {
@@ -15,12 +23,12 @@ import People from "@material-ui/icons/People";
 
   
 
-const ProcessInformation=(props)=>{
+const ProcessInformationTab=(props)=>{
   
-  const [processName, setProcessName] = useState(props.processInformation.name);
-  const [processDescription, setProcessDescription] = useState(props.processInformation.description);
-  const [isAnonymouseRequest, setIsAnonymouseRequest] = useState(props.processInformation.isAnonymouseRequest);
-  const [workflowName, setWorkflowName] = useState(props.processInformation.workflowName);
+  const [processName, setProcessName] = useState(props.information.name);
+  const [processDescription, setProcessDescription] = useState(props.information.description);
+  const [isAnonymouseRequest, setIsAnonymouseRequest] = useState(props.information.isAnonymouseRequest);
+  const [workflowName, setWorkflowName] = useState(props.information.workflowName);
   const [modalType, setModalType] = useState(props.modalType);
   const classes = useStyles;
   const handleClick=props.handleClick;
@@ -114,6 +122,74 @@ const ProcessInformation=(props)=>{
           </Button>
           }
           
+          
+
+  </div>);
+}
+
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography component={'span'} variant={'body2'}>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+const ProcessInformation =(props)=>{
+  const [value, setValue] = useState(0);
+  const [information, setInformation] = useState(props.information);
+  const [modalType, setModalType] = useState(props.modalType);
+  const handleClick=props.handleClick;
+  const handleClose=props.handleClose;
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  return (
+      <div>
+          <AppBar position="static">
+            <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+              <Tab label="Información" {...a11yProps(0)} />
+              {modalType=="M"&&<Tab label="Roles asociados" {...a11yProps(1)} />}
+              <Tab label="" {...a11yProps(2)} />
+            </Tabs>
+          </AppBar>
+          <TabPanel value={value} index={0}>
+                  <div>
+                  <ProcessInformationTab
+                    information={information} 
+                    modalType={modalType} 
+                    handleClick={handleClick} 
+                    handleClose={handleClose}
+                  />
+                    </div>
+          </TabPanel>
+         { modalType=="M"&&<TabPanel value={value} index={1}>
+          <div>
+                  <ProcessRolesTable
+                    information={information} 
+                    modalType={modalType} 
+                    handleClick={handleClick} 
+                    handleClose={handleClose}
+                  />
+                    </div>
+                
+          </TabPanel>
+        }
+          <TabPanel value={value} index={2}>
+              
+          </TabPanel>
           <Button variant="contained" color="secondary"  
               onClick={(e) => {
                 handleClose();
@@ -121,9 +197,8 @@ const ProcessInformation=(props)=>{
               }}>
               Cerrar
           </Button>
-
-  </div>);
-}
-
+          </div>
+      );
+  }
 
 export default ProcessInformation;

@@ -259,6 +259,13 @@ const TabsContainer =(props)=>{
           <TabPanel value={value} index={3}>
               <RolesProcessTable userInformation={rowInformation}>  </RolesProcessTable>
           </TabPanel>
+          <Button variant="contained" color="secondary"  
+              onClick={(e) => {
+                handleClose();
+
+              }}>
+              Cerrar
+          </Button>
           </div>
       );
   }

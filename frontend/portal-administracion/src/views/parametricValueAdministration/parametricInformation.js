@@ -8,6 +8,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import CustomInput from "components/CustomInput/CustomInput.js";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import People from "@material-ui/icons/People";
+import a11yProps from "../../utils/a11yProps";
+
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 
   const useStyles = {
@@ -21,13 +28,13 @@ import People from "@material-ui/icons/People";
 
   
 
-const ParametricInformation=(props)=>{
+const ParametricInformationTab=(props)=>{
   
   const [name, setName] = useState(props.information.name);
   const [description, setDescription] = useState(props.information.description);
   const [value, setValue] = useState(props.information.value);
   const [type, setType] = useState(props.information.type);
-  const [listIndex, setListIndex] = useState();
+  const [listIndex, setListIndex] = useState(-1);
   const [typeDescription, setTypeDescription] = useState(props.information.typeDescription);
   const [modalType, setModalType] = useState(props.modalType);
   const classes = useStyles;
@@ -45,11 +52,12 @@ const ParametricInformation=(props)=>{
     {label:"Módulo funcionario", id:"MODULO_FUNCIONARIO"}
   ];
   return (<div>
+        <div>
         <FormControl >
-            <InputLabel id="setType">Tipo</InputLabel>
+            <InputLabel id="type">Tipo</InputLabel>
             <Select
-              id="imple-select"
-              value={typeDescription}
+              id="simple-select"
+              value={listIndex}
               onChange={handleChangeList}
             >
               {typeList.map((item,index) => (
@@ -58,6 +66,7 @@ const ParametricInformation=(props)=>{
               
             </Select>
           </FormControl>
+          </div>
           <CustomInput
             labelText="Nombre..."
             id="setName"
@@ -140,4 +149,63 @@ const ParametricInformation=(props)=>{
 }
 
 
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography component={'span'} variant={'body2'}>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+const ParametricInformation =(props)=>{
+  const [value, setValue] = useState(0);
+  const [information, setInformation] = useState(props.information);
+  const [modalType, setModalType] = useState(props.modalType);
+  const handleClick=props.handleClick;
+  const handleClose=props.handleClose;
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  return (
+      <div>
+          <AppBar position="static">
+            <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+              <Tab label="Información" {...a11yProps(0)} />
+              <Tab label="" {...a11yProps(1)} />
+              <Tab label="" {...a11yProps(2)} />
+            </Tabs>
+          </AppBar>
+          <TabPanel value={value} index={0}>
+                  <div>
+                  <ParametricInformationTab
+                    information={information} 
+                    modalType={modalType} 
+                    handleClick={handleClick} 
+                    handleClose={handleClose}
+                  />
+                    </div>
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+                
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+              
+          </TabPanel>
+          
+          </div>
+      );
+  }
+
+  
 export default ParametricInformation;

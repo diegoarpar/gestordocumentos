@@ -19,6 +19,8 @@ import Box from '@material-ui/core/Box';
 import ProcessServices from '../../services/processServices'
 import ProcessInformation from './processInformation'
 import Modal from '@material-ui/core/Modal';
+import ProcessRolesServices from '../../services/processServicesRoles'
+import a11yProps from "../../utils/a11yProps";
 
   const useStyles = {
     root: {
@@ -77,6 +79,7 @@ const ProcessAdministrationTable=(props)=>{
     
   };
   const handleDelete = (row) => {
+    ProcessRolesServices.DeleteProcessRoles({"process":row.name});
     ProcessServices.DeleteProcess({"name":row.name 
                              }).then(()=>{setCont(cont+1);});
   };
@@ -180,7 +183,7 @@ const ProcessAdministrationTable=(props)=>{
         <div className="modalClass">
             <h2 id="modalTitle">Información del trámite</h2>
             
-            <ProcessInformation processInformation={processInformation} 
+            <ProcessInformation information={processInformation} 
                                     modalType={modalType} 
                                     handleClick={handleCreate} 
                                     handleClose={handleClose}
@@ -192,13 +195,6 @@ const ProcessAdministrationTable=(props)=>{
 }
 
 
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
