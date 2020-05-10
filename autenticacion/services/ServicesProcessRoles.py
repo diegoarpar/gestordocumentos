@@ -18,20 +18,20 @@ from utils import Utils as utils
 
 procesroles = Blueprint('userprocesroles', __name__)
 
-collection="userroles"
-@procesroles.route('/authentication/procesroles/',methods = ['POST'])
+collection="userprocessroles"
+@procesroles.route('/authentication/processroles/',methods = ['POST'])
 def get():
     data = request.get_json()
     rta = Db.findMultiple(collection,data,utils.getTenant(request))
     return rta
 
-@procesroles.route('/authentication/procesroles/',methods = ['PUT'])
+@procesroles.route('/authentication/processroles/',methods = ['PUT'])
 def save():
     data = request.get_json()
     rta = Db.insert(collection,data,utils.getTenant(request))
     return {"messaage":"tenant agregado","flag":True}
 
-@procesroles.route('/authentication/procesroles/delete/',methods = ['POST'])
+@procesroles.route('/authentication/processroles/delete/',methods = ['POST'])
 def delete():
     data = request.get_json()
     rta = Db.remove(collection,data,utils.getTenant(request))
