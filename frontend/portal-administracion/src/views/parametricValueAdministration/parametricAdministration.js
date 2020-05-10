@@ -8,29 +8,17 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
-import Modal from '@material-ui/core/Modal';
 import CustomInput from "components/CustomInput/CustomInput.js";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import Password from "@material-ui/icons/VpnKey";
 import People from "@material-ui/icons/People";
-import SHA256 from 'js-sha256';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import UsersServices from '../../services/userServices'
-import UserInformation from './userInformation'
-import RolesTable from './rolesTable'
-import PortalTable from './portalTable'
-import RolesProcessTable from './rolesProcessTable'
-
-
-
+import ParametricServices from '../../services/parametricvaluesService'
+import ParametricInformation from './parametricInformation'
+import Modal from '@material-ui/core/Modal';
 
   const useStyles = {
     root: {
@@ -43,89 +31,95 @@ import RolesProcessTable from './rolesProcessTable'
 
   
 
-
-function UserAdministration(props) {
-    const [rows,setUsers]  = useState([]);
-    const classes = useStyles;
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const [open, setOpen] = React.useState(false);
-    const [modalType, setModalType] = React.useState();
-    const [rowInformation, setRowInformation] = React.useState();
-    const [newUser, setNewUser] = React.useState();
-    const columns = [
-      { id: 'user', label: 'Usuario', minWidth: 170 },
-      { id: 'email', label: 'Correo', minWidth: 100 },
-      {
-        id: 'modifyInfo',
-        label: 'Modificar Información',
-        minWidth: 170,
-        align: 'right'
-        
-      }
-    ];
-    const handleOpen = (e,type,row) => {
-        setRowInformation(row);
-        setModalType(type);
-        setOpen(true);
-      };
-    const handleClose = () => {
+  
+const ParametricAdministrationTable=(props)=>{
+  const [rows, setRows] = useState([]);
+  const [page, setPage] = useState(0);
+  const [information, setInformation] = useState();
+  const [modalType, setModalType] = useState();
+  const [cont, setCont] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [open, setOpen] = useState(false);
+  const columns = [
+    { id: 'name', label: 'Nombre del Rol', minWidth: 170 },
+    { id: 'description', label: 'Descripción', minWidth: 170 },
+    { id: 'typeDescription', label: 'Tipo', minWidth: 170 },
+    { id: 'modify', label: 'Modificar', minWidth: 170 },
+    { id: 'delete', label: 'Eliminar', minWidth: 170 }
+    
+  ];
+  const handleClose = () => {
     setOpen(false);
     }; 
+  const handleModal = (row,modalType) => {
+    setInformation(row); 
+    setModalType(modalType)
+    setOpen(true);
+    }; 
+  const handleCreate = (e,item,modalType) => {
+    var newData={
+      "name":item.name, 
+      "description":item.description, 
+      "type":item.type,
+      "typeDescription":item.typeDescription,
+      "value":item.value
+    };
+    if(modalType=="C"){
+      ParametricServices.CreateParametric(newData).then(()=>{setCont(cont+1);});
     
-    const handleCreateUser = (e,data,type) => {
-      let dataPost={
-          "user":data.user,
-          "password":SHA256(data.password),
-          "documentType":data.documentType,
-          "documentNumber":data.documentNumber,
-          "name":data.name,
-          "lastName":data.lastName,
-          "email":data.email
-      };
-      if(type=='C'){
-        UsersServices.CreateUser(dataPost);
-        setNewUser(dataPost);
-      }else if (type=='M'){
-        dataPost.password=rowInformation.password;
-        UsersServices.UpdateUser({
-                        "userQuery":{"user":dataPost.user,"_id":dataPost._id},
-                        "userNewData":dataPost
-                        });
-        setNewUser(dataPost);
-      }
-      };
-    
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-      };
-    
-      const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-      };
+    }else if(modalType=="M"){
       
-    useEffect(() => {
-        UsersServices.GetData()
-        .then(d=>{
-            setUsers(d);
-        })    
-        
-        },[newUser]);
+      ParametricServices.UpdateParametric(
+        {
+          "new":newData,
+          "query":{
+            "name":information.name,
+            "type":information.type
+          }
+        }).then(()=>{setCont(cont+1);});
+    }
+    setCont(cont+1);
+  };
+  const handleDelete = (row) => {
+    ParametricServices.DeleteParametric({
+      "name":row.name,
+      "type":row.type 
+                             }).then(()=>{setCont(cont+1);});
     
+  };
 
-    return (
+  const handleChangePage = (event, newPage) => {
+      setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+      setRowsPerPage(+event.target.value);
+      setPage(0);
+    };
+  useEffect(() => {
+    
+    ParametricServices.GetParametric({})
+    .then(d=>{
+      setRows(d);
+    })    
+    
+    },[cont]);
+
+  return (
     <div>
-        <Button variant="contained" color="primary"  onClick={(e) => {handleOpen(e,"C",{})}}>
-                            Nuevo Usuario
+      <div>
+      <Button variant="contained" simple="true" color="primary"  
+                            onClick={(e) => {handleModal({},"C")}}>
+                            Crear paramétrica
                             </Button>
+      </div>
       <Paper >
       <TableContainer >
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               {columns.map((column) => (
-                <TableCell
+                <TableCell 
                   key={column.id}
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
@@ -138,23 +132,31 @@ function UserAdministration(props) {
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.user}>
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                   {columns.map((column) => {
                     const value = row[column.id];
-                    if(column.id!="modifyInfo"){
+                    if(column.id!="delete"&&column.id!="modify"){
                         return (
                         <TableCell  align={column.align} key={column.id}>
                             {column.format && typeof value === 'number' ? column.format(value) : value}
                         </TableCell>
                         );
-                    }else if(column.id=="modifyInfo"){
-                        return (
+                    }else if (column.id=="delete"){
+                      return (
                         <TableCell  align={column.align} key={column.id}>
                             <Button variant="contained" simple="true" color="primary"  
-                            onClick={(e) => {handleOpen(e,"M",row)}}>
-                            Ver Detalles
+                            onClick={(e) => {handleDelete(row)}}>
+                              Eliminar
                             </Button>
-                            
+                        </TableCell>
+                        );
+                    }else if (column.id=="modify"){
+                      return (
+                        <TableCell  align={column.align} key={column.id}>
+                            <Button variant="contained" simple="true" color="primary"  
+                            onClick={(e) => {handleModal(row,"M")}}>
+                              Modificar
+                            </Button>
                         </TableCell>
                         );
                     }
@@ -183,17 +185,17 @@ function UserAdministration(props) {
         
     >
         <div className="modalClass">
-            <h2 id="modalTitle">Información del usuario</h2>
+            <h2 id="modalTitle">Información de la paramétrica</h2>
             
-            <TabsContainer rowInformation={rowInformation} 
+            <ParametricInformation information={information} 
                                     modalType={modalType} 
-                                    handleCreateUser={handleCreateUser} 
-                                    handleClose={handleClose}/>
+                                    handleClick={handleCreate} 
+                                    handleClose={handleClose}
+                                    />
         </div>
     </Modal>
     </div>
-      );
-
+  );
 }
 
 
@@ -223,7 +225,7 @@ function TabPanel(props) {
     </div>
   );
 }
-const TabsContainer =(props)=>{
+const ParametricAdministration =(props)=>{
   const [value, setValue] = React.useState(0);
   const [rowInformation, setRowInformation] = React.useState(props.rowInformation);
   const [modalType, setModalType] = React.useState(props.modalType);
@@ -236,30 +238,24 @@ const TabsContainer =(props)=>{
       <div>
           <AppBar position="static">
             <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-              <Tab label="Datos Básicos" {...a11yProps(0)} />
-              <Tab label="Roles" {...a11yProps(1)} />
-              <Tab label="Acceso a Portales" {...a11yProps(2)} />
-              <Tab label="Roles en procesos" {...a11yProps(3)} />
+              <Tab label="Trámites" {...a11yProps(0)} />
+              <Tab label="" {...a11yProps(1)} />
+              <Tab label="" {...a11yProps(2)} />
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
                   <div>
-                  <UserInformation rowInformation={rowInformation} 
-                                    modalType={modalType} 
-                                    handleClick={handleCreateUser} 
-                                    onClose={handleClose}/>
+                  <ParametricAdministrationTable/>
                     </div>
           </TabPanel>
           <TabPanel value={value} index={1}>
-                <RolesTable userInformation={rowInformation}>  </RolesTable>
+                
           </TabPanel>
           <TabPanel value={value} index={2}>
-              <PortalTable userInformation={rowInformation}>  </PortalTable>
+              
           </TabPanel>
-          <TabPanel value={value} index={3}>
-              <RolesProcessTable userInformation={rowInformation}>  </RolesProcessTable>
-          </TabPanel>
+          
           </div>
       );
   }
-export default UserAdministration;
+export default ParametricAdministration;
