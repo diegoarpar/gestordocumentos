@@ -5,22 +5,22 @@ import sys
 sys.path.append('../')
 from utils import Utils as utils
 
-process = Blueprint('process', __name__)
+parametricvalue = Blueprint('parametricvalue', __name__)
 
-collection="process"
-@process.route('/administration/process/',methods = ['POST'])
+collection="parametricvalue"
+@parametricvalue.route('/administration/parametricvalue/',methods = ['POST'])
 def get():
     data = request.get_json()
     rta = Db.findMultiple(collection,data,utils.getTenant(request))
     return rta
 
-@process.route('/administration/process/',methods = ['PUT'])
+@parametricvalue.route('/administration/parametricvalue/',methods = ['PUT'])
 def save():
     data = request.get_json()
     rta = Db.insert(collection,data,utils.getTenant(request))
     return {"messaage":" agregado","flag":True}
 
-@process.route('/administration/process/modify/',methods = ['PUT'])
+@parametricvalue.route('/administration/parametricvalue/modify/',methods = ['PUT'])
 def update():
     data = request.get_json()
     userQuery=data["query"]
@@ -30,7 +30,7 @@ def update():
 
 
 
-@process.route('/administration/process/delete/',methods = ['POST'])
+@parametricvalue.route('/administration/parametricvalue/delete/',methods = ['POST'])
 def delete():
     data = request.get_json()
     rta = Db.remove(collection,data,utils.getTenant(request))
