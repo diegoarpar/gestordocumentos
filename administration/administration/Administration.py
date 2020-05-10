@@ -7,7 +7,8 @@ import sys
 sys.path.append('../')
 app = Flask(__name__)
 
-from services.ServicesProcess import process
+from services.process.ServicesProcess import process
+from services.process.ServicesProcessRoles import processroles
 from services.ServicesParametricValue import parametricvalue
 from db import Db
 from utils import Utils
@@ -25,6 +26,7 @@ if __name__ == '__main__':
     Db.configureMongoDB(app)
 
     app.register_blueprint(process)
+    app.register_blueprint(processroles)
     app.register_blueprint(parametricvalue)
 
     cors = CORS(app, resources={"*": {"origins": "*"}})
