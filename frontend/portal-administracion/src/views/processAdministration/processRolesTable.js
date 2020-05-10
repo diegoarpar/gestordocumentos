@@ -85,7 +85,7 @@ const RolesProcessTable=(props)=>{
     };
   useEffect(() => {
     if(information!=null&&!!information.name)
-    ProcessRolesServices.GetProcessesRoles({"process":information.process})
+    ProcessRolesServices.GetProcessesRoles({"process":information.name})
     .then(d=>{
       setRows(d);
     })    

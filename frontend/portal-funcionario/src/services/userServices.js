@@ -6,7 +6,7 @@ import axios from "axios";
 
 
 var hostServices="http://192.168.0.16:8000";
-hostServices="http://192.168.0.16:5000";
+hostServices="http://192.168.0.12:5000";
 function  UsersServices  () {
     
    
@@ -66,24 +66,16 @@ async function GetRoles(data){
         return data.data
     })
 }
-async function  SaveRoles(data){
+async function GetRolesProcess(data){
     var headers={'Content-Type': 'application/json'}
     headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
     headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
-    return axios.put(hostServices+"/authentication/roles/",data,{headers:headers})
+    return axios.post(hostServices+"/authentication/processroles/",data,{headers:headers})
     .then(data =>{
         return data.data
     })
 }
-async function  DeleteRoles(data){
-    var headers={'Content-Type': 'application/json'}
-    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
-    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
-    return axios.post(hostServices+"/authentication/roles/delete/",data,{headers:headers})
-    .then(data =>{
-        return data.data
-    })
-}
+
 async function  GetTenant(data){
     var headers={'Content-Type': 'application/json'}
     return axios.post(hostServices+"/authentication/tenant/",data,{headers:headers})
@@ -102,24 +94,7 @@ async function GetPortals(data){
         return data.data
     })
 }
-async function  SavePortals(data){
-    var headers={'Content-Type': 'application/json'}
-    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
-    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
-    return axios.put(hostServices+"/authentication/portals/",data,{headers:headers})
-    .then(data =>{
-        return data.data
-    })
-}
-async function  DeletePortals(data){
-    var headers={'Content-Type': 'application/json'}
-    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
-    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
-    return axios.post(hostServices+"/authentication/portals/delete/",data,{headers:headers})
-    .then(data =>{
-        return data.data
-    })
-}
+
 
 export default  {GetData,
     CreateUser,
@@ -127,11 +102,9 @@ export default  {GetData,
     UpdateUser,
     LogIn,
     GetRoles,
-    SaveRoles,
+    GetRolesProcess,
     UsersServices,
     GetTenant,
-    DeleteRoles,
-    GetPortals,
-    SavePortals,
-    DeletePortals
+    GetPortals
+    
 };
