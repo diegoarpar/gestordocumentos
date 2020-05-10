@@ -1,11 +1,12 @@
 import React,{ useState,useEffect }  from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Login from './views/login/login.js';
 import {  Switch, Route,Redirect,Link   } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom"
 import { createBrowserHistory } from "history";
 import UserAdministration from './views/userAdministration/userAdministration';
+import ProcessAdministration from './views/processAdministration/processAdministration';
+import ParametricAdministration from './views/parametricValueAdministration/parametricAdministration';
 import CustomizedMenus from './views/menus/menu';
 import SessionCookie from './utils/session';
 import Button from '@material-ui/core/Button';
@@ -26,7 +27,12 @@ const Routes = (props) => {
           <Route path="/login" component={Login} />
           <Route path="/userAdministration">
              <UserAdministration/>
-
+          </Route>
+          <Route path="/workflowAdministration">
+             <ProcessAdministration/>
+          </Route>
+          <Route path="/parametricAdministration">
+             <ParametricAdministration/>
           </Route>
           <Route path="*"  />
         </Switch>

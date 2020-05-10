@@ -1,12 +1,9 @@
-import React,{useState,useEffect} from "react";
-import { Router, Switch, Route } from "react-router";
-import { createBrowserHistory } from "history";
 import SessionCookie from '../utils/session';
 import axios from "axios";
 
 
 var hostServices="http://192.168.0.16:8000";
-hostServices="http://localhost:5000";
+hostServices="http://192.168.0.16:5000";
 function  UsersServices  () {
     
    
@@ -14,7 +11,6 @@ function  UsersServices  () {
 async function  LogIn(data){
     var headers={};
     headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant
-    debugger;
     return axios.post(hostServices+"/authentication/validateuser/",data,{headers:headers})
     .then(data =>{
         return data.data

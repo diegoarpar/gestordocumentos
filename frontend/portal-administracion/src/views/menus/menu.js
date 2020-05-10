@@ -78,7 +78,17 @@ function CustomizedMenus(props) {
             <ListItemIcon>
               
             </ListItemIcon>
-            <ListItemText primary="Administración de trámites" />
+            <ListItemText primary="Administración de trámites" 
+              onClick={(e)=>{history.push('/workflowAdministration'); history.go();}} 
+            />
+          </StyledMenuItem>
+          <StyledMenuItem>
+            <ListItemIcon>
+              
+            </ListItemIcon>
+            <ListItemText primary="Administración de paramétricas" 
+              onClick={(e)=>{history.push('/parametricAdministration'); history.go();}} 
+            />
           </StyledMenuItem>
           <StyledMenuItem>
             <ListItemIcon>
