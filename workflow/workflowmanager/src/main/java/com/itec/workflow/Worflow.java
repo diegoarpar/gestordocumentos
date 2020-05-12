@@ -2,11 +2,13 @@ package com.itec.workflow;
 
 
 import com.itec.configuration.ConfigurationApp;
+import com.itec.services.ProcessDefinitionServices;
 import com.itec.services.ProcessInstanceServices;
 import io.dropwizard.Application;
+import io.dropwizard.forms.MultiPartBundle;
+import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.glassfish.jersey.client.filter.EncodingFilter;
-import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.message.GZipEncoder;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
@@ -20,16 +22,21 @@ public class Worflow extends Application<ConfigurationApp> {
         }
     }
 
+    @Override
+    public void initialize(Bootstrap<ConfigurationApp> bootstrap) {
+        bootstrap.addBundle(new MultiPartBundle());
+    }
 
     @Override
     public void run(ConfigurationApp t, Environment e) throws Exception {
 
 
-        //e.jersey().register(MultiPartFeature.class);
+
         e.jersey().register(GZipEncoder.class);
         e.jersey().register(EncodingFilter.class);
         e.jersey().register(RolesAllowedDynamicFeature.class);
         e.jersey().register(ProcessInstanceServices.class);
+        e.jersey().register(ProcessDefinitionServices.class);
     }
 
 

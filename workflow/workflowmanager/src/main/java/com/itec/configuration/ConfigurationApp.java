@@ -4,8 +4,10 @@
  */
 package com.itec.configuration;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.itec.util.Utils;
+import com.mongodb.DB;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import io.dropwizard.Configuration;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngineConfiguration;
@@ -32,5 +34,12 @@ public class ConfigurationApp extends Configuration {
         String ver = ProcessEngine.VERSION;
         System.out.println("ProcessEngine [" + pName + "] Version: [" + ver + "]");
         return processEngine;
+    }
+    public static DB getMongoClient(String tenant) throws IOException {
+        Utils utils = new Utils();
+        String mongoJDBC=utils.getTenantProperties(tenant).get("databaseMongoUrl").toString();
+        String mongoDB=utils.getTenantProperties(tenant).get("databaseMongoDataBase").toString();
+        return new MongoClient(new MongoClientURI(mongoJDBC)).getDB(mongoDB);
+
     }
 }
