@@ -153,6 +153,7 @@ const ProcessInformation =(props)=>{
   const [modalType, setModalType] = useState(props.modalType);
   const handleClick=props.handleClick;
   const handleClose=props.handleClose;
+  const handleModalOC=props.handleModalOC;
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -161,8 +162,11 @@ const ProcessInformation =(props)=>{
           <AppBar position="static">
             <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
               <Tab label="Información" {...a11yProps(0)} />
-              {modalType=="M"&&<Tab label="Roles asociados" {...a11yProps(1)} />}
-              <Tab label="" {...a11yProps(2)} />
+              {modalType=="M"&&<Tab label="Roles asociados" {...a11yProps(1)} 
+              />}
+             
+              {modalType=="M"&&<Tab label="" {...a11yProps(2)} 
+              />}
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
@@ -187,9 +191,13 @@ const ProcessInformation =(props)=>{
                 
           </TabPanel>
         }
-          <TabPanel value={value} index={2}>
-              
+          { modalType=="M"&&<TabPanel value={value} index={2}>
+          <div>
+                  
+                    </div>
+                
           </TabPanel>
+        }
           <Button variant="contained" color="secondary"  
               onClick={(e) => {
                 handleClose();

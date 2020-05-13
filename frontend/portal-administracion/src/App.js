@@ -1,5 +1,6 @@
 import React,{ useState,useEffect }  from 'react';
 import './App.css';
+import './App.scss';
 import Login from './views/login/login.js';
 import {  Switch, Route,Redirect,Link   } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom"
@@ -14,6 +15,7 @@ import ReactDOM from 'react-dom';
 
 export const SessionContext = React.createContext(SessionCookie.GetSessionCookie());
 export const history = createBrowserHistory();
+
 
 const Routes = (props) => {
   const historyp=props.historyp;
