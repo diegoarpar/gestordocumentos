@@ -20,29 +20,41 @@ import java.util.*;
 
 public class DBMongo {
     public static Object insert(String collection, BasicDBObject criterial, String tenant) throws IOException {
+        DB db =ConfigurationApp.getMongoClient(tenant);
         collection= Utils.getMongoCollectionName(collection,tenant);
-        ConfigurationApp.getMongoClient(tenant).getCollection(collection).insert(criterial);
+        db.getCollection(collection).insert(criterial);
+        db.getMongo().close();
+        db=null;
         return JSON.parse("{'flag':1,'message':'Elimiando'}");
 
     }
     public static Object update(String collection, BasicDBObject criterial,BasicDBObject newData, String tenant) throws IOException {
+        DB db =ConfigurationApp.getMongoClient(tenant);
         collection= Utils.getMongoCollectionName(collection,tenant);
-        ConfigurationApp.getMongoClient(tenant).getCollection(collection).update(criterial,newData);
+        db.getCollection(collection).update(criterial,newData);
+        db.getMongo().close();
+        db=null;
         return  JSON.parse("{'flag':1,'message':'Elimiando'}");
 
     }
     public static Object remove(String collection, BasicDBObject criterial,String tenant) throws IOException {
+        DB db =ConfigurationApp.getMongoClient(tenant);
         collection= Utils.getMongoCollectionName(collection,tenant);
-        ConfigurationApp.getMongoClient(tenant).getCollection(collection).remove(criterial);
-
+        db.getCollection(collection).remove(criterial);
+        db.getMongo().close();
+        db=null;
         return JSON.parse("{'flag':1,'message':'Elimiando'}");
     }
 
     public static List<DBObject> find(String collection, BasicDBObject criterial,String tenant) throws IOException {
+        DB db =ConfigurationApp.getMongoClient(tenant);
         collection= Utils.getMongoCollectionName(collection,tenant);
         DBCursor curs;
-        curs= ConfigurationApp.getMongoClient(tenant).getCollection(collection).find(criterial);
-        return curs.toArray();
+        curs= db.getCollection(collection).find(criterial);
+        List<DBObject> rta=curs.toArray();
+        db.getMongo().close();
+        db=null;
+        return rta;
     }
 
 

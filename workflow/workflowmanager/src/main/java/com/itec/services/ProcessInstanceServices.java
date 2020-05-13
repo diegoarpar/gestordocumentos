@@ -21,7 +21,7 @@ import java.util.Map;
 @Path("/processInstance/")
 public class ProcessInstanceServices {
 
-    String collectionInstanceInformation="_instanceInformation";
+    String collectionInstanceInformation="instanceInformation";
     @GET
     @Path("/greeting")
     @Consumes(MediaType.TEXT_PLAIN)
@@ -44,6 +44,8 @@ public class ProcessInstanceServices {
         System.out.println("Onboarding process started with process instance id ["
                 + processInstance.getProcessInstanceId()
                 + "] key [" + processInstance.getProcessDefinitionKey() + "]");
+        criterial.append("procesInstanceId",processInstance.getProcessInstanceId());
+        DBMongo.insert(collectionInstanceInformation,criterial,tenant);
         return DBMongo.find(collectionInstanceInformation,criterial,tenant);
     }
 }
