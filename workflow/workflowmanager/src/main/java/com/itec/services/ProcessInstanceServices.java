@@ -6,6 +6,7 @@ import com.itec.util.Utils;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
+import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.runtime.ProcessInstance;
 
@@ -38,7 +39,8 @@ public class ProcessInstanceServices {
         String tenant= Utils.getTenant(req);
         BasicDBObject criterial =Utils.fillStringFromRequestPost(req);
         Map<String,Object> inputValues = new HashMap<String,Object>();
-        RuntimeService runtimeService = ConfigurationApp.initProcessEngine(tenant).getRuntimeService();
+        ProcessEngine pe =ConfigurationApp.initProcessEngine(tenant);
+        RuntimeService runtimeService = pe.getRuntimeService();
         ProcessInstance processInstance = runtimeService
                 .startProcessInstanceByKey(criterial.getString("processName").toString(),inputValues);
         System.out.println("Onboarding process started with process instance id ["
@@ -46,6 +48,7 @@ public class ProcessInstanceServices {
                 + "] key [" + processInstance.getProcessDefinitionKey() + "]");
         criterial.append("procesInstanceId",processInstance.getProcessInstanceId());
         DBMongo.insert(collectionInstanceInformation,criterial,tenant);
+        pe.close();
         return DBMongo.find(collectionInstanceInformation,criterial,tenant);
     }
 }

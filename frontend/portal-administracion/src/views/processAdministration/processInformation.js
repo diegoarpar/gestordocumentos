@@ -28,6 +28,8 @@ const ProcessInformationTab=(props)=>{
   const [processName, setProcessName] = useState(props.information.name);
   const [processDescription, setProcessDescription] = useState(props.information.description);
   const [isAnonymouseRequest, setIsAnonymouseRequest] = useState(props.information.isAnonymouseRequest);
+  const [isSedeElectronicaRequest, setIsSedeElectronicaRequest] = useState(props.information.isSedeElectronicaRequest);
+  const [isPortalFuncionarioRequest, setIsPortalFuncionarioRequest] = useState(props.information.isPortalFuncionarioRequest);
   const [workflowName, setWorkflowName] = useState(props.information.workflowName);
   const [modalType, setModalType] = useState(props.modalType);
   const classes = useStyles;
@@ -107,6 +109,43 @@ const ProcessInformationTab=(props)=>{
             }
           }
           />
+          <CustomInput
+            labelText="Permite radicación sede electrónica..."
+            id="setIsSedeElectronicaRequest"
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              type: "text",
+              defaultValue:isSedeElectronicaRequest,
+              onChange: (e) => {setIsSedeElectronicaRequest(e.target.value)},
+              endAdornment: (
+                <InputAdornment position="end">
+                  <People className={classes.inputIconsColor} />
+                </InputAdornment>
+              )
+            }
+          }
+          />
+
+          <CustomInput
+            labelText="Permite radicación portal funcionario..."
+            id="setIsPortalFuncionarioRequest"
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              type: "text",
+              defaultValue:isPortalFuncionarioRequest,
+              onChange: (e) => {setIsPortalFuncionarioRequest(e.target.value)},
+              endAdornment: (
+                <InputAdornment position="end">
+                  <People className={classes.inputIconsColor} />
+                </InputAdornment>
+              )
+            }
+          }
+          />
 
           
           {<Button variant="contained" color="primary"  
@@ -115,6 +154,8 @@ const ProcessInformationTab=(props)=>{
                             "description":processDescription,
                             "workflowName":workflowName,
                             "isAnonymouseRequest":isAnonymouseRequest,
+                            "isPortalFuncionarioRequest":isPortalFuncionarioRequest,
+                            "isSedeElectronicaRequest":isSedeElectronicaRequest
                             },modalType);
               
               }}>

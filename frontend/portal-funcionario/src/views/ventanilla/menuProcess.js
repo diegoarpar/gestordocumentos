@@ -8,20 +8,31 @@ import ListItemText from '@material-ui/core/ListItemText';
 import UserServices from '../../services/userServices';
 import ProcessServies from '../../services/processServices';
 import ProcessRolesServies from '../../services/processRolesServices';
+import ProcessForm from './processForm';
 import SessionCookies from '../../utils/session';
-
-
-
+import Dialog from '@material-ui/core/Dialog';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar'
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import ArrowBack from '@material-ui/icons/ArrowBack';
 
 function CustomizedMenus(props) {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [rows, setRows] = useState([]);
-    const history= props.history;
+    const [open, setOpen] = useState(false);
+    const [processName, setProcessName] = useState();
+    const [workflowName, setWorkflowName] = useState();
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
-
+    const handleClickMenu=(data)=>{
+      setOpen(true);
+      setProcessName(data.name);
+      setWorkflowName(data.workflowName);
+      handleClose();
+    }
     useEffect(()=>{
         UserServices.GetRolesProcess({"user":SessionCookies.GetSessionCookie().authenticated_userid}).then((data)=>{
           var temp=[];
@@ -34,7 +45,7 @@ function CustomizedMenus(props) {
             data.map((row)=>{
                 temp2.push(row.process);
             });
-            ProcessServies.GetProcesses({"name":{"$in":temp2}}).then((data)=>{
+            ProcessServies.GetProcesses({"isPortalFuncionarioRequest":"S","name":{"$in":temp2}}).then((data)=>{
               setRows(data);
             });
             
@@ -47,6 +58,9 @@ function CustomizedMenus(props) {
   
     const handleClose = () => {
       setAnchorEl(null);
+    };
+    const handleCloseModal = () => {
+      setOpen(false);
     };
   
     return (
@@ -73,13 +87,27 @@ function CustomizedMenus(props) {
                 
               </ListItemIcon>
               <ListItemText primary={row.name} 
-                  onClick={(e)=>{history.push('/ventanillaRadicacion'); history.go();}} 
+                  onClick={(e)=>{handleClickMenu(row)}} 
               />
             </StyledMenuItem>)
 
           })}
           
         </StyledMenu>
+        <Dialog fullScreen open={open} onClose={handleCloseModal} >
+          <AppBar position="sticky">
+            <Toolbar>
+              <IconButton edge="start" color="inherit" onClick={handleCloseModal} aria-label="close">
+                <ArrowBack />
+              </IconButton>
+              <Typography variant="h6" >
+                Registrar trámite
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <ProcessForm processName={processName} open={open} workflowName={workflowName}></ProcessForm>
+          </Dialog>
+          
       </div>
     );
   }

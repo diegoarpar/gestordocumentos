@@ -29,7 +29,7 @@
     "slick-carousel": "^1.8.1"
   },
   "scripts": {
-    "start": "NODE_PATH=./src react-scripts start --port 3001",
+    "start": "cross-env NODE_PATH=./src react-scripts start --port 3001",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

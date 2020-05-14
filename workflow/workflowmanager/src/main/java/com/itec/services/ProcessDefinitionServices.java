@@ -34,8 +34,8 @@ public class ProcessDefinitionServices {
         String location = utils.getTenantProperties(tenant).get("tempProcesssLocation").toString()+fileDetail.getFileName();
         Utils.writeToFile(uploadedInputStream, location);
 
-        ProcessEngine processEngine =ConfigurationApp.initProcessEngine(tenant);
-        RepositoryService repositoryService = processEngine.getRepositoryService();
+        ProcessEngine pe =ConfigurationApp.initProcessEngine(tenant);
+        RepositoryService repositoryService = pe.getRepositoryService();
         Deployment deployment = repositoryService.createDeployment()
                 .addClasspathResource(fileDetail.getFileName()).deploy();
         ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
@@ -44,6 +44,7 @@ public class ProcessDefinitionServices {
                 "Found process definition ["
                         + processDefinition.getName() + "] with id ["
                         + processDefinition.getId() + "]");
+        pe.close();
         return "Resource located";
     }
 }

@@ -74,7 +74,9 @@ const ProcessAdministrationTable=(props)=>{
       "name":item.name, 
       "description":item.description, 
       "workflowName":item.workflowName,
-      "isAnonymouseRequest":item.isAnonymouseRequest
+      "isAnonymouseRequest":item.isAnonymouseRequest,
+      "isPortalFuncionarioRequest":item.isPortalFuncionarioRequest,
+      "isSedeElectronicaRequest":item.isSedeElectronicaRequest
     };
     if(modalType=="C"){
       ProcessServices.CreateProcess(newData).then(()=>{setCont(cont+1);});
