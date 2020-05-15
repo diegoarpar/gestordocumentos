@@ -4,16 +4,7 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Password from "@material-ui/icons/VpnKey";
 import People from "@material-ui/icons/People";
- const useStyles = {
-    root: {
-      width: '100%',
-    },
-    container: {
-      maxHeight: 440,
-    },
-  };
-
-  
+import useStyles from "../../utils/useStyles";
 
 
 const UserInformation=(props)=>{
@@ -27,6 +18,10 @@ const UserInformation=(props)=>{
   const [name, setName] = useState(props.rowInformation.name);
   const [lastName, setLastName] = useState(props.rowInformation.lastName);
   const [modalType, setModalType] = useState(props.modalType);
+  const [isFunctionary, setIsFunctionary] = useState(props.rowInformation.isFunctionary);
+  const [isCitizen, setIsCitizen] = useState(props.rowInformation.isCitizen);
+  
+
   const classes = useStyles;
   const handleClick=props.handleClick;
   const handleClose=props.onClose;
@@ -159,22 +154,43 @@ const UserInformation=(props)=>{
             }
           }
           />
-          {modalType=="C"&&<Button variant="contained" color="primary"  
-            onClick={(e) => {
-              handleClick(e,{"user":userName,
-                            "password":password,
-                            "name":name,
-                            "lastName":lastName,
-                            "documentType":documentType,
-                            "documentNumber":documentNumber,
-                            "email":email
-                            },"C");
-              
-              }}>
-                            Agregar
-          </Button>
+          <CustomInput
+            labelText="Es Ciudadano (S/N)..."
+            id="setIsCitizen"
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              type: "text",
+              defaultValue:isCitizen,
+              onChange: (e) => {setIsCitizen(e.target.value)},
+              endAdornment: (
+                <InputAdornment position="end">
+                  <People className={classes.inputIconsColor} />
+                </InputAdornment>
+              )
+            }
           }
-          {modalType=="M"&&<Button variant="contained" color="primary"  
+          />
+          <CustomInput
+            labelText="Es Funcionario (S/N)..."
+            id="setIsFunctionary"
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              type: "text",
+              defaultValue:isFunctionary,
+              onChange: (e) => {setIsFunctionary(e.target.value)},
+              endAdornment: (
+                <InputAdornment position="end">
+                  <People className={classes.inputIconsColor} />
+                </InputAdornment>
+              )
+            }
+          }
+          />
+          {<Button variant="contained" color="primary"  
             onClick={(e) => {
               handleClick(e,{"user":userName,
                             "password":password,
@@ -183,13 +199,16 @@ const UserInformation=(props)=>{
                             "documentType":documentType,
                             "documentNumber":documentNumber,
                             "email":email,
+                            "isCitizen":isCitizen,
+                            "isFunctionary":isFunctionary,
                             "_id":userId
-                            },"M");
+                            },modalType);
               
               }}>
-                            Guardar Cambios
+                            {modalType=="C"?"Agregar":"Guardar Cambios"}
           </Button>
           }
+          
           
 
   </div>);

@@ -2,7 +2,7 @@ import React,{ useState,useEffect }  from 'react';
 import './App.css';
 import './App.scss';
 import Login from './views/login/login.js';
-import {  Switch, Route,Redirect,Link   } from "react-router-dom";
+import {  Switch, Route   } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom"
 import { createBrowserHistory } from "history";
 import UserAdministration from './views/userAdministration/userAdministration';
@@ -19,7 +19,7 @@ export const history = createBrowserHistory();
 
 const Routes = (props) => {
   const historyp=props.historyp;
-  const [sessionUser, setSessionUser] = useState( SessionCookie.GetSessionCookie());
+  const sessionUser= SessionCookie.GetSessionCookie();
 
   return (
     <SessionContext.Provider value={sessionUser} >
@@ -44,9 +44,9 @@ const Routes = (props) => {
 };
   
 function App(props) {
-  const [mainContainer, setMainContainer] = useState(props.mc);
+  //const [mainContainer, setMainContainer] = useState(props.mc);
   const [portalContainer1, setPortalContainer1] = useState(props.pc1);
-  const [portalContainer2, setPortalContainer2] = useState(props.pc2);
+  //const [portalContainer2, setPortalContainer2] = useState(props.pc2);
   const [sessionUser, setSessionUser] = useState( SessionCookie.GetSessionCookie());
   const [userInSession, setUserInSession] = useState( );
   useEffect(() => {

@@ -25,7 +25,8 @@ import java.util.Map;
 @Path("/processTask/")
 public class ProcessTaskServices {
 
-    String collectionInstanceInformation="taksInformation";
+    String collectionTaksInformation="taksInformation";
+    String collectionInstanceInformation="instanceInformation";
 
     @POST
     @Path("/getTask")
@@ -52,13 +53,73 @@ public class ProcessTaskServices {
         for (int i = 0; i < taks.size(); i++) {
             BasicDBObject item = new BasicDBObject();
             Task task = taks.get(i);
-            item.append("taskName",task.getName())
+            BasicDBObject criterial2 =new BasicDBObject().append("processInstanceId",task.getProcessInstanceId());
+            List<DBObject> instanceInformation = DBMongo.find(collectionInstanceInformation,criterial2,tenant);
+            String processName="NoNAME";
+            String workflowName="NoNAME";
+            if(instanceInformation.size()>0) {
+                processName = ((DBObject) instanceInformation.get(0)).get("processName").toString();
+                workflowName = ((DBObject) instanceInformation.get(0)).get("workflowName").toString();
+            }
+
+            item.append("taskDescription",task.getName())
                     .append("taskId",task.getId())
+                    .append("taskName",task.getTaskDefinitionKey())
+                    .append("processInstance",task.getProcessInstanceId())
                     .append("dueDate",task.getDueDate())
-                    .append("processKey",task.getProcessDefinitionId())
+                    .append("processDefKey",task.getProcessDefinitionId())
+                    .append("priority",task.getPriority())
+                    .append("assign",task.getAssignee())
+                    .append("processName",processName)
+                    .append("workflowName",workflowName)
                     .append("processInstance",task.getProcessInstanceId());
             rta.add(item);
         }
+        pe.close();
+        return rta;
+    }
+    @POST
+    @Path("/completeTask")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<BasicDBObject> completeTask(@Context HttpServletRequest req) throws IOException {
+        String tenant= Utils.getTenant(req);
+        BasicDBObject criterial =Utils.fillStringFromRequestPost(req);
+        String taskId=criterial.get("taskId").toString();
+        String userTakeTask=criterial.get("user").toString();
+
+        List<BasicDBObject> rta = new ArrayList<BasicDBObject>();
+
+        Map<String,Object> inputValues = new HashMap<String,Object>();
+        Utils.getProcessInputValues(inputValues,criterial);
+        ProcessEngine pe =ConfigurationApp.initProcessEngine(tenant);
+        TaskService ts=pe.getTaskService();
+        ts.setAssignee(taskId,userTakeTask);
+        ts.complete(taskId,inputValues);
+        criterial.append("action","completeTask");
+        DBMongo.insert(collectionTaksInformation,criterial,tenant);
+
+        pe.close();
+        return rta;
+    }
+    @POST
+    @Path("/assign")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<BasicDBObject> assign(@Context HttpServletRequest req) throws IOException {
+        String tenant= Utils.getTenant(req);
+        BasicDBObject criterial =Utils.fillStringFromRequestPost(req);
+        BasicDBList data = (BasicDBList) criterial.get("data");
+        String taskId=criterial.get("taskId").toString();
+        String userTakeTask=criterial.get("user").toString();
+        List<BasicDBObject> rta = new ArrayList<BasicDBObject>();
+        Map<String,Object> inputValues = new HashMap<String,Object>();
+        ProcessEngine pe =ConfigurationApp.initProcessEngine(tenant);
+        TaskService ts=pe.getTaskService();
+        ts.setAssignee(taskId,userTakeTask);
+        criterial.append("action","assign");
+        DBMongo.insert(collectionTaksInformation,criterial,tenant);
+
         pe.close();
         return rta;
     }

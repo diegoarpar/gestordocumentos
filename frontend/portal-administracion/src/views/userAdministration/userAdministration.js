@@ -9,20 +9,12 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
-import CustomInput from "components/CustomInput/CustomInput.js";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Password from "@material-ui/icons/VpnKey";
-import People from "@material-ui/icons/People";
 import SHA256 from 'js-sha256';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
 import UsersServices from '../../services/userServices'
 import UserInformation from './userInformation'
 import RolesTable from './rolesTable'
@@ -81,7 +73,9 @@ function UserAdministration(props) {
           "documentNumber":data.documentNumber,
           "name":data.name,
           "lastName":data.lastName,
-          "email":data.email
+          "email":data.email,
+          "isCitizen":data.isCitizen,
+          "isFunctionary":data.isFunctionary,
       };
       if(type=='C'){
         UsersServices.CreateUser(dataPost);

@@ -9,6 +9,8 @@ app = Flask(__name__)
 
 from services.process.ServicesProcess import process
 from services.process.ServicesProcessRoles import processroles
+from services.process.ServicesProcessActivity import process_activity
+from services.process.ServicesProcessVariable import process_variable
 from services.process.ServicesProcessForm import processform
 from services.ServicesParametricValue import parametricvalue
 from db import Db
@@ -30,6 +32,8 @@ if __name__ == '__main__':
     app.register_blueprint(processroles)
     app.register_blueprint(parametricvalue)
     app.register_blueprint(processform)
+    app.register_blueprint(process_activity)
+    app.register_blueprint(process_variable)
 
     cors = CORS(app, resources={"*": {"origins": "*"}})
     app.run(host=appHost,port=appPort,debug=appDebug)

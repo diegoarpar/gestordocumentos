@@ -1,5 +1,6 @@
 package com.itec.util;
 
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.util.JSON;
 
@@ -80,6 +81,19 @@ public class Utils {
     }
     public static String getMongoCollectionName (String collection, String tenant) {
         return tenant+"_"+collection;
+
+    }
+    public static void getProcessInputValues(Map<String,Object> inputValues , BasicDBObject criterial){
+        BasicDBList variables = (BasicDBList) criterial.get("processVariable");
+        BasicDBObject data = (BasicDBObject) criterial.get("data");
+        if(variables!=null){
+            for(int i=0; i<variables.size();i++){
+                String variableName=((BasicDBObject)variables.get(i)).get("name").toString();
+                String value=data.get(variableName).toString();
+                inputValues.put(variableName,value);
+
+            }
+        }
 
     }
 }

@@ -1,13 +1,20 @@
 import React,{ useState,useEffect } from 'react';
 import MenuProcess from './menuProcess'
-import TaskInformation from './taskInformation'
+import TaskInformation from './tasksInformation'
 
 const VentanillaRadicacion=(props)=>{
-
+    const [processName,setProcessName]=useState();
+    const [workFlowName,setWorkflowName]=useState();
     return (<div>
             Aquí está la VentanillaRadicacion
-            <MenuProcess></MenuProcess>
-            <TaskInformation></TaskInformation>
+            <MenuProcess
+                setProcessName={setProcessName}
+                setWorkflowName={setWorkflowName}
+            >
+            </MenuProcess>
+            <TaskInformation
+                  >
+            </TaskInformation>
 
     </div>);
 

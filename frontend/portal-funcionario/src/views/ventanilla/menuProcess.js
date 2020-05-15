@@ -21,15 +21,21 @@ function CustomizedMenus(props) {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [rows, setRows] = useState([]);
+    const [rowOpen, setRowOpen] = useState();
     const [open, setOpen] = useState(false);
+    const [openTask, setOpenTask] = useState(false);
     const [processName, setProcessName] = useState();
     const [workflowName, setWorkflowName] = useState();
+    const setProcessNameVentanilla=props.setProcessName;
+    const setWorkflowNameVentanilla=props.setWorkflowName;
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
     const handleClickMenu=(data)=>{
       setOpen(true);
       setProcessName(data.name);
+      setProcessNameVentanilla(data.name);
+      setWorkflowNameVentanilla(data.workflowName);
       setWorkflowName(data.workflowName);
       handleClose();
     }
@@ -59,9 +65,12 @@ function CustomizedMenus(props) {
     const handleClose = () => {
       setAnchorEl(null);
     };
+    
     const handleCloseModal = () => {
       setOpen(false);
     };
+
+    
   
     return (
       <div>
@@ -82,7 +91,7 @@ function CustomizedMenus(props) {
           onClose={handleClose}
         >
           {rows.map((row)=>{
-            return(<StyledMenuItem key={row.name}>>
+            return(<StyledMenuItem key={row.name} onClick={(e)=>{handleClickMenu(row)}} >
               <ListItemIcon key={row.name}>
                 
               </ListItemIcon>
@@ -105,7 +114,7 @@ function CustomizedMenus(props) {
               </Typography>
             </Toolbar>
           </AppBar>
-          <ProcessForm processName={processName} open={open} workflowName={workflowName}></ProcessForm>
+          <ProcessForm processName={processName} open={open} workflowName={workflowName} setRowOpen={setRowOpen}></ProcessForm>
           </Dialog>
           
       </div>

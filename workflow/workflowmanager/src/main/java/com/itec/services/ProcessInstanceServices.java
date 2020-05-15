@@ -39,14 +39,15 @@ public class ProcessInstanceServices {
         String tenant= Utils.getTenant(req);
         BasicDBObject criterial =Utils.fillStringFromRequestPost(req);
         Map<String,Object> inputValues = new HashMap<String,Object>();
+        Utils.getProcessInputValues(inputValues,criterial);
         ProcessEngine pe =ConfigurationApp.initProcessEngine(tenant);
         RuntimeService runtimeService = pe.getRuntimeService();
         ProcessInstance processInstance = runtimeService
-                .startProcessInstanceByKey(criterial.getString("processName").toString(),inputValues);
+                .startProcessInstanceByKey(criterial.getString("workflowName").toString(),inputValues);
         System.out.println("Onboarding process started with process instance id ["
                 + processInstance.getProcessInstanceId()
                 + "] key [" + processInstance.getProcessDefinitionKey() + "]");
-        criterial.append("procesInstanceId",processInstance.getProcessInstanceId());
+        criterial.append("processInstanceId",processInstance.getProcessInstanceId());
         DBMongo.insert(collectionInstanceInformation,criterial,tenant);
         pe.close();
         return DBMongo.find(collectionInstanceInformation,criterial,tenant);
