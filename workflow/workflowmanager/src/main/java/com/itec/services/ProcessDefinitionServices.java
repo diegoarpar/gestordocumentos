@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ResourceBundle;
 
-@Path("/processDefinition/")
+@Path("/workflowmanager/processDefinition/")
 public class ProcessDefinitionServices {
 
     @POST

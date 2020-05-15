@@ -54,7 +54,11 @@ const ProcessVariableTable=(props)=>{
       .then((data)=>{setCont(cont+1)});
   };
   const handleDelete = (item) => {
-    ProcessVariableServices.DeleteProcessVariable({"processName":information.name,"name":item.name})
+    ProcessVariableServices.DeleteProcessVariable(
+      {"processName":information.name,
+       "name":item.name,
+       "activityName":item.activityName
+      })
     .then((data)=>{setCont(cont+1)});
   };
 

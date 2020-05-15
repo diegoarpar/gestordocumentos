@@ -9,6 +9,7 @@ function ProcessForm(props) {
     const [processName,setProcessName]=useState(props.processName);
     const [workflowName,setWorkflowName]=useState(props.workflowName);
     const [components,setComponents]=useState({"type":"form","display":"form","components":[]});
+    const handleCloseModal=props.handleCloseModal;
     var dataForm;
     const handleChange=(data)=>{
       dataForm=data;
@@ -20,7 +21,7 @@ function ProcessForm(props) {
         "data":dataForm.data})
         .then((data)=>
           {
-            console.log(data);
+            handleCloseModal();
           });
     }
     useEffect(()=>{

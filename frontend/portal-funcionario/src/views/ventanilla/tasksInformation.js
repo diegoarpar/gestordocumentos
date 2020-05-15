@@ -31,7 +31,8 @@ const useStyles = makeStyles((theme) => ({
 
 const TaskList=(props) =>{
   const [taskList, setTaskList]=useState([]);
-  const [cont, setCont]=useState(0);
+  const cont = props.contTramites;
+  const setCont=props.handleContTramites;
   const [openTask, setOpenTask]=useState(false);
   const classes = useStyles();
   const [rowOpen, setRowOpen]=useState();
@@ -96,7 +97,14 @@ const TaskList=(props) =>{
               </Typography>
             </Toolbar>
           </AppBar>
-          <ProcessTaskForm information = {rowOpen} handleClose={handleCloseTask} ></ProcessTaskForm>
+          <ProcessTaskForm 
+              information = {rowOpen}
+              handleClose={handleCloseTask} 
+              contTramites={cont}
+              handleContTramites={setCont}
+              >
+
+              </ProcessTaskForm>
           </Dialog>
     </div>
   );

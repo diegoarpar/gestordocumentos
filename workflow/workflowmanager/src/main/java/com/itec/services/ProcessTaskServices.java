@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Path("/processTask/")
+@Path("/workflowmanager/processTask/")
 public class ProcessTaskServices {
 
     String collectionTaksInformation="taksInformation";
@@ -54,7 +54,7 @@ public class ProcessTaskServices {
             BasicDBObject item = new BasicDBObject();
             Task task = taks.get(i);
             BasicDBObject criterial2 =new BasicDBObject().append("processInstanceId",task.getProcessInstanceId());
-            List<DBObject> instanceInformation = DBMongo.find(collectionInstanceInformation,criterial2,tenant);
+            List<DBObject> instanceInformation = DBMongo.find(collectionInstanceInformation,criterial2,tenant,false);
             String processName="NoNAME";
             String workflowName="NoNAME";
             if(instanceInformation.size()>0) {
@@ -72,7 +72,7 @@ public class ProcessTaskServices {
                     .append("assign",task.getAssignee())
                     .append("processName",processName)
                     .append("workflowName",workflowName)
-                    .append("processInstance",task.getProcessInstanceId());
+                    .append("processInstanceId",task.getProcessInstanceId());
             rta.add(item);
         }
         pe.close();

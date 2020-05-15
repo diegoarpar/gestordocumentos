@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import CustomInput from "components/CustomInput/CustomInput.js";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import People from "@material-ui/icons/People";
+import ProcessDeployServices from '../../services/processDeployServices';
 
 
   const useStyles = {
@@ -25,9 +26,21 @@ const ProcessInformationTab=(props)=>{
   const [isPortalFuncionarioRequest, setIsPortalFuncionarioRequest] = useState(props.information.isPortalFuncionarioRequest);
   const [workflowName, setWorkflowName] = useState(props.information.workflowName);
   const [modalType, setModalType] = useState(props.modalType);
+  const [processFile, setProcessFile] = useState();
   const classes = useStyles;
   const handleClick=props.handleClick;
-
+  const handleUploadFile=(e)=>{
+    if(!!e&&!!e.target&&!!e.target.files&&e.target.files.length>0){
+      setProcessFile(e.target.files[0]);
+    }
+    
+  }
+  const handleConfirmUploadFile=(e)=>{
+    
+    var data = new FormData();
+    data.append('file', processFile);
+    ProcessDeployServices.ProcessesDeploy(data);
+  }
 
   return (<div>
           <CustomInput
@@ -155,6 +168,37 @@ const ProcessInformationTab=(props)=>{
                             {modalType=="C"?"Agregar":"Guardar Cambios"}
           </Button>
           }
+         
+         {modalType=="M"&&
+            <div>
+              <CustomInput
+            labelText=""
+            id="setFileUpload"
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              type: "file",
+              onChange: (e) => {handleUploadFile(e)},
+              endAdornment: (
+                <InputAdornment position="end">
+                  <People className={classes.inputIconsColor} />
+                </InputAdornment>
+              )
+            }
+          }
+          />
+              <Button variant="contained" color="primary"  
+                onClick={(e) => {
+                  handleConfirmUploadFile();
+                  
+                  }}>
+                              Actualizar proceso
+              </Button>
+              
+            </div>
+          }
+          
           
           
 

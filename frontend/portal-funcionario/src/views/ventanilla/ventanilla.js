@@ -3,16 +3,20 @@ import MenuProcess from './menuProcess'
 import TaskInformation from './tasksInformation'
 
 const VentanillaRadicacion=(props)=>{
-    const [processName,setProcessName]=useState();
-    const [workFlowName,setWorkflowName]=useState();
+    const [contTramites,setContTramites] = useState(0);
+    const handleContTramites=()=>{
+        setContTramites(contTramites+1);
+    }
     return (<div>
             Aquí está la VentanillaRadicacion
             <MenuProcess
-                setProcessName={setProcessName}
-                setWorkflowName={setWorkflowName}
+            contTramites={contTramites}
+            handleContTramites={handleContTramites}
             >
             </MenuProcess>
             <TaskInformation
+            contTramites={contTramites}
+            handleContTramites={handleContTramites}
                   >
             </TaskInformation>
 

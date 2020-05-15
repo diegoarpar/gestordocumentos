@@ -26,18 +26,16 @@ function CustomizedMenus(props) {
     const [openTask, setOpenTask] = useState(false);
     const [processName, setProcessName] = useState();
     const [workflowName, setWorkflowName] = useState();
-    const setProcessNameVentanilla=props.setProcessName;
-    const setWorkflowNameVentanilla=props.setWorkflowName;
+    const handleContTramites=props.handleContTramites;
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
     const handleClickMenu=(data)=>{
       setOpen(true);
       setProcessName(data.name);
-      setProcessNameVentanilla(data.name);
-      setWorkflowNameVentanilla(data.workflowName);
       setWorkflowName(data.workflowName);
       handleClose();
+      
     }
     useEffect(()=>{
         UserServices.GetRolesProcess({"user":SessionCookies.GetSessionCookie().authenticated_userid}).then((data)=>{
@@ -68,6 +66,7 @@ function CustomizedMenus(props) {
     
     const handleCloseModal = () => {
       setOpen(false);
+      handleContTramites();
     };
 
     
@@ -114,7 +113,7 @@ function CustomizedMenus(props) {
               </Typography>
             </Toolbar>
           </AppBar>
-          <ProcessForm processName={processName} open={open} workflowName={workflowName} setRowOpen={setRowOpen}></ProcessForm>
+          <ProcessForm processName={processName} open={open} workflowName={workflowName} setRowOpen={setRowOpen} handleCloseModal={handleCloseModal}></ProcessForm>
           </Dialog>
           
       </div>

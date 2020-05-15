@@ -19,10 +19,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Path("/processInstance/")
+@Path("/workflowmanager/processInstance/")
 public class ProcessInstanceServices {
 
     String collectionInstanceInformation="instanceInformation";
+    String collectionTaksInformation="taksInformation";
     @GET
     @Path("/greeting")
     @Consumes(MediaType.TEXT_PLAIN)
@@ -49,8 +50,9 @@ public class ProcessInstanceServices {
                 + "] key [" + processInstance.getProcessDefinitionKey() + "]");
         criterial.append("processInstanceId",processInstance.getProcessInstanceId());
         DBMongo.insert(collectionInstanceInformation,criterial,tenant);
+        DBMongo.insert(collectionTaksInformation,criterial,tenant);
         pe.close();
-        return DBMongo.find(collectionInstanceInformation,criterial,tenant);
+        return DBMongo.find(collectionInstanceInformation,criterial,tenant,false);
     }
 }
 

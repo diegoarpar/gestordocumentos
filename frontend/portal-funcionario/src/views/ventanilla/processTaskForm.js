@@ -2,18 +2,23 @@ import React, { useState, useEffect } from 'react';
 import {Form} from 'react-formio';
 import ProcessFormServies from '../../services/processFormServices';
 import ProcessTaskServices from '../../services/processTaskServices';
+import ProcessTaskInformationServices from '../../services/processTaskInformationServices';
 import ProcessVariableServices from '../../services/processVariableServices';
 import Button from '@material-ui/core/Button';
 import SessionCookies from '../../utils/session';
 
+
 function TaskForm(props) {
     
     const taskId=props.information.taskId;
+    const handleContTramites=props.handleContTramites;
     const handleClose=props.handleClose;
-    const [processName,setProcessName]=useState(props.information.processName);
-    const [activityName,setActivityName]=useState(props.information.taskName);
+    const processName=props.information.processName;
+    const activityName=props.information.taskName;
     const [processVariable,setProcessVariable]=useState([]);
-    const [workflowName,setWorkflowName]=useState(props.information.workflowName);
+    const [data,setData]=useState({"data":{}});
+    const workflowName=props.information.workflowName;
+    const processInstanceId=props.information.processInstanceId;
     const [components,setComponents]=useState({"type":"form","display":"form","components":[]});
     var dataForm;
     const handleChange=(data)=>{
@@ -27,12 +32,14 @@ function TaskForm(props) {
         "activityName":activityName,
         "workflowName":workflowName,
         "processVariable":processVariable,
+        "processInstanceId":processInstanceId,
         "user":SessionCookies.GetSessionCookie().authenticated_userid
       })
       .then((data)=>
       {
-        console.log(data);
+        
         handleClose();
+        handleContTramites();
       });
     }
     useEffect(()=>{
@@ -50,13 +57,22 @@ function TaskForm(props) {
       .then((data)=>{
         setProcessVariable(data);
       });
+
+      ProcessTaskInformationServices.GetProcessesTaskInformation({"processInstanceId":processInstanceId})
+      .then((data)=>{
+        if(!!data&&data.length>0){
+          setData(data[0]);
+        }
+        
+      });
+      
     },[]);
   
     return (
       <div>
         
         
-          <Form src={components} onChange={(data)=>handleChange(data)}></Form>
+          <Form submission={data} params={data.params} src={components} onChange={(data)=>handleChange(data)}></Form>
           <Button variant="contained" color="primary"  onClick={(e) => {onClick(e)}}>
                       Continuar
                     </Button>

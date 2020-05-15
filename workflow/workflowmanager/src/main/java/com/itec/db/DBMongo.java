@@ -46,16 +46,21 @@ public class DBMongo {
         return JSON.parse("{'flag':1,'message':'Elimiando'}");
     }
 
-    public static List<DBObject> find(String collection, BasicDBObject criterial,String tenant) throws IOException {
+    public static List<DBObject> find(String collection, BasicDBObject criterial,String tenant, Boolean latest) throws IOException {
         DB db =ConfigurationApp.getMongoClient(tenant);
         collection= Utils.getMongoCollectionName(collection,tenant);
-        DBCursor curs;
-        curs= db.getCollection(collection).find(criterial);
+        DBCursor curs=null;
+        if(latest==true){
+            curs = db.getCollection(collection).find(criterial).sort(new BasicDBObject("_id",-1)).limit(1);
+        }else {
+            curs = db.getCollection(collection).find(criterial);
+        }
         List<DBObject> rta=curs.toArray();
         db.getMongo().close();
         db=null;
         return rta;
     }
+
 
 
 
