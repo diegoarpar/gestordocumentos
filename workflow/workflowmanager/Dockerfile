@@ -7,5 +7,5 @@ WORKDIR /usr/src/mymaven
 COPY . .
 RUN mvn -B -f pom.xml dependency:resolve
 
-#CMD ["sh","-c","catalina.sh run"]
+#CMD ["sh","-c","service start"]
 EXPOSE 2001
