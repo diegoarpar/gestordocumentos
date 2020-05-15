@@ -74,7 +74,7 @@
 
     </distributionManagement>
     <build>
-        <defaultGoal>deploy</defaultGoal>
+        <defaultGoal>package</defaultGoal>
         <plugins>
 
             <plugin>
