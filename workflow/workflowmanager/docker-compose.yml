@@ -55,7 +55,7 @@ services:
     volumes:
       - ./db:/data/db
     ports:
-      - "0.0.0.0:27019:27017"
+      - "0.0.0.0:27020:27017"
     networks:
       - activiti-network
 
