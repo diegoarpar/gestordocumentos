@@ -8,5 +8,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /usr/src/app
 #CMD [ "cd","administration"]
 #CMD [ "ls"]
-CMD ["sh","-c","cd authenticacion &&  ls &&  python Administration.py"]
+CMD ["sh","-c","cd administration &&  ls &&  python Administration.py"]
 EXPOSE 5001
