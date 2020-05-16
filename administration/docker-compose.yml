@@ -30,8 +30,7 @@ services:
     volumes:
       - ./db:/data/db
     ports:
-     - "0.0.0.0:27018:27017"
-     - "127.0.0.1:27019:27017"
+     - "0.0.0.0:27022:27017"
     networks:
       - administrationgestornetwork
       - kong_kong-network
