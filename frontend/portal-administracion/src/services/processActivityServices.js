@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 var hostServices="http://192.168.0.16:8000";
-hostServices="http://localhost:5001";
+hostServices="http://192.168.0.12:5001";
 function  ProcessActivityServices  () { 
 }
 

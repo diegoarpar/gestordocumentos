@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     image: portaladministracion:06052020_1
     ports:
-      - "7070:5000"
+      - "7072:5000"
     networks:
       - frontendnetportaladministracion
       - sede-electronica_frontendnetsedelectornicat

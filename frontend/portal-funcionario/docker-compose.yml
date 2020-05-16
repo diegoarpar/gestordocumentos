@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     image: portalfuncionariogestor:06052020_1
     ports:
-      - "5050:5000"
+      - "7071:5000"
     networks:
       - frontendnetportalfuncionario
       - kong_kong-network
