@@ -16,9 +16,9 @@ import SHA256 from 'js-sha256';
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "../../assets/jss/material-kit-react/views/loginPage.js";
 
-import CardFooter from "../../components/Card/CardFooter.js";
-import CustomInput from "../../components/CustomInput/CustomInput.js";
-import CardBody from "../../components/Card/CardBody.js";
+import CardFooter from "components/Card/CardFooter.js";
+import CustomInput from "components/CustomInput/CustomInput.js";
+import CardBody from "components/Card/CardBody.js";
 
 
 import Slide from '@material-ui/core/Slide';
