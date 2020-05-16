@@ -1,5 +1,18 @@
 version: '2'
 services:
+  #wokflowmanager
+  wokflow-manager:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: worfklowmanager:15052020_1949
+    ports:
+      - "0.0.0.0:2001:2001"
+    depends_on:
+      - activiti-mysql
+    networks:
+      - activiti-network
+      - kong_kong-network
   # activiti phpmyadmin
   activiti-phpmyadmin:
     image: phpmyadmin/phpmyadmin:5.0.2-fpm-alpine
@@ -29,7 +42,6 @@ services:
       - "0.0.0.0:3306:3306"
     networks:
       - activiti-network
-
   # authentication database
   activiti-mongo:
     image: mongo:latest
@@ -43,8 +55,7 @@ services:
     volumes:
       - ./db:/data/db
     ports:
-      - "0.0.0.0:27018:27017"
-      - "127.0.0.1:27019:27017"
+      - "0.0.0.0:27019:27017"
     networks:
       - activiti-network
 

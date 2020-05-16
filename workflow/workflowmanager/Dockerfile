@@ -1,12 +1,15 @@
-FROM maven:3.3-jdk-8
+FROM maven:3.3-jdk-8 as build
 
 WORKDIR /usr/src/mymaven
 
-#CMD [ "cd","authenticacion"]
-
 COPY . .
-RUN mvn -B -f pom.xml dependency:resolve
+RUN mvn -f pom.xml clean package
 
-#CMD ["sh","-c","service start"]
-#CMD ["java -Dfile.encoding=utf-8 -Xmx2048m -jar target/workflowmanager-1.0-SNAPSHOT.jar"]
+RUN echo $(pwd)
+FROM openjdk:11-jre-slim
+WORKDIR /usr/local/lib/
+COPY --from=build /usr/src/mymaven/target/workflowmanager-1.0-SNAPSHOT.jar ./workflowmanager.jar
+COPY --from=build /usr/src/mymaven/src/main/java/config/config.yml ./config.yml
+
+ENTRYPOINT ["java","-Dfile.encoding=utf-8", "-Xmx2048m", "-jar","workflowmanager.jar","serve","config.yml"]
 EXPOSE 2001
