@@ -11,13 +11,10 @@ services:
     networks:
       - frontendnetportaladministracion
       - kong_kong-network
-      - frontendnetsedelectornica
 
 
 networks:
   frontendnetportaladministracion:
     driver: bridge
-  autenticacion_authenticationnet:
-    external: true
   kong_kong-network:
     external: true
