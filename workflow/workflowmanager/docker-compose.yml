@@ -10,6 +10,8 @@ services:
       - "0.0.0.0:2001:2001"
     depends_on:
       - activiti-mysql
+    volumes:
+      - ./config:/usr/local/lib/config
     networks:
       - activiti-network
       - kong_kong-network

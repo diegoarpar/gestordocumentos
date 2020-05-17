@@ -1,3 +1,5 @@
+#resourcesLocation: D:/Documentos/DLLO/gestor/gestordocumentos/workflow/workflowmanager/config/
+resourcesLocation: /usr/local/lib/config/
 server:
   #  softNofileLimit: 1000
   #  hardNofileLimit: 1000

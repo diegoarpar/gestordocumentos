@@ -25,7 +25,7 @@ public class Worflow extends Application<ConfigurationApp> {
         if(args.length > 0) new Worflow().run(args);
         else{
             System.out.println(System.getProperty("user.dir"));
-            new Worflow().run(new String[] { "server","src/main/java/config/config.yml" });
+            new Worflow().run(new String[] { "server","config/config.yml" });
         }
     }
 

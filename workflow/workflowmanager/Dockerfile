@@ -9,7 +9,7 @@ RUN echo $(pwd)
 FROM openjdk:11-jre-slim
 WORKDIR /usr/local/lib/
 COPY --from=build /usr/src/mymaven/target/workflowmanager-1.0-SNAPSHOT.jar ./workflowmanager.jar
-COPY --from=build /usr/src/mymaven/src/main/java/config/config.yml ./config.yml
+COPY --from=build /usr/src/mymaven/config/config.yml ./config.yml
 
 ENTRYPOINT ["java","-Dfile.encoding=utf-8", "-Xmx2048m", "-jar","workflowmanager.jar","serve","config.yml"]
 EXPOSE 2001

@@ -1,5 +1,6 @@
 package com.itec.util;
 
+import com.itec.configuration.ConfigurationApp;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.util.JSON;
@@ -10,17 +11,22 @@ import java.io.*;
 import java.util.*;
 
 public class Utils {
-    String result = "";
-    InputStream inputStream;
-    public  HashMap getTenantProperties(String tenant) throws IOException {
 
+    public static String getProcessPath(String tenant) throws IOException {
+        return ConfigurationApp.getResourcesLocation()
+                +tenant+"/processes/";
+    }
+
+    public static HashMap getTenantProperties(String tenant) throws IOException {
+        InputStream  inputStream=null;
         HashMap<String,String> map;
         map = new HashMap<String, String>();
         try {
             Properties prop = new Properties();
             String propFileName = "config.properties";
 
-            inputStream = getClass().getClassLoader().getResourceAsStream(tenant+"_"+propFileName);
+            String location = ConfigurationApp.getResourcesLocation()+ tenant+"_"+propFileName;
+            inputStream= new FileInputStream(new File(location));
 
             if (inputStream != null) {
                 prop.load(inputStream);
@@ -40,6 +46,7 @@ public class Utils {
             map.put("databaseMongoDataBase", prop.getProperty("databaseMongoDataBase"));
 
 
+
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         } finally {
@@ -47,11 +54,12 @@ public class Utils {
         }
         return map;
     }
-    public static void writeToFile(InputStream uploadedInputStream, String uploadedFileLocation) throws IOException {
+    public static void writeToFile(InputStream uploadedInputStream, String fileName, String uploadedFileLocation) throws IOException {
         int read;
         final int BUFFER_LENGTH = 1024;
         final byte[] buffer = new byte[BUFFER_LENGTH];
-        OutputStream out = new FileOutputStream(new File(uploadedFileLocation));
+        if(new File(uploadedFileLocation).exists()==false)new File(uploadedFileLocation).mkdirs();
+        OutputStream out = new FileOutputStream(new File(uploadedFileLocation+fileName));
         while ((read = uploadedInputStream.read(buffer)) != -1) {
             out.write(buffer, 0, read);
         }

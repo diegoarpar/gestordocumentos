@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ResourceBundle;
@@ -29,15 +31,17 @@ public class ProcessDefinitionServices {
                              @FormDataParam("fileName") String fileName
 
     ) throws IOException {
-        Utils utils = new Utils();
         String tenant = Utils.getTenant(req);
-        String location = utils.getTenantProperties(tenant).get("tempProcesssLocation").toString()+fileDetail.getFileName();
-        Utils.writeToFile(uploadedInputStream, location);
+        String location = Utils.getProcessPath(tenant);
+        Utils.writeToFile(uploadedInputStream, fileDetail.getFileName() ,location);
 
         ProcessEngine pe =ConfigurationApp.initProcessEngine(tenant);
         RepositoryService repositoryService = pe.getRepositoryService();
-        Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource(fileDetail.getFileName()).deploy();
+        Deployment deployment =  repositoryService.createDeployment()
+                //.addClasspathResource(fileDetail.getFileName()).deploy();
+                .addInputStream(fileDetail.getFileName(), (InputStream) new FileInputStream(new File(location+fileDetail.getFileName())))
+                .deploy();
+
         ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
                 .deploymentId(deployment.getId()).singleResult();
         System.out.println(
