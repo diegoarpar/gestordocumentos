@@ -6,7 +6,7 @@ COPY . .
 RUN mvn -f pom.xml clean package
 
 RUN echo $(pwd)
-FROM openjdk:11-jre-slim
+FROM openjdk:15-jdk
 WORKDIR /usr/local/lib/
 COPY --from=build /usr/src/mymaven/target/workflowmanager-1.0-SNAPSHOT.jar ./workflowmanager.jar
 #COPY --from=build /usr/src/mymaven/config/config.yml ./config.yml
