@@ -15,7 +15,7 @@ services:
       - kong_kong-network
   # activiti phpmyadmin
   activiti-phpmyadmin:
-    image: phpmyadmin/phpmyadmin:5.0.2-fpm-alpine
+    image: phpmyadmin/phpmyadmin
     environment:
       MYSQL_ROOT_PASSWORD: activiti
       PMA_HOST: activiti-mysql
