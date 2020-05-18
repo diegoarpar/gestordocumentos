@@ -17,6 +17,8 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import ProcessTaskForm from './processTaskForm'
+import ProcessInstanceServices from '../../services/processInstanceServices';
+import ShowProcessModelInstance from '../displayModel/showProcessModel';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,6 +36,8 @@ const TaskList=(props) =>{
   const cont = props.contTramites;
   const setCont=props.handleContTramites;
   const [openTask, setOpenTask]=useState(false);
+  const [openDiagram, setOpenDiagram]=useState(false);
+  const [file, setFile]=useState();
   const classes = useStyles();
   const [rowOpen, setRowOpen]=useState();
   const handleAssignMeTask=(row,e)=>{
@@ -45,6 +49,16 @@ const TaskList=(props) =>{
     
   }
   const handleCompleteTask=(row,e)=>{
+    
+  }
+  const handleOpenDiagram=(row,e)=>{
+    
+    ProcessInstanceServices.GetDiagram({"processInstanceId":row.processInstanceId})
+    .then((data)=>{
+      
+      setFile(data); 
+      setOpenDiagram(true)
+    });
     
   }
   const handleOpenTask=(row,e)=>{
@@ -78,6 +92,7 @@ const TaskList=(props) =>{
              handleAssignMeTask={handleAssignMeTask}
              handleCompleteTask={handleCompleteTask}
              handleOpenTask={handleOpenTask}
+             handleOpenDiagram={handleOpenDiagram}
              />)
       })
 
@@ -85,6 +100,7 @@ const TaskList=(props) =>{
       
       
     </List>
+    <ShowProcessModelInstance open={openDiagram} handleClose={setOpenDiagram} file={file} fileType="png"/>
 
     <Dialog fullScreen open={openTask} onClose={handleCloseTask} >
           <AppBar position="sticky">
@@ -117,6 +133,7 @@ const TaskItem=(props)=>{
     const handleAssignMeTask=props.handleAssignMeTask;
     const handleCompleteTask=props.handleCompleteTask;
     const user = SessionCookies.GetSessionCookie().authenticated_userid;
+    const handleOpenDiagram= props.handleOpenDiagram;
     return(
         <div key={key}>
         <Divider variant="inset" component="li" />
@@ -158,6 +175,16 @@ const TaskItem=(props)=>{
           onClick={(e)=>handleOpenTask(row)}
         >
           Abrir
+        </Button>
+        }
+        {<Button key={"E"+key}
+          aria-controls="customized-menu"
+          aria-haspopup="true"
+          variant="contained"
+          color="primary"
+          onClick={(e)=>handleOpenDiagram(row)}
+        >
+          Ver estado
         </Button>
         }
       </ListItem>

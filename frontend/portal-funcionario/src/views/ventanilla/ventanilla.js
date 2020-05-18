@@ -2,6 +2,7 @@ import React,{ useState,useEffect } from 'react';
 import MenuProcess from './menuProcess'
 import TaskInformation from './tasksInformation'
 
+
 const VentanillaRadicacion=(props)=>{
     const [contTramites,setContTramites] = useState(0);
     const handleContTramites=()=>{
@@ -14,6 +15,8 @@ const VentanillaRadicacion=(props)=>{
             handleContTramites={handleContTramites}
             >
             </MenuProcess>
+
+
             <TaskInformation
             contTramites={contTramites}
             handleContTramites={handleContTramites}

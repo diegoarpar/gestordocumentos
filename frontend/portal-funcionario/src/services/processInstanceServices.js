@@ -17,7 +17,18 @@ async function InitProcesses(data){
     })
 }
 
+async function GetDiagram(data){
+    var headers={'Content-Type': 'application/json'}
+    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
+    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    return axios.post(hostServices+"/workflowmanager/processInstance/diagram/",data,{headers:headers})
+    .then(data =>{
+        return data.data
+    })
+}
+
 export default  {
     ProcessInstanceServices,
-    InitProcesses
+    InitProcesses,
+    GetDiagram
 };

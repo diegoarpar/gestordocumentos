@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+img.photo {
+  width: 70% !important;
+  height: 70% !important;
+}
+
+.custom-viewer {
+  height: 100% !important;
+}
+.pg-viewer-wrapper {
+  height: 90% !important;
+}
+
+div#pg-photo-container {
+  height: 80% !important;
+}

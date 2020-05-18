@@ -18,6 +18,7 @@
         <gson.version>2.7</gson.version>
         <glassfishmultipart.version>2.21</glassfishmultipart.version>
         <mongo.version>3.4.2</mongo.version>
+        <apachecommonsio.version>2.6</apachecommonsio.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -60,6 +61,11 @@
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
             <version>${mongo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${apachecommonsio.version}</version>
         </dependency>
 
     </dependencies>
@@ -127,8 +133,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>6</source>
-                    <target>6</target>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
             </plugin>
         </plugins>
