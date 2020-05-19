@@ -59,3 +59,17 @@ div#another-root1 {
   overflow: scroll;
   height: 100%;
 }
+
+.fixLogin {
+  padding-top: 50px;
+}
+
+img.slick-image {
+  height: 50% !important;
+  width: 100% !important;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}

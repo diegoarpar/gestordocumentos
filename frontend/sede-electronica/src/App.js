@@ -12,6 +12,8 @@ import { BrowserRouter as Router } from "react-router-dom"
 import { createBrowserHistory } from "history";
 import UserAdministration from './views/userAdministration/userAdministration';
 import Button from '@material-ui/core/Button';
+import MenuProcess from 'views/menus/menuProcess';
+import './App.scss';
 
 export const SessionContext = React.createContext(SessionCookie.GetSessionCookie());
 export const history = createBrowserHistory();
@@ -85,16 +87,18 @@ function App(props) {
   
   return (
     <div className="App">
+      
       <div>
         {!!userInSession?
           "Bienvenido "+userInSession.user:"Bienvenido"
         
         }
-        {userInSession&&
+        {userInSession&&<div>
            <Button  color="primary"  onClick={(e) => {logOut(e)}}>
           Cerrar Sesión
          </Button>
-        
+         <MenuProcess></MenuProcess>
+        </div>
         }
         
         <div>
@@ -109,7 +113,10 @@ function App(props) {
         <Routes historyp={history}/>
         
       </div>
-
+      <div className="fixLogin">
+          <LandingPage ></LandingPage>
+      </div>
+      
     </div>
   );
 }
