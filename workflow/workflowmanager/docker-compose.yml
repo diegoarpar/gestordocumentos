@@ -39,7 +39,7 @@ services:
       MYSQL_PASSWORD: activiti
       MYSQL_DATABASE: activiti6ui
     volumes:
-      - ./db:/var/lib/mysql
+      - ./dba:/var/lib/mysql
     ports:
       - "0.0.0.0:3306:3306"
     networks:
