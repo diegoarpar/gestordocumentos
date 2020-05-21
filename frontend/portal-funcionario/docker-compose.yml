@@ -6,6 +6,8 @@ services:
       context: ./
       dockerfile: Dockerfile
     image: portalfuncionariogestor:06052020_1
+    volumes:
+      - ./config:/usr/src/app/src/config
     ports:
       - "7071:5000"
     networks:

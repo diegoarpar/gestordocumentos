@@ -1,9 +1,8 @@
 import SessionCookie from '../utils/session';
 import axios from "axios";
+import URL_Services from '../config/url.config';
 
-
-var hostServices="http://192.168.0.16:8000";
-hostServices="http://192.168.0.12:5001";
+var hostServices=URL_Services.URL_Administration();
 function  ProcessVariableServices  () { 
 }
 

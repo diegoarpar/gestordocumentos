@@ -6,6 +6,8 @@ services:
       context: ./
       dockerfile: Dockerfile
     image: sedeelectronica:06052020_1
+    volumes:
+      - ./config:/usr/src/app/src/config
     ports:
       - "7070:5000"
     networks:
