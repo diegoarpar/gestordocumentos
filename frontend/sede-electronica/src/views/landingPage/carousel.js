@@ -16,6 +16,7 @@ import image2 from "assets/img/bg2.jpg";
 import image3 from "assets/img/bg3.jpg";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import Navbar from "../menus/navBar";
 
 import styles from "assets/jss/material-kit-react/views/componentsSections/carouselStyle.js";
 
@@ -34,6 +35,7 @@ export default function SectionCarousel() {
   return (
     <div>
         <h2> Sede Electrónica</h2>
+        <Navbar></Navbar>
         <Slider {...settings}>
           <div className="row">
             <h3 className="column">

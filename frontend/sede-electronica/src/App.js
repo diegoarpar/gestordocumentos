@@ -43,76 +43,25 @@ function App(props) {
   const [mainContainer, setMainContainer] = useState(props.mc);
   const [portalContainer1, setPortalContainer1] = useState(props.pc1);
   const [portalContainer2, setPortalContainer2] = useState(props.pc2);
-  const [token, setToken] = useState({});
-  const [sessionUser, setSessionUser] = useState( SessionCookie.GetSessionCookie());
-  const [userInSession, setUserInSession] = useState( );
   
-  useEffect(() => {
-    
-    if(!!sessionUser&&!!sessionUser.access_token){
-    setUserInSession ({"user":sessionUser.authenticated_userid});
-    }else {
-      
-      
-      if(history.location.pathname!="/")
-      logOut()
-    }
-    },[sessionUser]);
+  
+
   function findDocument(){
 
     alert("Gracias por buscar el documento");
   }
-  function logIn (t){
-     
-    setToken(t);
-    SessionCookie.SetSessionCookie(t);
-    setSessionUser(t);
-    console.log(t);
-    //history.push('/userAdministration');
-    //history.go();
-    
-  }
-
-  function logOut (){
-     
-    setToken(null);
-    SessionCookie.SetSessionCookie(null);
-    setSessionUser(null);
-    history.push('/');
-    history.go();
-    
-  }
+  
 
   
   
   return (
     <div className="App">
-      
       <div>
-        {!!userInSession?
-          "Bienvenido "+userInSession.user:"Bienvenido"
-        
-        }
-        {userInSession&&<div>
-           <Button  color="primary"  onClick={(e) => {logOut(e)}}>
-          Cerrar Sesión
-         </Button>
-         <MenuProcess></MenuProcess>
-        </div>
-        }
-        
-        <div>
-        {!userInSession&&
-          <LoginApp portalContainer={portalContainer1} onClick={logIn }/>
-        
-        }
-        </div>
-        <div>
-            <FindFileApp portalContainer={portalContainer1} onClick={findDocument}/>
-        </div>
-        <Routes historyp={history}/>
-        
+          <FindFileApp portalContainer={portalContainer1} onClick={findDocument}/>
       </div>
+      <Routes historyp={history}/>
+      
+    
       <div className="fixLogin">
           <LandingPage ></LandingPage>
       </div>

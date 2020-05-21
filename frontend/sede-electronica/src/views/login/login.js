@@ -23,13 +23,14 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardFooter from "components/Card/CardFooter.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import CardBody from "components/Card/CardBody.js";
-
+import SessionCookie from '../../utils/session';
 
 import Slide from '@material-ui/core/Slide';
-import UsersServices from '../../services/userServices'
+import UsersServices from '../../services/userServices';
+import { createBrowserHistory } from "history";
 
 const useStyles = makeStyles(styles);
-
+export const history = createBrowserHistory();
 
 
 function LoginForm(props) {
@@ -101,9 +102,11 @@ function LoginForm(props) {
   });
 
   function Login(props) {
-    const onClick= props.onClick;
+    const [token, setToken] = useState({});
+    const [sessionUser, setSessionUser] = useState(SessionCookie.GetSessionCookie());
+    const [userInSession, setUserInSession] = useState( );
     const [open, setOpen] = React.useState(false);
-  
+    const handleContTramites=props.handleContTramites;
     const handleClickOpen = () => {
       setOpen(true);
     };
@@ -112,11 +115,54 @@ function LoginForm(props) {
       setOpen(false);
     };
   
+    function logIn (t){
+     
+      setToken(t);
+      SessionCookie.SetSessionCookie(t);
+      setSessionUser(t);
+      handleContTramites();
+      if(!!t&&!!t.access_token){
+        setOpen(false);handleContTramites();
+      }      
+    }
+  
+    function logOut (){
+       
+      setToken(null);
+      SessionCookie.SetSessionCookie(null);
+      handleContTramites();
+      setSessionUser(null);
+      if(window.location.pathname!="/"){
+        history.push('/');
+        history.go();
+      }
+      
+    }
+    useEffect(() => {
+    
+      if(!!sessionUser&&!!sessionUser.access_token){
+      setUserInSession ({"user":sessionUser.authenticated_userid});
+      }else {
+        
+        
+        if(history.location.pathname!="/")
+        logOut()
+      }
+      },[sessionUser]);
+
     return (
       <div>
-        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+          Bienvenido {!!sessionUser&&!!sessionUser.authenticated_userid?sessionUser.authenticated_userid:""}  
+        {!!!sessionUser&&<Button variant="outlined" color="inherit" onClick={handleClickOpen}>
           Iniciar sesión
         </Button>
+        }
+        {!!sessionUser&&!!sessionUser.authenticated_userid&&<Button variant="outlined" color="inherit" onClick={logOut}>
+          Salir
+        </Button>
+        }
+
+        
         <Dialog fullScreen open={open} onClose={handleClose} >
           <AppBar position="sticky">
             <Toolbar>
@@ -128,7 +174,7 @@ function LoginForm(props) {
               </Typography>
             </Toolbar>
           </AppBar>
-          <LoginForm  onClick={onClick}></LoginForm>  
+          <LoginForm  onClick={logIn}></LoginForm>  
         </Dialog>
         
       </div>

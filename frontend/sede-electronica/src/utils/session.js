@@ -12,7 +12,7 @@ const GetSessionCookie: any = () => {
   const sessionCookie = Cookies.get("session");
 
   if (sessionCookie === undefined) {
-    return {};
+    return null;
   } else {
     return JSON.parse(sessionCookie);
   }
@@ -37,7 +37,7 @@ const GetSessionCookieTenant: any = () => {
         }
       }
     )
-    return {};
+    return null;
   } else {
     return JSON.parse(sessionCookie);
   }

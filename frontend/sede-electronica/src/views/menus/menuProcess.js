@@ -14,6 +14,8 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ArrowBack from '@material-ui/icons/ArrowBack';
+import MenuIcon from '@material-ui/icons/MoreVert';
+import SessionCookie from '../../utils/session';
 
 function CustomizedMenus(props) {
 
@@ -25,8 +27,13 @@ function CustomizedMenus(props) {
     const [processName, setProcessName] = useState();
     const [workflowName, setWorkflowName] = useState();
     const handleContTramites=props.handleContTramites;
+    const contTramites=props.contTramites;
+    const [sessionUser, setSessionUser] = useState(SessionCookie.GetSessionCookie());
+    
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
+      
+      handleContTramites();
     };
     const handleClickMenu=(data)=>{
       setOpen(true);
@@ -36,12 +43,16 @@ function CustomizedMenus(props) {
       
     }
     useEffect(()=>{
+      setSessionUser(SessionCookie.GetSessionCookie());
+      var user = SessionCookie.GetSessionCookie();
+      if(!!user)
         ProcessServies.GetProcesses({"isSedeElectronicaRequest":"S"}).then((data)=>{
           setRows(data);
         });
 
-    },[]);
+    },[contTramites]);
   
+    
     const handleClose = () => {
       setAnchorEl(null);
     };
@@ -51,25 +62,32 @@ function CustomizedMenus(props) {
       
     };
 
-    
+    const ITEM_HEIGHT = 48;
   
     return (
       <div>
-        <Button
-          aria-controls="customized-menu"
-          aria-haspopup="true"
-          variant="contained"
-          color="primary"
+      {!!sessionUser&&<div>
+       
+        <IconButton edge="start"  color="inherit" aria-label="menu"
+         aria-label="more"
+         aria-controls="long-menu"
+         aria-haspopup="true"
           onClick={handleClick}
         >
-          Radicar Trámites
-        </Button>
+            <MenuIcon/>
+        </IconButton>
         <StyledMenu
           id="customized-menu"
           anchorEl={anchorEl}
           keepMounted
           open={Boolean(anchorEl)}
           onClose={handleClose}
+          PaperProps={{
+            style: {
+              maxHeight: ITEM_HEIGHT * 4.5
+              
+            },
+          }}
         >
           {rows.map((row)=>{
             return(<StyledMenuItem key={row.name} onClick={(e)=>{handleClickMenu(row)}} >
@@ -99,6 +117,8 @@ function CustomizedMenus(props) {
           </Dialog>
           
       </div>
+        }
+        </div>
     );
   }
   
