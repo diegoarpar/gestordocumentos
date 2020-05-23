@@ -46,7 +46,7 @@ def getUsers():
     return userRta
 
 @app1.route('/authentication/users/',methods = ['POST'])
-def updateUser():
+def getUserPost():
     data = request.get_json()
     userRta = Db.findMultiple(collection,data,utils.getTenant(request))
     return userRta
