@@ -18,7 +18,7 @@ def save():
     rta = Db.insert(collection,data,"")
     return {"messaage":"tenant agregado","flag":True}
 
-@app5.route('/authentication/tenant/',methods = ['DELETE'])
+@app5.route('/authentication/tenant/delete',methods = ['POST'])
 def delete():
     data = request.get_json()
     rta = Db.remove(collection,data,"")

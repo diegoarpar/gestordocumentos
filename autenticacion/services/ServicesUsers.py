@@ -11,10 +11,6 @@ from utils import Utils as utils
 app1 = Blueprint('app11', __name__)
 
 collection = "usersdb"
-@app1.route('/helloworld')
-def hello_world():
-    return 'Hello World!'
-
 
 @app1.route('/authentication/changePassword/',methods = ['POST'])
 def changePassword():
@@ -49,6 +45,12 @@ def getUsers():
     userRta = Db.findMultiple(collection,objectToFind,utils.getTenant(request))
     return userRta
 
+@app1.route('/authentication/users/',methods = ['POST'])
+def updateUser():
+    data = request.get_json()
+    userRta = Db.findMultiple(collection,data,utils.getTenant(request))
+    return userRta
+
 @app1.route('/authentication/updateUser/',methods = ['POST'])
 def updateUser():
     data = request.get_json()
@@ -60,5 +62,3 @@ def updateUser():
         Db.update("usersdb",userQuery,userNewData,utils.getTenant(request))
         return jsonify({"message": "user created","flag":True})
     return jsonify({"message": "user not created ","flag":True})
-
-
