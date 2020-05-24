@@ -24,7 +24,7 @@ def get():
             date_time = now.strftime(data["format"])
 
     data["number"]=date_time
-    data["display"]=now.strftime(data["display"])
+    data["displayNumber"]=now.strftime(data["display"])
     rta["display"]=now.strftime(data["display"])
     Db.insert(collection,data,utils.getTenant(request))
     return rta2
