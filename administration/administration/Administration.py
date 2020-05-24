@@ -12,6 +12,7 @@ from services.process.ServicesProcessRoles import processroles
 from services.process.ServicesProcessActivity import process_activity
 from services.process.ServicesProcessVariable import process_variable
 from services.process.ServicesProcessForm import processform
+from services.process.ServicesRequestNumberProcess import process_requestnumber
 
 from services.sedeelectronica.ServicesSedeElectronicaGeneral import sedelectronica_generalconf
 
@@ -38,6 +39,7 @@ if __name__ == '__main__':
     app.register_blueprint(processform)
     app.register_blueprint(process_activity)
     app.register_blueprint(process_variable)
+    app.register_blueprint(process_requestnumber)
     app.register_blueprint(sedelectronica_generalconf)
 
     cors = CORS(app, resources={"*": {"origins": "*"}})
