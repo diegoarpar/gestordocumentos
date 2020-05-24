@@ -8,8 +8,17 @@ function  ProcessServices  () {
 }
 
 async function  GetProcesses(data){
-    var headers={'Content-Type': 'application/json'}
+    var headers={'Content-Type': 'application/json'};
     headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
+    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    return axios.post(hostServices+"/administration/process/",data,{headers:headers})
+    .then(data =>{
+        return data.data
+    })
+}
+async function  GetProcessesAnonymous(data){
+    var headers={'Content-Type': 'application/json'};
+    
     headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
     return axios.post(hostServices+"/administration/process/",data,{headers:headers})
     .then(data =>{
@@ -19,5 +28,6 @@ async function  GetProcesses(data){
 
 export default  {
     ProcessServices,
+    GetProcessesAnonymous,
     GetProcesses
 };

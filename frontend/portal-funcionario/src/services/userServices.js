@@ -25,7 +25,15 @@ async function  GetData(){
         return data.data
     })
 }
-
+async function  GetUser(data){
+    var headers={};
+    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
+    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    return axios.post(hostServices+"/authentication/users/",data,{headers:headers})
+    .then(data =>{
+        return data.data
+    })
+}
 async function  CreateUser(data){
     var headers={'Content-Type': 'application/json'}
     headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
@@ -102,6 +110,6 @@ export default  {GetData,
     GetRolesProcess,
     UsersServices,
     GetTenant,
-    GetPortals
-    
+    GetPortals,
+    GetUser
 };

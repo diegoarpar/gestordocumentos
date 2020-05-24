@@ -30,7 +30,7 @@ async function  GetData(){
 
 async function  CreateUser(data){
     var headers={'Content-Type': 'application/json'}
-    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
+    //headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
     headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
     return axios.post(hostServices+"/authentication/createuser/",data,{headers:headers})
     .then(data =>{
@@ -65,20 +65,11 @@ async function GetRoles(data){
         return data.data
     })
 }
-async function  SaveRoles(data){
+async function GetRolesProcess(data){
     var headers={'Content-Type': 'application/json'}
     headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
     headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
-    return axios.put(hostServices+"/authentication/roles/",data,{headers:headers})
-    .then(data =>{
-        return data.data
-    })
-}
-async function  DeleteRoles(data){
-    var headers={'Content-Type': 'application/json'}
-    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
-    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
-    return axios.delete(hostServices+"/authentication/roles/",data,{headers:headers})
+    return axios.post(hostServices+"/authentication/processroles/",data,{headers:headers})
     .then(data =>{
         return data.data
     })
@@ -96,8 +87,7 @@ export default  {GetData,
     UpdateUser,
     LogIn,
     GetRoles,
-    SaveRoles,
+    GetRolesProcess,
     UsersServices,
-    GetTenant,
-    DeleteRoles
+    GetTenant
 };

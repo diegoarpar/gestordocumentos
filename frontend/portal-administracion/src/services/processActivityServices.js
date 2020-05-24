@@ -2,7 +2,7 @@ import SessionCookie from '../utils/session';
 import axios from "axios";
 import URL_Services from '../config/url.config';
 
-var hostServices=URL_Services.URL_Workflowmanager();
+var hostServices=URL_Services.URL_Administration();
 function  ProcessActivityServices  () { 
 }
 
