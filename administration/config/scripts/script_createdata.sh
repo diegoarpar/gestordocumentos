@@ -1,5 +1,5 @@
 #!bin/bash
-curl -i -X POST \
+curl -i -X PUT \
   --url http://127.0.0.1:5001/administration/parametricvalue/ \
   -H "Content-Type: application/json" \
   -d '{"description":  "AAAAMMDDHHMMSSmmm",
@@ -9,7 +9,7 @@ curl -i -X POST \
       "value": "%Y%m%d%H%M%S%f"
       }'
 
-curl -i -X POST \
+curl -i -X PUT \
   --url http://127.0.0.1:5001/administration/parametricvalue/ \
   -H "Content-Type: application/json" \
   -d '{"description":  "AAAA/MM/DD/HHMMSSmmm",
@@ -19,7 +19,7 @@ curl -i -X POST \
       "value": "%Y%m%d%H%M%S%f"
       }'
 
-curl -i -X POST \
+curl -i -X PUT \
   --url http://127.0.0.1:5001/administration/parametricvalue/ \
   -H "Content-Type: application/json" \
   -d '{"description":  "DD/MM/AAAA/HHMMSSmmm",
@@ -30,7 +30,7 @@ curl -i -X POST \
       }'
 
 
-curl -i -X POST \
+curl -i -X PUT \
   --url http://127.0.0.1:5001/administration/parametricvalue/ \
   -H "Content-Type: application/json" \
   -d '{"description":  "DD/MM/AAAA/HHMMSSmmm",
