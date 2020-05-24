@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Formio} from 'react-formio';
+import {Form as Formio} from 'react-formio';
 import ProcessFormServies from '../../services/processFormServices';
 import Button from '@material-ui/core/Button';
 import ProcessInstanceServices from '../../services/processInstanceServices';
