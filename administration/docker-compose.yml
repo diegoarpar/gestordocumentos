@@ -10,6 +10,8 @@ services:
       - "5001:5001"
     depends_on:
       - administrationgestordatbase
+    volumes:
+      - ./config:/usr/src/app/config
     networks:
       - autenticacion_authenticationnet
       - kong_kong-network
