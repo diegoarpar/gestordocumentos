@@ -2,6 +2,7 @@
 curl -i -X PUT \
   --url http://127.0.0.1:5001/administration/parametricvalue/ \
   -H "Content-Type: application/json" \
+  -H "Tenant: gestorbancoa" \
   -d '{"description":  "AAAAMMDDHHMMSSmmm",
       "name": "%Y%m%d%H%M%S%f",
       "type": "REQUEST_NUMBER_PATTERN",
@@ -12,6 +13,7 @@ curl -i -X PUT \
 curl -i -X PUT \
   --url http://127.0.0.1:5001/administration/parametricvalue/ \
   -H "Content-Type: application/json" \
+  -H "Tenant: gestorbancoa" \
   -d '{"description":  "AAAA/MM/DD/HHMMSSmmm",
       "name": "%Y/%m/%d %H%M%S%f",
       "type": "REQUEST_NUMBER_PATTERN",
@@ -22,6 +24,7 @@ curl -i -X PUT \
 curl -i -X PUT \
   --url http://127.0.0.1:5001/administration/parametricvalue/ \
   -H "Content-Type: application/json" \
+  -H "Tenant: gestorbancoa" \
   -d '{"description":  "DD/MM/AAAA/HHMMSSmmm",
       "name": "%d/%m/%Y %H%M%S%f",
       "type": "REQUEST_NUMBER_PATTERN",
@@ -33,6 +36,7 @@ curl -i -X PUT \
 curl -i -X PUT \
   --url http://127.0.0.1:5001/administration/parametricvalue/ \
   -H "Content-Type: application/json" \
+  -H "Tenant: gestorbancoa" \
   -d '{"description":  "DD/MM/AAAA/HHMMSSmmm",
       "name": "%d%m%Y %H%M%S%f",
       "type": "REQUEST_NUMBER_PATTERN",
