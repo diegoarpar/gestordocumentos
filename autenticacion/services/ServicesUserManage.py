@@ -25,7 +25,7 @@ def validateUser():
     password=data["password"]
     user=data["user"]
     #password = sha256(password.encode('utf-8').rstrip()).hexdigest()
-    objectToFind={"user": user,"password":password}
+    objectToFind={"user": user,"password":password, "active":"S"}
     userRta = Db.find(collection,objectToFind,utils.getTenant(request))
 
     if userRta=='null':
