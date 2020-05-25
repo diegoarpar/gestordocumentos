@@ -3,33 +3,33 @@ curl -i -X PUT \
   --url http://127.0.0.1:5001/administration/parametricvalue/ \
   -H "Content-Type: application/json" \
   -H "Tenant: gestorbancoa" \
-  -d '{"description":  "AAAAMMDDHHMMSSmmm",
-      "name": "%Y%m%d%H%M%S%f",
+  -d '{"description":  "dd/MM/yyyy HH:mm:ss",
+      "name": "dd/MM/yyyy HH:mm:ss",
       "type": "REQUEST_NUMBER_PATTERN",
       "typeDescription": "Patrón radicado",
-      "value": "%Y%m%d%H%M%S%f"
+      "value": "ddMMyyyyHHmmss"
       }'
 
 curl -i -X PUT \
   --url http://127.0.0.1:5001/administration/parametricvalue/ \
   -H "Content-Type: application/json" \
   -H "Tenant: gestorbancoa" \
-  -d '{"description":  "AAAA/MM/DD/HHMMSSmmm",
-      "name": "%Y/%m/%d %H%M%S%f",
+  -d '{"description":  "dd/MM/yyyy HH:mm:ss.SSS",
+      "name": "dd/MM/yyyy HH:mm:ss.SSS",
       "type": "REQUEST_NUMBER_PATTERN",
       "typeDescription": "Patrón radicado",
-      "value": "%Y%m%d%H%M%S%f"
+      "value": "ddMMyyyyHHmmssSSS"
       }'
 
 curl -i -X PUT \
   --url http://127.0.0.1:5001/administration/parametricvalue/ \
   -H "Content-Type: application/json" \
   -H "Tenant: gestorbancoa" \
-  -d '{"description":  "DD/MM/AAAA/HHMMSSmmm",
-      "name": "%d/%m/%Y %H%M%S%f",
+  -d '{"description":  "yyyy/MM/dd HH:mm:ss.SSS",
+      "name": "yyyy/MM/dd HH:mm:ss.SSS",
       "type": "REQUEST_NUMBER_PATTERN",
       "typeDescription": "Patrón radicado",
-      "value": "%d%m%Y%H%M%S%f"
+      "value": "yyyyMMddHHmmssSSS"
       }'
 
 
@@ -37,9 +37,9 @@ curl -i -X PUT \
   --url http://127.0.0.1:5001/administration/parametricvalue/ \
   -H "Content-Type: application/json" \
   -H "Tenant: gestorbancoa" \
-  -d '{"description":  "DD/MM/AAAA/HHMMSSmmm",
-      "name": "%d%m%Y %H%M%S%f",
+  -d '{"description":  "yyyy/MM/dd HH:mm:ss",
+      "name": "yyyy/MM/dd HH:mm:ss",
       "type": "REQUEST_NUMBER_PATTERN",
       "typeDescription": "Patrón radicado",
-      "value": "%d%m%Y%H%M%S%f"
+      "value": "yyyyMMddHHmmss"
       }'

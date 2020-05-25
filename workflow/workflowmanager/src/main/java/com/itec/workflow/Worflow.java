@@ -2,10 +2,7 @@ package com.itec.workflow;
 
 
 import com.itec.configuration.ConfigurationApp;
-import com.itec.services.ProcessDefinitionServices;
-import com.itec.services.ProcessInstanceServices;
-import com.itec.services.ProcessTaskInformationServices;
-import com.itec.services.ProcessTaskServices;
+import com.itec.services.*;
 import io.dropwizard.Application;
 import io.dropwizard.forms.MultiPartBundle;
 import io.dropwizard.setup.Bootstrap;
@@ -46,6 +43,7 @@ public class Worflow extends Application<ConfigurationApp> {
         e.jersey().register(ProcessDefinitionServices.class);
         e.jersey().register(ProcessTaskServices.class);
         e.jersey().register(ProcessTaskInformationServices.class);
+        e.jersey().register(ProcessNumberServices.class);
     }
 
     private void configureCors(Environment e) {
