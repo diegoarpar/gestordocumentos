@@ -128,7 +128,7 @@ const ProcessInformationTab=(props)=>{
                   onChange={(e)=>handleChangeRequestNumberPatternList(e)}
                   >
                   {requestNumberPatternList.map((item,index) => (
-                          <MenuItem key={index}  value={item.name}>{item.typeDescription + " " + item.description}</MenuItem>
+                          <MenuItem key={index}  value={item.value}>{item.typeDescription + " " + item.description}</MenuItem>
                       ))}
               </Select>
           </FormControl>
