@@ -49,7 +49,8 @@ const ParametricInformationTab=(props)=>{
     {label:"Rol Proceso", id:"ROL_PROCESO"},
     {label:"Portales", id:"PORTALES"},
     {label:"Rol Plataforma", id:"ROL_PLATAFORMA"},
-    {label:"Módulo funcionario", id:"MODULO_FUNCIONARIO"}
+    {label:"Módulo funcionario", id:"MODULO_FUNCIONARIO"},
+    {label:"Datos búsqueda ciudadano", id:"DATOS_BUSQUEDA_VENTANILLA_CIUDADANO"}
   ];
   return (<div>
         <div>

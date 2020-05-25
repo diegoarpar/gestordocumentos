@@ -10,7 +10,6 @@ import Footer from "components/Footer/Footer.js";
 import {  Switch, Route,Redirect,Link   } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom"
 import { createBrowserHistory } from "history";
-import UserAdministration from './views/userAdministration/userAdministration';
 import Button from '@material-ui/core/Button';
 import MenuProcess from 'views/menus/menuProcess';
 import './App.scss';
@@ -29,7 +28,7 @@ const Routes = (props) => {
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/userAdministration">
-             <UserAdministration/>
+           
              
           </Route> 
           <Route path="*"  />

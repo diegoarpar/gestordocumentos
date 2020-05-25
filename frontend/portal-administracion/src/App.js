@@ -8,6 +8,7 @@ import { createBrowserHistory } from "history";
 import UserAdministration from './views/userAdministration/userAdministration';
 import ProcessAdministration from './views/processAdministration/processAdministration';
 import ParametricAdministration from './views/parametricValueAdministration/parametricAdministration';
+import SedeElectronicaAdminsitration from './views/sedeElectronicaAdministration/sedeElectronicaAdministration';
 import CustomizedMenus from './views/menus/menu';
 import SessionCookie from './utils/session';
 import Button from '@material-ui/core/Button';
@@ -35,6 +36,9 @@ const Routes = (props) => {
           </Route>
           <Route path="/parametricAdministration">
              <ParametricAdministration/>
+          </Route>
+          <Route path="/sedeElectronicaAdminsitration">
+             <SedeElectronicaAdminsitration/>
           </Route>
           <Route path="*"  />
         </Switch>

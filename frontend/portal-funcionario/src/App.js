@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom"
 import { createBrowserHistory } from "history";
 import VentanillaRadicacion from './views/ventanilla/ventanilla';
 import CustomizedMenus from './views/menus/menu';
+import UserWaitingApproved from './views/user/userWaitingApproved';
 import SessionCookie from './utils/session';
 import Button from '@material-ui/core/Button';
 import ReactDOM from 'react-dom';
@@ -26,7 +27,9 @@ const Routes = (props) => {
           <Route path="/login" component={Login} />
           <Route path="/ventanillaRadicacion">
              <VentanillaRadicacion/>
-
+          </Route>
+          <Route path="/userWatingApproved">
+             <UserWaitingApproved/>
           </Route>
           <Route path="*"  />
         </Switch>

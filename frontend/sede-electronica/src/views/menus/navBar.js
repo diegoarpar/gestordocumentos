@@ -7,6 +7,8 @@ import IconButton from '@material-ui/icons/Book';
 import MenuIcon from '@material-ui/icons/MenuOpen';
 import Login from '../login/login';
 import MenuProcess from '../menus/menuProcess';
+import UserManager from '../user/userManager';
+
 const NavBar =()=>{
     const [contTramites, setContTramites] = useState(0);
     const handleContTramites =()=>{
@@ -19,7 +21,7 @@ const NavBar =()=>{
             
         </Typography>
         <Login  handleContTramites={handleContTramites}/>
-        
+        <UserManager contTramites={contTramites} />
         </Toolbar>
     </AppBar>
   )

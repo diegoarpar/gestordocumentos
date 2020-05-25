@@ -2,12 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12b2b311-c256-499f-9ecb-4448db93b10c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../administration/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../administration/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../administration/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../administration/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kong/NewServices.sh" beforeDir="false" afterPath="$PROJECT_DIR$/kong/NewServices.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/Kong.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/Kong.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/sede-electronica/src/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/sede-electronica/src/login/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../signature/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../signature/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-administracion/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-administracion/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-administracion/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-administracion/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-administracion/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-administracion/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-administracion/src/config/url.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-administracion/src/config/url.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-administracion/src/views/menus/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-administracion/src/views/menus/menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-administracion/src/views/parametricValueAdministration/parametricInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-administracion/src/views/parametricValueAdministration/parametricInformation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-administracion/src/views/userAdministration/userAdministration.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-administracion/src/views/userAdministration/userAdministration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/config/url.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/config/url.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/services/processServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/services/processServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/views/menus/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/views/menus/menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/views/ventanilla/menuProcess.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/views/ventanilla/menuProcess.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/views/ventanilla/tasksInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/views/ventanilla/tasksInformation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/views/ventanilla/ventanilla.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/views/ventanilla/ventanilla.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/sede-electronica/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/sede-electronica/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/sede-electronica/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/sede-electronica/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/sede-electronica/src/config/url.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/sede-electronica/src/config/url.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/sede-electronica/src/views/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/sede-electronica/src/views/login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/sede-electronica/src/views/menus/menuProcess.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/sede-electronica/src/views/menus/menuProcess.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/sede-electronica/src/views/menus/navBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/sede-electronica/src/views/menus/navBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/sede-electronica/src/views/userAdministration/userAdministration.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../workflow/workflowmanager/workflowmanager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../workflow/workflowmanager/workflowmanager.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,9 +48,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../signature" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -340,7 +363,42 @@
       <option name="project" value="LOCAL" />
       <updated>1587765618283</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="modificacion process roles">
+      <created>1589074486375</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1589074486376</updated>
+    </task>
+    <task id="LOCAL-00040" summary="kong database">
+      <created>1589674269456</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1589674269456</updated>
+    </task>
+    <task id="LOCAL-00041" summary="kong database">
+      <created>1589676996326</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1589676996326</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Actualización autenticación, consulta de usuarios">
+      <created>1590203109355</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1590203109355</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Actualización autenticación, consulta de usuarios">
+      <created>1590203628928</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1590203628928</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -353,17 +411,24 @@
     <MESSAGE value="cambio de contraseña" />
     <MESSAGE value="servicios a POST y creación de usuarios" />
     <MESSAGE value="authentication with Kong" />
-    <option name="LAST_COMMIT_MESSAGE" value="authentication with Kong" />
+    <MESSAGE value="modificacion process roles" />
+    <MESSAGE value="kong database" />
+    <MESSAGE value="Actualización autenticación, consulta de usuarios" />
+    <option name="LAST_COMMIT_MESSAGE" value="Actualización autenticación, consulta de usuarios" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="282" y="0" key="CommitChangelistDialog2" timestamp="1587765616794">
+    <state x="282" y="0" key="CommitChangelistDialog2" timestamp="1590203624759">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="282" y="0" key="CommitChangelistDialog2/0.0.1366.728/-1280.-393.1280.984@0.0.1366.728" timestamp="1587765616794" />
-    <state x="-860" y="-147" key="FileChooserDialogImpl" timestamp="1587415737949">
-      <screen x="-1280" y="-393" width="1280" height="984" />
+    <state x="282" y="0" key="CommitChangelistDialog2/0.0.1366.728/1366.-397.1280.984@0.0.1366.728" timestamp="1589676993066" />
+    <state x="1630" y="0" key="CommitChangelistDialog2/0.0.1366.728/1366.0.1280.984@1366.0.1280.984" timestamp="1589074484507" />
+    <state x="282" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1590203624759" />
+    <state x="1786" y="246" key="FileChooserDialogImpl" timestamp="1589401503447">
+      <screen x="1366" y="0" width="1280" height="984" />
     </state>
     <state x="-860" y="-147" key="FileChooserDialogImpl/0.0.1366.728/-1280.-393.1280.984@-1280.-393.1280.984" timestamp="1587415737949" />
+    <state x="1786" y="246" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1280.984@1366.0.1280.984" timestamp="1589401503447" />
     <state width="1323" height="163" key="GridCell.Tab.0.bottom" timestamp="1587770910605">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -380,10 +445,13 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="163" key="GridCell.Tab.0.right/0.0.1366.728/-1280.-393.1280.984@0.0.1366.728" timestamp="1587770910605" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1587765692049">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1590203644247">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728/-1280.-393.1280.984@0.0.1366.728" timestamp="1587765692049" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728/1366.-397.1280.984@0.0.1366.728" timestamp="1589676998427" />
+    <state x="1624" y="131" key="Vcs.Push.Dialog.v2/0.0.1366.728/1366.0.1280.984@1366.0.1280.984" timestamp="1589074488383" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1590203644247" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

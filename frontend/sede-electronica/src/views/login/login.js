@@ -154,7 +154,7 @@ function LoginForm(props) {
       <div>
           Bienvenido {!!sessionUser&&!!sessionUser.authenticated_userid?sessionUser.authenticated_userid:""}  
         {!!!sessionUser&&<Button variant="outlined" color="inherit" onClick={handleClickOpen}>
-          Iniciar sesión
+          Ingresar
         </Button>
         }
         {!!sessionUser&&!!sessionUser.authenticated_userid&&<Button variant="outlined" color="inherit" onClick={logOut}>
@@ -170,7 +170,7 @@ function LoginForm(props) {
                 <ArrowBack />
               </IconButton>
               <Typography variant="h6" >
-                Inicar Sesión
+                Ingresar
               </Typography>
             </Toolbar>
           </AppBar>

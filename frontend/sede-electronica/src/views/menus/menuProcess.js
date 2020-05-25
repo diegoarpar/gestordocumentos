@@ -6,7 +6,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ProcessServies from '../../services/processServices';
+import UserServices from '../../services/userServices';
 import ProcessForm from './processForm';
+import ProcessRolesServies from '../../services/processRolesServices';
 import SessionCookies from '../../utils/session';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
@@ -17,10 +19,12 @@ import ArrowBack from '@material-ui/icons/ArrowBack';
 import MenuIcon from '@material-ui/icons/MoreVert';
 import SessionCookie from '../../utils/session';
 
+
 function CustomizedMenus(props) {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [rows, setRows] = useState([]);
+    const [rows2, setRows2] = useState([]);
     const [rowOpen, setRowOpen] = useState();
     const [open, setOpen] = useState(false);
     const [openTask, setOpenTask] = useState(false);
@@ -45,11 +49,30 @@ function CustomizedMenus(props) {
     useEffect(()=>{
       setSessionUser(SessionCookie.GetSessionCookie());
       var user = SessionCookie.GetSessionCookie();
-      if(!!user)
-        ProcessServies.GetProcesses({"isSedeElectronicaRequest":"S"}).then((data)=>{
-          setRows(data);
-        });
+      ProcessServies.GetProcessesAnonymous({"isSedeElectronicaRequest":"S","isAnonymouseRequest":"S"}).then((data)=>{
+        setRows(data);
+      });
+      if(!!user){
+        UserServices.GetRolesProcess({"user":SessionCookies.GetSessionCookie().authenticated_userid}).then((data)=>{
+          var temp=[];
+          data.map((row)=>{
+            temp.push(row.roleName);
+          });
+         
+          ProcessRolesServies.GetProcessesRoles({"initProcess":"S","roleName":{$in:temp}}).then((data)=>{
+            var temp2=[];
+            data.map((row)=>{
+                temp2.push(row.process);
+            });
+            ProcessServies.GetProcesses({"isSedeElectronicaRequest":"S","isAnonymouseRequest":"N","name":{"$in":temp2}}).then((data)=>{
+              setRows2(data);
+            });
+            
+          });
+            
 
+        });
+      }
     },[contTramites]);
   
     
@@ -66,7 +89,7 @@ function CustomizedMenus(props) {
   
     return (
       <div>
-      {!!sessionUser&&<div>
+      {true&&<div>
        
         <IconButton edge="start"  color="inherit" aria-label="menu"
          aria-label="more"
@@ -90,6 +113,17 @@ function CustomizedMenus(props) {
           }}
         >
           {rows.map((row)=>{
+            return(<StyledMenuItem key={row.name} onClick={(e)=>{handleClickMenu(row)}} >
+              <ListItemIcon key={row.name}>
+                
+              </ListItemIcon>
+              <ListItemText primary={row.name} 
+                  onClick={(e)=>{handleClickMenu(row)}} 
+              />
+            </StyledMenuItem>)
+
+          })}
+          {!!sessionUser&&rows2.map((row)=>{
             return(<StyledMenuItem key={row.name} onClick={(e)=>{handleClickMenu(row)}} >
               <ListItemIcon key={row.name}>
                 

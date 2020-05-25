@@ -3,9 +3,9 @@ import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
+import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
@@ -15,35 +15,23 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Dialog from '@material-ui/core/Dialog';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import ArrowBack from '@material-ui/icons/ArrowBack';
+
 import UsersServices from '../../services/userServices'
-import UserInformation from './userInformation'
-import RolesTable from './rolesTable'
-import PortalTable from './portalTable'
-import RolesProcessTable from './rolesProcessTable'
+import UserInformation from '../user/userInformation';
 
 
-
-
-  const useStyles = {
-    root: {
-      width: '100%',
-    },
-    container: {
-      maxHeight: 440,
-    },
-  };
-
-  
-
-
-function UserAdministration(props) {
-    const [rows,setUsers]  = useState([]);
-    const classes = useStyles;
+function UserWaitingApprovedTab(props) {
+    const [rows,setRows]  = useState([]);
+    const [row,setRow]  = useState({});
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [open, setOpen] = React.useState(false);
     const [modalType, setModalType] = React.useState();
-    const [rowInformation, setRowInformation] = React.useState();
+    
     const [newUser, setNewUser] = React.useState();
     const columns = [
       { id: 'user', label: 'Usuario', minWidth: 170 },
@@ -57,7 +45,7 @@ function UserAdministration(props) {
       }
     ];
     const handleOpen = (e,type,row) => {
-        setRowInformation(row);
+        setRow(row);
         setModalType(type);
         setOpen(true);
       };
@@ -65,69 +53,40 @@ function UserAdministration(props) {
     setOpen(false);
     }; 
     
-    const handleCreateUser = (e,data,type) => {
-      let dataPost={
-          "user":data.user,
-          "password":SHA256(data.password),
-          "documentType":data.documentType,
-          "documentNumber":data.documentNumber,
-          "name":data.name,
-          "lastName":data.lastName,
-          "email":data.email,
-          "isCitizen":data.isCitizen,
-          "isFunctionary":data.isFunctionary,
-      };
-      if(type=='C'){
-        UsersServices.CreateUser(dataPost);
-        setNewUser(dataPost);
-      }else if (type=='M'){
-        dataPost.password=rowInformation.password;
-        UsersServices.UpdateUser({
-                        "userQuery":{"user":dataPost.user,"_id":dataPost._id},
-                        "userNewData":dataPost
-                        });
-        setNewUser(dataPost);
-      }
-      };
+    const handleActivateUser = (row) => {
+      
+      UsersServices.UpdateUser({
+        "userQuery":{"user":row.user},
+        "userNewData":{"active":"S"}
+        })
+        .then((data)=>{
+          setNewUser(data);
+        });
+      
+
+    }
     
     const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-      };
+      setPage(newPage);
+    }
     
-      const handleChangeRowsPerPage = (event) => {
+    const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
-      };
-      const handleActiveUser=(row)=>{
-        var active="S";
-        if(row.active=="S"){
-          active="N";
-        }
-        UsersServices.UpdateUser({
-          "userQuery":{"user":row.user},
-          "userNewData":{"active":active}
-          })
-          .then((data)=>{
-            setNewUser(data);
-          });
-      }
+    }
       
     useEffect(() => {
-        UsersServices.GetData()
-        .then(d=>{
-            setUsers(d);
-        })    
-        
-        },[newUser]);
+        UsersServices.GetUser({"enrollingType":"with_manual_checked","active":{$ne:"S"}})
+        .then((data)=>{
+          setRows(data);
+        });
+    },[newUser]);
     
 
     return (
     <div>
-        <Button variant="contained" color="primary"  onClick={(e) => {handleOpen(e,"C",{})}}>
-                            Nuevo Usuario
-                            </Button>
       <Paper >
-      <TableContainer >
+      <TableContainer>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -158,12 +117,12 @@ function UserAdministration(props) {
                         return (
                         <TableCell  align={column.align} key={column.id}>
                             <Button variant="contained" simple="true" color="primary"  
-                            onClick={(e) => {handleOpen(e,"M",row)}}>
-                            Ver Detalles
+                            onClick={(e) => {handleOpen(e,"R",row)}}>
+                            Detalle
                             </Button>
                             <Button variant="contained" simple="true" color="primary"  
-                            onClick={(e) => {handleActiveUser(row)}}>
-                              {row.active=="S"?"Inactivar":"Activar"}
+                            onClick={(e) => {handleActivateUser(row)}}>
+                            Activar
                             </Button>
                         </TableCell>
                         );
@@ -185,22 +144,20 @@ function UserAdministration(props) {
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
     </Paper>
-    <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        
-    >
-        <div className="modalClass">
-            <h2 id="modalTitle">Información del usuario</h2>
-            
-            <TabsContainer rowInformation={rowInformation} 
-                                    modalType={modalType} 
-                                    handleCreateUser={handleCreateUser} 
-                                    handleClose={handleClose}/>
-        </div>
-    </Modal>
+    <Dialog fullScreen open={open} onClose={handleClose} >
+          <AppBar position="sticky">
+            <Toolbar>
+              <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+                <ArrowBack />
+              </IconButton>
+              <Typography variant="h6" >
+                Detalle
+              </Typography>
+            </Toolbar>
+          </AppBar>
+            <UserInformation modalType={modalType} rowInformation={row}/>
+
+          </Dialog>
     </div>
       );
 
@@ -233,7 +190,7 @@ function TabPanel(props) {
     </div>
   );
 }
-const TabsContainer =(props)=>{
+const UserWaitingApproved =(props)=>{
   const [value, setValue] = React.useState(0);
   const [rowInformation, setRowInformation] = React.useState(props.rowInformation);
   const [modalType, setModalType] = React.useState(props.modalType);
@@ -246,37 +203,14 @@ const TabsContainer =(props)=>{
       <div>
           <AppBar position="static">
             <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-              <Tab label="Datos Básicos" {...a11yProps(0)} />
-              <Tab label="Roles" {...a11yProps(1)} />
-              <Tab label="Acceso a Portales" {...a11yProps(2)} />
-              <Tab label="Roles en procesos" {...a11yProps(3)} />
+              <Tab label="Usuarios Pendientes" {...a11yProps(0)} />
+              
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
-                  <div>
-                  <UserInformation rowInformation={rowInformation} 
-                                    modalType={modalType} 
-                                    handleClick={handleCreateUser} 
-                                    onClose={handleClose}/>
-                    </div>
+                <UserWaitingApprovedTab/>
           </TabPanel>
-          <TabPanel value={value} index={1}>
-                <RolesTable userInformation={rowInformation}>  </RolesTable>
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-              <PortalTable userInformation={rowInformation}>  </PortalTable>
-          </TabPanel>
-          <TabPanel value={value} index={3}>
-              <RolesProcessTable userInformation={rowInformation}>  </RolesProcessTable>
-          </TabPanel>
-          <Button variant="contained" color="secondary"  
-              onClick={(e) => {
-                handleClose();
-
-              }}>
-              Cerrar
-          </Button>
           </div>
       );
   }
-export default UserAdministration;
+export default UserWaitingApproved;

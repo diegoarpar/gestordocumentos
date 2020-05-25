@@ -61,7 +61,6 @@ div#another-root1 {
 }
 
 
-
-
-
-
+.MuiFormControl-root {
+  width: 100%;
+}

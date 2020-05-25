@@ -76,8 +76,8 @@ function CustomizedMenus(props) {
         <Button
           aria-controls="customized-menu"
           aria-haspopup="true"
-          variant="contained"
-          color="primary"
+          variant="outlined"
+          color="inherit"
           onClick={handleClick}
         >
           Radicar Trámites

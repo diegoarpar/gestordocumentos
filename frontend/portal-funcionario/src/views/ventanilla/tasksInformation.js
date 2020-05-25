@@ -135,7 +135,7 @@ const TaskItem=(props)=>{
     const user = SessionCookies.GetSessionCookie().authenticated_userid;
     const handleOpenDiagram= props.handleOpenDiagram;
     return(
-        <div key={key}>
+        <div key={key} className="customProcesses">
         <Divider variant="inset" component="li" />
         <ListItem alignItems="flex-start">
         <ListItemAvatar>

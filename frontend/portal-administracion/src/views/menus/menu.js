@@ -43,7 +43,14 @@ function CustomizedMenus(props) {
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
-  
+    const rows =[
+      {"name":"administracionusuarios", "path":"/userAdministration", "description":"Administración de usuarios"},
+      {"name":"administraciontramites", "path":"/workflowAdministration", "description":"Administración de trámites"},
+      {"name":"administracionparametricas", "path":"/parametricAdministration", "description":"Administración de Paramétricas"},
+      {"name":"administracionsedeelectronica", "path":"/sedeElectronicaAdminsitration", "description":"Administración sede electrónica"},
+      {"name":"inicio", "path":"/", "description":"Inicio"}
+
+    ];
     const handleClose = () => {
       setAnchorEl(null);
     };
@@ -66,38 +73,18 @@ function CustomizedMenus(props) {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <StyledMenuItem>
-            <ListItemIcon>
-              
-            </ListItemIcon>
-            <ListItemText primary="Administración de usuarios" 
-                onClick={(e)=>{history.push('/userAdministration'); history.go();}} 
-            />
-          </StyledMenuItem>
-          <StyledMenuItem>
-            <ListItemIcon>
-              
-            </ListItemIcon>
-            <ListItemText primary="Administración de trámites" 
-              onClick={(e)=>{history.push('/workflowAdministration'); history.go();}} 
-            />
-          </StyledMenuItem>
-          <StyledMenuItem>
-            <ListItemIcon>
-              
-            </ListItemIcon>
-            <ListItemText primary="Administración de paramétricas" 
-              onClick={(e)=>{history.push('/parametricAdministration'); history.go();}} 
-            />
-          </StyledMenuItem>
-          <StyledMenuItem>
-            <ListItemIcon>
-              
-            </ListItemIcon>
-            <ListItemText primary="Inicio" 
-                onClick={(e)=>{history.push('/'); history.go();}}
-            />
-          </StyledMenuItem>
+          {
+            rows.map((row, index)=>{
+              return (
+              <StyledMenuItem key={index}>
+                <ListItemText key={index+"L"} primary={row.description} 
+                    onClick={(e)=>{history.push(row.path); history.go();}} 
+                />
+              </StyledMenuItem>
+              )
+            })
+          }
+          
         </StyledMenu>
       </div>
     );
