@@ -10,7 +10,7 @@ import SessionCookies from '../../utils/session';
 import ParametricAdministration from "../parametricValueAdministration/parametricAdministration";
 import UserAdministration from "../userAdministration/userAdministration";
 import SedeElectronicaAdministration from "../sedeElectronicaAdministration/sedeElectronicaAdministration";
-
+import ChangePassword from "../user/changePassword";
 function CustomizedMenus(props) {
     const [anchorEl, setAnchorEl] = useState(null);
     const history= props.history;
@@ -73,9 +73,11 @@ const SideBarItems=(props)=>{
 
     return (
         <div>
+
             <ParametricAdministration />
             <UserAdministration/>
             <SedeElectronicaAdministration />
+            <ChangePassword />
         </div>
     );
 }

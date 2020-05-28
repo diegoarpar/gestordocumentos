@@ -153,7 +153,7 @@ function ChangePasswordForm(props) {
   
     return (
       <div>
-        {!!sessionUser&&<Button variant="outlined" color="inherit" 
+        {!!sessionUser&&<Button variant="contained" color="inherit"
              onClick={(e)=>{setOpen(true)}}> Cambiar Contraseña
              </Button>
           
