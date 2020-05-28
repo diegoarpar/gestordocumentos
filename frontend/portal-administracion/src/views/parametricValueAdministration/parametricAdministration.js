@@ -20,6 +20,10 @@ import ParametricServices from '../../services/parametricvaluesService'
 import ParametricInformation from './parametricInformation'
 import Modal from '@material-ui/core/Modal';
 import a11yProps from "../../utils/a11yProps"
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import ArrowBack from "@material-ui/icons/ArrowBack";
+import Dialog from "@material-ui/core/Dialog";
 
   const useStyles = {
     root: {
@@ -224,6 +228,7 @@ const ParametricAdministration =(props)=>{
   const [value, setValue] = React.useState(0);
   const [rowInformation, setRowInformation] = React.useState(props.rowInformation);
   const [modalType, setModalType] = React.useState(props.modalType);
+  const [open, setOpen] = useState(false);
   const handleCreateUser=props.handleCreateUser;
   const handleClose=props.handleClose;
   const handleChange = (event, newValue) => {
@@ -231,25 +236,40 @@ const ParametricAdministration =(props)=>{
   };
   return (
       <div>
-          <AppBar position="static">
-            <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-              <Tab label="Trámites" {...a11yProps(0)} />
-              <Tab label="" {...a11yProps(1)} />
-              <Tab label="" {...a11yProps(2)} />
-            </Tabs>
-          </AppBar>
-          <TabPanel value={value} index={0}>
-                  <div>
-                  <ParametricAdministrationTable/>
-                    </div>
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-                
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-              
-          </TabPanel>
-          
+          <Button variant="contained" simple="true" color="inherit"
+                  onClick={(e)=>setOpen(true)}
+          >
+              Administrar Paramétricas
+              </Button>
+          <Dialog fullScreen open={open}  >
+
+              <AppBar position="static">
+                  <IconButton edge="start" color="inherit" onClick={(e)=>setOpen(false)} aria-label="close">
+                      <ArrowBack />
+                      <Typography variant="h6" >
+                          Administrar Paramétricas
+                      </Typography>
+                  </IconButton>
+              </AppBar>
+              <AppBar position="static">
+                <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+                  <Tab label="Trámites" {...a11yProps(0)} />
+                  <Tab label="" {...a11yProps(1)} />
+                  <Tab label="" {...a11yProps(2)} />
+                </Tabs>
+              </AppBar>
+              <TabPanel value={value} index={0}>
+                      <div>
+                      <ParametricAdministrationTable/>
+                        </div>
+              </TabPanel>
+              <TabPanel value={value} index={1}>
+
+              </TabPanel>
+              <TabPanel value={value} index={2}>
+
+              </TabPanel>
+          </Dialog>
           </div>
       );
   }

@@ -18,7 +18,7 @@ const TabNavigatorSedeElectronicaConfiguration =()=>{
     return (
         <div>
         <AppBar position="static">
-            <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+            <Tabs value={value} onChange={(e)=>handleChange} aria-label="simple tabs example">
               <Tab label="Configuraciones Globales" {...a11yProps(0)} />
               {true&&<Tab label={"Otras configuraciones "} {...a11yProps(1)} />}
               <Tab label="" {...a11yProps(2)} />
@@ -40,7 +40,6 @@ const TabNavigatorSedeElectronicaConfiguration =()=>{
 }
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"

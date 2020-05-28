@@ -68,32 +68,21 @@ function App(props) {
   return (
       <div className="App">
         <div>
-          {!!userInSession?
-            "Bienvenido al portal del funcioanrio "+userInSession.user:"Bienvenido al portal del funcionario "
+          {!userInSession?
+            "Bienvenido al portal del funcionario ":""
 
           }
-          {userInSession&&
-             <Button  color="primary"  onClick={(e) => {logOut(e)}}>
-            Cerrar Sesión
-           </Button>
-
-          }
-          {!!userInSession&&
-            <CustomizedMenus history={history}/>
-
-          }
-
           <div>
           {!userInSession&&
             <LoginApp portalContainer={portalContainer1} onClick={logIn }/>
-
           }
           </div>
           <div>
-
+            {!!userInSession &&
+            <VentanillaRadicacion></VentanillaRadicacion>
+            }
           </div>
           <Routes historyp={history}/>
-
         </div>
 
       </div>

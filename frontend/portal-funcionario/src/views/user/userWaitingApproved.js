@@ -144,7 +144,7 @@ function UserWaitingApprovedTab(props) {
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
     </Paper>
-    <Dialog fullScreen open={open} onClose={handleClose} >
+    <Dialog fullScreen open={open}  >
           <AppBar position="sticky">
             <Toolbar>
               <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
@@ -196,12 +196,26 @@ const UserWaitingApproved =(props)=>{
   const [modalType, setModalType] = React.useState(props.modalType);
   const handleCreateUser=props.handleCreateUser;
   const handleClose=props.handleClose;
+
+  const [openUserWaiting, setOpenUserWaiting]=useState(false);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   return (
       <div>
+          <Button variant="contained" color="inherit"  onClick={(e)=>setOpenUserWaiting(true)} >
+              Usuarios por aprobar
+          </Button>
+          <Dialog fullScreen open={openUserWaiting}  >
           <AppBar position="static">
+              <Toolbar>
+                  <IconButton edge="start" color="inherit" onClick={(e)=>setOpenUserWaiting(false)} aria-label="close">
+                      <ArrowBack />
+                  </IconButton>
+                  <Typography variant="h6" >
+                      Opciones sobre los usuarios
+                  </Typography>
+              </Toolbar>
             <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
               <Tab label="Usuarios Pendientes" {...a11yProps(0)} />
               
@@ -210,6 +224,7 @@ const UserWaitingApproved =(props)=>{
           <TabPanel value={value} index={0}>
                 <UserWaitingApprovedTab/>
           </TabPanel>
+          </Dialog>
           </div>
       );
   }

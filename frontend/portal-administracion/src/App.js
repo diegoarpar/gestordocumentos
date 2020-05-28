@@ -8,11 +8,11 @@ import { createBrowserHistory } from "history";
 import UserAdministration from './views/userAdministration/userAdministration';
 import ProcessAdministration from './views/processAdministration/processAdministration';
 import ParametricAdministration from './views/parametricValueAdministration/parametricAdministration';
-import SedeElectronicaAdminsitration from './views/sedeElectronicaAdministration/sedeElectronicaAdministration';
 import CustomizedMenus from './views/menus/menu';
 import SessionCookie from './utils/session';
 import Button from '@material-ui/core/Button';
 import ReactDOM from 'react-dom';
+import NavBar from "./views/menus/navBar";
 
 export const SessionContext = React.createContext(SessionCookie.GetSessionCookie());
 export const history = createBrowserHistory();
@@ -36,9 +36,6 @@ const Routes = (props) => {
           </Route>
           <Route path="/parametricAdministration">
              <ParametricAdministration/>
-          </Route>
-          <Route path="/sedeElectronicaAdminsitration">
-             <SedeElectronicaAdminsitration/>
           </Route>
           <Route path="*"  />
         </Switch>
@@ -78,20 +75,19 @@ function App(props) {
   return (
       <div className="App">
         <div>
-          {!!userInSession?
-            "Bienvenido al portal de administración "+userInSession.user:"Bienvenido al portal de administración "
+          {!!!userInSession?
+            "Bienvenido al portal de administración ":""
 
           }
-          {userInSession&&
-             <Button  color="primary"  onClick={(e) => {logOut(e)}}>
-            Cerrar Sesión
-           </Button>
 
-          }
           {!!userInSession&&
             <CustomizedMenus history={history}/>
 
-          } 
+          }
+          {!!userInSession&&
+          <NavBar history={history}/>
+
+          }
 
           <div>
           {!userInSession&&

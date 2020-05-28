@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // react component for creating beautiful carousel
 import Carousel from "react-slick";
 // @material-ui/core components
@@ -17,12 +17,20 @@ import image3 from "assets/img/bg3.jpg";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Navbar from "../menus/navBar";
+import SedeElectronicaGeneralServices from '../../services/sedeElectronicaGeneralServices';
 
 import styles from "assets/jss/material-kit-react/views/componentsSections/carouselStyle.js";
 
 const useStyles = makeStyles(styles);
 
 export default function SectionCarousel() {
+  const [carruselList,setCarruselList]=useState([]);
+  useEffect(()=>{
+    SedeElectronicaGeneralServices.GetSedeElectronicaGeneral({"type":"CARRUSEL_ITEM"})
+    .then((data)=>{
+      setCarruselList(data);
+    });
+  },[])
   const classes = useStyles();
   const settings = {
     dots: true,
@@ -37,40 +45,22 @@ export default function SectionCarousel() {
         <h2> Sede Electrónica</h2>
         <Navbar></Navbar>
         <Slider {...settings}>
-          <div className="row">
-            <h3 className="column">
-            <img src={image1} alt="Third slide" className="slick-image" />
-            </h3>
-            <p className="column">
-              
-              ¿Qué es Lorem Ipsum?
-                Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
-              
-            </p>
-          </div>
-          <div className="row">
-            <h3 className="column">
-              <img src={image2} alt="Third slide" className="slick-image" />
-            </h3>
-            <p className="column">
-              
-              ¿Qué es Lorem Ipsum?
-                Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
-              
-            </p>
-          </div>
-          <div className="row">
-            <h3 className="column">
-              <img src={image3} alt="Third slide" className="slick-image" />
-            </h3>
-            <p className="column">
-              
-              ¿Qué es Lorem Ipsum?
-                Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
-              
-            </p>
-          </div>
-
+          {carruselList.map((row,index)=>{
+            return (
+            <div className="row" key={row.name}>
+              <h3 className="column" key={"H3"+row.name} >
+              <img src={image1} key={"IMG3"+row.name} alt="Third slide" className="slick-image" />
+              </h3>
+              <p className="column" key={"P"+row.name}>
+                
+                {row.description}
+                
+              </p>
+            </div>
+            )
+          })
+          
+          }
         </Slider>
       </div>
   );

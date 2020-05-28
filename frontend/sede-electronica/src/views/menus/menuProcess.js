@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -18,6 +18,9 @@ import Typography from '@material-ui/core/Typography';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import MenuIcon from '@material-ui/icons/MoreVert';
 import SessionCookie from '../../utils/session';
+import ChangePassword from '../user/changePassword';
+import UserManager from '../user/userManager';
+import Sidebar from "react-sidebar";
 
 
 function CustomizedMenus(props) {
@@ -30,10 +33,13 @@ function CustomizedMenus(props) {
     const [openTask, setOpenTask] = useState(false);
     const [processName, setProcessName] = useState();
     const [workflowName, setWorkflowName] = useState();
+    
     const handleContTramites=props.handleContTramites;
     const contTramites=props.contTramites;
     const [sessionUser, setSessionUser] = useState(SessionCookie.GetSessionCookie());
     
+    const [sidebarOpen,setSidebarOpen]=useState(false);
+    const onSetSidebarOpen=(open)=>{setSidebarOpen(false);};
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
       
@@ -43,7 +49,7 @@ function CustomizedMenus(props) {
       setOpen(true);
       setProcessName(data.name);
       setWorkflowName(data.workflowName);
-      handleClose();
+
       
     }
     useEffect(()=>{
@@ -76,9 +82,7 @@ function CustomizedMenus(props) {
     },[contTramites]);
   
     
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
+
     
     const handleCloseModal = () => {
       setOpen(false);
@@ -86,57 +90,22 @@ function CustomizedMenus(props) {
     };
 
     const ITEM_HEIGHT = 48;
-  
+    const classes=useStyles();
     return (
       <div>
       {true&&<div>
        
         <IconButton edge="start"  color="inherit" aria-label="menu"
+         className={classes.buttonSidebar}
          aria-label="more"
          aria-controls="long-menu"
          aria-haspopup="true"
-          onClick={handleClick}
+          onClick={(e)=>{handleClick(e); setSidebarOpen(true);}}
         >
             <MenuIcon/>
         </IconButton>
-        <StyledMenu
-          id="customized-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-          PaperProps={{
-            style: {
-              maxHeight: ITEM_HEIGHT * 4.5
-              
-            },
-          }}
-        >
-          {rows.map((row)=>{
-            return(<StyledMenuItem key={row.name} onClick={(e)=>{handleClickMenu(row)}} >
-              <ListItemIcon key={row.name}>
-                
-              </ListItemIcon>
-              <ListItemText primary={row.name} 
-                  onClick={(e)=>{handleClickMenu(row)}} 
-              />
-            </StyledMenuItem>)
-
-          })}
-          {!!sessionUser&&rows2.map((row)=>{
-            return(<StyledMenuItem key={row.name} onClick={(e)=>{handleClickMenu(row)}} >
-              <ListItemIcon key={row.name}>
-                
-              </ListItemIcon>
-              <ListItemText primary={row.name} 
-                  onClick={(e)=>{handleClickMenu(row)}} 
-              />
-            </StyledMenuItem>)
-
-          })}
-          
-        </StyledMenu>
-        <Dialog fullScreen open={open} onClose={handleCloseModal} >
+        
+        <Dialog fullScreen open={open}  >
           <AppBar position="sticky">
             <Toolbar>
               <IconButton edge="start" color="inherit" onClick={handleCloseModal} aria-label="close">
@@ -152,39 +121,126 @@ function CustomizedMenus(props) {
           
       </div>
         }
+
+      
+        <div >
+        <Sidebar rootClassName={classes.root}
+              overlayClassName={classes.overlay}
+              sidebarClassName={classes.sidebar}
+              dragToggleDistance={4}
+              rootClassName={classes.root}
+              sidebar={ 
+                <SideBarItems handleClickMenu={handleClickMenu} 
+                
+                rows={rows}
+                rows2={rows2}
+                sessionUser={sessionUser}
+                />
+                
+                }
+              open={sidebarOpen}
+              onSetOpen={onSetSidebarOpen}
+            >
+              <div className={classes.overlay}>
+                <b >Main content</b>
+                <button onClick={(e) => setSidebarOpen(!sidebarOpen)}>
+                  Open sidebar
+                </button>
+              </div>
+            </Sidebar>
+            </div>
         </div>
     );
   }
   
-  const StyledMenu = withStyles({
-    paper: {
-      border: '1px solid #d3d4d5',
-    },
-  })((props) => (
-    <Menu
-      elevation={0}
-      getContentAnchorEl={null}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'center',
-      }}
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'center',
-      }}
-      {...props}
-    />
-  ));
-  
-  const StyledMenuItem = withStyles((theme) => ({
+  const useStyles = makeStyles((theme) => ({
     root: {
-      '&:focus': {
-        backgroundColor: theme.palette.primary.main,
-        '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-          color: theme.palette.common.white,
-        },
-      },
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      overflow: "hidden"
     },
-  }))(MenuItem);
+    sidebar: {
+      zIndex: 3,
+      position: "fixed !important",
+      top: 0,
+      bottom: 0,
+      transition: "transform .3s ease-out",
+      WebkitTransition: "-webkit-transform .3s ease-out",
+      willChange: "transform",
+      overflowY: "auto",
+      height:'100%'
+    },
+    content: {
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      overflowY: "auto",
+      WebkitOverflowScrolling: "touch",
+      transition: "left .3s ease-out, right .3s ease-out"
+    },
+    overlay: {
+      zIndex: 1,
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      opacity: 0,
+      visibility: "hidden",
+      transition: "opacity .3s ease-out, visibility .3s ease-out",
+      backgroundColor: "rgba(0,0,0,.3)"
+    },
+    dragHandle: {
+      zIndex: 0,
+      position: "fixed",
+      top: 0,
+      bottom: 0
+    },
+    buttonSidebar :{
+      zIndex: 1
+    },
+    optionSidebar :{
+      zIndex: 20
+    }
+  }));
 
+  
+  const SideBarItems=(props)=>{
+    const rows=props.rows;
+    const rows2=props.rows2;
+    const handleClickMenu=props.handleClickMenu;
+    const classes=makeStyles();
+    const sessionUser=props.sessionUser;
+    return (
+      <div className={classes.slidebar}>
+      {rows.map((row)=>{
+        return (
+        <Button variant="contained" color="inherit"
+            onClick={(e)=>handleClickMenu(row)}>
+          {row.name}
+        </Button>)
+        })
+      }
+      {!!sessionUser&&rows2.map((row)=>{
+        return (
+        <Button variant="contained" color="inherit"
+            onClick={(e)=>handleClickMenu(row)}>
+          {row.name}
+        </Button>)
+        })
+      }
+      {!!sessionUser&&
+                    <ChangePassword></ChangePassword>
+                    }
+        {!!sessionUser&&
+          <UserManager></UserManager>
+      }
+      </div>
+    );
+  }
   export default CustomizedMenus;

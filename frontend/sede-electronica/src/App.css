@@ -73,3 +73,6 @@ img.slick-image {
   float: left;
   width: 50%;
 }
+.sideNavItem {
+  background: gray;
+}

@@ -60,3 +60,7 @@ div#pg-photo-container {
 .MuiFormControl-root {
   width: 100%;
 }
+.customProcesses {
+  width: 100% !important;
+  position:fixed;
+}

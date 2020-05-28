@@ -45,15 +45,14 @@ const UserFinder=(props)=>{
   <div>
     
     {true&&<Button 
-      variant="outlined" 
-      color="inherit" 
+      variant="contained"
       aria-controls="customized-menu"
       aria-haspopup="true"
       onClick={(e)=>handleOpenModal("C")}>
           Buscar Ciudadano
         </Button>
         }
-    <Dialog fullScreen open={open} onClose={handleCloseModal} >
+    <Dialog fullScreen open={open}  >
           <AppBar position="sticky">
             <Toolbar>
               <IconButton edge="start" color="inherit" onClick={handleCloseModal} aria-label="close">

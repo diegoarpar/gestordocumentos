@@ -18,15 +18,14 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 
 import SedeElectronciaGeneralServices from '../../services/sedeElectronicaGeneralServices';
 
-const GlobalConfigurationsUserRegistration =(props)=>{
+const GlobalConfigurationsCarrusel =(props)=>{
     const open =props.openM;
     const handleClose=props.handleCloseM;
-
+    
     return (
     <div>
-
-
-        <Dialog fullScreen open={open} >
+        
+        <Dialog fullScreen open={open}  >
           <AppBar position="sticky">
             <Toolbar>
               <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
@@ -44,31 +43,16 @@ const GlobalConfigurationsUserRegistration =(props)=>{
 }
 
 const DetailInformation=(props)=>{
-    const [enrollinglistIndex, setEnrollinglistIndex]=useState(-1);
-    const [enrollinglistItem, setEnrollinglistItem]=useState();
     const [rows2, setRows2]=useState([]);
     const [cont, setCont]=useState(0);
-    const enrollingList= [
-        {"value":"auto", "description":"Auto enrolamiento", "type":"EXTERNAL_REGISTRY", "type2":"enroll"},
-        {"value":"with_manual_checked", "description":"Auto con verificación manual", "type":"EXTERNAL_REGISTRY", "type2":"enroll"},
-        {"value":"database", "description":"Desde base de datos", "type":"EXTERNAL_REGISTRY", "type2":"enroll"},
-        {"value":"SS", "description":"Expuesto sede electrónica", "type":"EXTERNAL_REGISTRY", "type2":"visibilitySede"},
-        {"value":"SN", "description":"No expuesto sede electrónica", "type":"EXTERNAL_REGISTRY", "type2":"visibilitySede"},
-        {"value":"VS", "description":"Expuesto en ventanilla", "type":"EXTERNAL_REGISTRY", "type2":"visibilityVentanilla"},
-        {"value":"VN", "description":"No expuesto en ventanilla", "type":"EXTERNAL_REGISTRY", "type2":"visibilityVentanilla"}
-    ];
+    const [description, setDescription]=useState();
+    const [name, setName]=useState();
     const handleChangeEnrollingList=(e)=>{
-        setEnrollinglistIndex(e.target.value);
-        enrollingList.map((item,index) => {
-            if(item.value==e.target.value){
-                setEnrollinglistItem(item);
-                return;
-            }  
-        });
+        
     }
     const handleSaveTipoRegistroExterno=()=>{
         
-        SedeElectronciaGeneralServices.CreateSedeElectronicaGeneral(enrollinglistItem)
+        SedeElectronciaGeneralServices.CreateSedeElectronicaGeneral({"value":name,"description":description,"type":"CARRUSEL_ITEM"})
         .then((data)=>{
                 setCont(cont+1);
             });
@@ -83,7 +67,7 @@ const DetailInformation=(props)=>{
         
     }
     useEffect(()=>{
-        SedeElectronciaGeneralServices.GetSedeElectronicaGeneral({"type":"EXTERNAL_REGISTRY"})
+        SedeElectronciaGeneralServices.GetSedeElectronicaGeneral({"type":"CARRUSEL_ITEM"})
         .then((data)=>{
             setRows2(data);
         });
@@ -91,19 +75,44 @@ const DetailInformation=(props)=>{
     return (
         <div>
         <div >
-            
-            <FormControl>
-                <InputLabel id="select">Tipo de registro externo</InputLabel>
-                <Select
-                    id="imple-select2"
-                    value={enrollinglistIndex}
-                    onChange={(e)=>handleChangeEnrollingList(e)}
-                    >
-                    {enrollingList.map((item,index) => (
-                            <MenuItem key={index}  value={item.value}>{item.description}</MenuItem>
-                        ))}
-                </Select>
-            </FormControl>
+        <CustomInput
+            labelText="Nombre..."
+            id="setName"
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+                rows: "4",
+              type: "text",
+              onChange: (e) => {setName(e.target.value)},
+              endAdornment: (
+                <InputAdornment position="end">
+                  <People  />
+                </InputAdornment>
+              )
+            }
+          }
+          />   
+        <CustomInput
+            labelText="Descripción..."
+            id="setDescription"
+            multiline 
+            rows={4}
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+                rows: "4",
+              type: "text",
+              onChange: (e) => {setDescription(e.target.value)},
+              endAdornment: (
+                <InputAdornment position="end">
+                  <People  />
+                </InputAdornment>
+              )
+            }
+          }
+          />
             <Button variant="contained" color="primary"  
                 onClick={(e) => {
                     handleSaveTipoRegistroExterno();
@@ -120,7 +129,7 @@ const DetailInformation=(props)=>{
                 <li key={`section-${row.value}`} >
                     <ul >
                         <ListItem key={`item-${row.value}-`}>
-                        {row.description}  
+                        {row.value+": "+row.description}  
                         </ListItem>
                         <Button variant="contained" color="primary"  
                             onClick={(e) => {
@@ -138,4 +147,4 @@ const DetailInformation=(props)=>{
       </div>
     );
 }
-export default GlobalConfigurationsUserRegistration;
+export default GlobalConfigurationsCarrusel;

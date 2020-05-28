@@ -77,15 +77,14 @@ const UserManager=(props)=>{
   return (
   <div>
       {userEnrollingVisibility&&<Button 
-      variant="outlined" 
-      color="inherit" 
+      variant="contained"
       aria-controls="customized-menu"
       aria-haspopup="true"
       onClick={(e)=>handleOpenModal("C")}>
           Registrar Ciudadano
         </Button>
         }
-      <Dialog fullScreen open={open} onClose={handleCloseModal} >
+      <Dialog fullScreen open={open}  >
           <AppBar position="sticky">
             <Toolbar>
               <IconButton edge="start" color="inherit" onClick={handleCloseModal} aria-label="close">

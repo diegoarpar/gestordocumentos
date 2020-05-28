@@ -23,12 +23,12 @@ import ShowProcessModelInstance from '../displayModel/showProcessModel';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    maxWidth: '36ch',
+    maxWidth: '100% ',
     backgroundColor: theme.palette.background.paper,
   },
   inline: {
     display: 'inline',
-  },
+  }
 }));
 
 const TaskList=(props) =>{
@@ -83,12 +83,15 @@ const TaskList=(props) =>{
     });
 
   },[cont]);
+
   return (
 
     <div>
     <List className={classes.root}>
       {taskList.map((row)=>{
-          return (<TaskItem key={row.taskId} key2={row.taskId} information={row}
+          return (
+              <TaskItem
+                  key={row.taskId} key2={row.taskId} information={row}
              handleAssignMeTask={handleAssignMeTask}
              handleCompleteTask={handleCompleteTask}
              handleOpenTask={handleOpenTask}
@@ -135,9 +138,9 @@ const TaskItem=(props)=>{
     const user = SessionCookies.GetSessionCookie().authenticated_userid;
     const handleOpenDiagram= props.handleOpenDiagram;
     return(
-        <div key={key} className="customProcesses">
-        <Divider variant="inset" component="li" />
-        <ListItem alignItems="flex-start">
+        <div key={key} >
+        <Divider variant="inset" component="li" className="customProcesses" />
+        <ListItem alignItems="flex-start" className="customProcesses">
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>
@@ -191,5 +194,6 @@ const TaskItem=(props)=>{
       </div>
     )
 }
+
 
 export default TaskList ;

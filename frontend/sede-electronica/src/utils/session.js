@@ -28,7 +28,7 @@ const SetSessionCookieTenant = (session: any): void => {
 const GetSessionCookieTenant: any = () => {
   const sessionCookie = Cookies.get("tenant");
 
-  if (sessionCookie === undefined) {
+  if (sessionCookie === undefined||sessionCookie==={}) {
     UsersServices.GetTenant({"url":window.location.hostname}).then(
       (data)=>{
         if(data!=null){
@@ -37,7 +37,7 @@ const GetSessionCookieTenant: any = () => {
         }
       }
     )
-    return null;
+    return {};
   } else {
     return JSON.parse(sessionCookie);
   }

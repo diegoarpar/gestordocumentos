@@ -8,7 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import UserServices from '../../services/userServices';
 import ProcessServies from '../../services/processServices';
 import ProcessRolesServies from '../../services/processRolesServices';
-import ProcessForm from './processForm';
+import ProcessForm from '../ventanilla/processForm';
 import SessionCookies from '../../utils/session';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
@@ -16,6 +16,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ArrowBack from '@material-ui/icons/ArrowBack';
+
 
 function CustomizedMenus(props) {
 
@@ -73,36 +74,20 @@ function CustomizedMenus(props) {
   
     return (
       <div>
-        <Button
-          aria-controls="customized-menu"
-          aria-haspopup="true"
-          variant="outlined"
-          color="inherit"
-          onClick={handleClick}
-        >
-          Radicar Trámites
-        </Button>
-        <StyledMenu
-          id="customized-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
+        <div>
           {rows.map((row)=>{
-            return(<StyledMenuItem key={row.name} onClick={(e)=>{handleClickMenu(row)}} >
-              <ListItemIcon key={row.name}>
-                
-              </ListItemIcon>
-              <ListItemText primary={row.name} 
-                  onClick={(e)=>{handleClickMenu(row)}} 
-              />
-            </StyledMenuItem>)
+            return(<Button
+                variant="contained"
+
+                key={row.name}
+                onClick={(e)=>{handleClickMenu(row)}} >
+                {row.name}
+            </Button>)
 
           })}
           
-        </StyledMenu>
-        <Dialog fullScreen open={open} onClose={handleCloseModal} >
+
+        <Dialog fullScreen open={open} >
           <AppBar position="sticky">
             <Toolbar>
               <IconButton edge="start" color="inherit" onClick={handleCloseModal} aria-label="close">
@@ -113,42 +98,22 @@ function CustomizedMenus(props) {
               </Typography>
             </Toolbar>
           </AppBar>
-          <ProcessForm processName={processName} open={open} workflowName={workflowName} setRowOpen={setRowOpen} handleCloseModal={handleCloseModal}></ProcessForm>
+          <ProcessForm
+              processName={processName}
+              open={open}
+              workflowName={workflowName}
+              setRowOpen={setRowOpen}
+              handleCloseModal={handleCloseModal}>
+          </ProcessForm>
           </Dialog>
+          </div>
+
           
       </div>
     );
   }
   
-  const StyledMenu = withStyles({
-    paper: {
-      border: '1px solid #d3d4d5',
-    },
-  })((props) => (
-    <Menu
-      elevation={0}
-      getContentAnchorEl={null}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'center',
-      }}
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'center',
-      }}
-      {...props}
-    />
-  ));
-  
-  const StyledMenuItem = withStyles((theme) => ({
-    root: {
-      '&:focus': {
-        backgroundColor: theme.palette.primary.main,
-        '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-          color: theme.palette.common.white,
-        },
-      },
-    },
-  }))(MenuItem);
+
+
 
   export default CustomizedMenus;

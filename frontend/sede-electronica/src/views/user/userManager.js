@@ -11,6 +11,7 @@ import UserServices from '../../services/userServices';
 import SessionCookie from '../../utils/session';
 import SedeElectronciaGeneralServices from '../../services/sedeElectronicaGeneralServices';
 import SHA256 from 'js-sha256';
+import ListItemText from "@material-ui/core/ListItemText";
 
 const UserManager=(props)=>{
   const [open, setOpen]= useState(false);
@@ -77,15 +78,15 @@ const UserManager=(props)=>{
 
   return (
   <div>
-      {!!!currentUser&&userEnrollingVisibility&&<Button variant="outlined" color="inherit" onClick={(e)=>handleOpenModal("C")}>
+      {!!!currentUser&&userEnrollingVisibility&&<Button variant="contained" color="inherit" onClick={(e)=>handleOpenModal("C")}>
           Registrarme
         </Button>
         }
-        {!!currentUser&&<Button variant="outlined" color="inherit" onClick={(e)=>handleOpenModal("M")}>
+        {!!currentUser&&<Button variant="contained" color="inherit" onClick={(e)=>handleOpenModal("M")}>
           Actualizar Datos
         </Button>
         }
-      <Dialog fullScreen open={open} onClose={handleCloseModal} >
+      <Dialog fullScreen open={open}  >
           <AppBar position="sticky">
             <Toolbar>
               <IconButton edge="start" color="inherit" onClick={handleCloseModal} aria-label="close">

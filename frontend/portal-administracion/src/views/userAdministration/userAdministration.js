@@ -20,6 +20,10 @@ import UserInformation from './userInformation'
 import RolesTable from './rolesTable'
 import PortalTable from './portalTable'
 import RolesProcessTable from './rolesProcessTable'
+import Dialog from "@material-ui/core/Dialog";
+import IconButton from "@material-ui/core/IconButton";
+import ArrowBack from "@material-ui/icons/ArrowBack";
+import Toolbar from "@material-ui/core/Toolbar";
 
 
 
@@ -42,6 +46,7 @@ function UserAdministration(props) {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [open, setOpen] = React.useState(false);
+    const [openDialog, setOpenDialog] = React.useState(false);
     const [modalType, setModalType] = React.useState();
     const [rowInformation, setRowInformation] = React.useState();
     const [newUser, setNewUser] = React.useState();
@@ -123,6 +128,22 @@ function UserAdministration(props) {
 
     return (
     <div>
+        <Button variant="contained" simple="true" color="inherit"
+                onClick={(e)=>setOpenDialog(true)}
+        >
+            Administración de usuarios
+        </Button>
+        <Dialog fullScreen open={openDialog} onClose={(e)=>setOpenDialog(false)} >
+            <AppBar position="static">
+            <Toolbar>
+                <IconButton edge="start" color="inherit" onClick={(e)=>setOpenDialog(false)} aria-label="close">
+                    <ArrowBack />
+                </IconButton>
+                <Typography variant="h6" >
+                    Modificar Información
+                </Typography>
+            </Toolbar>
+            </AppBar>
         <Button variant="contained" color="primary"  onClick={(e) => {handleOpen(e,"C",{})}}>
                             Nuevo Usuario
                             </Button>
@@ -185,22 +206,32 @@ function UserAdministration(props) {
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
     </Paper>
-    <Modal
+    </Dialog>
+    <Dialog
         open={open}
-        onClose={handleClose}
+
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
-        
+        fullScreen
     >
-        <div className="modalClass">
-            <h2 id="modalTitle">Información del usuario</h2>
-            
+        <AppBar  position="static">
+            <Toolbar>
+                <IconButton edge="start" color="inherit" onClick={(e)=>setOpen(false)} aria-label="close">
+                    <ArrowBack />
+                </IconButton>
+                <Typography variant="h6" >
+                    Modificar Información Usuario
+                </Typography>
+            </Toolbar>
+        </AppBar>
+
+
             <TabsContainer rowInformation={rowInformation} 
                                     modalType={modalType} 
                                     handleCreateUser={handleCreateUser} 
                                     handleClose={handleClose}/>
-        </div>
-    </Modal>
+
+    </Dialog>
     </div>
       );
 
@@ -236,6 +267,7 @@ function TabPanel(props) {
 const TabsContainer =(props)=>{
   const [value, setValue] = React.useState(0);
   const [rowInformation, setRowInformation] = React.useState(props.rowInformation);
+
   const [modalType, setModalType] = React.useState(props.modalType);
   const handleCreateUser=props.handleCreateUser;
   const handleClose=props.handleClose;
@@ -244,38 +276,36 @@ const TabsContainer =(props)=>{
   };
   return (
       <div>
-          <AppBar position="static">
-            <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-              <Tab label="Datos Básicos" {...a11yProps(0)} />
-              <Tab label="Roles" {...a11yProps(1)} />
-              <Tab label="Acceso a Portales" {...a11yProps(2)} />
-              <Tab label="Roles en procesos" {...a11yProps(3)} />
-            </Tabs>
-          </AppBar>
-          <TabPanel value={value} index={0}>
-                  <div>
-                  <UserInformation rowInformation={rowInformation} 
-                                    modalType={modalType} 
-                                    handleClick={handleCreateUser} 
-                                    onClose={handleClose}/>
-                    </div>
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-                <RolesTable userInformation={rowInformation}>  </RolesTable>
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-              <PortalTable userInformation={rowInformation}>  </PortalTable>
-          </TabPanel>
-          <TabPanel value={value} index={3}>
-              <RolesProcessTable userInformation={rowInformation}>  </RolesProcessTable>
-          </TabPanel>
-          <Button variant="contained" color="secondary"  
-              onClick={(e) => {
-                handleClose();
 
-              }}>
-              Cerrar
-          </Button>
+
+              <AppBar position="static">
+
+                <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+                  <Tab label="Datos Básicos" {...a11yProps(0)} />
+                  <Tab label="Roles" {...a11yProps(1)} />
+                  <Tab label="Acceso a Portales" {...a11yProps(2)} />
+                  <Tab label="Roles en procesos" {...a11yProps(3)} />
+                </Tabs>
+              </AppBar>
+              <TabPanel value={value} index={0}>
+                      <div>
+                      <UserInformation rowInformation={rowInformation}
+                                        modalType={modalType}
+                                        handleClick={handleCreateUser}
+                                        onClose={handleClose}/>
+                        </div>
+              </TabPanel>
+              <TabPanel value={value} index={1}>
+                    <RolesTable userInformation={rowInformation}>  </RolesTable>
+              </TabPanel>
+              <TabPanel value={value} index={2}>
+                  <PortalTable userInformation={rowInformation}>  </PortalTable>
+              </TabPanel>
+              <TabPanel value={value} index={3}>
+                  <RolesProcessTable userInformation={rowInformation}>  </RolesProcessTable>
+              </TabPanel>
+
+
           </div>
       );
   }
