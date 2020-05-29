@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ad8267e-c8b9-474d-a5cf-4cc817e18204" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/sede-electronica.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../autenticacion/.idea/autenticacion.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../autenticacion/.idea/autenticacion.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../autenticacion/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../autenticacion/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../autenticacion/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../autenticacion/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../autenticacion/config/configAutentication.ini" beforeDir="false" afterPath="$PROJECT_DIR$/../../autenticacion/config/configAutentication.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../portal-administracion/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../portal-administracion/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../portal-funcionario/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../portal-funcionario/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../portal-funcionario/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../portal-funcionario/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../portal-funcionario/src/services/processInstanceServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/../portal-funcionario/src/services/processInstanceServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../portal-funcionario/src/views/ventanilla/processForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../portal-funcionario/src/views/ventanilla/processForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,19 +17,6 @@
   <component name="DefaultGradleProjectSettings">
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/views/userAdministration/userAdministration.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-141">
-              <caret line="177" column="16" lean-forward="true" selection-start-line="177" selection-start-column="16" selection-end-line="177" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -43,63 +29,17 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1366" />
-    <option name="height" value="768" />
-  </component>
+  <component name="ProjectId" id="1c8FpwpXZ209EKAtARR98kY8qhs" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="sede-electronica" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sede-electronica" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sede-electronica" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sede-electronica" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sede-electronica" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sede-electronica" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sede-electronica" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sede-electronica" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="userAdministration" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../portal-funcionario" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -111,6 +51,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1588731989089</updated>
+      <workItem from="1589902519253" duration="1762000" />
+      <workItem from="1590333397727" duration="960000" />
     </task>
     <task id="LOCAL-00001" summary="gestion de usuarios">
       <created>1588737930038</created>
@@ -122,47 +64,23 @@
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1366" height="768" extended-state="0" />
-    <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1858006" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/../portal-funcionario/node_modules/.staging/wait-for-expect-802afa8e/lib/waitForExpect.spec.d.js" />
+        <option value="$PROJECT_DIR$/../portal-funcionario/node_modules/.staging/wait-for-expect-802afa8e/lib/toBeInRangeMatcher.d.js" />
+      </list>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="gestion de usuarios" />
     <option name="LAST_COMMIT_MESSAGE" value="gestion de usuarios" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/views/userAdministration/userAdministration.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-141">
-          <caret line="177" column="16" lean-forward="true" selection-start-line="177" selection-start-column="16" selection-end-line="177" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="778" y="259" width="424" height="491" key="FileChooserDialogImpl" timestamp="1590333761914">
+      <screen x="70" y="27" width="1850" height="948" />
+    </state>
+    <state x="778" y="259" width="424" height="491" key="FileChooserDialogImpl/70.27.1850.948@70.27.1850.948" timestamp="1590333761914" />
   </component>
 </project>
