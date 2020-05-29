@@ -39,7 +39,6 @@ function ProcessForm(props) {
                     //llamado obtenecconr informacion usario
                     let userId = {'user':SessionCookie.GetSessionCookie().authenticated_userid};
                     UserServices.GetUser(userId).then((data)=>{
-                        debugger;
                         [dataForm.data, files] = FileUtils.extraerArchivosFormulario(dataForm.data);
                         let persona = {
                             "numeroRadicado":numeroRadicado,
@@ -52,7 +51,6 @@ function ProcessForm(props) {
                             "documentos":files
                         };
                         FileManagementServices.radicarDocumentos(persona).then((data)=>{
-                            debugger;
                             handleCloseModal();
                         });
 
