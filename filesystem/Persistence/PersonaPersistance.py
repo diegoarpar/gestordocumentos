@@ -4,10 +4,11 @@ from flask import jsonify
 
 NOMBRE_BD = "GestorDocumental"
 PERSONA_COLL = "Persona"
-
+PUERTO_MONGO = '27018'
+HOST_MONGO = 'mongoService'
 
 def crearCarpetaDocumental(persona):
-    conexionMongo = mongoHelper.getConnection("mongoService", "27017")
+    conexionMongo = mongoHelper.getConnection(HOST_MONGO, PUERTO_MONGO)
     personaColl = mongoHelper.getCollection(conexionMongo, NOMBRE_BD, PERSONA_COLL)
     queryFindOne = dataParser.generarFiltro(persona)
     resultado = personaColl.find_one(queryFindOne)
@@ -22,7 +23,7 @@ def crearCarpetaDocumental(persona):
 
 
 def consultarCarpetaCliente(persona):
-    conexionMongo = mongoHelper.getConnection("mongoService", "27017")
+    conexionMongo = mongoHelper.getConnection(HOST_MONGO, PUERTO_MONGO)
     query = dataParser.generarFiltro(persona)
     documentCollection = mongoHelper.getCollection(conexionMongo, NOMBRE_BD, PERSONA_COLL)
     carpetaCliente = documentCollection.find_one(query)

@@ -1,9 +1,8 @@
 import os, configparser
-from builtins import quit
-
 import Persistence.PersonaPersistance as PersonaPersistance
 import Persistence.ExpedientePersistance as ExpedientePersistance
 import Persistence.DocumentoPersistance as DocumentoPersistance
+import Business.CarpetaDocumental as CarpetaDocumental
 from flask import Blueprint, request, jsonify
 from werkzeug.utils import secure_filename
 from bson.json_util import dumps,loads
@@ -40,15 +39,22 @@ def consultarCarpetaCliente():
 
     return res
 
-@fileManager_BP.route('/carpetaDocumental/cliente', methods=['GET'])
-def consultarDocumentosCliente():
+@fileManager_BP.route('/carpetaDocumental/radicarDocumentosCliente', methods=["POST"])
+def radicarDocumentosCliente():
+    print("llego")
     inputData = request.get_json()
+    CarpetaDocumental.radicarDocumentosCliente(inputData, inputData.get("numeroRadicado"))
 
+    res = jsonify({})
+    res.status_code = 200
+
+    return res
 
 
 @fileManager_BP.route('/multipart-upload', methods=['POST'])
 def upload():
     idCarpetaDocumental = request.form["idCarpetaDocumental"]
+    request.cookies
     config = configparser.ConfigParser()
     config.read("./FileManager/config/FileManager.ini")
     file = request.files['file']
