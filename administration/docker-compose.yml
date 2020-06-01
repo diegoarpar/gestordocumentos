@@ -30,7 +30,7 @@ services:
       MONGO_NON_ROOT_PASSWORD: "secret"
       DATA_DIR: /data/db
     volumes:
-      - ./db:/data/db
+      - ./data/db:/data/db
     ports:
      - "0.0.0.0:27022:27017"
     networks:
