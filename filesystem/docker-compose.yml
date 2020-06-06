@@ -10,8 +10,8 @@ services:
     volumes:
       - ./dbData:/data/db
     environment:
-      #MONGO_INITDB_ROOT_USERNAME: "mongoadmin"
-      #MONGO_INITDB_ROOT_PASSWORD: "secret"
+      MONGO_INITDB_ROOT_USERNAME: "mongoadmin"
+      MONGO_INITDB_ROOT_PASSWORD: "secret"
       MONGO_INITDB_DATABASE: "GestorDocumental"
       #MONGO_NON_ROOT_USERNAME: "gestor"
       #MONGO_NON_ROOT_PASSWORD: "secret"
