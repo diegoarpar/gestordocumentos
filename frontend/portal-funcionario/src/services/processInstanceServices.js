@@ -15,7 +15,15 @@ async function InitProcesses(data){
         return data.data
     })
 }
-
+async function getRequestNumber(data){
+    var headers={'Content-Type': 'application/json'}
+    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
+    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    return axios.post(hostServices+"/workflowmanager/numberService/getProcessNumber",data,{headers:headers})
+    .then(data =>{
+        return data.data
+    })
+}
 async function GetDiagram(data){
     var headers={'Content-Type': 'application/json'}
     headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
@@ -29,5 +37,6 @@ async function GetDiagram(data){
 export default  {
     ProcessInstanceServices,
     InitProcesses,
-    GetDiagram
+    GetDiagram,
+    getRequestNumber
 };
