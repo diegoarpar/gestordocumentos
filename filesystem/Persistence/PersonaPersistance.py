@@ -4,7 +4,7 @@ from flask import jsonify
 
 NOMBRE_BD = "GestorDocumental"
 PERSONA_COLL = "Persona"
-PUERTO_MONGO = '27018'
+PUERTO_MONGO = '27017'
 HOST_MONGO = 'mongoService'
 
 def crearCarpetaDocumental(persona):
