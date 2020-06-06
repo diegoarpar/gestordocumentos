@@ -33,7 +33,7 @@ function CustomizedMenus(props) {
     const [openTask, setOpenTask] = useState(false);
     const [processName, setProcessName] = useState();
     const [workflowName, setWorkflowName] = useState();
-    
+    const [requestNumberPattern, setRequestNumberPattern] = useState();
     const handleContTramites=props.handleContTramites;
     const contTramites=props.contTramites;
     const [sessionUser, setSessionUser] = useState(SessionCookie.GetSessionCookie());
@@ -49,6 +49,7 @@ function CustomizedMenus(props) {
       setOpen(true);
       setProcessName(data.name);
       setWorkflowName(data.workflowName);
+      setRequestNumberPattern(data.requestNumberPattern);
 
       
     }
@@ -93,7 +94,7 @@ function CustomizedMenus(props) {
     const classes=useStyles();
     return (
       <div>
-      {true&&<div>
+      <div>
        
         <IconButton edge="start"  color="inherit" aria-label="menu"
          className={classes.buttonSidebar}
@@ -116,11 +117,19 @@ function CustomizedMenus(props) {
               </Typography>
             </Toolbar>
           </AppBar>
-          <ProcessForm processName={processName} open={open} workflowName={workflowName} setRowOpen={setRowOpen} handleCloseModal={handleCloseModal}></ProcessForm>
+          <ProcessForm processName={processName}
+                       open={open}
+                       workflowName={workflowName}
+                       setRowOpen={setRowOpen}
+                       handleCloseModal={handleCloseModal}
+                       requestNumberPattern={requestNumberPattern}
+          >
+
+          </ProcessForm>
           </Dialog>
           
       </div>
-        }
+
 
       
         <div >

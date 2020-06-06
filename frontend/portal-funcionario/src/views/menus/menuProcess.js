@@ -26,6 +26,7 @@ function CustomizedMenus(props) {
     const [open, setOpen] = useState(false);
     const [openTask, setOpenTask] = useState(false);
     const [processName, setProcessName] = useState();
+    const [requestNumberPattern, setRequestNumberPattern] = useState();
     const [workflowName, setWorkflowName] = useState();
     const handleContTramites=props.handleContTramites;
     const handleClick = (event) => {
@@ -35,6 +36,7 @@ function CustomizedMenus(props) {
       setOpen(true);
       setProcessName(data.name);
       setWorkflowName(data.workflowName);
+      setRequestNumberPattern(data.requestNumberPattern);
       handleClose();
       
     }
@@ -103,7 +105,9 @@ function CustomizedMenus(props) {
               open={open}
               workflowName={workflowName}
               setRowOpen={setRowOpen}
-              handleCloseModal={handleCloseModal}>
+              handleCloseModal={handleCloseModal}
+              requestNumberPattern={requestNumberPattern}
+          >
           </ProcessForm>
           </Dialog>
           </div>
