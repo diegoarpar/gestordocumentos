@@ -1,11 +1,11 @@
 from pymongo import MongoClient
 
 
-def getConnection (hostName, port):
-
+def getConnection (mongoUri):
+    print(mongoUri)
     try:
-        dbUrl = hostName+":"+port
-        connection = MongoClient("mongodb://mongoadmin:secret@"+dbUrl)
+
+        connection = MongoClient(mongoUri)
         print("Database connection success!!")
         return connection
     except:

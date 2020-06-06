@@ -6,15 +6,19 @@ import Business.CarpetaDocumental as CarpetaDocumental
 from flask import Blueprint, request, jsonify
 from werkzeug.utils import secure_filename
 from bson.json_util import dumps,loads
+import sys
 
+sys.path.append('../')
+from Utilities import ArchivoUtils
 
 fileManager_BP = Blueprint("FileManager", __name__)
 uploadFolder = "/home/osboxes/files/"
 
 @fileManager_BP.route('/carpetaDocumental/', methods=['POST'])
 def crearCarpetaCliente():
+    tenant = ArchivoUtils.getTenant(request)
     inputData = request.get_json()
-    carpeta = PersonaPersistance.crearCarpetaDocumental(inputData)
+    carpeta = PersonaPersistance.crearCarpetaDocumental(inputData,tenant)
     res = jsonify(carpeta)
     res.status_code = 200
 
@@ -22,8 +26,9 @@ def crearCarpetaCliente():
 
 @fileManager_BP.route('/carpetaDocumental/cliente', methods=['POST'])
 def consultarCarpetaCliente():
+    tenant = ArchivoUtils.getTenant(request)
     inputData = request.get_json()
-    carpeta = PersonaPersistance.consultarCarpetaCliente(inputData)
+    carpeta = PersonaPersistance.consultarCarpetaCliente(inputData,tenant)
     queryExpediente = {"_personaRef": carpeta["_id"]}
     expedientes = ExpedientePersistance.consultarExpediente(queryExpediente)
     carpeta["expedientes"] = []
@@ -41,9 +46,9 @@ def consultarCarpetaCliente():
 
 @fileManager_BP.route('/carpetaDocumental/radicarDocumentosCliente', methods=["POST"])
 def radicarDocumentosCliente():
-    print("llego")
+    tenant = ArchivoUtils.getTenant(request)
     inputData = request.get_json()
-    CarpetaDocumental.radicarDocumentosCliente(inputData, inputData.get("numeroRadicado"))
+    CarpetaDocumental.radicarDocumentosCliente(inputData, inputData.get("numeroRadicado"),tenant)
 
     res = jsonify({})
     res.status_code = 200
@@ -55,15 +60,15 @@ def radicarDocumentosCliente():
 def upload():
     idCarpetaDocumental = request.form["idCarpetaDocumental"]
     request.cookies
-    config = configparser.ConfigParser()
-    config.read("./FileManager/config/FileManager.ini")
+    tenant = ArchivoUtils.getTenant(request)
+    config = ArchivoUtils.getConfigurations(tenant)
     file = request.files['file']
     request.form['file']
     # Creación archivo
     filename = secure_filename(file.filename)
-    file.save(os.path.join(config["TENANT1"]["file_dir"], filename))
+    file.save(os.path.join(config["BASE"]["fileDir"], filename))
     # registro
-    PersonaPersistance.consultarCarpetaCliente(tipoDocumento, numeroDocumento)
+    PersonaPersistance.consultarCarpetaCliente(idCarpetaDocumental, tenant)
     res = jsonify({'message': 'File successfully uploaded'})
     res.status_code = 201
 
