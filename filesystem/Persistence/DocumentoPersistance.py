@@ -4,7 +4,7 @@ import Utilities.DataParser as dataParser
 
 NOMBRE_BD = "GestorDocumental"
 DOCUMENTO_COLL = "Documento"
-PUERTO_MONGO = '27018'
+PUERTO_MONGO = '27017'
 HOST_MONGO = 'mongoService'
 
 def consultarDocumento(documento):
