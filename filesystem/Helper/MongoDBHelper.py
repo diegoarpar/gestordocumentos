@@ -5,7 +5,7 @@ def getConnection (hostName, port):
 
     try:
         dbUrl = hostName+":"+port
-        connection = MongoClient(dbUrl)
+        connection = MongoClient("mongodb://mongoadmin:secret@"+dbUrl)
         print("Database connection success!!")
         return connection
     except:
