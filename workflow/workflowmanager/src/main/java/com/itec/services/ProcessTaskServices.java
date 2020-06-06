@@ -6,9 +6,13 @@ import com.itec.util.Utils;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
+import org.activiti.engine.FormService;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.form.FormData;
+import org.activiti.engine.form.FormProperty;
+import org.activiti.engine.impl.form.FormEngine;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 
@@ -49,7 +53,8 @@ public class ProcessTaskServices {
             taks.addAll(taskService.createTaskQuery()
                     .taskCandidateGroup(role).list());
         }
-
+        FormService fs = pe.getFormService();
+        FormData formData=null;
         for (int i = 0; i < taks.size(); i++) {
             BasicDBObject item = new BasicDBObject();
             Task task = taks.get(i);
@@ -61,7 +66,7 @@ public class ProcessTaskServices {
                 processName = ((DBObject) instanceInformation.get(0)).get("processName").toString();
                 workflowName = ((DBObject) instanceInformation.get(0)).get("workflowName").toString();
             }
-
+            formData = fs.getTaskFormData(task.getId());
             item.append("taskDescription",task.getName())
                     .append("taskId",task.getId())
                     .append("taskName",task.getTaskDefinitionKey())
@@ -72,7 +77,9 @@ public class ProcessTaskServices {
                     .append("assign",task.getAssignee())
                     .append("processName",processName)
                     .append("workflowName",workflowName)
-                    .append("processInstanceId",task.getProcessInstanceId());
+                    .append("processInstanceId",task.getProcessInstanceId())
+                    .append("formPropertie",formData.getFormProperties());
+
             rta.add(item);
         }
         pe.close();
