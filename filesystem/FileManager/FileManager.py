@@ -23,12 +23,22 @@ def crearCarpetaCliente():
 
     return res
 
+@fileManager_BP.route('/consultarCarpetaDocumental/expediente', methods=['POST'])
+def consultarCarpetaDocumentalTramite():
+    tenant = ArchivoUtils.getTenant(request)
+    inputData = request.get_json()
+    carpeta = ExpedientePersistance.consultarExpediente(inputData,tenant)
+    res = dumps(carpeta)
+    #TODO FALTA CONSULTAR Y REGRESAR LOS DOCUMENTOS
+
+    return res
+
 @fileManager_BP.route('/carpetaDocumental/cliente', methods=['POST'])
 def consultarCarpetaCliente():
     tenant = ArchivoUtils.getTenant(request)
     inputData = request.get_json()
     carpeta = PersonaPersistance.consultarCarpetaCliente(inputData,tenant)
-    queryExpediente = {"_personaRef": carpeta["numeroRadicado"]}
+    queryExpediente = {"_personaRef": carpeta["_iid"]}
     expedientes = ExpedientePersistance.consultarExpediente(queryExpediente,tenant)
     carpeta["expedientes"] = []
     for expediente in expedientes:

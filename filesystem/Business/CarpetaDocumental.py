@@ -19,8 +19,10 @@ def radicarDocumentosCliente(persona,numeroSolicitud,tenant):
             }
             persona_id = PersonaPersistance.crearCarpetaDocumental(persona, tenant).inserted_id
             persona["_id"] = persona_id
-
-    persona["expediente"]["_personaRef"] = persona["numeroRadicado"]
+        else:
+            persona["_id"] = personaBD["_id"]
+    persona["expediente"]["_personaRef"] = persona["_id"]
+    persona["expediente"]["numeroRadicado"] =numeroSolicitud
     expedienteId = ExpedientePersistance.crearExpediente(persona["expediente"],tenant).inserted_id
     config = ArchivoUtils.getConfigurations(tenant)
 
