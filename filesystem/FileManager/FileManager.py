@@ -33,7 +33,7 @@ def consultarCarpetaCliente():
     carpeta["expedientes"] = []
     for expediente in expedientes:
         queryDocumento = {"_expedienteRef":expediente["_id"]}
-        documentos = DocumentoPersistance.consultarDocumento(queryDocumento)
+        documentos = DocumentoPersistance.consultarDocumento(queryDocumento, tenant)
         expediente["documentos"] = documentos
         carpeta["expedientes"].append(expediente)
 
