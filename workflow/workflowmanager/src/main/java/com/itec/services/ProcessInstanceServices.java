@@ -31,13 +31,6 @@ public class ProcessInstanceServices {
 
     String collectionInstanceInformation="instanceInformation";
     String collectionTaksInformation="taksInformation";
-    @GET
-    @Path("/greeting")
-    @Consumes(MediaType.TEXT_PLAIN)
-    @Produces(MediaType.TEXT_PLAIN)
-    public String greeting(@Context HttpServletRequest req) {
-        return "Hello worold greeting";
-    }
 
     @POST
     @Path("/initProcessInstance")
@@ -97,6 +90,17 @@ public class ProcessInstanceServices {
             throw new ActivitiIllegalArgumentException("Process instance with id '" + processInstance.getId()
                     + "' has no graphical notation defined.");
         }
+    }
+
+
+    @POST
+    @Path("/getHistory")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<DBObject> getHistory(@Context HttpServletRequest req) throws IOException {
+        String tenant= Utils.getTenant(req);
+        BasicDBObject criterial =Utils.fillStringFromRequestPost(req);
+        return DBMongo.find(collectionInstanceInformation,criterial,tenant,false);
     }
 
 }

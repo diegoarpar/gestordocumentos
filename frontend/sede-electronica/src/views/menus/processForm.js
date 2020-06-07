@@ -40,6 +40,7 @@ function ProcessForm(props) {
                     "apellido":data[0].lastName,
                     "email":data[0].email,
                     "expediente":{},
+                    "user":userId.user,
                     "documentos":files
                 };
                 FileManagementServices.radicarDocumentos(persona).then((data)=>{
@@ -47,6 +48,7 @@ function ProcessForm(props) {
                         "processName":processName,
                         "workflowName":workflowName,
                         "requestNumber":numeroRadicado,
+                        "requester":persona,
                         "data":dataForm.data})
                         .then((data)=>
                         {

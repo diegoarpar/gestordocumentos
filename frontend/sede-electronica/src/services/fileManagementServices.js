@@ -13,7 +13,15 @@ async function radicarDocumentos(data){
             return data.data
         })
 }
-
+async function getCarpetaDocumental(data){
+    var headers={};
+    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    return axios.post(hostServices+"/consultarCarpetaDocumental/expediente",data,{headers:headers})
+        .then(data =>{
+            return data.data
+        })
+}
 export default  {
-    radicarDocumentos
+    radicarDocumentos,
+    getCarpetaDocumental
 };

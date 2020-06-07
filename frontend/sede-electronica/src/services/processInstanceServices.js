@@ -35,9 +35,19 @@ async function getRequestNumber(data){
             return data.data
         })
 }
+async function getHistory(data){
+    var headers={'Content-Type': 'application/json'}
+    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
+    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    return axios.post(hostServices+"/workflowmanager/processInstance/getHistory",data,{headers:headers})
+        .then(data =>{
+            return data.data
+        })
+}
 export default  {
     ProcessInstanceServices,
     InitProcesses,
     GetDiagram,
-    getRequestNumber
+    getRequestNumber,
+    getHistory
 };

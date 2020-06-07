@@ -76,3 +76,6 @@ img.slick-image {
 .sideNavItem {
   background: gray;
 }
+span.MuiTypography-root.MuiListItemText-primary.MuiTypography-body1.MuiTypography-displayBlock {
+  color: black;
+}

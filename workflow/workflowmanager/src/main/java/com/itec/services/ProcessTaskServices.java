@@ -130,5 +130,15 @@ public class ProcessTaskServices {
         pe.close();
         return rta;
     }
+
+    @POST
+    @Path("/getHistory")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<DBObject> getHistory(@Context HttpServletRequest req) throws IOException {
+        String tenant= Utils.getTenant(req);
+        BasicDBObject criterial =Utils.fillStringFromRequestPost(req);
+        return DBMongo.find(collectionTaksInformation,criterial,tenant,false);
+    }
 }
 

@@ -21,6 +21,7 @@ import SessionCookie from '../../utils/session';
 import ChangePassword from '../user/changePassword';
 import UserManager from '../user/userManager';
 import Sidebar from "react-sidebar";
+import RequestInformation from "../request/requestsInformation";
 
 
 function CustomizedMenus(props) {
@@ -249,6 +250,9 @@ function CustomizedMenus(props) {
         {!!sessionUser&&
           <UserManager></UserManager>
       }
+          {!!sessionUser&&
+          <RequestInformation></RequestInformation>
+          }
       </div>
     );
   }

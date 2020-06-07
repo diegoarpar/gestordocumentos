@@ -151,7 +151,6 @@ const TaskItem=(props)=>{
               <Typography
                 component="span"
                 variant="body2"
-                
                 color="textPrimary"
               >
                 {row.processName+ " "}

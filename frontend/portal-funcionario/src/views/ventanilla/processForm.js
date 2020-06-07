@@ -40,6 +40,7 @@ function ProcessForm(props) {
                     "nombre":data[0].name,
                     "apellido":data[0].lastName,
                     "email":data[0].email,
+                    "user":userId.user,
                     "expediente":{},
                     "documentos":files
                 };
@@ -48,6 +49,7 @@ function ProcessForm(props) {
                         "processName":processName,
                         "workflowName":workflowName,
                         "requestNumber":numeroRadicado,
+                        "requesterF":persona,
                         "data":dataForm.data})
                         .then((data)=>
                         {
