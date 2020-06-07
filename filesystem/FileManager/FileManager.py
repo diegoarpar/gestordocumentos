@@ -28,7 +28,7 @@ def consultarCarpetaCliente():
     tenant = ArchivoUtils.getTenant(request)
     inputData = request.get_json()
     carpeta = PersonaPersistance.consultarCarpetaCliente(inputData,tenant)
-    queryExpediente = {"_personaRef": carpeta["_id"]}
+    queryExpediente = {"_personaRef": carpeta["numeroRadicado"]}
     expedientes = ExpedientePersistance.consultarExpediente(queryExpediente,tenant)
     carpeta["expedientes"] = []
     for expediente in expedientes:
