@@ -12,7 +12,6 @@ sys.path.append('../')
 from Utilities import ArchivoUtils
 
 fileManager_BP = Blueprint("FileManager", __name__)
-uploadFolder = "/home/osboxes/files/"
 
 @fileManager_BP.route('/carpetaDocumental/', methods=['POST'])
 def crearCarpetaCliente():
@@ -30,7 +29,7 @@ def consultarCarpetaCliente():
     inputData = request.get_json()
     carpeta = PersonaPersistance.consultarCarpetaCliente(inputData,tenant)
     queryExpediente = {"_personaRef": carpeta["_id"]}
-    expedientes = ExpedientePersistance.consultarExpediente(queryExpediente)
+    expedientes = ExpedientePersistance.consultarExpediente(queryExpediente,tenant)
     carpeta["expedientes"] = []
     for expediente in expedientes:
         queryDocumento = {"_expedienteRef":expediente["_id"]}
