@@ -7,10 +7,10 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-
+import UserDetailDialog from "./userDetailDialog";
 const UsersInformation=(props) =>{
   const rows =props.rows;
-  console.log(rows);
+  const setCitizen=props.setCitizen;
 
   
   return (
@@ -21,7 +21,7 @@ const UsersInformation=(props) =>{
           return (
           <UsersInformationItem 
             row={row}
-          
+            setCitizen={setCitizen}
              />)
       })
 
@@ -36,8 +36,9 @@ const UsersInformation=(props) =>{
 
 const UsersInformationItem=(props)=>{
     const row=props.row;
+    const setCitizen=props.setCitizen;
     return(
-        <div key={row._id} className="customProcesses">
+        <div key={row._id} >
         <Divider variant="inset" component="li" />
         <ListItem alignItems="flex-start">
         <ListItemAvatar>
@@ -59,25 +60,18 @@ const UsersInformationItem=(props)=>{
             </React.Fragment>
           }
         />
-        <Button key={row.id+"B1"}
-          aria-controls="customized-menu"
-          aria-haspopup="true"
-          variant="contained"
-          color="primary"
-          onClick="#"
-        >
-          Seleccionar
-        </Button>
-        
-        <Button key={row.id+"B2"}
-          aria-controls="customized-menu"
-          aria-haspopup="true"
-          variant="contained"
-          color="primary"
-          onClick="#"
-        >
-          Ver Detalle
-        </Button>
+            {!!setCitizen&&<Button key={row.id + "B1"}
+                     aria-controls="customized-menu"
+                     aria-haspopup="true"
+                     variant="contained"
+                     color="primary"
+                     onClick={()=>setCitizen(row)}
+            >
+                Seleccionar
+            </Button>
+            }
+
+            <UserDetailDialog row={row}/>
         
       </ListItem>
       </div>

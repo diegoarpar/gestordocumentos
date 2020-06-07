@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Form} from 'react-formio';
+import {Form as Formio}  from 'react-formio';
 import ProcessFormServies from '../../services/processFormServices';
 import ProcessTaskServices from '../../services/processTaskServices';
 import ProcessTaskInformationServices from '../../services/processTaskInformationServices';
@@ -72,7 +72,7 @@ function TaskForm(props) {
       <div>
         
         
-          <Form submission={data} params={data.params} src={components} onChange={(data)=>handleChange(data)}></Form>
+          <Formio submission={data} params={data.params} src={components} onChange={(data)=>handleChange(data)}></Formio>
           <Button variant="contained" color="primary"  onClick={(e) => {onClick(e)}}>
                       Continuar
                     </Button>

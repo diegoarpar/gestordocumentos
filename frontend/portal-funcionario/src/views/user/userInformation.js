@@ -42,6 +42,7 @@ const UserInformation=(props)=>{
               type: "text",
               defaultValue:name,
               readOnly:readOnly,
+              disabled:readOnly,
               onChange: (e) => {setName(e.target.value)},
               endAdornment: (
                 <InputAdornment position="end">
@@ -61,6 +62,7 @@ const UserInformation=(props)=>{
               type: "text",
               defaultValue:lastName,
               readOnly:readOnly,
+              disabled:readOnly,
               onChange: (e) => {setLastName(e.target.value)},
               endAdornment: (
                 <InputAdornment position="end">
@@ -80,6 +82,7 @@ const UserInformation=(props)=>{
               type: "text",
               defaultValue:userName,
               readOnly:readOnly,
+              disabled:readOnly,
               onChange: (e) => {setUserName(e.target.value)},
               endAdornment: (
                 <InputAdornment position="end">
@@ -100,6 +103,7 @@ const UserInformation=(props)=>{
               type: "password",
               defaultValue:password,
               readOnly:readOnly,
+              disabled:readOnly,
               onChange: (e) => {setPassword(e.target.value)},
               endAdornment: (
                 <InputAdornment position="end">
@@ -119,6 +123,7 @@ const UserInformation=(props)=>{
               type: "text",
               defaultValue:documentType,
               readOnly:readOnly,
+              disabled:readOnly,
               onChange: (e) => {setDocumentType(e.target.value)},
               endAdornment: (
                 <InputAdornment position="end">
@@ -138,6 +143,7 @@ const UserInformation=(props)=>{
               type: "text",
               defaultValue:documentNumber,
               readOnly:readOnly,
+              disabled:readOnly,
               onChange: (e) => {setDocumentNumber(e.target.value)},
               endAdornment: (
                 <InputAdornment position="end">
@@ -157,6 +163,7 @@ const UserInformation=(props)=>{
               type: "text",
               defaultValue:email,
               readOnly:readOnly,
+              disabled:readOnly,
               onChange: (e) => {setEmail(e.target.value)},
               endAdornment: (
                 <InputAdornment position="end">

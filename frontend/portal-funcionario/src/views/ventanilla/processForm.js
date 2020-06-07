@@ -7,6 +7,8 @@ import UserServices from '../../services/userServices';
 import Button from '@material-ui/core/Button';
 import SessionCookie from '../../utils/session';
 import FileUtils from '../../utils/fileUtils';
+import UserFinder from "../user/userFinder";
+import UserDetailDialog from "../user/userDetailDialog";
 
 function ProcessForm(props) {
   
@@ -15,6 +17,7 @@ function ProcessForm(props) {
     const requestNumberPattern=props.requestNumberPattern;
     const [components,setComponents]=useState({"type":"form","display":"form","components":[]});
     const handleCloseModal=props.handleCloseModal;
+    const [citizen,setCitizen]= useState();
     var dataForm;
     var files;
     const handleChange=(data)=>{
@@ -33,7 +36,19 @@ function ProcessForm(props) {
             let userId = {'user':SessionCookie.GetSessionCookie().authenticated_userid};
             UserServices.GetUser(userId).then((data)=>{
                 [dataForm.data, files] = FileUtils.extraerArchivosFormulario(dataForm.data);
+
                 let persona = {
+                    "numeroRadicado":numeroRadicado,
+                    "tipoDocumento":citizen.documentNumber,
+                    "numeroDocumento":citizen.documentType,
+                    "nombre":citizen.name,
+                    "apellido":citizen.lastName,
+                    "email":citizen.email,
+                    "user":citizen.user,
+                    "expediente":{},
+                    "documentos":files
+                };
+                let requesterF = {
                     "numeroRadicado":numeroRadicado,
                     "tipoDocumento":data[0].documentNumber,
                     "numeroDocumento":data[0].documentType,
@@ -49,7 +64,8 @@ function ProcessForm(props) {
                         "processName":processName,
                         "workflowName":workflowName,
                         "requestNumber":numeroRadicado,
-                        "requesterF":persona,
+                        "requesterF":requesterF,
+                        "requester":persona,
                         "data":dataForm.data})
                         .then((data)=>
                         {
@@ -75,8 +91,11 @@ function ProcessForm(props) {
   
     return (
         <div>
-        
-        
+          <UserFinder setCitizen={setCitizen}/>
+            {!!citizen&&<div>
+                <UserDetailDialog row={citizen}/>
+            </div>
+            }
           <Formio src={components} onChange={(data)=>handleChange(data)}></Formio>
           <Button variant="contained" color="primary"  onClick={(e) => {onClick(e)}}>
                       Radicar

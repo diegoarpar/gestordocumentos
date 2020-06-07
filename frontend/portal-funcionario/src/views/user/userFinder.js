@@ -26,7 +26,11 @@ const UserFinder=(props)=>{
   const [modalType, setModalType]= useState();
   const [open, setOpen]= useState(false);
   const [user, setUser]= useState({});
-  
+  const setCitizen2=props.setCitizen;
+  const setCitizen=(row)=>{
+    setOpen(false);
+    setCitizen2(row);
+  }
   const handleCloseModal = ()=>{
     setOpen(false);
     
@@ -44,7 +48,7 @@ const UserFinder=(props)=>{
   return (
   <div>
     
-    {true&&<Button 
+    {<Button
       variant="contained"
       aria-controls="customized-menu"
       aria-haspopup="true"
@@ -59,7 +63,7 @@ const UserFinder=(props)=>{
                 <ArrowBack />
               </IconButton>
               <Typography variant="h6" >
-                {modalType=="M"?"Actualizar Datos":"Registrar Usuario"}
+                Consultar Ciudadano
               </Typography>
             </Toolbar>
           </AppBar>
@@ -67,14 +71,16 @@ const UserFinder=(props)=>{
               handleClick={handleClickSaveModal} 
               onClose ={handleCloseModal} 
               rowInformation={user}
-              modalType={modalType}>
+              modalType={modalType}
+              setCitizen={setCitizen}
+          >
           </UserFindForm>  
         </Dialog>
   </div>);
 }
 
 const UserFindForm =(props)=>{
-  const [name, setName] = useState();
+  const setCitizen=props.setCitizen;
   const [rows, setRows] = useState([]);
   const [rows2, setRows2] = useState([]);
   const [rowsUser, setRowsUser] = useState([]);
@@ -123,7 +129,7 @@ const UserFindForm =(props)=>{
           
         </Select>
       </FormControl>
-      {true&&<Button 
+      {<Button
       variant="outlined" 
       color="inherit" 
       aria-controls="customized-menu"
@@ -132,7 +138,7 @@ const UserFindForm =(props)=>{
           Agregar Campo
         </Button>
         }
-         {true&&<Button 
+         {<Button
           variant="outlined" 
           color="inherit" 
           aria-controls="customized-menu"
@@ -170,7 +176,7 @@ const UserFindForm =(props)=>{
           </li>
         ))}
       </List>
-      <UsersInformation rows={rowsUser}/>
+      <UsersInformation rows={rowsUser} setCitizen={setCitizen}/>
     </div>);
 }
 export default UserFinder;

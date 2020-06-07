@@ -24,6 +24,15 @@ async function AssignTask(data){
         return data.data
     })
 }
+async function getHistory(data){
+    var headers={'Content-Type': 'application/json'}
+    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
+    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    return axios.post(hostServices+"/workflowmanager/processTask/getHistory",data,{headers:headers})
+        .then(data =>{
+            return data.data
+        })
+}
 async function CompleteTask(data){
     var headers={'Content-Type': 'application/json'}
     headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
@@ -38,5 +47,7 @@ export default  {
     ProcessTaskServices,
     GetTask,
     AssignTask,
-    CompleteTask
+    CompleteTask,
+    getHistory
+
 };

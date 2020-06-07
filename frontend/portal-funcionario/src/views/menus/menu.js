@@ -17,6 +17,7 @@ import UserWaitingApproved from "../user/userWaitingApproved";
 import Toolbar from "@material-ui/core/Toolbar";
 import SessionCookie from "../../utils/session";
 import {history} from "../../App";
+import RequestInformation from "../request/requestsInformation";
 
 function CustomizedMenus(props) {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -79,11 +80,13 @@ function CustomizedMenus(props) {
         <UserFinder />
         <ChangePassword />
         <UserWaitingApproved />
+        <RequestInformation/>
         <MenuProcess
             contTramites={contTramites}
             handleContTramites={handleContTramites}
         >
         </MenuProcess>
+
     </div>
     );
   }
