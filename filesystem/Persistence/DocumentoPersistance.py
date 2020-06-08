@@ -23,6 +23,21 @@ def consultarDocumento(documento, tenant):
 
     return resultado
 
+def consultarDocumentosExpediente(expediente, tenant):
+    configureDataBase(tenant)
+    if len(expediente) > 0:
+        filtroExpediente={"_expedienteRef":expediente[0]["_id"]}
+    else :
+        return []
+    conexionMongo = mongoHelper.getConnection(MONGO_URI)
+    filtroConsulta = dataParser.generarFiltro(filtroExpediente)
+    documentoCol = mongoHelper.getCollection(conexionMongo, NOMBRE_BD, tenant+"_"+DOCUMENTO_COLL)
+    documentos = documentoCol.find(filtroConsulta)
+
+    resultado = [x for x in documentos]
+
+    return resultado
+
 def crearDocumento(documento, tenant):
     configureDataBase(tenant)
     conexionMongo = mongoHelper.getConnection(MONGO_URI)

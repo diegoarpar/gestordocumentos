@@ -115,7 +115,7 @@ const RequestItem=(props)=>{
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>
         <ListItemText
-          primary={row.processName}
+          primary={row.nombre}
           color ="inherit"
           secondary={
             <React.Fragment>
@@ -124,7 +124,7 @@ const RequestItem=(props)=>{
                 variant="body2"
                 color="textPrimary"
               >
-                {row.processName + " "+row.requestNumber+ " "}
+                {row.nombre + " "+row.tipo+ " "}
               </Typography>
                 {"Estado"}
             </React.Fragment>

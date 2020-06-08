@@ -1,4 +1,5 @@
 dbData
 venv
 .idea
-./idea
+/.idea/
+/files/

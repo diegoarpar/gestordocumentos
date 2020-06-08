@@ -28,8 +28,10 @@ def consultarCarpetaDocumentalTramite():
     tenant = ArchivoUtils.getTenant(request)
     inputData = request.get_json()
     carpeta = ExpedientePersistance.consultarExpediente(inputData,tenant)
-    res = dumps(carpeta)
-    #TODO FALTA CONSULTAR Y REGRESAR LOS DOCUMENTOS
+
+    documentos=DocumentoPersistance.consultarDocumentosExpediente(carpeta,tenant)
+    res = dumps(documentos)
+
 
     return res
 

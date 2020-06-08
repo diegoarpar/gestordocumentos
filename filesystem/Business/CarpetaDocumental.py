@@ -31,12 +31,12 @@ def radicarDocumentosCliente(persona,numeroSolicitud,tenant):
         documento["nombre"] = file["name"]
         documento["tipo"] = file["type"]
         documento["digitalizado"] = True
-        documento["rutaDigital"] = config["BASE"]['fileDir'] +persona["numeroRadicado"]+ '/' + file["name"]
+        documento["rutaDigital"] = config["BASE"]['fileDir']+persona["numeroRadicado"]+ '/' + file["name"]
         documento["_expedienteRef"] = expedienteId
         documento["_personaRef"] = persona["_id"]
         documentoId = DocumentoPersistance.crearDocumento(documento,tenant).inserted_id
         indiceDocumento = {}
         indiceDocumento["numeroSolicitud"] = numeroSolicitud
         indiceDocumento["_documentoRef"] = documentoId
-        IndiceDocumentoPersistance.crearIndiceDocumento(indiceDocumento)
+        IndiceDocumentoPersistance.crearIndiceDocumento(indiceDocumento,tenant)
         ArchivoUtils.almacenarArchivo(file["url"], file["name"], documento["rutaDigital"])
