@@ -37,10 +37,15 @@ public class ProcessInstanceServices {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List<DBObject> initiProcessInstance(@Context HttpServletRequest req) throws IOException {
+        String initialStatus="RECIBIDO";
         String tenant= Utils.getTenant(req);
         BasicDBObject criterial =Utils.fillStringFromRequestPost(req);
         Map<String,Object> inputValues = new HashMap<String,Object>();
         Utils.getProcessInputValues(inputValues,criterial);
+        inputValues.put("tenant",tenant);
+        inputValues.put("processInstanceStatus",initialStatus);
+        criterial.append("processInstanceStatus", initialStatus);
+        inputValues.put("user",((BasicDBObject)(criterial.get("requester"))).get("user").toString());
         ProcessEngine pe =ConfigurationApp.initProcessEngine(tenant);
         RuntimeService runtimeService = pe.getRuntimeService();
         ProcessInstance processInstance = runtimeService
