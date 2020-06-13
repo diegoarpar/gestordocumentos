@@ -29,9 +29,12 @@ def radicarDocumentosCliente(persona,numeroSolicitud,tenant):
     for file in persona["documentos"]:
         documento = {}
         documento["nombre"] = file["name"]
+        documento["originalName"] = file["originalName"]
         documento["tipo"] = file["type"]
         documento["digitalizado"] = True
-        documento["rutaDigital"] = config["BASE"]['fileDir']+persona["numeroRadicado"]+ '/' + file["name"]
+        documento["rutaDigital"] = config["BASE"]['fileDir']+tenant+"/"+persona["numeroRadicado"]+ '/' + file["name"]
+        documento["rutaBase"] = config["BASE"]['fileDir']
+        documento["rutaInterna"] =  tenant + "/"+persona["numeroRadicado"]+ '/' + file["name"]
         documento["_expedienteRef"] = expedienteId
         documento["_personaRef"] = persona["_id"]
         documentoId = DocumentoPersistance.crearDocumento(documento,tenant).inserted_id

@@ -15,6 +15,7 @@ function TaskForm(props) {
     const handleClose=props.handleClose;
     const processName=props.information.processName;
     const activityName=props.information.taskName;
+    const taskDescription=props.information.taskDescription;
     const [processVariable,setProcessVariable]=useState([]);
     const [data,setData]=useState({"data":{}});
     const workflowName=props.information.workflowName;
@@ -29,10 +30,11 @@ function TaskForm(props) {
       ProcessTaskServices.CompleteTask({
         "taskId":taskId,
         "data":dataForm.data,
-        "activityName":activityName,
+        "taskName":activityName,
         "workflowName":workflowName,
         "processVariable":processVariable,
         "processInstanceId":processInstanceId,
+        "taskDescription":taskDescription,
         "user":SessionCookies.GetSessionCookie().authenticated_userid
       })
       .then((data)=>

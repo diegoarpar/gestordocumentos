@@ -21,10 +21,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Path("/workflowmanager/processTask/")
 public class ProcessTaskServices {
@@ -62,9 +59,13 @@ public class ProcessTaskServices {
             List<DBObject> instanceInformation = DBMongo.find(collectionInstanceInformation,criterial2,tenant,false);
             String processName="NoNAME";
             String workflowName="NoNAME";
+            String requestNumber="";
+            String processInstanceStatus="";
             if(instanceInformation.size()>0) {
-                processName = ((DBObject) instanceInformation.get(0)).get("processName").toString();
-                workflowName = ((DBObject) instanceInformation.get(0)).get("workflowName").toString();
+                processName = ((DBObject) instanceInformation.get(0)).get("processName")!=null?((DBObject) instanceInformation.get(0)).get("processName").toString():"";
+                workflowName = ((DBObject) instanceInformation.get(0)).get("workflowName")!=null?((DBObject) instanceInformation.get(0)).get("workflowName").toString():"";
+                requestNumber = ((DBObject) instanceInformation.get(0)).get("requestNumber")!=null?((DBObject) instanceInformation.get(0)).get("requestNumber").toString():"";
+                processInstanceStatus = ((DBObject) instanceInformation.get(0)).get("processInstanceStatus")!=null?((DBObject) instanceInformation.get(0)).get("processInstanceStatus").toString():"";
             }
             formData = fs.getTaskFormData(task.getId());
             item.append("taskDescription",task.getName())
@@ -78,6 +79,8 @@ public class ProcessTaskServices {
                     .append("processName",processName)
                     .append("workflowName",workflowName)
                     .append("processInstanceId",task.getProcessInstanceId())
+                    .append("requestNumber",requestNumber)
+                    .append("processInstanceStatus",processInstanceStatus)
                     .append("formPropertie",formData.getFormProperties());
 
             rta.add(item);
@@ -104,6 +107,7 @@ public class ProcessTaskServices {
         ts.setAssignee(taskId,userTakeTask);
         ts.complete(taskId,inputValues);
         criterial.append("action","completeTask");
+        criterial.append("actionDate",new Date());
         DBMongo.insert(collectionTaksInformation,criterial,tenant);
 
         pe.close();

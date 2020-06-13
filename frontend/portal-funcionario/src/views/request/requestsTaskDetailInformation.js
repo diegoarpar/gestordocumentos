@@ -147,7 +147,7 @@ const RequestItem=(props)=>{
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>
         <ListItemText
-          primary={!!row.processName?row.processName:"" + !!row.activityName?row.activityName:""}
+          primary={!!row.processName?row.processName:"" + !!row.taskDescription?row.taskDescription:""}
           color ="inherit"
           secondary={
             <React.Fragment>
@@ -156,9 +156,15 @@ const RequestItem=(props)=>{
                 variant="body2"
                 color="textPrimary"
               >
-                {row.processName + " "+row.requestNumber+ " "}
+                {
+                }
               </Typography>
-                {"Estado"}
+                {row.processName}
+                {!!row.requestNumber?" #"+row.requestNumber:""}
+                {!!row.processInstanceStatus?" Estado "+row.processInstanceStatus:"" }
+                {!!row.taskDescription?" Actividad "+row.taskDescription:""}
+                {!!row.action?" Acción "+row.action:""}
+
             </React.Fragment>
           }
         />

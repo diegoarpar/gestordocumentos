@@ -17,6 +17,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import ProcessInstanceServices from '../../services/processInstanceServices';
 import FileManagementServices from '../../services/fileManagementServices';
+import ShowFile from "./showFile";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const RequestDocument=(props) =>{
-
+    const numeroRadicado=props.row.requestNumber;
     const [open, setOpen]= useState(false);
     const row=props.row;
     return (<div>
@@ -51,7 +52,7 @@ const RequestDocument=(props) =>{
                         Documentos
                     </Typography>
                 </Toolbar>
-                <RequestList row={row}/>
+                <RequestList row={row} numeroRadicado={numeroRadicado}/>
             </AppBar>
 
         </Dialog>
@@ -61,6 +62,7 @@ const RequestDocument=(props) =>{
 }
 const RequestList=(props) =>{
   const [rows, setRows]=useState([]);
+  const numeroRadicado = props.numeroRadicado;
   const rowInfo = props.row;
   const cont = props.contTramites;
   const setCont=props.handleContTramites;
@@ -90,7 +92,7 @@ const RequestList=(props) =>{
           return (
               <RequestItem
                   key={row.intex} key2={index} row={row}
-
+                  numeroRadicado={numeroRadicado}
              />)
       })
 
@@ -104,7 +106,8 @@ const RequestList=(props) =>{
 
 const RequestItem=(props)=>{
     const row=props.row;
-    console.log(row);
+    const [open, setOpen] = useState(false);
+    const numeroRadicado=props.numeroRadicado;
     const handleOpenTask=props.handleOpenTask;
     const key = props.key2;
     return(
@@ -137,14 +140,25 @@ const RequestItem=(props)=>{
           aria-haspopup="true"
           variant="contained"
           color="primary"
+          onClick={(e)=>setOpen(true)}
         >
           Ver documento
         </Button>
         }
+            <ViewDocument row={row} open={open} setOpen={setOpen} numeroRadicado={numeroRadicado}></ViewDocument>
       </ListItem>
       </div>
     )
 }
 
+const ViewDocument=(props) =>{
+    const row=props.row;
+    const numeroRadicado=props.numeroRadicado;
+    const open= props.open;
+    const setOpen = props.setOpen;
+    return (<div>
+        <ShowFile open={open} setOpen={setOpen} row={row} numeroRadicado={numeroRadicado}/>
+    </div>);
 
+}
 export default RequestDocument ;

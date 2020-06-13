@@ -55,6 +55,19 @@ def consultarCarpetaCliente():
 
     return res
 
+@fileManager_BP.route('/carpetaDocumental/cliente/documento', methods=['POST'])
+def consultarDocumentoCliente():
+    tenant = ArchivoUtils.getTenant(request)
+    inputData = request.get_json()
+    filtroExpediente= {"numeroRadicado":inputData["numeroRadicado"]}
+    expediente = ExpedientePersistance.consultarExpediente(filtroExpediente,tenant)
+    filtroDocumento={"_expedienteRef":expediente[0]["_id"],"nombre":inputData["nombre"]}
+    documento = DocumentoPersistance.consultarDocumento(filtroDocumento,tenant)
+    binario = DocumentoPersistance.consultarArchivo(documento[0]["rutaDigital"])
+
+
+    return binario
+
 @fileManager_BP.route('/carpetaDocumental/radicarDocumentosCliente', methods=["POST"])
 def radicarDocumentosCliente():
     tenant = ArchivoUtils.getTenant(request)

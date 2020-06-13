@@ -155,7 +155,10 @@ const TaskItem=(props)=>{
               >
                 {row.processName+ " "}
               </Typography>
-              {row.taskId +(!!row.assign?" Asignado a "+row.assign:" Sin asignar") + " con prioridad "+row.priority}
+              {"#"+row.requestNumber +(!!row.assign?" Asignado a "+row.assign:" Sin asignar")
+              + " con prioridad "+row.priority
+              + " Estado: "+row.processInstanceStatus
+              }
             </React.Fragment>
           }
         />

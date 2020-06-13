@@ -1,5 +1,6 @@
 import Helper.MongoDBHelper as mongoHelper
 import Utilities.DataParser as dataParser
+import base64
 import sys
 sys.path.append('../')
 from Utilities import ArchivoUtils
@@ -22,6 +23,11 @@ def consultarDocumento(documento, tenant):
     resultado = [x for x in documentos]
 
     return resultado
+
+def consultarArchivo(rutaDigital):
+    data = open(rutaDigital, "rb").read()
+    encoded = base64.b64encode(data)
+    return encoded
 
 def consultarDocumentosExpediente(expediente, tenant):
     configureDataBase(tenant)

@@ -79,3 +79,6 @@ img.slick-image {
 span.MuiTypography-root.MuiListItemText-primary.MuiTypography-body1.MuiTypography-displayBlock {
   color: black;
 }
+.custom-viewer {
+  height: 100% !important;
+}

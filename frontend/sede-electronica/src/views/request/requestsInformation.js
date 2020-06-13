@@ -141,9 +141,9 @@ const RequestItem=(props)=>{
                 variant="body2"
                 color="textPrimary"
               >
-                {row.processName + " "+row.requestNumber+ " "}
+                {row.processName + " #"+row.requestNumber+ " "}
               </Typography>
-                {"Estado"}
+                {"Estado " + row.processInstanceStatus}
             </React.Fragment>
           }
         />
