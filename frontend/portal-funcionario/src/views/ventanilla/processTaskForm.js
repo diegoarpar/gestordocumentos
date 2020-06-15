@@ -21,7 +21,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import TabPanel from '../../utils/tabPanel';
 import ShowProcessModel from '../displayModel/showProcessModel';
-
+import RequestTaskGeneralInformation from '../request/requestTaskGeneralInformation';
 function TaskForm(props) {
     const row =props.information;
     const taskId=props.information.taskId;
@@ -138,7 +138,7 @@ function TaskForm(props) {
           </TabPanel>
           <TabPanel value={value} index={1}>
               <div>
-                  información general
+                  <RequestTaskGeneralInformation row={row}/>
               </div>
           </TabPanel>
           <TabPanel value={value} index={2}>

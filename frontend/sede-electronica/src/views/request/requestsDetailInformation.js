@@ -21,11 +21,11 @@ import a11yProps from "../../utils/a11yProps";
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
-import RequestDetailInformation from "./requestsDetailInformation";
+import useStylesCard from "../../utils/useStylesCard";
 import TabPanel from "../../utils/tabPanel";
-import useStyles from "../../utils/useStyles";
-
-const RequestInformation=(props) =>{
+import RequestTaskGeneralInformation from "./requestTaskGeneralInformation";
+const RequestDetailInformation=(props) =>{
+    const row = props.row;
     const [open, setOpen]= useState(false);
     const [value, setValue] = useState(0);
     const handleChange = (event, newValue) => {
@@ -36,7 +36,7 @@ const RequestInformation=(props) =>{
                 color="inherit"
                 onClick={()=>setOpen(true)}
         >
-            Ver mi carpeta
+            Ver detalle
         </Button>
 
         <Dialog fullScreen open={open} >
@@ -46,7 +46,7 @@ const RequestInformation=(props) =>{
                         <ArrowBack />
                     </IconButton>
                     <Typography variant="h6" >
-                        Mi Carpeta
+                        Información de la solicitud
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -54,96 +54,22 @@ const RequestInformation=(props) =>{
                     <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
                         <Tab label="Información" {...a11yProps(0)} />
                         <Tab label="Documentos" {...a11yProps(1)} />
-                        <Tab label="Tareas pendientes" {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
                     <div>
-                        <RequestList/>
+                        <RequestTaskGeneralInformation row={row}/>
                     </div>
                 </TabPanel>
-
-
-
+                <TabPanel value={value} index={1}>
+                    <div>
+                        <RequestDocument.RequestList row={row} numeroRadicado={row.requestNumber}/>
+                    </div>
+                </TabPanel>
         </Dialog>
 
     </div>);
 
 }
-const RequestList=(props) =>{
-  const [rows, setRows]=useState([]);
-  const cont = props.contTramites;
-  const setCont=props.handleContTramites;
-  const [openTask, setOpenTask]=useState(false);
-  const [openDiagram, setOpenDiagram]=useState(false);
-  const [file, setFile]=useState();
-  const classes = useStyles;
-  const [rowOpen, setRowOpen]=useState();
-  const handleCloseTask=()=>{
-    setOpenTask(false);
-    
-  }
-  useEffect(()=>{
-    ProcessInstanceServices.getHistory({"requester.user":SessionCookies.GetSessionCookie().authenticated_userid})
-        .then((data)=>{
-            setRows(data);
-        })
 
-  },[cont]);
-
-  return (
-
-    <div>
-
-    <List className={classes.root}>
-      {rows.map((row,index)=>{
-          return (
-              <RequestItem
-                  key={row.intex} key2={index} row={row}
-
-             />)
-      })
-
-      }
-      
-      
-    </List>
-    </div>
-  );
-}
-
-const RequestItem=(props)=>{
-    const row=props.row;
-    const handleOpenTask=props.handleOpenTask;
-    const key = props.key2;
-    return(
-        <div key={"div1"+key} >
-        <Divider variant="inset" component="li" className="customProcesses" />
-        <ListItem alignItems="flex-start" className="customProcesses">
-        <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary={row.processName}
-          color ="inherit"
-          secondary={
-            <React.Fragment>
-              <Typography
-                component="span"
-                variant="body2"
-                color="textPrimary"
-              >
-                {row.processName + " #"+row.requestNumber+ " "}
-              </Typography>
-                {"Estado " + row.processInstanceStatus}
-            </React.Fragment>
-          }
-        />
-        <RequestDetailInformation row={row}/>
-      </ListItem>
-      </div>
-    )
-}
-
-
-export default RequestInformation ;
+export default RequestDetailInformation ;

@@ -23,6 +23,8 @@ import Box from '@material-ui/core/Box';
 import RequestDocuments from './requestsDocuments';
 import ProcessInstanceServices from "../../services/processInstanceServices";
 import ShowProcessModel from "../displayModel/showProcessModel";
+import RequestTaskGeneralInformation from "./requestTaskGeneralInformation";
+import TabPanel from "../../utils/tabPanel";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -56,13 +58,13 @@ const RequestTaskDetailInformation=(props) =>{
                         <ArrowBack />
                     </IconButton>
                     <Typography variant="h6" >
-                        Detalle de la tarea
+                        Información de la solicitud
                     </Typography>
                 </Toolbar>
             </AppBar>
                 <AppBar position="static">
                     <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                        <Tab label="Detalle de la tarea" {...a11yProps(0)} />
+                        <Tab label="Información General" {...a11yProps(0)} />
                         <Tab label="Historial de eventos" {...a11yProps(1)} />
                         <Tab label="Documentos" {...a11yProps(2)} />
                         <Tab label="Estado" {...a11yProps(3)} />
@@ -70,7 +72,7 @@ const RequestTaskDetailInformation=(props) =>{
                 </AppBar>
                 <TabPanel value={value} index={0}>
                     <div>
-                        Detalle de la tarea
+                        <RequestTaskGeneralInformation row={row} />
                     </div>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
@@ -101,7 +103,6 @@ const ShowModel=(props)=>{
         ProcessInstanceServices.GetDiagram({"processInstanceId":processInstanceId})
             .then((data)=>{
                 setFile(data);
-                console.log(data);
             });
     },[]);
     return (<div>
@@ -187,25 +188,5 @@ const RequestItem=(props)=>{
       </ListItem>
       </div>
     )
-}
-
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box p={3}>
-                    <Typography component={'span'} variant={'body2'}>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
 }
 export default RequestTaskDetailInformation ;
