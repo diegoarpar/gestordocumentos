@@ -163,4 +163,4 @@ const ViewDocument=(props) =>{
 }
 
 
-export default RequestDocument ;
+export default {RequestDocument, RequestList };

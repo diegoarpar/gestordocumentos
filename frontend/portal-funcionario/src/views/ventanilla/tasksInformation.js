@@ -103,7 +103,7 @@ const TaskList=(props) =>{
       
       
     </List>
-    <ShowProcessModelInstance open={openDiagram} handleClose={setOpenDiagram} file={file} fileType="png"/>
+    <ShowProcessModelInstance.ShowProcessModelInstance open={openDiagram} handleClose={setOpenDiagram} file={file} fileType="png"/>
 
     <Dialog fullScreen open={openTask} onClose={handleCloseTask} >
           <AppBar position="sticky">
@@ -172,7 +172,7 @@ const TaskItem=(props)=>{
           Tomar
         </Button>
         }
-        {(!!row.assign||row.assign==user)&&<Button key={key}
+        {((row.assign==null)||(!!row.assign||row.assign==user))&&<Button key={key}
           aria-controls="customized-menu"
           aria-haspopup="true"
           variant="contained"

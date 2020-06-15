@@ -11,6 +11,7 @@ import ParametricAdministration from "../parametricValueAdministration/parametri
 import UserAdministration from "../userAdministration/userAdministration";
 import SedeElectronicaAdministration from "../sedeElectronicaAdministration/sedeElectronicaAdministration";
 import ChangePassword from "../user/changePassword";
+import EmailInformation from "../email/email";
 function CustomizedMenus(props) {
     const [anchorEl, setAnchorEl] = useState(null);
     const history= props.history;
@@ -78,6 +79,7 @@ const SideBarItems=(props)=>{
             <UserAdministration/>
             <SedeElectronicaAdministration />
             <ChangePassword />
+            <EmailInformation></EmailInformation>
         </div>
     );
 }

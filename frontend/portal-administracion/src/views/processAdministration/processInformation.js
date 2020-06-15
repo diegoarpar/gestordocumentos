@@ -11,6 +11,7 @@ import ProcessRolesTable from "./processRolesTable";
 import ProcessInformationTab from "./processInformationTab";
 import ProcessActivityTable from "./processActivityTable";
 import ProcessVariableTable from "./processVariableTable";
+import ProcessFormConfigTable from "./processFormConfigTable";
 
   const useStyles = {
     root: {
@@ -62,6 +63,8 @@ const ProcessInformation =(props)=>{
               />}
               {modalType=="M"&&<Tab label="Variables de Proceso" {...a11yProps(3)} 
               />}
+                {modalType=="M"&&<Tab label="Config Formularios" {...a11yProps(4)}
+                />}
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
@@ -110,6 +113,18 @@ const ProcessInformation =(props)=>{
                 
           </TabPanel>
         }
+          { modalType=="M"&&<TabPanel value={value} index={4}>
+              <div>
+                  <ProcessFormConfigTable
+                      information={information}
+                      modalType={modalType}
+                      handleClick={handleClick}
+                      handleClose={handleClose}
+                  />
+              </div>
+
+          </TabPanel>
+          }
           <Button variant="contained" color="secondary"  
               onClick={(e) => {
                 handleClose();

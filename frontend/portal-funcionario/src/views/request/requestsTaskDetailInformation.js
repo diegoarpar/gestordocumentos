@@ -16,12 +16,13 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import ProcessTaskServices from '../../services/processTaskServices';
-import RequestDocument from "./requestsDocuments";
 import a11yProps from "../../utils/a11yProps";
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import RequestDocuments from './requestsDocuments';
+import ProcessInstanceServices from "../../services/processInstanceServices";
+import ShowProcessModel from "../displayModel/showProcessModel";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -79,18 +80,33 @@ const RequestTaskDetailInformation=(props) =>{
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     <div>
-                        <RequestDocuments row={row}/>
+                        <RequestDocuments.RequestList row={row} numeroRadicado={row.requestNumber}/>
                     </div>
                 </TabPanel>
                 <TabPanel value={value} index={3}>
                     <div>
-                        Estado
+                        <ShowModel processInstanceId={row.processInstanceId}></ShowModel>
                     </div>
                 </TabPanel>
         </Dialog>
 
     </div>);
 
+}
+const ShowModel=(props)=>{
+    const [file, setFile] = useState(null);
+    const [fileType, setFileType] = useState();
+    const processInstanceId = props.processInstanceId;
+    useEffect(()=>{
+        ProcessInstanceServices.GetDiagram({"processInstanceId":processInstanceId})
+            .then((data)=>{
+                setFile(data);
+                console.log(data);
+            });
+    },[]);
+    return (<div>
+        {file!=null&&<ShowProcessModel.Viewer file={file}  fileType="png"/>}
+    </div>)
 }
 const RequestList=(props) =>{
   const [rows, setRows]=useState([]);
@@ -168,9 +184,6 @@ const RequestItem=(props)=>{
             </React.Fragment>
           }
         />
-
-
-        <RequestDocument row={row}/>
       </ListItem>
       </div>
     )

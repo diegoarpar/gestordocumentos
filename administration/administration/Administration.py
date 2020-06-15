@@ -1,6 +1,5 @@
 from flask import Flask
 
-
 from flask_cors import CORS
 import sys
 
@@ -12,14 +11,16 @@ from services.process.ServicesProcessRoles import processroles
 from services.process.ServicesProcessActivity import process_activity
 from services.process.ServicesProcessVariable import process_variable
 from services.process.ServicesProcessForm import processform
-
-
+from services.process.ServicesEmail import email
+from services.process.ServicesEmailConfiguration import emailConfiguration
+from services.process.ServicesProcessFormConfig import form_config
 from services.sedeelectronica.ServicesSedeElectronicaGeneral import sedelectronica_generalconf
-
 from services.ServicesParametricValue import parametricvalue
+from threads import SendEmail
 
 from db import Db
 from utils import Utils
+
 
 if __name__ == '__main__':
     config = Utils.getConfigurations("")
@@ -39,7 +40,10 @@ if __name__ == '__main__':
     app.register_blueprint(processform)
     app.register_blueprint(process_activity)
     app.register_blueprint(process_variable)
+    app.register_blueprint(email)
+    app.register_blueprint(form_config)
+    app.register_blueprint(emailConfiguration)
     app.register_blueprint(sedelectronica_generalconf)
-
     cors = CORS(app, resources={"*": {"origins": "*"}})
+    SendEmail.initThread("gestorbancoa",app)
     app.run(host=appHost,port=appPort,debug=appDebug)

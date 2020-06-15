@@ -44,4 +44,4 @@ const Viewer =(props)=>{
     );
 }
 
-export default ShowProcessModelInstance;
+export default {ShowProcessModelInstance, Viewer};
