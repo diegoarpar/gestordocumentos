@@ -45,5 +45,4 @@ if __name__ == '__main__':
     app.register_blueprint(emailConfiguration)
     app.register_blueprint(sedelectronica_generalconf)
     cors = CORS(app, resources={"*": {"origins": "*"}})
-    SendEmail.initThread("gestorbancoa",app)
     app.run(host=appHost,port=appPort,debug=appDebug)
