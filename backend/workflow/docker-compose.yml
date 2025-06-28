@@ -1,0 +1,19 @@
+version: '2'
+services:
+  # activiti tomcat
+  activiti-app:
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    image: activiti-tomcat:06052020_1
+    ports:
+      - "0.0.0.0:8888:8080"
+    networks:
+      - workflowmanager_activiti-network
+      - apache-activiti-network
+
+networks:
+  apache-activiti-network:
+    driver: bridge
+  workflowmanager_activiti-network:
+    external: true

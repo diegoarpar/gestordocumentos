@@ -1,0 +1,68 @@
+version: '2'
+services:
+  #wokflowmanager
+  wokflow-manager:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: worfklowmanager:15052020_1949
+    ports:
+      - "0.0.0.0:2001:2001"
+    depends_on:
+      - activiti-mysql
+    volumes:
+      - ./config:/usr/local/lib/config
+    networks:
+      - activiti-network
+      - kong_kong-network
+  # activiti phpmyadmin
+  activiti-phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      MYSQL_ROOT_PASSWORD: activiti
+      PMA_HOST: activiti-mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 0
+    ports:
+      - "0.0.0.0:82:80"
+    depends_on:
+      - activiti-mysql
+    networks:
+      - activiti-network
+
+  # activiti database
+  activiti-mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: activiti
+      MYSQL_USER: activiti
+      MYSQL_PASSWORD: activiti
+      MYSQL_DATABASE: activiti6ui
+    volumes:
+      - ./dba:/var/lib/mysql
+    ports:
+      - "0.0.0.0:3306:3306"
+    networks:
+      - activiti-network
+  # authentication database
+  activiti-mongo:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "mongoadmin"
+      MONGO_INITDB_ROOT_PASSWORD: "secret"
+      MONGO_INITDB_DATABASE: "admin"
+      MONGO_NON_ROOT_USERNAME: "gestor"
+      MONGO_NON_ROOT_PASSWORD: "secret"
+      DATA_DIR: /data/db
+    volumes:
+      - ./db:/data/db
+    ports:
+      - "0.0.0.0:27020:27017"
+    networks:
+      - activiti-network
+
+networks:
+  activiti-network:
+    driver: bridge
+  kong_kong-network:
+    external: true
