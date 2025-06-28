@@ -1,5 +1,4 @@
 rootProject.name = 'backend'
-include('administration')
 include('authentication')
 include('filesystem')
 include('notification')
@@ -7,4 +6,6 @@ include('notification:email')
 include('utilities')
 include('signature')
 include('workflow')
-include('workflow:workflowmanager')
+include('workflow:workflow-manager')
+include('workflow:workflow-administration')
+include('portal-administration')
