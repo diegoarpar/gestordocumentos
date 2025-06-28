@@ -3,7 +3,6 @@
  *
  * This generated file contains a sample Java application project to get you started.
  * For more details on building Java & JVM projects, please refer to https://docs.gradle.org/8.13/userguide/building_java_projects.html in the Gradle documentation.
- * This project uses @Incubating APIs which are subject to change.
  */
 
 plugins {
@@ -17,16 +16,6 @@ repositories {
 }
 
 dependencies {
-}
-
-testing {
-    suites {
-        // Configure the built-in test suite
-        test {
-            // Use JUnit Jupiter test framework
-            useJUnitJupiter('5.11.3')
-        }
-    }
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
