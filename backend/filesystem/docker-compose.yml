@@ -1,0 +1,38 @@
+version: '2'
+services:
+  #Servicio de Base de Datos
+  mongoService:
+    image: mongo:latest
+    ports:
+      - "0.0.0.0:27024:27017"
+    networks:
+      - backEndNet
+    volumes:
+      - ./dbData:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "mongoadmin"
+      MONGO_INITDB_ROOT_PASSWORD: "secret"
+      MONGO_INITDB_DATABASE: "admin"
+      #MONGO_NON_ROOT_USERNAME: "gestor"
+      #MONGO_NON_ROOT_PASSWORD: "secret"
+      DATA_DIR: /data/db
+
+  flaskService:
+    build:
+        context: ./
+        dockerfile: Dockerfile
+    image: filemanagereackend:0.2
+    volumes:
+      - ./config:/usr/src/app/config
+    ports:
+      - "0.0.0.0:5002:5000"
+    networks:
+      - backEndNet
+    depends_on:
+      - mongoService
+
+
+networks:
+  backEndNet:
+    driver: bridge
+    external: false
