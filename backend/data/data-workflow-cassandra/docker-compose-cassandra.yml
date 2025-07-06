@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra-container
+    ports:
+      - "9042:9042" # CQL native protocol port
+    environment:
+      - CASSANDRA_USER=casandra
+      - CASSANDRA_PASSWORD=casandra
+    volumes:
+      - cassandra_data:/var/lib/cassandra # Persistent volume for data
+volumes:
+  cassandra_data:
+    driver: local

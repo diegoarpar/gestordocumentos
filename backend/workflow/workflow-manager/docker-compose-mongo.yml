@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  activiti-mongo:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "mongo"
+      MONGO_INITDB_ROOT_PASSWORD: "mongo"
+      MONGO_INITDB_DATABASE: "admin"
+      MONGO_NON_ROOT_USERNAME: "workflow"
+      MONGO_NON_ROOT_PASSWORD: "workflow"
+      DATA_DIR: /data/db
+    volumes:
+      - db_data:/data/db
+    ports:
+      - "0.0.0.0:27020:27017"
+
+
+volumes:
+  db_data:
+    driver: local

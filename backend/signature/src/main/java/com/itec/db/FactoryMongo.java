@@ -6,7 +6,7 @@
 package com.itec.db;
 
 import com.itec.configuration.ConfigurationApp;
-import com.itec.pojo.*;
+import com.itec.portaladministration.pojo.*;
 import com.itec.util.UTILS;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -17,7 +17,6 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.gridfs.GridFSDBFile;
 import org.bson.types.ObjectId;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

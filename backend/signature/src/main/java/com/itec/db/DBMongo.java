@@ -5,7 +5,7 @@
  */
 package com.itec.db;
 
-import com.itec.pojo.HashMapKeyValue;
+import com.itec.portaladministration.pojo.HashMapKeyValue;
 import com.mongodb.*;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
@@ -13,7 +13,6 @@ import com.mongodb.gridfs.GridFSInputFile;
 import com.mongodb.util.JSON;
 import org.bson.types.ObjectId;
 
-import java.io.InputStream;
 import java.util.*;
 
 /**
