@@ -1,4 +1,4 @@
-package com.itec.services;
+package com.itec.workflowmanager.services;
 
 import com.itec.configuration.ConfigurationApp;
 import com.itec.db.FactoryMongo;

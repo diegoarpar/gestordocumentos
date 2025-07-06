@@ -1,9 +1,6 @@
 .idea
-file
-target
-target/*
-db
-dba
+/venv/
+data/db
 # Ignore Gradle project-specific cache directory
 .gradle
 
