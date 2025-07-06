@@ -2,6 +2,7 @@ rootProject.name = "backend"
 include(":authentication")
 include(":data")
 include(":data:data-workflow-cassandra")
+include(":data:data-workflow-mongo")
 include(":filesystem")
 include(":notification")
 include(":notification:notification-email")
