@@ -1,6 +1,8 @@
 package com.itec.workflowmanager.controller;
 
 import com.itec.utilities.BasicObjectUtil;
+import com.itec.utilities.service.BaseService;
+import com.itec.workflowmanager.model.ProcessDefinitionServiceRequest;
 import com.itec.workflowmanager.service.ProcessDefinitionService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
@@ -17,7 +19,7 @@ import java.io.IOException;
 @RequestMapping("/workflowmanager/processDefinition/")
 public class ProcessDefinitionController {
 
-    ProcessDefinitionService service;
+    BaseService service;
     public ProcessDefinitionController(ProcessDefinitionService processDefinitionService) {
         this.service = processDefinitionService;
     }
@@ -30,7 +32,11 @@ public class ProcessDefinitionController {
 
     ) throws IOException {
         String tenant = BasicObjectUtil.getTenant(req);
-        service.deployProcess(tenant, file.getInputStream(), file.getOriginalFilename());
+        var processDefinitionServiceRequest = new ProcessDefinitionServiceRequest();
+        processDefinitionServiceRequest.setTenant(tenant);
+        processDefinitionServiceRequest.setOriginalName(file.getOriginalFilename());
+        processDefinitionServiceRequest.setInputStream(file.getInputStream());
+        service.execute(processDefinitionServiceRequest);
         return ResponseEntity.ok().build();
     }
 

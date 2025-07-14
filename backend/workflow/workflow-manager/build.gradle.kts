@@ -20,8 +20,8 @@ dependencies {
     implementation ("org.postgresql:postgresql:42.7.3")
     implementation ("com.google.code.gson:gson:2.13.1")
     implementation ("org.springframework.boot:spring-boot-starter-data-cassandra")
-    implementation ("org.projectlombok:lombok:1.18.30") // Use the latest stable version
-    implementation ("org.projectlombok:lombok:1.18.30")
+    compileOnly ("org.projectlombok:lombok:1.18.30") // Use the latest stable version
+    annotationProcessor  ("org.projectlombok:lombok:1.18.30")
     implementation (project(":utilities"))
     implementation (project(":data:data-workflow-cassandra"))
 }

@@ -1,7 +1,12 @@
 package com.itec.workflowmanager.controller;
 
 import com.itec.utilities.BasicObjectUtil;
-import com.itec.workflowmanager.service.ProcessInstanceService;
+import com.itec.utilities.model.BaseServiceRequest;
+import com.itec.utilities.service.BaseService;
+import com.itec.workflowmanager.model.ProcessDefinitionServiceRequest;
+import com.itec.workflowmanager.service.ProcessInitInstanceService;
+import com.itec.workflowmanager.service.ProcessInstanceDiagramService;
+import com.itec.workflowmanager.service.ProcessServiceName;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,16 +23,20 @@ import java.util.Map;
 @RequestMapping("/workflowmanager/processInstance/")
 public class ProcessInstanceController {
 
-    ProcessInstanceService service;
-    public ProcessInstanceController(ProcessInstanceService processInstanceService) {
-        service = processInstanceService;
+    private final Map<String, BaseService> baseServices;
+    public ProcessInstanceController(Map<String, BaseService> baseServices) {
+        this.baseServices = baseServices;
     }
 
     @PostMapping(value = "/initProcessInstance")
     public ResponseEntity<Object> initProcessInstance(HttpServletRequest req, Map<String, String> processInformation,
                                                Map<String, String> instanceInformation) throws IOException {
         String tenant = BasicObjectUtil.getTenant(req);
-        service.initProcessInstance(tenant, processInformation, instanceInformation);
+        var processDefinitionServiceRequest = new ProcessDefinitionServiceRequest();
+        processDefinitionServiceRequest.setTenant(tenant);
+        processDefinitionServiceRequest.setProcessInformation(processInformation);
+        processDefinitionServiceRequest.setInstanceInformation(instanceInformation);
+        baseServices.get(ProcessServiceName.INIT_INSTANCE).execute(processDefinitionServiceRequest);
         return ResponseEntity.ok().build();
     }
 
@@ -35,8 +44,11 @@ public class ProcessInstanceController {
     @GetMapping(value = "/diagram/{processInstanceId}")
     public ResponseEntity<Object> getProcessInstanceDiagram(HttpServletRequest req, @PathVariable String processInstanceId) throws IOException {
         String tenant= BasicObjectUtil.getTenant(req);
-        String image = service.getProcessInstanceDiagram(tenant, processInstanceId);
-        return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(image);
+        var processDefinitionServiceRequest = new ProcessDefinitionServiceRequest();
+        processDefinitionServiceRequest.setInstanceId(processInstanceId);
+        processDefinitionServiceRequest.setTenant(tenant);
+        var diagram = (ProcessInstanceDiagramService) baseServices.get(ProcessServiceName.DIAGRAM);
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(diagram.execute(processDefinitionServiceRequest).getContent());
     }
 
 
