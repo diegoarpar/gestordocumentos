@@ -12,9 +12,7 @@ services:
     volumes:
       - db_data:/data/db
     ports:
-      - "0.0.0.0:27020:27017"
-
-
+      - "27020:27017"
 volumes:
   db_data:
     driver: local
