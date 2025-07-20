@@ -1,12 +1,12 @@
 package com.itec.workflowadministration.service.activity;
 
 import com.itec.utilities.service.BaseService;
-import com.itec.workflowadministration.model.ActivityRequestModel;
-import com.itec.workflowadministration.model.ActivityResponseModel;
+import com.itec.workflowadministration.model.request.ActivityRequestModel;
+import com.itec.workflowadministration.model.response.ActivityResponseModel;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CreateActivityService implements BaseService<ActivityRequestModel, ActivityResponseModel> {
+public class DeleteActivityService implements BaseService<ActivityRequestModel, ActivityResponseModel> {
 
 
     @Override

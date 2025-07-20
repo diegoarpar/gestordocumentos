@@ -1,7 +1,7 @@
-package com.itec.workflowadministration.model;
+package com.itec.workflowadministration.model.response;
 
 import com.itec.utilities.model.BaseServiceResponse;
 
-public class FormResponseModel implements BaseServiceResponse {
+public class RolesResponseModel implements BaseServiceResponse {
 
 }

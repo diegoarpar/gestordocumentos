@@ -1,12 +1,12 @@
 package com.itec.workflowadministration.service.form;
 
 import com.itec.utilities.service.BaseService;
-import com.itec.workflowadministration.model.FormRequestModel;
-import com.itec.workflowadministration.model.FormResponseModel;
+import com.itec.workflowadministration.model.request.FormRequestModel;
+import com.itec.workflowadministration.model.response.FormResponseModel;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CreateFormService implements BaseService<FormRequestModel, FormResponseModel> {
+public class ReadFormService implements BaseService<FormRequestModel, FormResponseModel> {
 
 
     @Override

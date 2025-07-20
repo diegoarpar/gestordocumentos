@@ -1,4 +1,4 @@
-package com.itec.workflowadministration.controller;
+package com.itec.workflowadministration.controller.form;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;

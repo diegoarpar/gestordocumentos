@@ -15,7 +15,6 @@ dependencies {
     implementation ("org.projectlombok:lombok:1.18.30") // Use the latest stable version
     implementation ("org.projectlombok:lombok:1.18.30")
     implementation ("org.springframework.boot:spring-boot-starter-web")
-    implementation ("org.mongodb:mongodb-driver-sync")
 }
 
 java {
