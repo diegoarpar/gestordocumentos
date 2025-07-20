@@ -1,8 +1,11 @@
-package com.itec.workflowadministration.model;
+package com.itec.workflowadministration.model.request;
 
 import com.itec.utilities.model.BaseServiceRequest;
+import lombok.Data;
 
+@Data
 public class ProcessRequestModel implements BaseServiceRequest {
+
     @Override
     public String getTenant() {
         return "";
@@ -12,4 +15,5 @@ public class ProcessRequestModel implements BaseServiceRequest {
     public void setTenant(String tenant) {
 
     }
+    private String name;
 }

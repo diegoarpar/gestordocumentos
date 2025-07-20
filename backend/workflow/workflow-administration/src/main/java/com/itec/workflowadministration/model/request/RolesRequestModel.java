@@ -1,8 +1,8 @@
-package com.itec.workflowadministration.model;
+package com.itec.workflowadministration.model.request;
 
 import com.itec.utilities.model.BaseServiceRequest;
 
-public class ProcessRequestModel implements BaseServiceRequest {
+public class RolesRequestModel implements BaseServiceRequest {
     @Override
     public String getTenant() {
         return "";

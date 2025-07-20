@@ -1,4 +1,4 @@
-package com.itec.workflowadministration.model;
+package com.itec.workflowadministration.model.response;
 
 import com.itec.utilities.model.BaseServiceResponse;
 
