@@ -1,8 +1,6 @@
-import { container } from "assets/jss/material-kit-react.js";
 
 const signupPageStyle = {
   container: {
-    ...container,
     zIndex: "2",
     position: "relative",
     paddingTop: "20vh",

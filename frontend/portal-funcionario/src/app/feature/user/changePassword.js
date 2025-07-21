@@ -21,13 +21,13 @@ import ArrowBack from '@material-ui/icons/ArrowBack';
 import SHA256 from 'js-sha256';
 
 import { makeStyles } from "@material-ui/core/styles";
-import styles from "../../assets/jss/material-kit-react/views/loginPage.js";
+import styles from "../../src/assets/jss/material-kit-react/views/loginPage.js";
 
 import CardHeader from "components/Card/CardHeader.js";
 import CardFooter from "components/Card/CardFooter.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import CardBody from "components/Card/CardBody.js";
-import SessionCookie from '../../utils/session';
+import SessionCookie from '../../src/utils/session.js';
 
 import Slide from '@material-ui/core/Slide';
 import UsersServices from '../../services/userServices';

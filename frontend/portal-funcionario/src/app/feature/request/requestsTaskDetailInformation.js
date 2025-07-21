@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import SessionCookies from '../../utils/session';
+import SessionCookies from '../../src/utils/session';
 import UserServices from '../../services/userServices';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -15,13 +15,16 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBack from '@material-ui/icons/ArrowBack';
-import ProcessInstanceServices from '../../services/processInstanceServices';
-import RequestTaskDetailInformation from "./requestsTaskDetailInformation";
-import a11yProps from "../../utils/a11yProps";
+import ProcessTaskServices from '../../services/processTaskServices';
+import a11yProps from "../../src/utils/a11yProps";
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
-
+import RequestDocuments from './requestsDocuments';
+import ProcessInstanceServices from "../../services/processInstanceServices";
+import ShowProcessModel from "../displayModel/showProcessModel";
+import RequestTaskGeneralInformation from "./requestTaskGeneralInformation";
+import TabPanel from "../../src/utils/tabPanel";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -33,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const RequestInformation=(props) =>{
+const RequestTaskDetailInformation=(props) =>{
+    const row=props.row;
     const [open, setOpen]= useState(false);
     const [value, setValue] = useState(0);
     const handleChange = (event, newValue) => {
@@ -44,7 +48,7 @@ const RequestInformation=(props) =>{
                 color="inherit"
                 onClick={()=>setOpen(true)}
         >
-            Mi carpeta
+            Histórico
         </Button>
 
         <Dialog fullScreen open={open} >
@@ -54,19 +58,36 @@ const RequestInformation=(props) =>{
                         <ArrowBack />
                     </IconButton>
                     <Typography variant="h6" >
-                        Mi Carpeta
+                        Información de la solicitud
                     </Typography>
                 </Toolbar>
             </AppBar>
                 <AppBar position="static">
                     <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                        <Tab label="Búsqueda" {...a11yProps(0)} />
-                        <Tab label="Histórico" {...a11yProps(1)} />
+                        <Tab label="Información General" {...a11yProps(0)} />
+                        <Tab label="Historial de eventos" {...a11yProps(1)} />
+                        <Tab label="Documentos" {...a11yProps(2)} />
+                        <Tab label="Estado" {...a11yProps(3)} />
                     </Tabs>
                 </AppBar>
+                <TabPanel value={value} index={0}>
+                    <div>
+                        <RequestTaskGeneralInformation row={row} />
+                    </div>
+                </TabPanel>
                 <TabPanel value={value} index={1}>
                     <div>
-                        <RequestList/>
+                        <RequestList row={row}/>
+                    </div>
+                </TabPanel>
+                <TabPanel value={value} index={2}>
+                    <div>
+                        <RequestDocuments.RequestList row={row} numeroRadicado={row.requestNumber}/>
+                    </div>
+                </TabPanel>
+                <TabPanel value={value} index={3}>
+                    <div>
+                        <ShowModel processInstanceId={row.processInstanceId}></ShowModel>
                     </div>
                 </TabPanel>
         </Dialog>
@@ -74,9 +95,24 @@ const RequestInformation=(props) =>{
     </div>);
 
 }
+const ShowModel=(props)=>{
+    const [file, setFile] = useState(null);
+    const [fileType, setFileType] = useState();
+    const processInstanceId = props.processInstanceId;
+    useEffect(()=>{
+        ProcessInstanceServices.GetDiagram({"processInstanceId":processInstanceId})
+            .then((data)=>{
+                setFile(data);
+            });
+    },[]);
+    return (<div>
+        {file!=null&&<ShowProcessModel.Viewer file={file}  fileType="png"/>}
+    </div>)
+}
 const RequestList=(props) =>{
   const [rows, setRows]=useState([]);
   const cont = props.contTramites;
+  const row= props.row;
   const setCont=props.handleContTramites;
   const [openTask, setOpenTask]=useState(false);
   const [openDiagram, setOpenDiagram]=useState(false);
@@ -88,7 +124,7 @@ const RequestList=(props) =>{
     
   }
   useEffect(()=>{
-    ProcessInstanceServices.getHistory({"requesterF.user":SessionCookies.GetSessionCookie().authenticated_userid})
+      ProcessTaskServices.getHistory({"processInstanceId":row.processInstanceId})
         .then((data)=>{
             setRows(data);
         })
@@ -128,7 +164,7 @@ const RequestItem=(props)=>{
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>
         <ListItemText
-          primary={row.processName}
+          primary={!!row.processName?row.processName:"" + !!row.taskDescription?row.taskDescription:""}
           color ="inherit"
           secondary={
             <React.Fragment>
@@ -137,40 +173,20 @@ const RequestItem=(props)=>{
                 variant="body2"
                 color="textPrimary"
               >
-                {row.processName
-
+                {
                 }
               </Typography>
-                { " #"+row.requestNumber+ " "
-                 +" Estado "+ row.processInstanceStatus}
+                {row.processName}
+                {!!row.requestNumber?" #"+row.requestNumber:""}
+                {!!row.processInstanceStatus?" Estado "+row.processInstanceStatus:"" }
+                {!!row.taskDescription?" Actividad "+row.taskDescription:""}
+                {!!row.action?" Acción "+row.action:""}
+
             </React.Fragment>
           }
         />
-
-
-        <RequestTaskDetailInformation row={row}/>
       </ListItem>
       </div>
     )
 }
-
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box p={3}>
-                    <Typography component={'span'} variant={'body2'}>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
-export default RequestInformation ;
+export default RequestTaskDetailInformation ;

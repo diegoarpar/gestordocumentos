@@ -1,16 +1,9 @@
-import SessionCookie from '../utils/session';
 import axios from "axios";
-import URL_Services from '../config/url.config';
-
-var hostServices=URL_Services.URL_Autenticacion();
-
 function  UsersServices  () {
-    
    
 }
 async function  LogIn(data){
     var headers={};
-    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant
     return axios.post(hostServices+"/authentication/validateuser/",data,{headers:headers})
     .then(data =>{
         return data.data

@@ -6,20 +6,20 @@ import ProcessTaskInformationServices from '../../services/processTaskInformatio
 import ProcessVariableServices from '../../services/processVariableServices';
 import ProcessFormConfigServices from '../../services/processFormConfigServices';
 import Button from '@material-ui/core/Button';
-import SessionCookies from '../../utils/session';
+import SessionCookies from '../../src/utils/session';
 import EmailServices from '../../services/emailServices';
 import UserServices from '../../services/userServices';
 import ProcessInstanceServices from '../../services/processInstanceServices';
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import a11yProps from "../../utils/a11yProps";
+import a11yProps from "../../src/utils/a11yProps";
 import RequestDocuments from "../request/requestsDocuments";
 import Dialog from "@material-ui/core/Dialog";
 
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import TabPanel from '../../utils/tabPanel';
+import TabPanel from '../../src/utils/tabPanel';
 import ShowProcessModel from '../displayModel/showProcessModel';
 import RequestTaskGeneralInformation from '../request/requestTaskGeneralInformation';
 function TaskForm(props) {

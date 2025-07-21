@@ -5,8 +5,8 @@ import ProcessInstanceServices from '../../services/processInstanceServices';
 import FileManagementServices from'../../services/fileManagementServices';
 import UserServices from '../../services/userServices';
 import Button from '@material-ui/core/Button';
-import SessionCookie from '../../utils/session';
-import FileUtils from '../../utils/fileUtils';
+import SessionCookie from '../../src/utils/session';
+import FileUtils from '../../src/utils/fileUtils';
 import UserFinder from "../user/userFinder";
 import UserDetailDialog from "../user/userDetailDialog";
 
