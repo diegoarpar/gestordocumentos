@@ -1,3 +1,4 @@
+'use client'
 import React,{ useState,useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import TaskInformation from './tasksInformation'
@@ -8,7 +9,7 @@ import Menu from '../menus/menu';
 import MenuIcon from "@material-ui/icons/MoreVert";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
-import SessionCookie from "../../utils/session";
+import SessionCookie from "../../src/utils/session";
 import {createBrowserHistory} from "history";
 export const history = createBrowserHistory();
 

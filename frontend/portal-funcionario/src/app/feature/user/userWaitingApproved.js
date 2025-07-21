@@ -21,7 +21,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 
 import UsersServices from '../../services/userServices'
-import UserInformation from '../user/userInformation';
+import UserInformation from './userInformation';
 
 
 function UserWaitingApprovedTab(props) {

@@ -8,7 +8,7 @@ import ArrowBack from '@material-ui/icons/ArrowBack';
 import Typography from '@material-ui/core/Typography';
 import UserInformation from './userInformation';
 import UserServices from '../../services/userServices';
-import SessionCookie from '../../utils/session';
+import SessionCookie from '../../src/utils/session';
 import SedeElectronciaGeneralServices from '../../services/sedeElectronicaGeneralServices';
 import SHA256 from 'js-sha256';
 

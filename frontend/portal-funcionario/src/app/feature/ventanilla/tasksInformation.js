@@ -8,7 +8,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import ProcessTaskServices from '../../services/processTaskServices';
-import SessionCookies from '../../utils/session';
+import SessionCookies from '../../src/utils/session';
 import UserServices from '../../services/userServices';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';

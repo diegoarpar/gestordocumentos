@@ -1,32 +1,8 @@
+'use client'
 import React,{ useState } from 'react';
 
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputAdornment from "@material-ui/core/InputAdornment";
-import People from "@material-ui/icons/People";
-import Password from "@material-ui/icons/VpnKey";
-import ArrowBack from '@material-ui/icons/ArrowBack';
-
-import SHA256 from 'js-sha256';
-
-import { makeStyles } from "@material-ui/core/styles";
-import styles from "../../assets/jss/material-kit-react/views/loginPage.js";
-
-import CardFooter from "components/Card/CardFooter.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import CardBody from "components/Card/CardBody.js";
-
-
-import Slide from '@material-ui/core/Slide';
-import UsersServices from '../../services/userServices'
-
-const useStyles = makeStyles(styles);
-
-
+import Link from "next/link.js";
+import UsersServices from '../../api/userServices'
 
 function LoginForm(props) {
   const onClickProps= props.onClick;
@@ -45,8 +21,8 @@ function LoginForm(props) {
         <form className="LoginForm" >
 
                   <p className={classes.divider}>Ingrese su información</p>
-                  <CardBody>
-                    <CustomInput
+                  <div>
+                    <input
                       labelText="Nombre de Usuario..."
                       id="first"
                       formControlProps={{
@@ -55,15 +31,10 @@ function LoginForm(props) {
                       inputProps={{
                         type: "text",
                         onChange: (e) => {setUserLogin({user:e.target.value, password:userLogin.password})},
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <People className={classes.inputIconsColor} />
-                          </InputAdornment>
-                        )
                       }
                     }
                     />
-                    <CustomInput
+                    <input
                       labelText="Password"
                       id="pass"
                       formControlProps={{
@@ -71,29 +42,25 @@ function LoginForm(props) {
                       }}
                       inputProps={{
                         type: "password",
-                        onChange: (e) => {setUserLogin({user:userLogin.user,password:SHA256(e.target.value)})},
+                        onChange: (e) => {setUserLogin({user:userLogin.user,password:e.target.value})},
                         endAdornment: (
-                          <InputAdornment position="end">
+                          <input position="end">
                             <Password className={classes.inputIconsColor} />
-                          </InputAdornment>
+                          </input>
                         ),
                         autoComplete: "off"
                       }}
                     />
-                  </CardBody>
-                  <CardFooter className={classes.cardFooter}>
-                    <Button  color="primary"  onClick={(e) => {onClick(e)}}>
+                  </div>
+                  <div className={classes.cardFooter}>
+                    <button  color="primary"  onClick={(e) => {onClick(e)}}>
                       Iniciar Sesión
-                    </Button>
-                  </CardFooter>
+                    </button>
+                  </div>
         </form>
     );
   }
 
-  const Transition = React.forwardRef(function Transition(props, ref) {
-    
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
 
   function Login(props) {
     const onClick= props.onClick;
@@ -109,9 +76,9 @@ function LoginForm(props) {
   
     return (
       <div>
-        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        <button variant="outlined" color="primary" onClick={handleClickOpen}>
           Iniciar sesión
-        </Button>
+        </button>
         <Dialog fullScreen open={open} onClose={handleClose} >
           <AppBar position="sticky">
             <Toolbar>

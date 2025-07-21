@@ -9,7 +9,7 @@ import UserServices from '../../services/userServices';
 import ProcessServies from '../../services/processServices';
 import ProcessRolesServies from '../../services/processRolesServices';
 import ProcessForm from '../ventanilla/processForm';
-import SessionCookies from '../../utils/session';
+import SessionCookies from '../../src/utils/session';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar'

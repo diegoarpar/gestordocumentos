@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import SessionCookies from '../../utils/session';
+import SessionCookies from '../../src/utils/session';
 import UserServices from '../../services/userServices';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -16,8 +16,11 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import ProcessInstanceServices from '../../services/processInstanceServices';
-import FileManagementServices from '../../services/fileManagementServices';
-import ShowFile from "./showFile";
+import RequestTaskDetailInformation from "./requestsTaskDetailInformation";
+import a11yProps from "../../src/utils/a11yProps";
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,16 +33,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const RequestDocument=(props) =>{
+const RequestInformation=(props) =>{
     const [open, setOpen]= useState(false);
-    const row=props.row;
-    const numeroRadicado=props.row.requestNumber;
+    const [value, setValue] = useState(0);
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
     return (<div>
         <Button variant="contained"
                 color="inherit"
                 onClick={()=>setOpen(true)}
         >
-            Ver mis documentos
+            Mi carpeta
         </Button>
 
         <Dialog fullScreen open={open} >
@@ -49,12 +54,21 @@ const RequestDocument=(props) =>{
                         <ArrowBack />
                     </IconButton>
                     <Typography variant="h6" >
-                        Documentos
+                        Mi Carpeta
                     </Typography>
                 </Toolbar>
-                <RequestList row={row} numeroRadicado={numeroRadicado}/>
             </AppBar>
-
+                <AppBar position="static">
+                    <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+                        <Tab label="Búsqueda" {...a11yProps(0)} />
+                        <Tab label="Histórico" {...a11yProps(1)} />
+                    </Tabs>
+                </AppBar>
+                <TabPanel value={value} index={1}>
+                    <div>
+                        <RequestList/>
+                    </div>
+                </TabPanel>
         </Dialog>
 
     </div>);
@@ -62,8 +76,6 @@ const RequestDocument=(props) =>{
 }
 const RequestList=(props) =>{
   const [rows, setRows]=useState([]);
-  const rowInfo = props.row;
-  const numeroRadicado = props.numeroRadicado;
   const cont = props.contTramites;
   const setCont=props.handleContTramites;
   const [openTask, setOpenTask]=useState(false);
@@ -73,10 +85,10 @@ const RequestList=(props) =>{
   const [rowOpen, setRowOpen]=useState();
   const handleCloseTask=()=>{
     setOpenTask(false);
-
+    
   }
   useEffect(()=>{
-      FileManagementServices.getCarpetaDocumental({"numeroRadicado":rowInfo.requestNumber})
+    ProcessInstanceServices.getHistory({"requesterF.user":SessionCookies.GetSessionCookie().authenticated_userid})
         .then((data)=>{
             setRows(data);
         })
@@ -92,7 +104,7 @@ const RequestList=(props) =>{
           return (
               <RequestItem
                   key={row.intex} key2={index} row={row}
-                  numeroRadicado={numeroRadicado}
+
              />)
       })
 
@@ -106,8 +118,6 @@ const RequestList=(props) =>{
 
 const RequestItem=(props)=>{
     const row=props.row;
-    const [open, setOpen] = useState(false);
-    const numeroRadicado=props.numeroRadicado;
     const handleOpenTask=props.handleOpenTask;
     const key = props.key2;
     return(
@@ -118,7 +128,7 @@ const RequestItem=(props)=>{
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>
         <ListItemText
-          primary={row.nombre}
+          primary={row.processName}
           color ="inherit"
           secondary={
             <React.Fragment>
@@ -127,40 +137,40 @@ const RequestItem=(props)=>{
                 variant="body2"
                 color="textPrimary"
               >
-                {row.nombre + " "+row.tipo+ " "}
+                {row.processName
+
+                }
               </Typography>
-                {"Estado"}
+                { " #"+row.requestNumber+ " "
+                 +" Estado "+ row.processInstanceStatus}
             </React.Fragment>
           }
         />
 
 
-        {<Button key={"E"+key}
-          aria-controls="customized-menu"
-          aria-haspopup="true"
-          variant="contained"
-          color="primary"
-          onClick={(e)=>setOpen(true)}
-        >
-          Ver documento
-        </Button>
-        }
-        <ViewDocument row={row} open={open} setOpen={setOpen} numeroRadicado={numeroRadicado}></ViewDocument>
+        <RequestTaskDetailInformation row={row}/>
       </ListItem>
       </div>
     )
 }
 
-const ViewDocument=(props) =>{
-    const row=props.row;
-    const numeroRadicado=props.numeroRadicado;
-    const open= props.open;
-    const setOpen = props.setOpen;
-    return (<div>
-        <ShowFile open={open} setOpen={setOpen} row={row} numeroRadicado={numeroRadicado}/>
-    </div>);
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
 
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box p={3}>
+                    <Typography component={'span'} variant={'body2'}>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
 }
-
-
-export default {RequestDocument, RequestList };
+export default RequestInformation ;
