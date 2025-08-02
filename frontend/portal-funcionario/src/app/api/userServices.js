@@ -4,10 +4,7 @@ function  UsersServices  () {
 }
 async function  LogIn(data){
     var headers={};
-    return axios.post(hostServices+"/authentication/validateuser/",data,{headers:headers})
-    .then(data =>{
-        return data.data
-    })
+    return await fetch("/api/authentication/validateuser/",data,{headers:headers});
 }
 async function  GetData(){
     var headers={};

@@ -1,7 +1,5 @@
 package com.itec.workflowadministration.service.activity;
 
-import com.data.workflow.mongo.model.ProcessModel;
-import com.data.workflow.mongo.service.ProcessServiceRepository;
 import com.itec.utilities.service.BaseService;
 import com.itec.workflowadministration.model.request.ActivityRequestModel;
 import com.itec.workflowadministration.model.response.ActivityResponseModel;
