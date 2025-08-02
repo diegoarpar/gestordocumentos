@@ -2,16 +2,27 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import { FormEvent } from 'react'
+import Login from "@/app/api/userServices";
 
 export default function Page() {
   const router = useRouter();
   const pathname = usePathname();
-
+  const onSubmit = async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+ 
+    const formData = new FormData(event.currentTarget)
+    const response = await Login.LogIn(formData);
+ 
+    // Handle response if necessary
+    const data = await response.json()
+    // ...
+  }
   const close = () => router.push("../../");
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <form
+      <form onSubmit={onSubmit}
         action="/search"
         className="bg-white p-6 rounded-2xl shadow-md w-full max-w-md space-y-6"
       >

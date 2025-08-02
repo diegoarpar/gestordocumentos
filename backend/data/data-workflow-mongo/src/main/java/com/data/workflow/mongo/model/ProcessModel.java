@@ -9,7 +9,7 @@ import java.util.List;
 
 @Document(value = "process")
 public record ProcessModel(
-    @Id String id,
+    @Id Long id,
     String name,
     @Indexed(expireAfter = "1s")
     LocalDateTime expireDate,
