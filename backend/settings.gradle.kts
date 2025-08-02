@@ -1,5 +1,5 @@
 rootProject.name = "backend"
-include(":authentication")
+include(":api:authentication")
 include(":data")
 include(":data:data-workflow-cassandra")
 include(":data:data-workflow-mongo")

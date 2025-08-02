@@ -11,8 +11,11 @@ export default function Page() {
   const onSubmit = async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
  
-    const formData = new FormData(event.currentTarget)
-    const response = await Login.LogIn(formData);
+    const formData = new FormData(event.currentTarget);
+    const dataInfo = {data:formData.get("email") + ":" + formData.get("password")};
+    const dataRaw = JSON.stringify(dataInfo);
+    console.log(dataRaw);
+    const response = await Login.LogIn(dataRaw);
  
     // Handle response if necessary
     const data = await response.json()

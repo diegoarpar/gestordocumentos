@@ -4,7 +4,10 @@ function  UsersServices  () {
 }
 async function  LogIn(data){
     var headers={};
-    return await fetch("/api/authentication/validateuser/",data,{headers:headers});
+    return await fetch("/api/authentication/login",{
+        method: 'GET',
+        headers: {Authorization: [data]}
+    });
 }
 async function  GetData(){
     var headers={};
