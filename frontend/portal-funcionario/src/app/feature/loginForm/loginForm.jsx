@@ -1,5 +1,5 @@
 'use client'
-import React,{ useState } from 'react';
+import React,{ useState, useEffect } from 'react';
 
 import Link from "next/link.js";
 import UsersServices from '../../api/userServices'
@@ -10,8 +10,6 @@ function LoginForm(props) {
   const onClick= function o (event){
     UsersServices.LogIn(userLogin )
         .then(data => {setPost(data); onClickProps(data);});
-        
-    
   };
 
   const [userLogin,setUserLogin]=useState({});

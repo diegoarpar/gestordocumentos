@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  tenant-db:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=tenant
+      - POSTGRES_PASSWORD=tenant
+      - POSTGRES_DB=tenant
+    ports:
+      - "5434:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+    driver: local

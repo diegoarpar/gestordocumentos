@@ -17,12 +17,12 @@ import java.io.IOException;
 public class UserAuthenticationController {
 
     BaseService service;
-    public UserAuthenticationController(UserAuthenticationService processDefinitionService) {
-        this.service = processDefinitionService;
+    public UserAuthenticationController(UserAuthenticationService service) {
+        this.service = service;
     }
 
     @GetMapping
-    public ResponseEntity<Object> login(HttpServletRequest req) {
+    public ResponseEntity<Object> execute(HttpServletRequest req) {
         String tenant = BasicObjectUtil.getTenant(req);
         var request = new UserAuthenticationServiceRequest();
         service.execute(request);
