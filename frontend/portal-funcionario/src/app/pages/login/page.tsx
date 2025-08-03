@@ -4,8 +4,20 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { FormEvent } from 'react'
 import Login from "@/app/api/userServices";
+import Tenant from "@/app/api/tenantServices";
+import { useEffect, useState } from 'react';
 
 export default function Page() {
+
+  useEffect(() => {
+    Tenant.tenant()
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        debugger;
+      });
+  }, []);
+
   const router = useRouter();
   const pathname = usePathname();
   const onSubmit = async function onSubmit(event: FormEvent<HTMLFormElement>) {
