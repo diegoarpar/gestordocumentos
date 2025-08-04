@@ -8,33 +8,35 @@ import Tenant from "@/app/api/tenantServices";
 import { useEffect, useState } from 'react';
 
 export default function Page() {
-
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   useEffect(() => {
     Tenant.tenant()
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        debugger;
       });
   }, []);
 
   const router = useRouter();
   const pathname = usePathname();
   const onSubmit = async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    setIsLoading(true);
     event.preventDefault()
  
     const formData = new FormData(event.currentTarget);
     const dataInfo = {data:formData.get("email") + ":" + formData.get("password")};
     const dataRaw = JSON.stringify(dataInfo);
-    console.log(dataRaw);
     const response = await Login.LogIn(dataRaw);
- 
+    setIsLoading(false);
+    if (!response.ok) {
+        throw new Error('Failed to submit the data. Please try again.')
+      }
     // Handle response if necessary
-    const data = await response.json()
+    //const data = await response.json()
     // ...
+    router.push("../../pages/portal");
+    
   }
   const close = () => router.push("../../");
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <form onSubmit={onSubmit}
@@ -74,9 +76,10 @@ export default function Page() {
         <div className="flex space-x-4">
           <button
             type="submit"
+            disabled={isLoading}
             className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition"
           >
-            Log in
+            {isLoading? "Wait": "Log in"}
           </button>
 
           <button

@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+      - '81:81'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+  db:
+    image: 'mariadb:10.6'
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: 'nginx-manager' # Change this
+      MYSQL_DATABASE: 'nginx-manager'
+      MYSQL_USER: 'nginx-manager'
+      MYSQL_PASSWORD: 'nginx-manager' # Change this
+    volumes:
+      - ./mysql:/var/lib/mysql
