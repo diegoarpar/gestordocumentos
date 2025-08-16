@@ -1,26 +1,26 @@
+"use client";
 import React,{useEffect, useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
-import ProcessTaskServices from '../../services/processTaskServices';
-import SessionCookies from '../../src/utils/session';
-import UserServices from '../../services/userServices';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton';
-import ArrowBack from '@material-ui/icons/ArrowBack';
+import { styled }  from "@mui/material/styles";
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Divider from '@mui/material/Divider';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
+import ProcessTaskServices from '@/app/api/processTaskServices';
+import UserServices from '@/app/api/userServices';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar'
+import IconButton from '@mui/material/IconButton';
+import ArrowBack from '@mui/icons-material/ArrowBack';
 import ProcessTaskForm from './processTaskForm'
-import ProcessInstanceServices from '../../services/processInstanceServices';
+import ProcessInstanceServices from '@/app/api/processInstanceServices';
 import ShowProcessModelInstance from '../displayModel/showProcessModel';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = styled((theme) => ({
   root: {
     width: '100%',
     maxWidth: '100% ',
@@ -41,7 +41,7 @@ const TaskList=(props) =>{
   const classes = useStyles();
   const [rowOpen, setRowOpen]=useState();
   const handleAssignMeTask=(row,e)=>{
-    ProcessTaskServices.AssignTask({"user":SessionCookies.GetSessionCookie().authenticated_userid, 
+    ProcessTaskServices.AssignTask({"user":'authenticated_userid', 
                                     "taskId":row.taskId})
     .then((data)=>{
       setCont(cont+1);
@@ -70,13 +70,13 @@ const TaskList=(props) =>{
     
   }
   useEffect(()=>{
-    UserServices.GetRolesProcess({"user":SessionCookies.GetSessionCookie().authenticated_userid}).then((data)=>{
+    UserServices.GetRolesProcess({"user":''}).then((data)=>{
       var temp=[];
       data.map((row)=>{
         temp.push(row.roleName);
       });
 
-      ProcessTaskServices.GetTask({"user":SessionCookies.GetSessionCookie().authenticated_userid,"roles":temp})
+      ProcessTaskServices.GetTask({"user":'',"roles":temp})
       .then((data)=>{
           setTaskList(data);
       });
@@ -135,7 +135,7 @@ const TaskItem=(props)=>{
     const key = props.key2;
     const handleAssignMeTask=props.handleAssignMeTask;
     const handleCompleteTask=props.handleCompleteTask;
-    const user = SessionCookies.GetSessionCookie().authenticated_userid;
+    const user = '';
     const handleOpenDiagram= props.handleOpenDiagram;
     return(
         <div key={key} >

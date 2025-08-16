@@ -4,13 +4,13 @@ import classNames from "classnames";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
+import { styled }  from "@mui/material/styles";
 // @material-ui/icons
 
 // core components
-import styles from "assets/jss/material-kit-react/components/cardHeaderStyle.js";
+import styles from "@/app/src/assets/jss/material-kit-react/components/cardHeaderStyle.js";
 
-const useStyles = makeStyles(styles);
+const useStyles = styled(styles);
 
 export default function CardHeader(props) {
   const classes = useStyles();

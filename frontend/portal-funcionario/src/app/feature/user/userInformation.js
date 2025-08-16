@@ -1,9 +1,9 @@
 import React,{ useState,useEffect } from 'react';
-import Button from '@material-ui/core/Button';
-import CustomInput from "components/CustomInput/CustomInput.js";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Password from "@material-ui/icons/VpnKey";
-import People from "@material-ui/icons/People";
+import Button from '@mui/material/Button';
+import CustomInput from "@/app/components/CustomInput/CustomInput.js";
+import InputAdornment from "@mui/material/InputAdornment";
+import Password from "@mui/icons-material/VpnKey";
+import People from "@mui/icons-material/People";
 
 
 const UserInformation=(props)=>{

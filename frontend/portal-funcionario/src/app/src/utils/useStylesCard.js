@@ -1,6 +1,6 @@
-import {makeStyles} from "@material-ui/core/styles";
+import {styled(} from "@mui/material/styles";
 
-const useStylesCard = makeStyles((theme) => ({
+const useStylesCard = styled((theme) => ({
     root: {
         width: '100%',
         maxWidth: '100% ',

@@ -1,28 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import {Form as Formio}  from 'react-formio';
-import ProcessFormServies from '../../services/processFormServices';
-import ProcessTaskServices from '../../services/processTaskServices';
-import ProcessTaskInformationServices from '../../services/processTaskInformationServices';
-import ProcessVariableServices from '../../services/processVariableServices';
-import ProcessFormConfigServices from '../../services/processFormConfigServices';
-import Button from '@material-ui/core/Button';
-import SessionCookies from '../../src/utils/session';
-import EmailServices from '../../services/emailServices';
-import UserServices from '../../services/userServices';
-import ProcessInstanceServices from '../../services/processInstanceServices';
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import dynamic from "next/dynamic";
+import ProcessFormServies from '@/app/api/processFormServices';
+import ProcessTaskServices from '@/app/api//processTaskServices';
+import ProcessTaskInformationServices from '@/app/api//processTaskInformationServices';
+import ProcessVariableServices from '@/app/api/processVariableServices';
+import ProcessFormConfigServices from '@/app/api/processFormConfigServices';
+import Button from '@mui/material/Button';
+import EmailServices from '@/app/api/emailServices';
+import ProcessInstanceServices from '@/app/api/processInstanceServices';
+import AppBar from "@mui/material/AppBar";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 import a11yProps from "../../src/utils/a11yProps";
 import RequestDocuments from "../request/requestsDocuments";
-import Dialog from "@material-ui/core/Dialog";
+import Dialog from "@mui/material/Dialog";
 
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import TabPanel from '../../src/utils/tabPanel';
 import ShowProcessModel from '../displayModel/showProcessModel';
 import RequestTaskGeneralInformation from '../request/requestTaskGeneralInformation';
 function TaskForm(props) {
+    const Formio = dynamic(
+      () => import("react-formio").then((mod) => mod.Form),
+      { ssr: false }
+    );
     const row =props.information;
     const taskId=props.information.taskId;
     const handleContTramites=props.handleContTramites;
@@ -56,7 +58,6 @@ function TaskForm(props) {
         "processVariable":processVariable,
         "processInstanceId":processInstanceId,
         "taskDescription":taskDescription,
-        "user":SessionCookies.GetSessionCookie().authenticated_userid
       })
       .then((data)=>
       {

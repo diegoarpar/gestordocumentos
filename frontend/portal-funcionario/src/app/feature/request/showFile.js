@@ -1,14 +1,18 @@
 import React,{ useState,useEffect } from 'react';
-import FileViewer from 'react-file-viewer';
-import Dialog from '@material-ui/core/Dialog';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton';
-import ArrowBack from '@material-ui/icons/ArrowBack';
-import Typography from '@material-ui/core/Typography';
-import FileManager from '../../services/fileManagementServices';
+import dynamic from "next/dynamic";
+import Dialog from '@mui/material/Dialog';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar'
+import IconButton from '@mui/material/IconButton';
+import ArrowBack from '@mui/icons-material/ArrowBack';
+import Typography from '@mui/material/Typography';
+import FileManager from '@/app/api/fileManagementServices';
 const ShowFile =(props)=>{
-    const [file, setFile]=useState();
+  const FileViewer = dynamic(
+            () => import("react-file-viewer").then((mod) => mod.Form),
+            { ssr: false }
+            );  
+  const [file, setFile]=useState();
     const fileType=props.row.tipo;
     const numeroRadicado=props.numeroRadicado;
     const open=props.open;

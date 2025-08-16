@@ -1,40 +1,37 @@
 import React,{ useState,useEffect } from 'react';
 
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import Divider from '@material-ui/core/Divider';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputAdornment from "@material-ui/core/InputAdornment";
-import ListItemText from "@material-ui/core/ListItemText";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import Divider from '@mui/material/Divider';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import InputAdornment from "@mui/material/InputAdornment";
+import ListItemText from "@mui/material/ListItemText";
 
 
-import Icon from "@material-ui/core/Icon";
+import Icon from "@mui/material/Icon";
 
-import People from "@material-ui/icons/People";
-import Password from "@material-ui/icons/VpnKey";
-import ArrowBack from '@material-ui/icons/ArrowBack';
+import People from "@mui/icons-material/People";
+import Password from "@mui/icons-material/VpnKey";
+import ArrowBack from '@mui/icons-material/ArrowBack';
 
-import SHA256 from 'js-sha256';
+import SHA256 from "crypto-js/sha256";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { styled }  from "@mui/material/styles";
 import styles from "../../src/assets/jss/material-kit-react/views/loginPage.js";
 
-import CardHeader from "components/Card/CardHeader.js";
-import CardFooter from "components/Card/CardFooter.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import CardBody from "components/Card/CardBody.js";
-import SessionCookie from '../../src/utils/session.js';
+import CardHeader from "@/app/components/Card/CardHeader.js";
+import CardFooter from "@/app/components/Card/CardFooter.js";
+import CustomInput from "@/app/components/CustomInput/CustomInput.js";
+import CardBody from "@/app/components/Card/CardBody.js";
 
-import Slide from '@material-ui/core/Slide';
-import UsersServices from '../../services/userServices';
-import { createBrowserHistory } from "history";
+import Slide from '@mui/material/Slide';
+import UsersServices from '@/app/api/userServices';
 
-const useStyles = makeStyles(styles);
-export const history = createBrowserHistory();
+const useStyles = styled(styles);
 
 
 function ChangePasswordForm(props) {
@@ -132,7 +129,7 @@ function ChangePasswordForm(props) {
 
   function ChangePassword(props) {
     const [token, setToken] = useState({});
-    const [sessionUser, setSessionUser] = useState(SessionCookie.GetSessionCookie());
+    
     const [open, setOpen] = useState(false);
   
     function handleChangePassword (row){
@@ -140,7 +137,7 @@ function ChangePasswordForm(props) {
         {
       "currentpassword":row.currentPassword,
       "newpassword":row.newPassword,
-      "user":sessionUser.authenticated_userid
+      "user":'sessionUser.authenticated_userid'
       })
       .then((data)=>{
           if(!!data){
