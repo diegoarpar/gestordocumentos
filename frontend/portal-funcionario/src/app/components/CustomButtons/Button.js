@@ -5,14 +5,14 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 // @material-ui/core components
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import Button from "@material-ui/core/Button";
+import styled( from "@mui/styles/styled(";
+import Button from "@mui/material/Button";
 
 // core components
 
-import buttonStyle from "assets/jss/material-kit-react/components/buttonStyle.js";
+import buttonStyle from "@/app/src/assets/jss/material-kit-react/components/buttonStyle.js";
 
-const makeComponentStyles = makeStyles(() => ({
+const makeComponentStyles = styled(() => ({
   ...buttonStyle
 }));
 

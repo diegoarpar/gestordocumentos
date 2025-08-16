@@ -1,8 +1,12 @@
 import React,{ useState,useEffect } from 'react';
-import {Form as Formio} from 'react-formio' ;
-import ProcessFormServies from "../../services/processFormServices";
-import ProcessInstanceServices from '../../services/processInstanceServices';
+import dynamic from "next/dynamic";
+import ProcessFormServies from "@/app/api/processFormServices";
+import ProcessInstanceServices from '@/app/api/processInstanceServices';
 const RequestTaskGeneralInformation =(props)=>{
+    const Formio = dynamic(
+        () => import("react-formio").then((mod) => mod.Form),
+        { ssr: false }
+        );
     const row=props.row;
     const [components,setComponents]=useState({"type":"form","display":"form","components":[]});
     const [cont, setCont]= useState(0);

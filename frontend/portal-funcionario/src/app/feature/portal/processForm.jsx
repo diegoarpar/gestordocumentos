@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import {Form as Formio} from 'react-formio' ;
-import ProcessFormServies from '../../services/processFormServices';
-import ProcessInstanceServices from '../../services/processInstanceServices';
-import FileManagementServices from'../../services/fileManagementServices';
-import UserServices from '../../services/userServices';
-import Button from '@material-ui/core/Button';
-import SessionCookie from '../../src/utils/session';
+import dynamic from "next/dynamic";
+import ProcessFormServies from '@/app/api/processFormServices';
+import ProcessInstanceServices from '@/app/api/processInstanceServices';
+import FileManagementServices from'@/app/api/fileManagementServices';
+import Button from '@mui/material/Button';
 import FileUtils from '../../src/utils/fileUtils';
 import UserFinder from "../user/userFinder";
 import UserDetailDialog from "../user/userDetailDialog";
 
 function ProcessForm(props) {
   
+    const Formio = dynamic(
+      () => import("react-formio").then((mod) => mod.Form),
+      { ssr: false }
+    );
     const processName=props.processName;
     const workflowName=props.workflowName;
     const requestNumberPattern=props.requestNumberPattern;
@@ -33,7 +35,7 @@ function ProcessForm(props) {
         ProcessInstanceServices.getRequestNumber(numeroRadicadoReq).then((data)=>{
             numeroRadicado = data.number;
             //llamado obtenecconr informacion usario
-            let userId = {'user':SessionCookie.GetSessionCookie().authenticated_userid};
+            let userId = {'user':'GetSessionCookie().authenticated_userid'};
             UserServices.GetUser(userId).then((data)=>{
                 [dataForm.data, files] = FileUtils.extraerArchivosFormulario(dataForm.data);
 

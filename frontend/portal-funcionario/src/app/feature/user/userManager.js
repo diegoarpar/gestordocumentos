@@ -1,21 +1,19 @@
 import React,{ useState,useEffect } from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowBack from '@material-ui/icons/ArrowBack';
-import Typography from '@material-ui/core/Typography';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import ArrowBack from '@mui/icons-material/ArrowBack';
+import Typography from '@mui/material/Typography';
 import UserInformation from './userInformation';
-import UserServices from '../../services/userServices';
-import SessionCookie from '../../src/utils/session';
-import SedeElectronciaGeneralServices from '../../services/sedeElectronicaGeneralServices';
-import SHA256 from 'js-sha256';
+import UserServices from '@/app/api/userServices';
+import SedeElectronciaGeneralServices from '@/app/api/sedeElectronicaGeneralServices';
+import SHA256 from "crypto-js/sha256";
 
 const UserManager=(props)=>{
   const [open, setOpen]= useState(false);
   const [user, setUser]= useState({});
-  const [currentUser, setCurrentUser]= useState(SessionCookie.GetSessionCookie());
   const [modalType, setModalType]= useState();
   const contTramites = props.contTramites;
   const [enrollingType, setEnrollingType]= useState("none");
@@ -26,8 +24,8 @@ const UserManager=(props)=>{
   }
   const handleOpenModal = (modalType)=>{
     if(modalType=="M"){
-      var currentUser =SessionCookie.GetSessionCookie().authenticated_userid;
-      UserServices.GetData({"userName":currentUser})
+      var currentUser = 'GetSessionCookie().authenticated_userid';
+      UserServices.GetData({"userName":'currentUser'})
       .then((data)=>{
         if(!!data&&data.length>0){
           setUser(data[0]);
@@ -43,7 +41,7 @@ const UserManager=(props)=>{
     }
   }
   useEffect(()=>{
-    setCurrentUser(SessionCookie.GetSessionCookie());
+    setCurrentUser(GetSessionCookie());
     setUserEnrollingVisibility(false);
     SedeElectronciaGeneralServices.GetSedeElectronicaGeneral({"type":"EXTERNAL_REGISTRY","type2":"visibilityVentanilla","value":"VS"})
     .then((data)=>{
@@ -69,7 +67,7 @@ const UserManager=(props)=>{
     }else if (modalType=="M"){
       delete data.password;
       delete data._id;
-      UserServices.UpdateUser({"userQuery":{"user":SessionCookie.GetSessionCookie().authenticated_userid},"userNewData":data});
+      UserServices.UpdateUser({"userQuery":{"user":GetSessionCookie().authenticated_userid},"userNewData":data});
     }
     
   }

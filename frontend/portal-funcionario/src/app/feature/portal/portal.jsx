@@ -1,17 +1,14 @@
 'use client'
 import React,{ useState,useEffect } from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { styled, withStyles } from "@mui/material/styles";
 import TaskInformation from './tasksInformation'
-import Toolbar from '@material-ui/core/Toolbar';
-import AppBar from '@material-ui/core/AppBar';
-import Typography from '@material-ui/core/Typography';
+import Toolbar from '@mui/material/Toolbar';
+import AppBar from '@mui/material/AppBar';
+import Typography from '@mui/material/Typography';
 import Menu from '../menus/menu';
-import MenuIcon from "@material-ui/icons/MoreVert";
-import IconButton from "@material-ui/core/IconButton";
-import Button from "@material-ui/core/Button";
-import SessionCookie from "../../src/utils/session";
-import {createBrowserHistory} from "history";
-export const history = createBrowserHistory();
+import MenuIcon from "@mui/icons-material/MoreVert";
+import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
 
 const VentanillaRadicacion=(props)=>{
     const [contTramites,setContTramites] = useState(0);
@@ -20,12 +17,10 @@ const VentanillaRadicacion=(props)=>{
         setContTramites(contTramites+1);
     }
     function logOut (){
-        SessionCookie.SetSessionCookie(null);
-        history.push('/');
-        history.go();
+
     }
     const classes=useStyles();
-    const [sessionUser, setSessionUser] = useState(SessionCookie.GetSessionCookie());
+    
     return (<div>
         <AppBar position="static">
             <Toolbar>
@@ -40,7 +35,7 @@ const VentanillaRadicacion=(props)=>{
                 >
                     <MenuIcon/>
                 </IconButton>
-                {"Bienvenido al portal del funcionario "+sessionUser.authenticated_userid}
+                {"Bienvenido al portal del funcionario "}
                 <Button  color="inherit"  variant="outlined" onClick={(e) => {logOut(e)}}>
                     Cerrar Sesión
                 </Button>
@@ -72,7 +67,7 @@ const VentanillaRadicacion=(props)=>{
 }
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = styled((theme) => ({
     buttonSidebar :{
         zIndex: 10
     }

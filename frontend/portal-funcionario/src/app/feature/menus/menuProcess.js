@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import UserServices from '../../services/userServices';
-import ProcessServies from '../../services/processServices';
-import ProcessRolesServies from '../../services/processRolesServices';
-import ProcessForm from '../ventanilla/processForm';
-import SessionCookies from '../../src/utils/session';
-import Dialog from '@material-ui/core/Dialog';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import ArrowBack from '@material-ui/icons/ArrowBack';
+import { withStyles } from "@mui/material/styles";
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import UserServices from '@/app/api/userServices';
+import ProcessServies from '@/app/api/processServices';
+import ProcessRolesServies from '@/app/api/processRolesServices';
+import ProcessForm from '../portal/processForm';
+import Dialog from '@mui/material/Dialog';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar'
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import ArrowBack from '@mui/icons-material/ArrowBack';
 
 
 function CustomizedMenus(props) {
@@ -41,7 +40,7 @@ function CustomizedMenus(props) {
       
     }
     useEffect(()=>{
-        UserServices.GetRolesProcess({"user":SessionCookies.GetSessionCookie().authenticated_userid}).then((data)=>{
+        UserServices.GetRolesProcess({"user":''}).then((data)=>{
           var temp=[];
           data.map((row)=>{
             temp.push(row.roleName);

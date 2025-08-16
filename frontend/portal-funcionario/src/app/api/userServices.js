@@ -11,8 +11,8 @@ async function  LogIn(data){
 }
 async function  GetData(){
     var headers={};
-    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
-    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    headers.Authentication="Bearer "+GetSessionCookie().access_token;
+    headers.Tenant=GetSessionCookieTenant().tenant;
     return axios.get(hostServices+"/authentication/users/",{headers:headers})
     .then(data =>{
         return data.data
@@ -20,8 +20,8 @@ async function  GetData(){
 }
 async function  GetUser(data){
     var headers={};
-    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
-    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    headers.Authentication="Bearer "+GetSessionCookie().access_token;
+    headers.Tenant=GetSessionCookieTenant().tenant;
     return axios.post(hostServices+"/authentication/users/",data,{headers:headers})
     .then(data =>{
         return data.data
@@ -29,8 +29,8 @@ async function  GetUser(data){
 }
 async function  CreateUser(data){
     var headers={'Content-Type': 'application/json'}
-    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
-    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    headers.Authentication="Bearer "+GetSessionCookie().access_token;
+    headers.Tenant=GetSessionCookieTenant().tenant;
     return axios.post(hostServices+"/authentication/createuser/",data,{headers:headers})
     .then(data =>{
         return data.data
@@ -38,8 +38,8 @@ async function  CreateUser(data){
 }
 async function  UpdateUser(data){
     var headers={'Content-Type': 'application/json'}
-    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
-    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    headers.Authentication="Bearer "+GetSessionCookie().access_token;
+    headers.Tenant=GetSessionCookieTenant().tenant;
     return axios.post(hostServices+"/authentication/updateUser/",data,{headers:headers})
     .then(data =>{
         return data.data
@@ -47,8 +47,8 @@ async function  UpdateUser(data){
 }
 async function  ChangePassword(data){
     var headers={'Content-Type': 'application/json'}
-    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
-    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    headers.Authentication="Bearer "+GetSessionCookie().access_token;
+    headers.Tenant=GetSessionCookieTenant().tenant;
     return axios.post(hostServices+"/authentication/changePassword/",data,{headers:headers})
     .then(data =>{
         return data.data
@@ -57,8 +57,8 @@ async function  ChangePassword(data){
 
 async function GetRoles(data){
     var headers={'Content-Type': 'application/json'}
-    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
-    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    headers.Authentication="Bearer "+GetSessionCookie().access_token;
+    headers.Tenant=GetSessionCookieTenant().tenant;
     return axios.post(hostServices+"/authentication/roles/",data,{headers:headers})
     .then(data =>{
         return data.data
@@ -66,8 +66,8 @@ async function GetRoles(data){
 }
 async function GetRolesProcess(data){
     var headers={'Content-Type': 'application/json'}
-    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
-    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    headers.Authentication="Bearer "+GetSessionCookie().access_token;
+    headers.Tenant=GetSessionCookieTenant().tenant;
     return axios.post(hostServices+"/authentication/processroles/",data,{headers:headers})
     .then(data =>{
         return data.data
@@ -85,8 +85,8 @@ async function  GetTenant(data){
 
 async function GetPortals(data){
     var headers={'Content-Type': 'application/json'}
-    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
-    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    headers.Authentication="Bearer "+GetSessionCookie().access_token;
+    headers.Tenant=GetSessionCookieTenant().tenant;
     return axios.post(hostServices+"/authentication/portals/",data,{headers:headers})
     .then(data =>{
         return data.data

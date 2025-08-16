@@ -1,4 +1,4 @@
-import SessionCookie from '../utils/session';
+import {GetSessionCookie} from './session';
 import axios from "axios";
 import URL_Services from '../config/url.config';
 
@@ -8,8 +8,8 @@ function  ProcessVariableServices  () {
 
 async function  GetProcessesVariable(data){
     var headers={'Content-Type': 'application/json'}
-    headers.Authentication="Bearer "+SessionCookie.GetSessionCookie().access_token;
-    headers.Tenant=SessionCookie.GetSessionCookieTenant().tenant;
+    headers.Authentication="Bearer "+GetSessionCookie().access_token;
+    headers.Tenant=GetSessionCookieTenant().tenant;
     return axios.post(hostServices+"/administration/process/variable/",data,{headers:headers})
     .then(data =>{
         return data.data

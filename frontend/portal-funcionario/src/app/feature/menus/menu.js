@@ -1,28 +1,26 @@
 import React, {useState} from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import IconButton from '@material-ui/core/IconButton';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MenuIcon from '@material-ui/icons/MoreVert';
-import Sidebar from "react-sidebar";
-import SessionCookies from '../../utils/session';
+import { withStyles, styled} from "@mui/material/styles";
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import IconButton from '@mui/material/IconButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import MenuIcon from '@mui/icons-material/MoreVert';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
 import MenuProcess from './menuProcess';
 import UserManager from "../user/userManager";
 import UserFinder from "../user/userFinder";
 import ChangePassword from "../user/changePassword";
 import UserWaitingApproved from "../user/userWaitingApproved";
-import Toolbar from "@material-ui/core/Toolbar";
-import SessionCookie from "../../utils/session";
-import {history} from "../../App";
+import Toolbar from "@mui/material/Toolbar";
 import RequestInformation from "../request/requestsInformation";
 
 function CustomizedMenus(props) {
     const [anchorEl, setAnchorEl] = useState(null);
     const history= props.history;
-    const [sessionUser, setSessionUser] = useState(SessionCookies.GetSessionCookie());
+    const [sessionUser, setSessionUser] = '';
     const sidebarOpen =props.sidebarOpen;
     const setSidebarOpen=props.setSidebarOpen;
     const handleClickMenu =(row)=>{setSidebarOpen(false)}
@@ -40,13 +38,13 @@ function CustomizedMenus(props) {
     const classes= useStyles2();
     return (
       <div>
-        <Sidebar rootClassName={classes.root}
+        <Drawer rootClassName={classes.root}
               overlayClassName={classes.overlay}
               sidebarClassName={classes.sidebar}
               dragToggleDistance={4}
               rootClassName={classes.root}
               sidebar={ 
-                <SideBarItems
+                <List 
                 handleClickMenu={handleClickMenu}
                 contTramites={contTramites}
                 handleContTramites={handleContTramites}
@@ -64,7 +62,7 @@ function CustomizedMenus(props) {
                   Open sidebar
                 </button>
               </div>
-            </Sidebar>
+            </Drawer>
       </div>
     );
   }
@@ -92,7 +90,7 @@ function CustomizedMenus(props) {
   }
 
 
-  const useStyles2 = makeStyles((theme) => ({
+  const useStyles2 = styled((theme) => ({
     root: {
       position: "fixed",
       top: 0,

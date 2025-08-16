@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
+import { styled }  from "@mui/material/styles";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Input from "@mui/material/Input";
 
-import styles from "assets/jss/material-kit-react/components/customInputStyle.js";
+import styles from "@/app/src/assets/jss/material-kit-react/components/customInputStyle.js";
 
-const useStyles = makeStyles(styles);
+const useStyles = styled(styles);
 
 export default function CustomInput(props) {
   const classes = useStyles();
