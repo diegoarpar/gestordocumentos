@@ -1,7 +1,7 @@
-package com.itec.api.authentication.controller;
+package com.itec.api.authorization.controller;
 
-import com.itec.api.authentication.model.UserAuthenticationServiceRequest;
-import com.itec.api.authentication.services.UserAuthenticationService;
+import com.itec.api.authorization.model.UserAuthorizationServiceRequest;
+import com.itec.api.authorization.services.UserAuthorizationService;
 import com.itec.utilities.BasicObjectUtil;
 import com.itec.utilities.service.BaseService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/authentication/login")
-public class UserAuthenticationController {
+public class UserAuthorizationController {
 
     BaseService service;
-    public UserAuthenticationController(UserAuthenticationService service) {
+    public UserAuthorizationController(UserAuthorizationService service) {
         this.service = service;
     }
 
     @GetMapping
     public ResponseEntity<Object> execute(HttpServletRequest req) {
         String tenant = BasicObjectUtil.getTenant(req);
-        var request = new UserAuthenticationServiceRequest();
+        var request = new UserAuthorizationServiceRequest();
         service.execute(request);
         return ResponseEntity.ok().build();
     }

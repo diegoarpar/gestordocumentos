@@ -1,10 +1,12 @@
 rootProject.name = "backend"
 include(":api:authentication")
+include(":api:authorization")
 include(":api:tenant")
 include(":data")
 include(":data:data-workflow-cassandra")
 include(":data:data-workflow-mongo")
 include(":data:data-user-information")
+include(":data:data-user-authorization")
 include(":data:data-tenant-information")
 include(":filesystem")
 include(":notification")

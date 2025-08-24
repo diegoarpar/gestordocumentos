@@ -1,5 +1,6 @@
 'use client'
-import React,{ useState,useEffect } from 'react';
+import React,{ useState, useEffect } from 'react';
+import { useRouter } from "next/navigation";
 import { styled, withStyles } from "@mui/material/styles";
 import TaskInformation from './tasksInformation'
 import Toolbar from '@mui/material/Toolbar';
@@ -10,14 +11,15 @@ import MenuIcon from "@mui/icons-material/MoreVert";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 
-const VentanillaRadicacion=(props)=>{
+const VentanillaRadicacion = (props) => {
+    const router = useRouter();
     const [contTramites,setContTramites] = useState(0);
     const [sidebarOpen,setSidebarOpen] = useState(false);
     const handleContTramites=()=>{
         setContTramites(contTramites+1);
     }
     function logOut (){
-
+        router.push("../../");
     }
     const classes=useStyles();
     
