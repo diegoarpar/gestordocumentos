@@ -13,16 +13,16 @@ repositories {
 dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-web")
     implementation ("org.springframework.boot:spring-boot-starter-actuator")
-    implementation(project(":data:data-tenant-information"))
+    implementation(project(":data:data-user-authorization"))
     implementation ("org.springframework.boot:spring-boot-starter-web")
     implementation ("org.springframework.boot:spring-boot-starter-actuator")
     implementation ("org.springframework.boot:spring-boot-starter-test")
     implementation (project(":utilities:util-model"))
+    implementation ("io.jsonwebtoken:jjwt-api:0.12.5")
+    implementation ("io.jsonwebtoken:jjwt-impl:0.12.5")
+    implementation ("io.jsonwebtoken:jjwt-jackson:0.12.5")
     compileOnly ("org.projectlombok:lombok:1.18.30")
     annotationProcessor  ("org.projectlombok:lombok:1.18.30")
-    implementation ("org.mapstruct:mapstruct:1.6.0.Beta1")
-    annotationProcessor ("org.projectlombok:lombok-mapstruct-binding:0.2.0")
-    annotationProcessor ("org.mapstruct:mapstruct-processor:1.6.0.Beta1")
 }
 
 java {

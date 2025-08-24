@@ -7,4 +7,5 @@ import lombok.Data;
 public class UserAuthenticationServiceRequest implements BaseServiceRequest {
     String tenant;
     String instanceId;
+    String email;
 }
