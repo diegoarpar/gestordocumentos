@@ -71,13 +71,20 @@ const TaskList=(props) =>{
   }
   useEffect(()=>{
     UserServices.GetRolesProcess({"user":''}).then((data)=>{
+      if(!data.ok) {
+        return;
+      }
       var temp=[];
+      console.log(data);
       data.map((row)=>{
         temp.push(row.roleName);
       });
 
-      ProcessTaskServices.GetTask({"user":'',"roles":temp})
+      ProcessTaskServices.GetTask({"user":'',"roles":[]})
       .then((data)=>{
+        if(!data.ok) {
+          return;
+        }
           setTaskList(data);
       });
     });

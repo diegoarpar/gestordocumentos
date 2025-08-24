@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
 import { withStyles, styled} from "@mui/material/styles";
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import IconButton from '@mui/material/IconButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/MoreVert';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import MenuProcess from './menuProcess';
@@ -14,7 +7,10 @@ import UserManager from "../user/userManager";
 import UserFinder from "../user/userFinder";
 import ChangePassword from "../user/changePassword";
 import UserWaitingApproved from "../user/userWaitingApproved";
-import Toolbar from "@mui/material/Toolbar";
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 import RequestInformation from "../request/requestsInformation";
 
 function CustomizedMenus(props) {
@@ -43,25 +39,25 @@ function CustomizedMenus(props) {
               sidebarClassName={classes.sidebar}
               dragToggleDistance={4}
               rootClassName={classes.root}
-              sidebar={ 
-                <List 
-                handleClickMenu={handleClickMenu}
-                contTramites={contTramites}
-                handleContTramites={handleContTramites}
-                rows={rows}
-                sessionUser={sessionUser}
-                />
-                
-                }
               open={sidebarOpen}
               onSetOpen={onSetSidebarOpen}
             >
               <div className={classes.overlay}>
-                <b >Main content</b>
-                <button onClick={(e) => setSidebarOpen(!sidebarOpen)}>
-                  Open sidebar
+                <button onClick={(e) => setSidebarOpen(!sidebarOpen)} className='btn primary'>
+                  X
                 </button>
               </div>
+              <List>
+                {rows.map((data) => {
+                  return (<>
+                    <ListItem disablePadding>
+                      <ListItemButton component="a" href={data.path}>
+                        <ListItemText primary={data.description} />
+                      </ListItemButton>
+                    </ListItem>
+                  </>)
+                })}
+              </List>
             </Drawer>
       </div>
     );

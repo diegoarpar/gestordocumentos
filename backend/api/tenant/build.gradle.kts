@@ -17,7 +17,7 @@ dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-web")
     implementation ("org.springframework.boot:spring-boot-starter-actuator")
     implementation ("org.springframework.boot:spring-boot-starter-test")
-    implementation (project(":utilities"))
+    implementation (project(":utilities:util-model"))
     compileOnly ("org.projectlombok:lombok:1.18.30")
     annotationProcessor  ("org.projectlombok:lombok:1.18.30")
     implementation ("org.mapstruct:mapstruct:1.6.0.Beta1")

@@ -22,7 +22,7 @@ dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-data-cassandra")
     compileOnly ("org.projectlombok:lombok:1.18.30") // Use the latest stable version
     annotationProcessor  ("org.projectlombok:lombok:1.18.30")
-    implementation (project(":utilities"))
+    implementation (project(":utilities:util-model"))
     implementation (project(":data:data-workflow-cassandra"))
 }
 

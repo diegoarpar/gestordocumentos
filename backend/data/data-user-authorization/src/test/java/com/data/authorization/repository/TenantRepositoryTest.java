@@ -1,7 +1,7 @@
-package com.data.tenant.repository;
+package com.data.authorization.repository;
 
-import com.data.tenant.model.TenantModel;
-import com.data.tenant.respository.TenantRepository;
+import com.data.authorization.model.DataAuthorizationModel;
+import com.data.authorization.respository.DataAuthorizationRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,19 +12,19 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class TenantRepositoryTest {
 
     @Autowired
-    TenantRepository repository;
+    DataAuthorizationRepository repository;
 
     @Test
     public void testProcessRepository() {
-        var tenant = TenantModel.builder().id(1L).origin("localhost:8080").build();
-        repository.save(tenant);
-        Iterable<TenantModel> info = repository.findAll();
+        var data = new DataAuthorizationModel();
+        repository.save(data);
+        Iterable<DataAuthorizationModel> info = repository.findAll();
         System.out.println(info);
     }
 
     @Test
     public void testProcessRepositoryFind() {
-        Iterable<TenantModel> info = repository.findAll();
+        Iterable<DataAuthorizationModel> info = repository.findAll();
         System.out.println(info);
     }
 }

@@ -35,7 +35,8 @@ const GetSessionCookieTenant = async function() {
   const sessionCookie = cookieStore.get("tenant");
 
   if (sessionCookie === undefined||sessionCookie=== null) {
-    UsersServices.GetTenant({"url":window.location.hostname}).then(
+    debugger;
+    UsersServices.GetTenant({"url":""}).then(
       (data)=>{
         if(data!=null){
           SetSessionCookieTenant(data);
