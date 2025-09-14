@@ -40,7 +40,7 @@ function CustomizedMenus(props) {
       
     }
     useEffect(()=>{
-        UserServices.GetRolesProcess({"user":''}).then((data)=>{
+        UserServices.GetRolesProcess(`{"user":"dd"}`).then((data)=>{
           var temp=[];
           data.map((row)=>{
             temp.push(row.roleName);
