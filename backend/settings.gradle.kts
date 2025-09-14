@@ -1,6 +1,7 @@
 rootProject.name = "backend"
 include(":api:authentication")
 include(":api:authorization")
+include(":api:workflow")
 include(":api:tenant")
 include(":data")
 include(":data:data-workflow-cassandra")

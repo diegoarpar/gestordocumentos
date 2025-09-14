@@ -48,32 +48,31 @@ async function  ChangePassword(data) {
 }
 
 async function GetRoles(data) {
-        return await fetch("/authentication/roles/",{
-        method: 'post',
+        return await fetch("/authentication/roles",{
+        method: 'get',
         headers: {Authorization: [data]},
         body: data,
     });
 }
 async function GetRolesProcess(data) {
-    return await fetch("/authentication/processroles/",{
-        method: 'post',
+    return await fetch("/api/workflow/roles/",{
+        method: 'get',
         headers: {Authorization: [data]},
-        body: data,
     });
 }
 
 async function  GetTenant(data) {
     return await fetch("/authentication/tenant/",{
-        method: 'post',
+        method: 'get',
         headers: {Authorization: [data]},
-        body: data,
+        body: {data},
     });
 }
 
 
 async function GetPortals(data) {
     return await fetch("/authentication/portals/",{
-        method: 'post',
+        method: 'get',
         headers: {Authorization: [data]},
         body: data,
     });

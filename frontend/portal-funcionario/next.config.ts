@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
             destination: 'http://localhost:8081/tenant/:path*',
           },
           {
+            source: '/api/workflow/:path*',
+            destination: 'http://localhost:8082/workflow/:path*',
+          },
+          {
             source: '/api/authentication/:path*',
             destination: 'http://localhost:8080/authentication/:path*',
           },
