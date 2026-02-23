@@ -1,6 +1,6 @@
-package com.data.user.respository;
+package com.data.customer.user.respository;
 
-import com.data.user.model.PasswordModel;
+import com.data.customer.user.model.PasswordModel;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

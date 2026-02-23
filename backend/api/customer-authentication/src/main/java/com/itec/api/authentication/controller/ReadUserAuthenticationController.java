@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/authentication/login")
-public class UserAuthenticationController {
+@RequestMapping("/customer/authentication/login")
+public class ReadUserAuthenticationController {
 
     BaseService service;
-    public UserAuthenticationController(UserAuthenticationService service) {
+    public ReadUserAuthenticationController(UserAuthenticationService service) {
         this.service = service;
     }
 
@@ -23,8 +23,8 @@ public class UserAuthenticationController {
     public ResponseEntity<Object> execute(HttpServletRequest req) {
         String tenant = BasicObjectUtil.getTenant(req);
         var request = new UserAuthenticationServiceRequest();
-        var resutls = service.execute(request);
-        return ResponseEntity.ok(resutls);
+        var results = service.execute(request);
+        return ResponseEntity.ok(results);
     }
 
 }

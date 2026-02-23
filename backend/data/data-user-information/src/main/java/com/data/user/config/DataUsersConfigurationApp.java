@@ -6,7 +6,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
 @Configuration
-@ComponentScan(basePackages = "com.data.users")
+@ComponentScan("com.data.user")
 @PropertySource("classpath:application-user.properties")
 public class DataUsersConfigurationApp {
 

@@ -1,8 +1,8 @@
 package com.data.user.repository;
 
-import com.data.user.model.PasswordModel;
-import com.data.user.model.RoleModel;
-import com.data.user.model.UserModel;
+import com.data.user.model.CredentialInformation;
+import com.data.user.model.RoleInformation;
+import com.data.user.model.UserInformation;
 import com.data.user.respository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,20 +20,20 @@ public class UserRepositoryTest {
 
     @Test
     public void testProcessRepository() {
-        var passwordModel = PasswordModel.builder().id(1L).build();
-        var roleModel = RoleModel.builder().id(1L).build();
-        UserModel model = UserModel.builder()
+        var passwordModel = CredentialInformation.builder().id(1L).build();
+        var roleModel = RoleInformation.builder().id(1L).build();
+        UserInformation model = UserInformation.builder()
                 .id(1L)
                 .name("testNull")
                 .roleModelList(List.of(roleModel))
                 .passwordModels(List.of(passwordModel))
                 .build();
-        UserModel model2 = UserModel.builder()
+        UserInformation model2 = UserInformation.builder()
                 .id(2L)
                 .name("test2")
                 .passwordModels(List.of(passwordModel))
                 .build();
-        UserModel model3 = UserModel.builder()
+        UserInformation model3 = UserInformation.builder()
                 .id(3L)
                 .name("test3")
                 .roleModelList(List.of(roleModel))
@@ -41,13 +41,13 @@ public class UserRepositoryTest {
         userRepository.save(model);
         userRepository.save(model2);
         userRepository.save(model3);
-        Iterable<UserModel> info = userRepository.findAll();
+        Iterable<UserInformation> info = userRepository.findAll();
         System.out.println(info);
     }
 
     @Test
     public void testProcessRepositoryFind() {
-        Iterable<UserModel> info = userRepository.findAll();
+        Iterable<UserInformation> info = userRepository.findAll();
         System.out.println(info);
     }
 }

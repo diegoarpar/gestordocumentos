@@ -1,6 +1,6 @@
 package com.data.user.repository;
 
-import com.data.user.model.RoleModel;
+import com.data.user.model.RoleInformation;
 import com.data.user.respository.RoleRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +16,13 @@ public class RoleRepositoryTest {
 
     @Test
     public void testProcessRepository() {
-        var role = RoleModel.builder().id(1L).name("admin").build();
+        var role = RoleInformation.builder().id(1L).name("admin").build();
         repository.save(role);
     }
 
     @Test
     public void testProcessRepositoryFind() {
-        Iterable<RoleModel> info = repository.findAll();
+        Iterable<RoleInformation> info = repository.findAll();
         System.out.println(info);
     }
 }
