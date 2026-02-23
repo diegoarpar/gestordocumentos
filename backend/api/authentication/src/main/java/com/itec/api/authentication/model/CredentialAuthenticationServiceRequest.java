@@ -7,7 +7,7 @@ import lombok.Data;
  * User request.
  */
 @Data
-public class RoleAuthenticationServiceRequest implements BaseServiceRequest {
+public class CredentialAuthenticationServiceRequest implements BaseServiceRequest {
 
     /**
      * The tenant.
@@ -15,7 +15,7 @@ public class RoleAuthenticationServiceRequest implements BaseServiceRequest {
     private String tenant;
 
     /**
-     * The user information.
+     * The credential information.
      */
-    private Role role;
+    private Credential credential;
 }

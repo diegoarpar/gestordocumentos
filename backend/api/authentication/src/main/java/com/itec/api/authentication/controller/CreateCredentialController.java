@@ -1,6 +1,8 @@
 package com.itec.api.authentication.controller;
 
+import com.itec.api.authentication.model.CredentialAuthenticationServiceRequest;
 import com.itec.api.authentication.model.UserAuthenticationServiceRequest;
+import com.itec.api.authentication.services.CreateCredentialAuthenticationService;
 import com.itec.api.authentication.services.CreateUserAuthenticationService;
 import com.itec.utilities.BasicObjectUtil;
 import com.itec.utilities.service.BaseService;
@@ -12,19 +14,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Create user API
+ * Create credential API
  *
  * @author diegoarpar
  */
 @Controller
-@RequestMapping("/authentication/role")
-public class CreateRoleController {
+@RequestMapping("/authentication/credential")
+public class CreateCredentialController {
 
     /**
      * The user authentication.
      */
     BaseService service;
-    public CreateRoleController(CreateUserAuthenticationService service) {
+    public CreateCredentialController(CreateCredentialAuthenticationService service) {
         this.service = service;
     }
 
@@ -36,7 +38,7 @@ public class CreateRoleController {
      */
     @PostMapping
     public ResponseEntity<Object> execute(HttpServletRequest req,
-                                          @RequestBody UserAuthenticationServiceRequest userAuthenticationServiceRequest) {
+                                          @RequestBody CredentialAuthenticationServiceRequest userAuthenticationServiceRequest) {
         String tenant = BasicObjectUtil.getTenant(req);
         var results = service.execute(userAuthenticationServiceRequest);
         return ResponseEntity.ok(results);

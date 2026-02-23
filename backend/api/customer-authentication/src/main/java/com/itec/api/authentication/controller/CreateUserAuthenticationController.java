@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/authentication/login")
+@RequestMapping("/customer/authentication/login")
 public class CreateUserAuthenticationController {
 
     BaseService service;

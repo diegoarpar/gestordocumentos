@@ -4,12 +4,12 @@ import com.itec.utilities.model.BaseServiceResponse;
 import lombok.Data;
 
 /**
- * The user response
+ * The credential response
  *
  * @author diegoarpar
  */
 @Data
-public class RoleAuthenticationServiceResponse implements BaseServiceResponse {
+public class CredentialAuthenticationServiceResponse implements BaseServiceResponse {
 
     /**
      * The content.
@@ -22,7 +22,7 @@ public class RoleAuthenticationServiceResponse implements BaseServiceResponse {
     private String jwt;
 
     /**
-     * The role.
+     * The credential.
      */
-    private Role role;
+    private Credential credential;
 }

@@ -1,8 +1,8 @@
 package com.itec.api.authentication.controller;
 
-import com.itec.api.authentication.model.User;
-import com.itec.api.authentication.model.UserAuthenticationServiceRequest;
-import com.itec.api.authentication.services.ReadUserAuthenticationService;
+import com.itec.api.authentication.model.Role;
+import com.itec.api.authentication.model.RoleAuthenticationServiceRequest;
+import com.itec.api.authentication.services.ReadRoleAuthenticationService;
 import com.itec.utilities.BasicObjectUtil;
 import com.itec.utilities.service.BaseService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,20 +13,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/authentication/user")
-public class ReadUserController {
+@RequestMapping("/authentication/role")
+public class ReadRoleController {
 
     BaseService service;
-    public ReadUserController(ReadUserAuthenticationService service) {
+    public ReadRoleController(ReadRoleAuthenticationService service) {
         this.service = service;
     }
 
-    @GetMapping("/{userName}")
-    public ResponseEntity<Object> execute(HttpServletRequest req, @PathVariable String userName) {
+    @GetMapping("/{roleName}")
+    public ResponseEntity<Object> execute(HttpServletRequest req, @PathVariable String roleName) {
         String tenant = BasicObjectUtil.getTenant(req);
-        var request = new UserAuthenticationServiceRequest();
-        request.setUser(new User());
-        request.getUser().setName(userName);
+        var request = new RoleAuthenticationServiceRequest();
+        request.setRole(new Role());
+        request.getRole().setName(roleName);
         var results = service.execute(request);
         return ResponseEntity.ok(results);
     }

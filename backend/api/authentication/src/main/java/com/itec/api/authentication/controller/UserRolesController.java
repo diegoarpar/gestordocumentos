@@ -23,8 +23,8 @@ public class UserRolesController {
     public ResponseEntity<Object> execute(HttpServletRequest req) {
         String tenant = BasicObjectUtil.getTenant(req);
         var request = new UserAuthenticationServiceRequest();
-        var resutls = service.execute(request);
-        return ResponseEntity.ok(resutls);
+        var results = service.execute(request);
+        return ResponseEntity.ok(results);
     }
 
 }

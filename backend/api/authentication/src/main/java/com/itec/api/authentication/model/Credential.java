@@ -8,15 +8,20 @@ import lombok.Data;
  * @author diegoarpar
  */
 @Data
-public class Role {
+public class Credential {
 
     /**
      * The role ID.
      */
-    private String id;
+    private Long id;
 
     /**
      * The role name.
      */
     private String name;
+
+    /**
+     * Credential type.
+     */
+    private CredentialType type;
 }

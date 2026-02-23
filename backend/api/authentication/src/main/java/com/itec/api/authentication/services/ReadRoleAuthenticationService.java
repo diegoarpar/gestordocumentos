@@ -1,52 +1,37 @@
 package com.itec.api.authentication.services;
 
-import com.data.user.model.UserModel;
-import com.data.user.service.UserServiceRepository;
-import com.itec.api.authentication.model.Role;
-import com.itec.api.authentication.model.User;
-import com.itec.api.authentication.model.UserAuthenticationServiceRequest;
-import com.itec.api.authentication.model.UserAuthenticationServiceResponse;
+import com.data.user.model.RoleInformation;
+import com.data.user.service.RoleServiceRepository;
+import com.itec.api.authentication.model.RoleAuthenticationServiceRequest;
+import com.itec.api.authentication.model.RoleAuthenticationServiceResponse;
 import com.itec.utilities.service.BaseService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
- * Read Credential.
+ * Read Role.
  *
  * @author diegoarpar
  */
 @Service
-public class ReadCredentialAuthenticationService implements BaseService<UserAuthenticationServiceRequest, UserAuthenticationServiceResponse> {
+@RequiredArgsConstructor
+public class ReadRoleAuthenticationService implements BaseService<RoleAuthenticationServiceRequest, RoleAuthenticationServiceResponse> {
 
     /**
-     * The user repository
+     * The role repository
      */
-    private final UserServiceRepository userServiceRepository;
-
-    /**
-     * The service repository.
-     *
-     * @param userServiceRepository the user repository.
-     */
-    public ReadCredentialAuthenticationService(UserServiceRepository userServiceRepository) {
-        this.userServiceRepository = userServiceRepository;
-    }
+    private final RoleServiceRepository roleServiceRepository;
 
     /**
      * Execute the service
      * @param information the information
      */
     @Override
-    public UserAuthenticationServiceResponse execute(UserAuthenticationServiceRequest information) {
-        var userModel = UserModel.builder().name(information.getUser().getName()).build();
-        userModel = userServiceRepository.find(userModel);
-        var respone = new UserAuthenticationServiceResponse();
-        respone.setUser(new User());
-        var userResponse = respone.getUser();
-        userResponse.setName(userModel.getName());
-        userResponse.setRoles(List.of(new Role()));
-        userResponse.getRoles().getFirst().setName(userModel.getRoleModelList().getFirst().getName());
-        return respone;
+    public RoleAuthenticationServiceResponse execute(RoleAuthenticationServiceRequest information) {
+        var role = roleServiceRepository.find(RoleInformation.builder().name(information.getRole().getName()).build());
+        var response = new RoleAuthenticationServiceResponse();
+        response.setRole(new com.itec.api.authentication.model.Role());
+        response.getRole().setName(role.getName());
+        return response;
     }
 }

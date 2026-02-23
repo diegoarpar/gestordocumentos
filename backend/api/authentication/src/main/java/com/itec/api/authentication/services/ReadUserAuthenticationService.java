@@ -1,13 +1,14 @@
 package com.itec.api.authentication.services;
 
-import com.data.user.model.CredentialModel;
-import com.data.user.model.RoleModel;
-import com.data.user.model.UserModel;
+import com.data.user.model.UserInformation;
 import com.data.user.service.UserServiceRepository;
+import com.itec.api.authentication.model.Role;
 import com.itec.api.authentication.model.UserAuthenticationServiceRequest;
 import com.itec.api.authentication.model.UserAuthenticationServiceResponse;
 import com.itec.utilities.service.BaseService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Create a user
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
  * @author diegoarpar
  */
 @Service
-public class CreateUserAuthenticationService implements BaseService<UserAuthenticationServiceRequest, UserAuthenticationServiceResponse> {
+public class ReadUserAuthenticationService implements BaseService<UserAuthenticationServiceRequest, UserAuthenticationServiceResponse> {
 
     /**
      * The user repository
@@ -27,7 +28,7 @@ public class CreateUserAuthenticationService implements BaseService<UserAuthenti
      *
      * @param userServiceRepository the user repository.
      */
-    public CreateUserAuthenticationService(UserServiceRepository userServiceRepository) {
+    public ReadUserAuthenticationService(UserServiceRepository userServiceRepository) {
         this.userServiceRepository = userServiceRepository;
     }
 
@@ -37,14 +38,14 @@ public class CreateUserAuthenticationService implements BaseService<UserAuthenti
      */
     @Override
     public UserAuthenticationServiceResponse execute(UserAuthenticationServiceRequest information) {
-        var roles = information.getUser().getRoles().stream().map(role ->
-            RoleModel.builder().name(role.getName()).build()
-        ).toList();
-
-        var credentials = information.getUser().getCredentials().stream().map(credential ->
-                CredentialModel.builder().value(credential.getName()).build()).toList();
-        var userModel = UserModel.builder().name(information.getUser().getName()).roleModelList(roles).passwordModels(credentials).build();
-        userServiceRepository.save(userModel);
-        return new UserAuthenticationServiceResponse();
+        var userModel = UserInformation.builder().name(information.getUser().getName()).build();
+        userModel = userServiceRepository.find(userModel);
+        var respone = new UserAuthenticationServiceResponse();
+        respone.setUser(new com.itec.api.authentication.model.User());
+        var userResponse = respone.getUser();
+        userResponse.setName(userModel.getName());
+        userResponse.setRoles(List.of(new Role()));
+        userResponse.getRoles().getFirst().setName(userModel.getRoleModelList().getFirst().getName());
+        return respone;
     }
 }

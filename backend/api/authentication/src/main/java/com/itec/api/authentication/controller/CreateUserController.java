@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/authentication/user")
-public class CreateUserAuthenticationController {
+public class CreateUserController {
 
     /**
      * The user authentication.
      */
     BaseService service;
-    public CreateUserAuthenticationController(CreateUserAuthenticationService service) {
+    public CreateUserController(CreateUserAuthenticationService service) {
         this.service = service;
     }
 

@@ -1,7 +1,7 @@
 package com.itec.api.authentication.controller;
 
-import com.itec.api.authentication.model.UserAuthenticationServiceRequest;
-import com.itec.api.authentication.services.CreateUserAuthenticationService;
+import com.itec.api.authentication.model.RoleAuthenticationServiceRequest;
+import com.itec.api.authentication.services.CreateRoleAuthenticationService;
 import com.itec.utilities.BasicObjectUtil;
 import com.itec.utilities.service.BaseService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author diegoarpar
  */
 @Controller
-@RequestMapping("/authentication/user")
-public class CreateUserAuthenticationController {
+@RequestMapping("/authentication/role")
+public class CreateRoleController {
 
     /**
      * The user authentication.
      */
     BaseService service;
-    public CreateUserAuthenticationController(CreateUserAuthenticationService service) {
+    public CreateRoleController(CreateRoleAuthenticationService service) {
         this.service = service;
     }
 
@@ -36,7 +36,7 @@ public class CreateUserAuthenticationController {
      */
     @PostMapping
     public ResponseEntity<Object> execute(HttpServletRequest req,
-                                          @RequestBody UserAuthenticationServiceRequest userAuthenticationServiceRequest) {
+                                          @RequestBody RoleAuthenticationServiceRequest userAuthenticationServiceRequest) {
         String tenant = BasicObjectUtil.getTenant(req);
         var results = service.execute(userAuthenticationServiceRequest);
         return ResponseEntity.ok(results);

@@ -3,7 +3,6 @@ package com.itec.api.authentication.controller;
 import com.itec.api.authentication.model.User;
 import com.itec.api.authentication.model.UserAuthenticationServiceRequest;
 import com.itec.api.authentication.services.ReadUserAuthenticationService;
-import com.itec.api.authentication.services.UserAuthenticationService;
 import com.itec.utilities.BasicObjectUtil;
 import com.itec.utilities.service.BaseService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/authentication/user")
-public class ReadUserAuthenticationController {
+public class ReadUserController {
 
     BaseService service;
-    public ReadUserAuthenticationController(ReadUserAuthenticationService service) {
+    public ReadUserController(ReadUserAuthenticationService service) {
         this.service = service;
     }
 

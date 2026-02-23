@@ -1,52 +1,37 @@
 package com.itec.api.authentication.services;
 
-import com.data.user.model.UserModel;
-import com.data.user.service.UserServiceRepository;
-import com.itec.api.authentication.model.Role;
-import com.itec.api.authentication.model.User;
-import com.itec.api.authentication.model.UserAuthenticationServiceRequest;
-import com.itec.api.authentication.model.UserAuthenticationServiceResponse;
+import com.data.user.model.CredentialInformation;
+import com.data.user.service.CredentialServiceRepository;
+import com.itec.api.authentication.model.CredentialAuthenticationServiceRequest;
+import com.itec.api.authentication.model.CredentialAuthenticationServiceResponse;
 import com.itec.utilities.service.BaseService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
- * Create a user
+ * Read Credential.
  *
  * @author diegoarpar
  */
 @Service
-public class ReadUserAuthenticationService implements BaseService<UserAuthenticationServiceRequest, UserAuthenticationServiceResponse> {
+@RequiredArgsConstructor
+public class ReadCredentialAuthenticationService implements BaseService<CredentialAuthenticationServiceRequest, CredentialAuthenticationServiceResponse> {
 
     /**
-     * The user repository
+     * The credential repository.
      */
-    private final UserServiceRepository userServiceRepository;
-
-    /**
-     * The service repository.
-     *
-     * @param userServiceRepository the user repository.
-     */
-    public ReadUserAuthenticationService(UserServiceRepository userServiceRepository) {
-        this.userServiceRepository = userServiceRepository;
-    }
+    private final CredentialServiceRepository credentialServiceRepository;
 
     /**
      * Execute the service
      * @param information the information
      */
     @Override
-    public UserAuthenticationServiceResponse execute(UserAuthenticationServiceRequest information) {
-        var userModel = UserModel.builder().name(information.getUser().getName()).build();
-        userModel = userServiceRepository.find(userModel);
-        var respone = new UserAuthenticationServiceResponse();
-        respone.setUser(new User());
-        var userResponse = respone.getUser();
-        userResponse.setName(userModel.getName());
-        userResponse.setRoles(List.of(new Role()));
-        userResponse.getRoles().getFirst().setName(userModel.getRoleModelList().getFirst().getName());
-        return respone;
+    public CredentialAuthenticationServiceResponse execute(CredentialAuthenticationServiceRequest information) {
+        var response = new CredentialAuthenticationServiceResponse();
+        response.setCredential(new com.itec.api.authentication.model.Credential());
+        var credential = credentialServiceRepository.find(CredentialInformation.builder().value(information.getCredential().getName()).build());
+        response.getCredential().setName(credential.getValue());
+        return response;
     }
 }

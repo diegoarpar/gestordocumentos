@@ -1,50 +1,35 @@
 package com.itec.api.authentication.services;
 
-import com.data.user.model.CredentialModel;
-import com.data.user.model.RoleModel;
-import com.data.user.model.UserModel;
-import com.data.user.service.UserServiceRepository;
-import com.itec.api.authentication.model.UserAuthenticationServiceRequest;
-import com.itec.api.authentication.model.UserAuthenticationServiceResponse;
+import com.data.user.model.CredentialInformation;
+import com.data.user.service.CredentialServiceRepository;
+import com.itec.api.authentication.model.CredentialAuthenticationServiceRequest;
+import com.itec.api.authentication.model.CredentialAuthenticationServiceResponse;
 import com.itec.utilities.service.BaseService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
- * Create a user
+ * Create a credential.
  *
  * @author diegoarpar
  */
 @Service
-public class CreateUserAuthenticationService implements BaseService<UserAuthenticationServiceRequest, UserAuthenticationServiceResponse> {
+@RequiredArgsConstructor
+public class CreateCredentialAuthenticationService implements BaseService<CredentialAuthenticationServiceRequest, CredentialAuthenticationServiceResponse> {
 
     /**
-     * The user repository
+     * The credential repository
      */
-    private final UserServiceRepository userServiceRepository;
-
-    /**
-     * The service repository.
-     *
-     * @param userServiceRepository the user repository.
-     */
-    public CreateUserAuthenticationService(UserServiceRepository userServiceRepository) {
-        this.userServiceRepository = userServiceRepository;
-    }
+    private final CredentialServiceRepository credentialServiceRepository;
 
     /**
      * Execute the service
      * @param information the information
      */
     @Override
-    public UserAuthenticationServiceResponse execute(UserAuthenticationServiceRequest information) {
-        var roles = information.getUser().getRoles().stream().map(role ->
-            RoleModel.builder().name(role.getName()).build()
-        ).toList();
-
-        var credentials = information.getUser().getCredentials().stream().map(credential ->
-                CredentialModel.builder().value(credential.getName()).build()).toList();
-        var userModel = UserModel.builder().name(information.getUser().getName()).roleModelList(roles).passwordModels(credentials).build();
-        userServiceRepository.save(userModel);
-        return new UserAuthenticationServiceResponse();
+    public CredentialAuthenticationServiceResponse execute(CredentialAuthenticationServiceRequest information) {
+        var role = CredentialInformation.builder().active(true).value(information.getCredential().getName()).build();
+        credentialServiceRepository.save(role);
+        return new CredentialAuthenticationServiceResponse();
     }
 }

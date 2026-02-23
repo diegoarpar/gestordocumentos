@@ -1,18 +1,27 @@
 package com.itec.api.authentication.model;
 
-import com.itec.utilities.model.BaseServiceRequest;
 import lombok.Data;
 
+import java.util.List;
+
+/**
+ * The User
+ */
 @Data
-public class UserServiceRequest implements BaseServiceRequest {
+public class User {
 
-    @Override
-    public String getTenant() {
-        return "";
-    }
+    /**
+     * The user name.
+     */
+    private String name;
 
-    @Override
-    public void setTenant(String tenant) {
+    /**
+     * Credential
+     */
+    private List<Credential> credentials;
 
-    }
+    /**
+     * Roles
+     */
+    private List<Role> roles;
 }

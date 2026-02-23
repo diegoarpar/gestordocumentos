@@ -13,7 +13,7 @@ repositories {
 dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-web")
     implementation ("org.springframework.boot:spring-boot-starter-actuator")
-    implementation(project(":data:data-user-information"))
+    implementation(project(":data:data-customer-user-information"))
     implementation ("org.springframework.boot:spring-boot-starter-test")
     implementation (project(":utilities:util-model"))
     implementation (project(":utilities:util-authorization"))

@@ -4,10 +4,10 @@ import com.itec.utilities.model.BaseServiceRequest;
 import lombok.Data;
 
 /**
- * User request.
+ * Role request.
  */
 @Data
-public class UserAuthenticationServiceRequest implements BaseServiceRequest {
+public class RoleAuthenticationServiceRequest implements BaseServiceRequest {
 
     /**
      * The tenant.
@@ -15,12 +15,7 @@ public class UserAuthenticationServiceRequest implements BaseServiceRequest {
     private String tenant;
 
     /**
-     * The email.
-     */
-    private String email;
-
-    /**
      * The user information.
      */
-    private User user;
+    private Role role;
 }
