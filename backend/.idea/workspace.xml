@@ -5,37 +5,149 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbc174e2-1297-45be-9507-6ad6cab1367b" name="Changes" comment="files hashes">
-      <change afterPath="$PROJECT_DIR$/api/authentication/src/main/java/com/itec/api/authentication/controller/ReadLoginUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.13/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/authentication/src/main/java/com/itec/api/authentication/configuration/ApiAuthenticationConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/authentication/src/main/java/com/itec/api/authentication/configuration/ApiAuthenticationConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/authentication/src/main/java/com/itec/api/authentication/services/UserAuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/authentication/src/main/java/com/itec/api/authentication/services/UserAuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/customer-authentication/src/main/java/com/itec/api/authentication/configuration/ApiAuthenticationConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/customer-authentication/src/main/java/com/itec/api/authentication/configuration/ApiAuthenticationConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/customer-authentication/src/main/java/com/itec/api/authentication/services/UserAuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/customer-authentication/src/main/java/com/itec/api/authentication/services/UserAuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/workflow/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/api/workflow/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/configuration/ApiWorkflowConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/configuration/ApiWorkflowConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/controller/CreateWorkflowRolesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/controller/CreateWorkflowRolesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/controller/DeleteWorkflowRolesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/controller/DeleteWorkflowRolesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/controller/ReadWorkflowRolesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/controller/ReadWorkflowRolesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/mapper/TenantMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/mapper/TenantMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/model/TenantServiceRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/model/RoleServiceRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/model/TenantServiceResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/model/RoleServiceResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/services/CreateWorkflowRolesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/services/CreateWorkflowRolesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/services/ReadWorkflowRolesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/workflow/src/main/java/com/itec/api/workflow/services/ReadWorkflowRolesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-workflow-cassandra/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/src/main/java/com/data/workflow/cassandra/config/DataWorkflowCassandraConfigurationApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-workflow-cassandra/src/main/java/com/data/workflow/cassandra/config/DataWorkflowCassandraConfigurationApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/src/main/java/com/data/workflow/cassandra/model/ProcessInformationModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/src/main/java/com/data/workflow/cassandra/model/TaskInformationModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/src/main/java/com/data/workflow/cassandra/respository/ProcessRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-workflow-cassandra/src/main/java/com/data/workflow/cassandra/respository/ProcessRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/src/main/java/com/data/workflow/cassandra/respository/TaskRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-workflow-cassandra/src/main/java/com/data/workflow/cassandra/respository/TaskRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/src/test/java/com/data/workflow/cassandra/repostory/ProcessRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-workflow-cassandra/src/test/java/com/data/workflow/cassandra/repostory/ProcessRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilities/util-authorization/src/main/java/com/itec/api/authorization/configuration/UtilAuthorizationConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/util-authorization/src/main/java/com/itec/util/authorization/configuration/UtilAuthorizationConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilities/util-authorization/src/main/java/com/itec/api/authorization/services/AuthorizationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/util-authorization/src/main/java/com/itec/util/authorization/services/AuthorizationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflow/workflow-manager/src/main/java/com/itec/workflowmanager/configuration/WorkflowConfigurationApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/workflow/workflow-manager/src/main/java/com/itec/workflowmanager/configuration/WorkflowConfigurationApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/app/api/userServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/app/api/userServices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/app/feature/loginForm/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/app/feature/loginForm/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/ApiAuthenticationApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/configuration/ApiAuthenticationConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/controller/CreateCredentialController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/controller/CreateRoleController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/controller/CreateUserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/controller/ReadCredentialController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/controller/ReadLoginUserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/controller/ReadRoleController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/controller/ReadUserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/controller/UserRolesController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/model/Credential.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/model/CredentialAuthenticationServiceRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/model/CredentialAuthenticationServiceResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/model/CredentialType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/model/Role.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/model/RoleAuthenticationServiceRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/model/RoleAuthenticationServiceResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/model/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/model/UserAuthenticationServiceRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/model/UserAuthenticationServiceResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/services/CreateCredentialAuthenticationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/services/CreateRoleAuthenticationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/services/CreateUserAuthenticationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/services/ReadCredentialAuthenticationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/services/ReadRoleAuthenticationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/services/ReadUserAuthenticationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/classes/java/main/com/itec/api/authentication/services/UserAuthenticationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/resources/main/api-authentication.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authentication/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tenant/build/classes/java/main/com/itec/api/tenant/ApiTenantApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tenant/build/classes/java/main/com/itec/api/tenant/configuration/ApiTenantConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tenant/build/classes/java/main/com/itec/api/tenant/controller/CreateTenantController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tenant/build/classes/java/main/com/itec/api/tenant/controller/ReadTenantController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tenant/build/classes/java/main/com/itec/api/tenant/mapper/TenantMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tenant/build/classes/java/main/com/itec/api/tenant/mapper/TenantMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tenant/build/classes/java/main/com/itec/api/tenant/model/TenantServiceRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tenant/build/classes/java/main/com/itec/api/tenant/model/TenantServiceResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tenant/build/classes/java/main/com/itec/api/tenant/services/CreateTenantService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tenant/build/classes/java/main/com/itec/api/tenant/services/ReadTenantService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tenant/build/generated/sources/annotationProcessor/java/main/com/itec/api/tenant/mapper/TenantMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tenant/build/resources/main/api-tenant.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tenant/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/classes/java/main/com/itec/api/workflow/ApiWorkflowApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/classes/java/main/com/itec/api/workflow/configuration/ApiWorkflowConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/classes/java/main/com/itec/api/workflow/controller/CreateWorkflowRolesController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/classes/java/main/com/itec/api/workflow/controller/DeleteWorkflowRolesController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/classes/java/main/com/itec/api/workflow/controller/ReadWorkflowRolesController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/classes/java/main/com/itec/api/workflow/mapper/TenantMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/classes/java/main/com/itec/api/workflow/model/RoleServiceRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/classes/java/main/com/itec/api/workflow/model/RoleServiceResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/classes/java/main/com/itec/api/workflow/services/CreateWorkflowRolesService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/classes/java/main/com/itec/api/workflow/services/ReadWorkflowRolesService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/resources/main/api-workflow.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/tmp/compileJava/compileTransaction/stash-dir/CreateWorkflowRolesController.class.uniqueId4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/tmp/compileJava/compileTransaction/stash-dir/CreateWorkflowRolesService.class.uniqueId2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/tmp/compileJava/compileTransaction/stash-dir/DeleteWorkflowRolesController.class.uniqueId3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/tmp/compileJava/compileTransaction/stash-dir/ReadWorkflowRolesController.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/tmp/compileJava/compileTransaction/stash-dir/ReadWorkflowRolesService.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/workflow/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/problems/problems-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/problems/problems-report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-tenant-information/build/classes/java/main/com/data/tenant/TenantInformationApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-tenant-information/build/classes/java/main/com/data/tenant/config/DataTenantConfigurationApp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-tenant-information/build/classes/java/main/com/data/tenant/model/TenantModel$TenantModelBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-tenant-information/build/classes/java/main/com/data/tenant/model/TenantModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-tenant-information/build/classes/java/main/com/data/tenant/respository/TenantRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-tenant-information/build/classes/java/main/com/data/tenant/service/TenantServiceRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-tenant-information/build/libs/data-tenant-information-0.0.1-SNAPSHOT-plain.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-tenant-information/build/resources/main/schema.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-tenant-information/build/resources/main/service-application-tenant.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-tenant-information/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-tenant-information/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-authorization/build/classes/java/main/com/data/authorization/DataAuthorizationApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-authorization/build/classes/java/main/com/data/authorization/configuration/DataAuthorizationConfigurationApp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-authorization/build/classes/java/main/com/data/authorization/model/DataAuthorizationModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-authorization/build/classes/java/main/com/data/authorization/respository/CustomSave.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-authorization/build/classes/java/main/com/data/authorization/respository/CustomSaveImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-authorization/build/classes/java/main/com/data/authorization/respository/DataAuthorizationRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-authorization/build/classes/java/main/com/data/authorization/service/ServiceAuthorizationRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-authorization/build/libs/data-user-authorization-0.0.1-SNAPSHOT-plain.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-authorization/build/resources/main/data-authorization.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-authorization/build/resources/main/squema.cql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-authorization/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-authorization/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/DataUserInformation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/config/DataUsersConfigurationApp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/model/BaseAuthMethodModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/model/CredentialInformation$CredentialInformationBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/model/CredentialInformation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/model/OrganizationInformation$OrganizationInformationBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/model/OrganizationInformation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/model/RoleInformation$RoleInformationBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/model/RoleInformation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/model/UserInformation$UserInformationBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/model/UserInformation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/respository/CredentialRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/respository/RoleRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/respository/UserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/service/CredentialServiceRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/service/RoleServiceRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/classes/java/main/com/data/user/service/UserServiceRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/libs/data-user-information-0.0.1-SNAPSHOT-plain.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/resources/main/application-user.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/resources/main/schema.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-user-information/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/classes/java/main/com/data/workflow/cassandra/DataWorkflowCassandra.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/classes/java/main/com/data/workflow/cassandra/config/DataWorkflowCassandraConfigurationApp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/classes/java/main/com/data/workflow/cassandra/model/GroupInformation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/classes/java/main/com/data/workflow/cassandra/model/ProcessInformation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/classes/java/main/com/data/workflow/cassandra/model/RoleInformation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/classes/java/main/com/data/workflow/cassandra/model/TaskInformation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/classes/java/main/com/data/workflow/cassandra/model/UserGroupInformation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/classes/java/main/com/data/workflow/cassandra/model/UserRoleInformation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/classes/java/main/com/data/workflow/cassandra/respository/CustomSave.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/classes/java/main/com/data/workflow/cassandra/respository/CustomSaveImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/classes/java/main/com/data/workflow/cassandra/respository/GroupRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/classes/java/main/com/data/workflow/cassandra/respository/ProcessRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/classes/java/main/com/data/workflow/cassandra/respository/RoleRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/classes/java/main/com/data/workflow/cassandra/respository/TaskRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/classes/java/main/com/data/workflow/cassandra/service/GroupServiceRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/classes/java/main/com/data/workflow/cassandra/service/RoleServiceRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/libs/data-workflow-cassandra-0.0.1-SNAPSHOT-plain.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/resources/main/application-data-workflow-cassandra.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/resources/main/squema.cql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/tmp/compileJava/compileTransaction/stash-dir/RoleServiceRepository.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data-workflow-cassandra/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/util-authorization/build/classes/java/main/com/itec/api/authorization/configuration/UtilAuthorizationConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/util-authorization/build/classes/java/main/com/itec/api/authorization/services/AuthorizationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/util-authorization/build/libs/util-authorization-plain.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/util-authorization/build/resources/main/util-authorization.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/util-authorization/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/util-authorization/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/util-model/build/classes/java/main/com/itec/utilities/BasicObjectUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/util-model/build/classes/java/main/com/itec/utilities/model/BaseServiceRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/util-model/build/classes/java/main/com/itec/utilities/model/BaseServiceResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/util-model/build/classes/java/main/com/itec/utilities/service/BaseController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/util-model/build/classes/java/main/com/itec/utilities/service/BaseService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/util-model/build/classes/java/main/com/itec/utilities/service/JwtUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/util-model/build/libs/util-model-plain.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/util-model/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/util-model/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +291,7 @@
       <recent name="com.data.user.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ApiWorkflowApplication">
+  <component name="RunManager" selected="Gradle.backend [clean]">
     <configuration name="ApiAuthenticationApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.itec.api.authentication.ApiAuthenticationApplication" />
       <module name="backend.api.authentication.main" />
