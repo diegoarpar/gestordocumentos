@@ -18,9 +18,6 @@ dependencies {
     implementation (project(":utilities:util-model"))
     compileOnly ("org.projectlombok:lombok:1.18.30")
     annotationProcessor  ("org.projectlombok:lombok:1.18.30")
-    implementation ("org.mapstruct:mapstruct:1.6.0.Beta1")
-    annotationProcessor ("org.projectlombok:lombok-mapstruct-binding:0.2.0")
-    annotationProcessor ("org.mapstruct:mapstruct-processor:1.6.0.Beta1")
 }
 
 java {

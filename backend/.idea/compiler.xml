@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.30/f195ee86e6c896ea47a1d39defbe20eb59cd149d/lombok-1.18.30.jar" />
+        </processorPath>
+        <module name="backend.data.data-customer-user-information.main" />
+        <module name="backend.api.authentication.main" />
+        <module name="backend.utilities.util-authorization.main" />
+        <module name="backend.data.data-user-information.main" />
+        <module name="backend.api.workflow.main" />
+        <module name="backend.data.data-user-authorization.main" />
+        <module name="backend.workflow.workflow-manager.main" />
+        <module name="backend.api.customer-authentication.main" />
+        <module name="backend.workflow.workflow-administration.main" />
+        <module name="backend.data.data-tenant-information.main" />
+        <module name="backend.data.data-workflow-cassandra.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.30/f195ee86e6c896ea47a1d39defbe20eb59cd149d/lombok-1.18.30.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok-mapstruct-binding/0.2.0/2f1cf9ced7b720ba4996c942b816669e63f0fa4f/lombok-mapstruct-binding-0.2.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mapstruct/mapstruct-processor/1.6.0.Beta1/de59f512fb08ea819f51e1f33ef4d9ce0c322b16/mapstruct-processor-1.6.0.Beta1.jar" />
+        </processorPath>
+        <module name="backend.api.tenant.main" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="21" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="backend.api.authentication" options="-parameters" />
+      <module name="backend.api.authentication.main" options="-parameters" />
+      <module name="backend.api.authentication.test" options="-parameters" />
+      <module name="backend.api.authorization.main" options="-parameters" />
+      <module name="backend.api.authorization.test" options="-parameters" />
+      <module name="backend.api.customer-authentication" options="-parameters" />
+      <module name="backend.api.customer-authentication.main" options="-parameters" />
+      <module name="backend.api.customer-authentication.test" options="-parameters" />
+      <module name="backend.api.tenant" options="-parameters" />
+      <module name="backend.api.tenant.main" options="-parameters" />
+      <module name="backend.api.tenant.test" options="-parameters" />
+      <module name="backend.api.workflow" options="-parameters" />
+      <module name="backend.api.workflow.main" options="-parameters" />
+      <module name="backend.api.workflow.test" options="-parameters" />
+      <module name="backend.authentication" options="-parameters" />
+      <module name="backend.authentication.main" options="-parameters" />
+      <module name="backend.authentication.test" options="-parameters" />
+      <module name="backend.data.data-customer-user-information" options="-parameters" />
+      <module name="backend.data.data-customer-user-information.main" options="-parameters" />
+      <module name="backend.data.data-customer-user-information.test" options="-parameters" />
+      <module name="backend.data.data-tenant-information" options="-parameters" />
+      <module name="backend.data.data-tenant-information.main" options="-parameters" />
+      <module name="backend.data.data-tenant-information.test" options="-parameters" />
+      <module name="backend.data.data-user-authorization" options="-parameters" />
+      <module name="backend.data.data-user-authorization.main" options="-parameters" />
+      <module name="backend.data.data-user-authorization.test" options="-parameters" />
+      <module name="backend.data.data-user-information" options="-parameters" />
+      <module name="backend.data.data-user-information.main" options="-parameters" />
+      <module name="backend.data.data-user-information.test" options="-parameters" />
+      <module name="backend.data.data-workflow-cassandra" options="-parameters" />
+      <module name="backend.data.data-workflow-cassandra.main" options="-parameters" />
+      <module name="backend.data.data-workflow-cassandra.test" options="-parameters" />
+      <module name="backend.data.data-workflow-mongo" options="-parameters" />
+      <module name="backend.data.data-workflow-mongo.main" options="-parameters" />
+      <module name="backend.data.data-workflow-mongo.test" options="-parameters" />
+      <module name="backend.filesystem" options="-parameters" />
+      <module name="backend.filesystem.main" options="-parameters" />
+      <module name="backend.filesystem.test" options="-parameters" />
+      <module name="backend.notification.notification-email" options="-parameters" />
+      <module name="backend.notification.notification-email.main" options="-parameters" />
+      <module name="backend.notification.notification-email.test" options="-parameters" />
+      <module name="backend.portal-administration" options="-parameters" />
+      <module name="backend.portal-administration.main" options="-parameters" />
+      <module name="backend.portal-administration.test" options="-parameters" />
+      <module name="backend.signature" options="-parameters" />
+      <module name="backend.signature.main" options="-parameters" />
+      <module name="backend.signature.test" options="-parameters" />
+      <module name="backend.utilities.main" options="-parameters" />
+      <module name="backend.utilities.test" options="-parameters" />
+      <module name="backend.utilities.util-authorization" options="-parameters" />
+      <module name="backend.utilities.util-authorization.main" options="-parameters" />
+      <module name="backend.utilities.util-authorization.test" options="-parameters" />
+      <module name="backend.utilities.util-model" options="-parameters" />
+      <module name="backend.utilities.util-model.main" options="-parameters" />
+      <module name="backend.utilities.util-model.test" options="-parameters" />
+      <module name="backend.workflow.workflow-administration" options="-parameters" />
+      <module name="backend.workflow.workflow-administration.main" options="-parameters" />
+      <module name="backend.workflow.workflow-administration.test" options="-parameters" />
+      <module name="backend.workflow.workflow-manager" options="-parameters" />
+      <module name="backend.workflow.workflow-manager.main" options="-parameters" />
+      <module name="backend.workflow.workflow-manager.test" options="-parameters" />
+    </option>
+  </component>
+</project>

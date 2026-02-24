@@ -1,6 +1,6 @@
 package com.itec.api.workflow.controller;
 
-import com.itec.api.workflow.model.TenantServiceRequest;
+import com.itec.api.workflow.model.RoleServiceRequest;
 import com.itec.api.workflow.services.CreateWorkflowRolesService;
 import com.itec.utilities.service.BaseService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ public class DeleteWorkflowRolesController {
 
     @DeleteMapping
     public ResponseEntity<Object> create(HttpServletRequest req, @RequestBody Object body) {
-        var request = new TenantServiceRequest();
+        var request = new RoleServiceRequest();
         service.execute(request);
         return ResponseEntity.ok().build();
     }

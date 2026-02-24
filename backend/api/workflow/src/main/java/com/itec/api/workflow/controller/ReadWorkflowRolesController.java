@@ -1,7 +1,7 @@
 package com.itec.api.workflow.controller;
 
-import com.itec.api.workflow.model.TenantServiceRequest;
-import com.itec.api.workflow.services.CreateWorkflowRolesService;
+import com.itec.api.workflow.model.RoleServiceRequest;
+import com.itec.api.workflow.services.ReadWorkflowRolesService;
 import com.itec.utilities.service.BaseService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ReadWorkflowRolesController {
 
     BaseService service;
-    public ReadWorkflowRolesController(CreateWorkflowRolesService service) {
+    public ReadWorkflowRolesController(ReadWorkflowRolesService service) {
         this.service = service;
     }
 
     @GetMapping
     public ResponseEntity<Object> create(HttpServletRequest req) {
-        var request = new TenantServiceRequest();
-        service.execute(request);
-        return ResponseEntity.ok().build();
+        var request = new RoleServiceRequest();
+        var response = service.execute(request);
+        return ResponseEntity.ok().body(response);
     }
 }
 
