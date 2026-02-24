@@ -2,3 +2,4 @@
 /backend/filesystem/venv/
 mysql
 data
+.idea

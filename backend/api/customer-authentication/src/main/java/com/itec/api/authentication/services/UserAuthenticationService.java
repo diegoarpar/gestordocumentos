@@ -2,7 +2,7 @@ package com.itec.api.authentication.services;
 
 import com.itec.api.authentication.model.UserAuthenticationServiceRequest;
 import com.itec.api.authentication.model.UserAuthenticationServiceResponse;
-import com.itec.api.authorization.services.AuthorizationService;
+import com.itec.util.authorization.services.AuthorizationService;
 import com.itec.utilities.service.BaseService;
 import org.springframework.stereotype.Service;
 

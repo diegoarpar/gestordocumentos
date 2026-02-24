@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/api" />
+            <option value="$PROJECT_DIR$/api/authentication" />
+            <option value="$PROJECT_DIR$/api/authorization" />
+            <option value="$PROJECT_DIR$/api/customer-authentication" />
+            <option value="$PROJECT_DIR$/api/tenant" />
+            <option value="$PROJECT_DIR$/api/workflow" />
+            <option value="$PROJECT_DIR$/data" />
+            <option value="$PROJECT_DIR$/data/data-customer-user-information" />
+            <option value="$PROJECT_DIR$/data/data-tenant-information" />
+            <option value="$PROJECT_DIR$/data/data-user-authorization" />
+            <option value="$PROJECT_DIR$/data/data-user-information" />
+            <option value="$PROJECT_DIR$/data/data-workflow-cassandra" />
+            <option value="$PROJECT_DIR$/data/data-workflow-mongo" />
+            <option value="$PROJECT_DIR$/filesystem" />
+            <option value="$PROJECT_DIR$/notification" />
+            <option value="$PROJECT_DIR$/notification/notification-email" />
+            <option value="$PROJECT_DIR$/portal-administration" />
+            <option value="$PROJECT_DIR$/signature" />
+            <option value="$PROJECT_DIR$/utilities" />
+            <option value="$PROJECT_DIR$/utilities/util-authorization" />
+            <option value="$PROJECT_DIR$/utilities/util-model" />
+            <option value="$PROJECT_DIR$/workflow" />
+            <option value="$PROJECT_DIR$/workflow/workflow-administration" />
+            <option value="$PROJECT_DIR$/workflow/workflow-manager" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

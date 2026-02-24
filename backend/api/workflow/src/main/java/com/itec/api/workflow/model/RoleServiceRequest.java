@@ -4,8 +4,9 @@ import com.itec.utilities.model.BaseServiceRequest;
 import lombok.Data;
 
 @Data
-public class TenantServiceRequest implements BaseServiceRequest {
+public class RoleServiceRequest implements BaseServiceRequest {
     String tenant;
     String origin;
     String instanceId;
+    private String name;
 }

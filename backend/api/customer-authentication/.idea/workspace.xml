@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="12b2b311-c256-499f-9ecb-4448db93b10c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../administration/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../administration/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../administration/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../administration/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-administracion/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-administracion/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-administracion/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-administracion/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-administracion/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-administracion/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-administracion/src/config/url.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-administracion/src/config/url.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-administracion/src/views/menus/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-administracion/src/views/menus/menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-administracion/src/views/parametricValueAdministration/parametricInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-administracion/src/views/parametricValueAdministration/parametricInformation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-administracion/src/views/userAdministration/userAdministration.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-administracion/src/views/userAdministration/userAdministration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/config/url.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/config/url.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/services/processServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/services/processServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/views/menus/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/views/menus/menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/views/ventanilla/menuProcess.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/views/ventanilla/menuProcess.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/views/ventanilla/tasksInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/views/ventanilla/tasksInformation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/portal-funcionario/src/views/ventanilla/ventanilla.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/portal-funcionario/src/views/ventanilla/ventanilla.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/sede-electronica/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/sede-electronica/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/sede-electronica/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/sede-electronica/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/sede-electronica/src/config/url.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/sede-electronica/src/config/url.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/sede-electronica/src/views/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/sede-electronica/src/views/login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/sede-electronica/src/views/menus/menuProcess.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/sede-electronica/src/views/menus/menuProcess.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/sede-electronica/src/views/menus/navBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/sede-electronica/src/views/menus/navBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/sede-electronica/src/views/userAdministration/userAdministration.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../workflow/workflowmanager/workflowmanager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../workflow/workflowmanager/workflowmanager.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1aoxG6YSxMz1lwrYtLSE5bOqOa0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Documentos\DLLO\gestor\gestordocumentos\autenticacion\services" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Authenticacion" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="autenticacion" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\parreydell\AppData\Local\Programs\Python\Python38-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/authenticacion" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/authenticacion/Authenticacion.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="12b2b311-c256-499f-9ecb-4448db93b10c" name="Default Changelist" comment="" />
+      <created>1586295383855</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586295383855</updated>
+    </task>
+    <task id="LOCAL-00001" summary="hello mongo">
+      <created>1586307588387</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1586307588387</updated>
+    </task>
+    <task id="LOCAL-00002" summary="validación de token">
+      <created>1586383857686</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1586383857686</updated>
+    </task>
+    <task id="LOCAL-00003" summary="identify host and token">
+      <created>1586385272977</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1586385272977</updated>
+    </task>
+    <task id="LOCAL-00004" summary=" host and token identified">
+      <created>1586385396654</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1586385396654</updated>
+    </task>
+    <task id="LOCAL-00005" summary="path resource &amp; passwordchange">
+      <created>1586396491194</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1586396491194</updated>
+    </task>
+    <task id="LOCAL-00006" summary="validate token">
+      <created>1586396846292</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1586396846292</updated>
+    </task>
+    <task id="LOCAL-00007" summary="cambio de contraseña">
+      <created>1586399127803</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1586399127803</updated>
+    </task>
+    <task id="LOCAL-00008" summary="servicios a POST y creación de usuarios">
+      <created>1586463640197</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1586463640198</updated>
+    </task>
+    <task id="LOCAL-00009" summary="authentication with Kong">
+      <created>1586999331166</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1586999331167</updated>
+    </task>
+    <task id="LOCAL-00010" summary="authentication with Kong">
+      <created>1587070943632</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1587070943632</updated>
+    </task>
+    <task id="LOCAL-00011" summary="authentication with Kong">
+      <created>1587071075582</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1587071075582</updated>
+    </task>
+    <task id="LOCAL-00012" summary="authentication with Kong">
+      <created>1587073770545</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1587073770545</updated>
+    </task>
+    <task id="LOCAL-00013" summary="authentication with Kong">
+      <created>1587074489466</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1587074489468</updated>
+    </task>
+    <task id="LOCAL-00014" summary="authentication with Kong">
+      <created>1587075175185</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1587075175185</updated>
+    </task>
+    <task id="LOCAL-00015" summary="authentication with Kong">
+      <created>1587080196098</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1587080196098</updated>
+    </task>
+    <task id="LOCAL-00016" summary="authentication with Kong">
+      <created>1587086932562</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1587086932562</updated>
+    </task>
+    <task id="LOCAL-00017" summary="authentication with Kong">
+      <created>1587088722299</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1587088722299</updated>
+    </task>
+    <task id="LOCAL-00018" summary="authentication with Kong">
+      <created>1587089056396</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1587089056396</updated>
+    </task>
+    <task id="LOCAL-00019" summary="authentication with Kong">
+      <created>1587089303931</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1587089303931</updated>
+    </task>
+    <task id="LOCAL-00020" summary="authentication with Kong">
+      <created>1587089421365</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1587089421365</updated>
+    </task>
+    <task id="LOCAL-00021" summary="authentication with Kong">
+      <created>1587089750338</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1587089750338</updated>
+    </task>
+    <task id="LOCAL-00022" summary="authentication with Kong">
+      <created>1587090376409</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1587090376409</updated>
+    </task>
+    <task id="LOCAL-00023" summary="authentication with Kong">
+      <created>1587091258761</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1587091258761</updated>
+    </task>
+    <task id="LOCAL-00024" summary="authentication with Kong">
+      <created>1587091560940</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1587091560940</updated>
+    </task>
+    <task id="LOCAL-00025" summary="authentication with Kong">
+      <created>1587092127464</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1587092127464</updated>
+    </task>
+    <task id="LOCAL-00026" summary="authentication with Kong">
+      <created>1587133449643</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1587133449644</updated>
+    </task>
+    <task id="LOCAL-00027" summary="authentication with Kong">
+      <created>1587134038137</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1587134038137</updated>
+    </task>
+    <task id="LOCAL-00028" summary="authentication with Kong">
+      <created>1587134104424</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1587134104424</updated>
+    </task>
+    <task id="LOCAL-00029" summary="authentication with Kong">
+      <created>1587134218803</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1587134218803</updated>
+    </task>
+    <task id="LOCAL-00030" summary="authentication with Kong">
+      <created>1587134820613</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1587134820613</updated>
+    </task>
+    <task id="LOCAL-00031" summary="authentication with Kong">
+      <created>1587141294368</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1587141294368</updated>
+    </task>
+    <task id="LOCAL-00032" summary="authentication with Kong">
+      <created>1587141329305</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1587141329305</updated>
+    </task>
+    <task id="LOCAL-00033" summary="authentication with Kong">
+      <created>1587141904420</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1587141904420</updated>
+    </task>
+    <task id="LOCAL-00034" summary="authentication with Kong">
+      <created>1587141953415</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1587141953415</updated>
+    </task>
+    <task id="LOCAL-00035" summary="authentication with Kong">
+      <created>1587151990014</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1587151990015</updated>
+    </task>
+    <task id="LOCAL-00036" summary="authentication with Kong">
+      <created>1587760458665</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1587760458665</updated>
+    </task>
+    <task id="LOCAL-00037" summary="authentication with Kong">
+      <created>1587761045873</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1587761045873</updated>
+    </task>
+    <task id="LOCAL-00038" summary="authentication with Kong">
+      <created>1587765618283</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1587765618283</updated>
+    </task>
+    <task id="LOCAL-00039" summary="modificacion process roles">
+      <created>1589074486375</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1589074486376</updated>
+    </task>
+    <task id="LOCAL-00040" summary="kong database">
+      <created>1589674269456</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1589674269456</updated>
+    </task>
+    <task id="LOCAL-00041" summary="kong database">
+      <created>1589676996326</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1589676996326</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Actualización autenticación, consulta de usuarios">
+      <created>1590203109355</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1590203109355</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Actualización autenticación, consulta de usuarios">
+      <created>1590203628928</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1590203628928</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="hello mongo" />
+    <MESSAGE value="validación de token" />
+    <MESSAGE value="identify host and token" />
+    <MESSAGE value=" host and token identified" />
+    <MESSAGE value="path resource &amp; passwordchange" />
+    <MESSAGE value="validate token" />
+    <MESSAGE value="cambio de contraseña" />
+    <MESSAGE value="servicios a POST y creación de usuarios" />
+    <MESSAGE value="authentication with Kong" />
+    <MESSAGE value="modificacion process roles" />
+    <MESSAGE value="kong database" />
+    <MESSAGE value="Actualización autenticación, consulta de usuarios" />
+    <option name="LAST_COMMIT_MESSAGE" value="Actualización autenticación, consulta de usuarios" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="282" y="0" key="CommitChangelistDialog2" timestamp="1590203624759">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="282" y="0" key="CommitChangelistDialog2/0.0.1366.728/-1280.-393.1280.984@0.0.1366.728" timestamp="1587765616794" />
+    <state x="282" y="0" key="CommitChangelistDialog2/0.0.1366.728/1366.-397.1280.984@0.0.1366.728" timestamp="1589676993066" />
+    <state x="1630" y="0" key="CommitChangelistDialog2/0.0.1366.728/1366.0.1280.984@1366.0.1280.984" timestamp="1589074484507" />
+    <state x="282" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1590203624759" />
+    <state x="1786" y="246" key="FileChooserDialogImpl" timestamp="1589401503447">
+      <screen x="1366" y="0" width="1280" height="984" />
+    </state>
+    <state x="-860" y="-147" key="FileChooserDialogImpl/0.0.1366.728/-1280.-393.1280.984@-1280.-393.1280.984" timestamp="1587415737949" />
+    <state x="1786" y="246" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1280.984@1366.0.1280.984" timestamp="1589401503447" />
+    <state width="1323" height="163" key="GridCell.Tab.0.bottom" timestamp="1587770910605">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="163" key="GridCell.Tab.0.bottom/0.0.1366.728/-1280.-393.1280.984@0.0.1366.728" timestamp="1587770910605" />
+    <state width="1323" height="163" key="GridCell.Tab.0.center" timestamp="1587770910605">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="163" key="GridCell.Tab.0.center/0.0.1366.728/-1280.-393.1280.984@0.0.1366.728" timestamp="1587770910605" />
+    <state width="1323" height="163" key="GridCell.Tab.0.left" timestamp="1587770910605">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="163" key="GridCell.Tab.0.left/0.0.1366.728/-1280.-393.1280.984@0.0.1366.728" timestamp="1587770910605" />
+    <state width="1323" height="163" key="GridCell.Tab.0.right" timestamp="1587770910605">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="163" key="GridCell.Tab.0.right/0.0.1366.728/-1280.-393.1280.984@0.0.1366.728" timestamp="1587770910605" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1590203644247">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728/-1280.-393.1280.984@0.0.1366.728" timestamp="1587765692049" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728/1366.-397.1280.984@0.0.1366.728" timestamp="1589676998427" />
+    <state x="1624" y="131" key="Vcs.Push.Dialog.v2/0.0.1366.728/1366.0.1280.984@1366.0.1280.984" timestamp="1589074488383" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1590203644247" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="resp.json()[&quot;data&quot;][0][&quot;id&quot;]" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>resp.json()[&quot;data&quot;][0][&quot;id&quot;]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>resp.json()[&quot;data&quot;][0]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>resp.json()[&quot;data&quot;]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>resp.json()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>data[&quot;user&quot;]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>data.user</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>request.get_json()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>request.data.get_json()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>request.data</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>request.data[&quot;user&quot;]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="setValue">
+      <expression>
+        <expression-string>&lt;class 'dict'&gt;: {'user': 'diego', 'password': 'zapato'}</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>autenticacion</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

@@ -12,8 +12,8 @@ repositories {
 dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-test")
     implementation ("org.springframework.boot:spring-boot-starter-data-cassandra")
-    implementation ("org.projectlombok:lombok:1.18.30") // Use the latest stable version
-    implementation ("org.projectlombok:lombok:1.18.30")
+    annotationProcessor ("org.projectlombok:lombok:1.18.30") // Use the latest stable version
+    compileOnly ("org.projectlombok:lombok:1.18.30")
 }
 
 java {

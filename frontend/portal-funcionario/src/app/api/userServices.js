@@ -7,8 +7,9 @@ function  UsersServices  () {
 async function  LogIn(data) {
     var headers={};
     return await fetch("/api/authentication/login",{
-        method: 'GET',
-        headers: {Authorization: [data]}
+        method: 'POST',
+        headers: {Authorization: [data], 'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
     });
 }
 async function  GetData() {

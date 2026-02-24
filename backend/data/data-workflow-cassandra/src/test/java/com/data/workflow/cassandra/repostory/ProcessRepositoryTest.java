@@ -1,6 +1,6 @@
 package com.data.workflow.cassandra.repostory;
 
-import com.data.workflow.cassandra.model.ProcessInformationModel;
+import com.data.workflow.cassandra.model.ProcessInformation;
 import com.data.workflow.cassandra.respository.ProcessRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,9 @@ public class ProcessRepositoryTest {
 
     @Test
     public void testProcessRepositoryWithTTL() {
-        ProcessInformationModel model = new ProcessInformationModel(1L, "test");
-        ProcessInformationModel model2 = new ProcessInformationModel(2L, "test");
-        ProcessInformationModel model3 = new ProcessInformationModel(3L, "test");
+        ProcessInformation model = new ProcessInformation(1L, "test");
+        ProcessInformation model2 = new ProcessInformation(2L, "test");
+        ProcessInformation model3 = new ProcessInformation(3L, "test");
         processRepository.saveWithTtl(model, 20);
         processRepository.saveWithTtl(model2, 30);
         processRepository.save(model3);

@@ -23,9 +23,10 @@ export default function Page() {
     event.preventDefault()
  
     const formData = new FormData(event.currentTarget);
-    const dataInfo = {data:formData.get("email") + ":" + formData.get("password")};
+    const dataInfo = {user: {name: formData.get("email"), credential: [{name: "password: ", value: formData.get("password")}]}};
     const dataRaw = JSON.stringify(dataInfo);
-    const response = await Login.LogIn(dataRaw);
+    console.log(dataInfo);
+    const response = await Login.LogIn(dataInfo);
     setIsLoading(false);
     if (!response.ok) {
         throw new Error('Failed to submit the data. Please try again.')

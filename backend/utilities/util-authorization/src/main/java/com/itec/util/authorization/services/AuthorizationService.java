@@ -1,4 +1,4 @@
-package com.itec.api.authorization.services;
+package com.itec.util.authorization.services;
 
 import com.data.authorization.model.DataAuthorizationModel;
 import com.data.authorization.service.ServiceAuthorizationRepository;
