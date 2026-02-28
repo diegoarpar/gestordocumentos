@@ -25,9 +25,10 @@ function CustomizedMenus(props) {
     const handleContTramites = props.handleContTramites;
 
     const rows =[
-      {"name":"ventanillaRadicacion", "path":"/ventanillaRadicacion", "description":"Ventanilla de radicación"},
-      {"name":"userWatingApproved", "path":"/userWatingApproved", "description":"Aprobación de usuarios"},
-
+      {"name":"ventanillaRadicacion", "path":"/pages/ventanillaRadicacion", "description":"Ventanilla de radicación"},
+      {"name":"userWatingApproved", "path":"/pages/userWatingApproved", "description":"Aprobación de usuarios"},
+      {"name":"roles", "path":"/pages/role", "description":"Roles"},
+      {"name":"roles", "path":"/pages/group", "description":"Grupos"},
     ];
 
   

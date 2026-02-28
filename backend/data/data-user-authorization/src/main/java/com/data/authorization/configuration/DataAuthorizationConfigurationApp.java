@@ -7,7 +7,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 
 @Configuration
-@ComponentScan(basePackages = "com.data.authorization")
+@ComponentScan("com.data.authorization")
 @PropertySource("classpath:data-authorization.properties")
 @EnableCassandraRepositories
 public class DataAuthorizationConfigurationApp {
