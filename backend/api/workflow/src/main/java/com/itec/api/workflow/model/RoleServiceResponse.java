@@ -7,5 +7,5 @@ import java.util.List;
 
 @Data
 public class RoleServiceResponse implements BaseServiceResponse {
-    List<String> roles;
+    List<Role> roles;
 }
