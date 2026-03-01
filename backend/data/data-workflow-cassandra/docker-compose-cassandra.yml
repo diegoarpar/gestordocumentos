@@ -8,6 +8,9 @@ services:
     environment:
       - CASSANDRA_USER=casandra
       - CASSANDRA_PASSWORD=casandra
+      - CASSANDRA_CLUSTER_NAME=workflow-cluster
+      - MAX_HEAP_SIZE=512M
+      - HEAP_NEWSIZE=128M
     volumes:
       - cassandra_data_workflow:/var/lib/cassandra # Persistent volume for data
 volumes:

@@ -1,6 +1,5 @@
 package com.itec.api.workflow.services;
 
-import com.data.workflow.cassandra.model.RoleInformation;
 import com.data.workflow.cassandra.service.RoleServiceRepository;
 import com.itec.api.workflow.model.Role;
 import com.itec.api.workflow.model.RoleServiceRequest;
@@ -20,6 +19,7 @@ public class ReadWorkflowRolesService implements BaseService<RoleServiceRequest,
         var results = roleServiceRepository.find();
         var roles = results.stream().map(role -> {
             var r = new Role();
+            r.setId(role.getId());
             r.setName(role.getName());
             r.setDescription(role.getDescription());
             return r;
