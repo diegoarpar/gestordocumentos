@@ -9,4 +9,5 @@ public class RoleServiceRequest implements BaseServiceRequest {
     String origin;
     String instanceId;
     private String name;
+    private String id;
 }

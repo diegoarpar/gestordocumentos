@@ -11,7 +11,7 @@ import UserDetailDialog from "../user/userDetailDialog";
 function ProcessForm(props) {
   
     const Formio = dynamic(
-      () => import("react-formio").then((mod) => mod.Form),
+      () => import("@formio/react").then((mod) => mod.Form),
       { ssr: false }
     );
     const processName=props.processName;

@@ -10,8 +10,8 @@ services:
     ports:
       - "5433:5432"
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - db_data_users:/var/lib/postgresql
 
 volumes:
-  db_data:
+  db_data_users:
     driver: local

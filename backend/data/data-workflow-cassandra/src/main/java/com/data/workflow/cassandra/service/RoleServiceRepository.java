@@ -40,6 +40,14 @@ public class RoleServiceRepository {
     }
 
     /**
+     * Delete a role by id.
+     * @param id the role id
+     */
+    public void deleteById(UUID id) {
+        repository.deleteById(id);
+    }
+
+    /**
      * Find a role.
      */
     public List<RoleInformation> find() {

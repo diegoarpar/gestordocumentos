@@ -8,6 +8,9 @@ services:
     environment:
       - CASSANDRA_USER=casandra
       - CASSANDRA_PASSWORD=casandra
+      - CASSANDRA_CLUSTER_NAME=authorization-cluster
+      - MAX_HEAP_SIZE=512M
+      - HEAP_NEWSIZE=128M
     volumes:
       - cassandra_data_2:/var/lib/cassandra # Persistent volume for data
 volumes:
