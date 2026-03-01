@@ -1,14 +1,14 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import GroupPortal from "@/app/feature/group/groupPortal";
+import UserGroupPortal from "@/app/feature/userGroup/userGroupPortal";
 
 export default function Page() {
   const router = useRouter();
 
   return (
     <div className="min-h-screen bg-gray-950">
-      <GroupPortal />
+      <UserGroupPortal />
     </div>
   );
 }

@@ -1,5 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import MenuIcon from "@mui/icons-material/MoreVert";
+import NavMenu from "@/app/feature/menus/menu";
 import RoleService from "@/app/api/userServices";
 
 const ALL_PERMISSIONS = [
@@ -149,6 +157,8 @@ export default function RolePortal() {
   const [activeRole, setActiveRole] = useState<Role | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [toast, setToast] = useState<{ msg: string; type: "ok" | "warn" | "err" } | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     RoleService.GetRolesProcess()
@@ -446,7 +456,31 @@ export default function RolePortal() {
         }
       `}</style>
 
-      <div className="rp-root">
+      <div>
+        <AppBar position="static" sx={{ bgcolor: "#0a111e", borderBottom: "1px solid #1e2d45", boxShadow: "none" }}>
+          <Toolbar>
+            <IconButton edge="start" color="inherit" aria-label="menu" sx={{ zIndex: 10 }} onClick={() => setSidebarOpen(true)}>
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: "'Sora', sans-serif", fontWeight: 700 }}>
+              Administración de Roles
+            </Typography>
+            <Button color="inherit" variant="outlined" size="small" onClick={() => router.push("/pages/portal")}>
+              Portal
+            </Button>
+          </Toolbar>
+        </AppBar>
+
+        {sidebarOpen && (
+          <NavMenu
+            sidebarOpen={sidebarOpen}
+            setSidebarOpen={setSidebarOpen}
+            contTramites={0}
+            handleContTramites={() => {}}
+          />
+        )}
+
+        <div className="rp-root">
         {/* Toast */}
         {toast && (
           <div className={`rp-toast ${toast.type}`}>
@@ -599,6 +633,7 @@ export default function RolePortal() {
         </div>
 
         <p className="rp-footer">Showing {filtered.length} of {roles.length} roles</p>
+        </div>
       </div>
 
       {/* ── Add Modal ── */}

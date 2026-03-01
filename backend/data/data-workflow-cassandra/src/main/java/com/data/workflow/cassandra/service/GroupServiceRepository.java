@@ -5,8 +5,12 @@ import com.data.workflow.cassandra.respository.GroupRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 /**
- * The role repository.
+ * The group repository.
  *
  * @author diegoarpar
  */
@@ -14,24 +18,30 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class GroupServiceRepository {
 
-    /**
-     * The role repository.
-     */
     private final GroupRepository repository;
 
-    /**
-     * Save the user.
-     * @param model the user
-     */
     public GroupInformation save(GroupInformation model) {
         return repository.save(model);
     }
 
-    /**
-     * Find a user.
-     * @param model the user
-     */
     public GroupInformation find(GroupInformation model) {
         return repository.findByName(model.getName());
+    }
+
+    public void deleteById(UUID id) {
+        repository.deleteById(id);
+    }
+
+    public List<GroupInformation> find() {
+        var results = new ArrayList<GroupInformation>();
+        repository.findAll().forEach((data) -> {
+            var group = new GroupInformation();
+            group.setId(data.getId());
+            group.setName(data.getName());
+            group.setDescription(data.getDescription());
+            group.setActive(data.isActive());
+            results.add(group);
+        });
+        return results;
     }
 }
