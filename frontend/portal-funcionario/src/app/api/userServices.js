@@ -62,6 +62,22 @@ async function GetRolesProcess(data) {
     });
 }
 
+async function DeleteRolesProcess(data) {
+    var path = "/api/workflow/roles/" + data;
+    return await fetch(path,{
+        method: 'delete',
+        headers: {Authorization: [data]},
+    });
+}
+
+async function CreateRolesProcess(data) {
+    return await fetch("/api/workflow/roles/",{
+        method: 'post',
+        headers: {Authorization: [data], 'Content-Type': 'application/json'},
+        body: JSON.stringify(data),
+    });
+}
+
 async function  GetTenant(data) {
     return await fetch("/authentication/tenant/",{
         method: 'get',
@@ -82,7 +98,9 @@ async function GetPortals(data) {
 
 export default  {GetData,
     CreateUser,
+    CreateRolesProcess,
     ChangePassword,
+    DeleteRolesProcess,
     UpdateUser,
     LogIn,
     GetRoles,

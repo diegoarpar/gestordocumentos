@@ -22,7 +22,7 @@ import ShowProcessModel from '../displayModel/showProcessModel';
 import RequestTaskGeneralInformation from '../request/requestTaskGeneralInformation';
 function TaskForm(props) {
     const Formio = dynamic(
-      () => import("react-formio").then((mod) => mod.Form),
+      () => import("@formio/react").then((mod) => mod.Form),
       { ssr: false }
     );
     const row =props.information;

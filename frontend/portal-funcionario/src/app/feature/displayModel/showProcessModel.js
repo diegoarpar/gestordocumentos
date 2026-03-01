@@ -1,5 +1,4 @@
-import React,{ useState,useEffect } from 'react';
-import dynamic from "next/dynamic";
+import React from 'react';
 import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar'
@@ -13,17 +12,12 @@ const ShowProcessModelInstance =(props)=>{
     const open=props.open;
     const handleClose=props.handleClose;
 
-    const FileViewer = dynamic(
-            () => import("react-file-viewer").then((mod) => mod.Form),
-            { ssr: false }
-            );
-    
     return (
     <div>
-        <Dialog fullScreen open={open} onClose={(e)=>handleClose(false)} >
+        <Dialog fullScreen open={open} onClose={()=>handleClose(false)} >
           <AppBar position="sticky">
             <Toolbar>
-              <IconButton edge="start" color="inherit" onClick={(e)=>handleClose(false)} aria-label="close">
+              <IconButton edge="start" color="inherit" onClick={()=>handleClose(false)} aria-label="close">
                 <ArrowBack />
               </IconButton>
               <Typography variant="h6" >
@@ -39,12 +33,9 @@ const ShowProcessModelInstance =(props)=>{
 
 const Viewer =(props)=>{
     const file=props.file;
-    const fileType=props.fileType;
     return (
-    <div  className="custom-viewer">
-        <FileViewer
-        fileType={fileType}
-        filePath={`data:image/png;base64,${file}`}/>
+    <div className="custom-viewer">
+        <img src={`data:image/png;base64,${file}`} style={{maxWidth:'100%', height:'auto'}} alt="Proceso" />
     </div>
     );
 }

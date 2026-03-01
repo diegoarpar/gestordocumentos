@@ -178,7 +178,8 @@ export default function RolePortal() {
   const handleAdd = async (payload: CreateRolePayload) => {
     setIsSaving(true);
     try {
-      const res = await RoleService.GetRolesProcess(payload);
+      var servicePayload = {"name": payload.name};
+      const res = await RoleService.CreateRolesProcess(servicePayload);
       if (res.ok) {
         const created: Role = await res.json();
         setRoles((prev) => [...prev, created]);
@@ -188,7 +189,8 @@ export default function RolePortal() {
         setRoles((prev) => [...prev, optimistic]);
         showToast(`Role "${payload.name}" created`);
       }
-    } catch {
+    } catch (exception) {
+      console.log(exception);
       const optimistic: Role = { ...payload, id: Date.now(), usersCount: 0, createdAt: new Date().toISOString().split("T")[0] };
       setRoles((prev) => [...prev, optimistic]);
       showToast(`Role "${payload.name}" created`);
@@ -223,7 +225,7 @@ export default function RolePortal() {
     if (!activeRole) return;
     setIsSaving(true);
     try {
-      await RoleService.GetRolesProcess(activeRole.id);
+      await RoleService.DeleteRolesProcess(activeRole.id);
     } catch {
 
     } finally {
