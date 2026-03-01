@@ -28,7 +28,10 @@ function CustomizedMenus(props) {
       {"name":"ventanillaRadicacion", "path":"/pages/ventanillaRadicacion", "description":"Ventanilla de radicación"},
       {"name":"userWatingApproved", "path":"/pages/userWatingApproved", "description":"Aprobación de usuarios"},
       {"name":"roles", "path":"/pages/role", "description":"Roles"},
-      {"name":"roles", "path":"/pages/group", "description":"Grupos"},
+      {"name":"groups", "path":"/pages/group", "description":"Grupos"},
+      {"name":"permissions", "path":"/pages/permission", "description":"Permisos"},
+      {"name":"rolePermissions", "path":"/pages/role-permission", "description":"Roles - Permisos"},
+      {"name":"userGroups", "path":"/pages/user-group", "description":"Usuarios - Grupos"},
     ];
 
   

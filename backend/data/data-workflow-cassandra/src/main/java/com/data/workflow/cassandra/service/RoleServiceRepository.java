@@ -54,6 +54,7 @@ public class RoleServiceRepository {
         var results =  new ArrayList<RoleInformation>();
         repository.findAll().forEach((data) -> {
             var roleInformation = new RoleInformation();
+            roleInformation.setId(data.getId());
             roleInformation.setName(data.getName());
             results.add(roleInformation);
         });
