@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  activity-db:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=activity
+      - POSTGRES_PASSWORD=activity
+      - POSTGRES_DB=activity
+    ports:
+      - "5437:5432"
+    volumes:
+      - db_activity_data:/var/lib/postgresql
+
+volumes:
+  db_activity_data:
+    driver: local
