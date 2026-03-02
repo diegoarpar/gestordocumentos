@@ -14,6 +14,7 @@ dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-web")
     implementation ("org.springframework.boot:spring-boot-starter-actuator")
     implementation(project(":data:data-workflow-cassandra"))
+    implementation(project(":data:data-workflow-activity"))
     implementation ("org.springframework.boot:spring-boot-starter-test")
     implementation (project(":utilities:util-model"))
     compileOnly ("org.projectlombok:lombok:1.18.30")
