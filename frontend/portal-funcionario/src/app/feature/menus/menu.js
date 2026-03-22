@@ -32,6 +32,10 @@ function CustomizedMenus(props) {
       {"name":"permissions", "path":"/pages/permission", "description":"Permisos"},
       {"name":"rolePermissions", "path":"/pages/role-permission", "description":"Roles - Permisos"},
       {"name":"userGroups", "path":"/pages/user-group", "description":"Usuarios - Grupos"},
+      {"name":"activities", "path":"/pages/activity", "description":"Actividades"},
+      {"name":"workflows", "path":"/pages/workflow", "description":"Workflows"},
+      {"name":"workflowActivities", "path":"/pages/workflow-activity", "description":"Workflow - Actividades"},
+      {"name":"workflowDeployments", "path":"/pages/workflow-deployment", "description":"Despliegues"},
     ];
 
   

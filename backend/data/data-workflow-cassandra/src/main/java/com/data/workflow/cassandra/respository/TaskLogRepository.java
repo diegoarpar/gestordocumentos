@@ -13,7 +13,7 @@ public interface TaskLogRepository extends CrudRepository<TaskLogInformation, UU
     List<TaskLogInformation> findByTaskId(String taskId);
 
     @AllowFiltering
-    List<TaskLogInformation> findByTaskUserName(String userName);
+    List<TaskLogInformation> findByUserName(String userName);
 
     @AllowFiltering
     List<TaskLogInformation> findByInstanceId(String instanceId);
