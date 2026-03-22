@@ -8,6 +8,8 @@ import java.util.UUID;
 public class Activity {
     private UUID id;
     private String name;
+    private String href;
+    private String type;
     private String description;
     private boolean active;
 }

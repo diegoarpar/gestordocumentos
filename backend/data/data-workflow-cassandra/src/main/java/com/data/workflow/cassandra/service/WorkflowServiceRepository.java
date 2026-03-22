@@ -33,6 +33,7 @@ public class WorkflowServiceRepository {
             var workflow = new WorkflowInformation();
             workflow.setId(data.getId());
             workflow.setName(data.getName());
+            workflow.setHref(data.getHref());
             workflow.setDescription(data.getDescription());
             workflow.setActive(data.isActive());
             results.add(workflow);

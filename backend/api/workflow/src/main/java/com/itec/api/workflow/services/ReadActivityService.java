@@ -21,6 +21,8 @@ public class ReadActivityService implements BaseService<ActivityServiceRequest, 
             var activity = new Activity();
             activity.setId(a.getId());
             activity.setName(a.getName());
+            activity.setHref(a.getHref());
+            activity.setType(a.getType());
             activity.setDescription(a.getDescription());
             activity.setActive(a.isActive());
             return activity;

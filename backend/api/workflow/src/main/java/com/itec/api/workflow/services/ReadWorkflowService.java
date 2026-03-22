@@ -20,6 +20,7 @@ public class ReadWorkflowService implements BaseService<WorkflowServiceRequest, 
         var workflows = results.stream().map(w -> {
             var workflow = new Workflow();
             workflow.setId(w.getId());
+            workflow.setHref(w.getHref());
             workflow.setName(w.getName());
             workflow.setDescription(w.getDescription());
             workflow.setActive(w.isActive());
