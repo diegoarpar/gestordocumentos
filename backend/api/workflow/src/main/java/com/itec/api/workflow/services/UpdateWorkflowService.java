@@ -27,4 +27,11 @@ public class UpdateWorkflowService implements BaseService<WorkflowServiceRequest
         workflowServiceRepository.save(workflow);
         return new WorkflowServiceResponse();
     }
+
+    public WorkflowServiceResponse updateLatestVersion(String id, String latestVersion) {
+        var workflow = workflowServiceRepository.findById(id);
+        workflow.setLatestKeyName(latestVersion);
+        workflowServiceRepository.save(workflow);
+        return new WorkflowServiceResponse();
+    }
 }

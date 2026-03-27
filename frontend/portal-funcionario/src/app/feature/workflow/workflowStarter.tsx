@@ -318,7 +318,7 @@ export default function WorkflowStarter() {
                     </div>
                   )}
                   <iframe
-                    src={selected.href}
+                    src={`${selected.href}${selected.href!.includes("?") ? "&" : "?"}workflowId=${encodeURIComponent(selected.id)}&taskId=${encodeURIComponent(selected.id)}`}
                     className="wfd-iframe"
                     style={{ opacity: iframeLoading ? 0 : 1 }}
                     onLoad={() => setIframeLoading(false)}

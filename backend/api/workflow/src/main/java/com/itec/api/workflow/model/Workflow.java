@@ -10,5 +10,6 @@ public class Workflow {
     private String name;
     private String href;
     private String description;
+    private String latestKeyName;
     private boolean active;
 }

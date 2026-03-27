@@ -8,6 +8,8 @@ import com.itec.utilities.service.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ReadWorkflowService implements BaseService<WorkflowServiceRequest, WorkflowServiceResponse> {
@@ -28,6 +30,18 @@ public class ReadWorkflowService implements BaseService<WorkflowServiceRequest, 
         }).toList();
         var response = new WorkflowServiceResponse();
         response.setWorkflows(workflows);
+        return response;
+    }
+
+    public WorkflowServiceResponse getById(WorkflowServiceRequest information) {
+        var result = workflowServiceRepository.findById(information.getId());
+        var workflow = new Workflow();
+        workflow.setId(result.getId());
+        workflow.setDescription(result.getDescription());
+        workflow.setLatestKeyName(result.getLatestKeyName());
+        workflow.setName(result.getName());
+        var response = new WorkflowServiceResponse();
+        response.setWorkflows(List.of(workflow));
         return response;
     }
 }

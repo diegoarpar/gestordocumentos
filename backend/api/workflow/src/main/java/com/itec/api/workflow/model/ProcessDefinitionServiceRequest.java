@@ -13,5 +13,6 @@ public class ProcessDefinitionServiceRequest implements BaseServiceRequest {
     private InputStream inputStream;
     private String originalName;
     private String workflowName;
+    private String workflowId;
     private Map<String, Object> processInformation;
 }

@@ -4,9 +4,9 @@ import com.data.workflow.activity.model.ProcessDefinitionRequest;
 import com.data.workflow.activity.service.ProcessDefinitionService;
 import com.data.workflow.cassandra.model.WorkflowDeploymentInformation;
 import com.data.workflow.cassandra.service.WorkflowDeploymentServiceRepository;
-import com.itec.api.workflow.model.ProcessDefinitionServiceRequest;
 import com.itec.api.workflow.model.WorkflowDeploymentServiceRequest;
 import com.itec.api.workflow.model.WorkflowDeploymentServiceResponse;
+import com.itec.api.workflow.model.WorkflowServiceRequest;
 import com.itec.utilities.service.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,6 +23,10 @@ public class CreateWorkflowDeploymentService implements BaseService<WorkflowDepl
 
     private final ProcessDefinitionService processDefinitionService;
 
+    private final UpdateWorkflowService updateWorkflowService;
+
+    private final ReadWorkflowService readWorkflowService;
+
     @Override
     public WorkflowDeploymentServiceResponse execute(WorkflowDeploymentServiceRequest information) {
         var deployment = new WorkflowDeploymentInformation();
@@ -33,7 +37,8 @@ public class CreateWorkflowDeploymentService implements BaseService<WorkflowDepl
         processDefinitionRequest.setWorkflowName(information.getWorkflowId());
         try {
             processDefinitionRequest.setInputStream(file.getInputStream());
-            processDefinitionService.execute(processDefinitionRequest);
+            var result = processDefinitionService.execute(processDefinitionRequest);
+            updateWorkflowService.updateLatestVersion(information.getWorkflowId(), result.getName());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

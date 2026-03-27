@@ -40,4 +40,8 @@ public class WorkflowServiceRepository {
         });
         return results;
     }
+
+    public WorkflowInformation findById(String id) {
+        return repository.findById(id);
+    }
 }
