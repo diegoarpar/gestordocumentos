@@ -14,12 +14,14 @@ type Workflow = {
   id: string;
   name: string;
   description?: string;
+  href?: string;
   active: boolean;
 };
 
 type WorkflowPayload = {
   name: string;
   description: string;
+  href: string;
   active: boolean;
 };
 
@@ -67,6 +69,7 @@ function WorkflowForm({
   const [name, setName] = useState(initial?.name ?? "");
   const [description, setDescription] = useState(initial?.description ?? "");
   const [active, setActive] = useState(initial?.active ?? true);
+  const [href, setHref] = useState(initial?.href ?? "");
   const valid = name.trim().length > 0;
 
   return (
@@ -90,6 +93,16 @@ function WorkflowForm({
           rows={3}
         />
       </div>
+      <div className="wfp-field">
+        <label className="wfp-label">URL</label>
+        <textarea
+          className="wfp-input wfp-textarea"
+          value={href}
+          onChange={(e) => setHref(e.target.value)}
+          placeholder="URL..."
+          rows={3}
+        />
+      </div>
       <div className="wfp-field wfp-field-inline">
         <label className="wfp-label">Active</label>
         <div
@@ -108,7 +121,7 @@ function WorkflowForm({
           type="button"
           className="wfp-btn-primary"
           disabled={!valid || isSaving}
-          onClick={() => valid && onSave({ name: name.trim(), description: description.trim(), active })}
+          onClick={() => valid && onSave({ name: name.trim(), description: description.trim(), href: href.trim(), active })}
         >
           {isSaving ? "Saving…" : initial ? "Save Changes" : "Create Workflow"}
         </button>

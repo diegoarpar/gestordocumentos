@@ -20,6 +20,8 @@ public class CreateActivityService implements BaseService<ActivityServiceRequest
     public ActivityServiceResponse execute(ActivityServiceRequest information) {
         var activity = new ActivityInformation();
         activity.setId(UUID.randomUUID());
+        activity.setType(information.getType());
+        activity.setHref(information.getHref());
         activity.setName(information.getName());
         activity.setDescription(information.getDescription());
         activity.setActive(true);

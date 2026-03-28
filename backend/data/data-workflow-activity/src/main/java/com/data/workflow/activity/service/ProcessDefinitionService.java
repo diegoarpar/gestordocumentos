@@ -35,7 +35,8 @@ public class ProcessDefinitionService {
                         + processDefinition.getId() + "]");
         pe.close();
         var response = new ProcessDefinitionResponse();
-        response.setId(processDefinition.getName());
+        response.setId(processDefinition.getId());
+        response.setName(processDefinition.getKey());
         return response;
     }
 }

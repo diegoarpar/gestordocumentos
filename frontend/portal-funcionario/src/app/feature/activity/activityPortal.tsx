@@ -14,6 +14,8 @@ type Activity = {
   id: string;
   name: string;
   description?: string;
+  href?: string;
+  type?: string;
   active: boolean;
 };
 
@@ -21,6 +23,8 @@ type ActivityPayload = {
   name: string;
   description: string;
   active: boolean;
+  href: string;
+  type: string;
 };
 
 const SEED_ACTIVITIES: Activity[] = [
@@ -68,6 +72,8 @@ function ActivityForm({
   const [name, setName] = useState(initial?.name ?? "");
   const [description, setDescription] = useState(initial?.description ?? "");
   const [active, setActive] = useState(initial?.active ?? true);
+  const [href, setHref] = useState(initial?.href ?? "");
+  const [type, setType] = useState(initial?.type ?? "");
   const valid = name.trim().length > 0;
 
   return (
@@ -79,6 +85,24 @@ function ActivityForm({
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="e.g. Document Review"
+        />
+      </div>
+      <div className="ap-field">
+        <label className="ap-label">Activity Type</label>
+        <input
+          className="ap-input"
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+          placeholder="e.g. Type"
+        />
+      </div>
+      <div className="ap-field">
+        <label className="ap-label">Activity Link</label>
+        <input
+          className="ap-input"
+          value={href}
+          onChange={(e) => setHref(e.target.value)}
+          placeholder="e.g. http://"
         />
       </div>
       <div className="ap-field">
@@ -109,7 +133,7 @@ function ActivityForm({
           type="button"
           className="ap-btn-primary"
           disabled={!valid || isSaving}
-          onClick={() => valid && onSave({ name: name.trim(), description: description.trim(), active })}
+          onClick={() => valid && onSave({ name: name.trim(), description: description.trim(), type: type.trim(), href: href.trim(), active })}
         >
           {isSaving ? "Saving…" : initial ? "Save Changes" : "Create Activity"}
         </button>

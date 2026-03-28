@@ -9,6 +9,7 @@ public class WorkflowServiceRequest implements BaseServiceRequest {
     String origin;
     String instanceId;
     private String id;
+    private String href;
     private String name;
     private String description;
     private boolean active;

@@ -42,7 +42,7 @@ public class ProcessTaskService {
         return rta;
     }
     public List<Map<String, Object>> getTask(String tenant, String user, List<String> roles) {
-        ProcessEngine processEngine = processEngineMap.get(tenant);
+        var processEngine = processEngineMap.get(tenant);
         List<Map<String, Object>> rta = new ArrayList<Map<String, Object>>();
         Map<String,Object> inputValues = new HashMap<String,Object>();
         TaskService taskService = processEngine.getTaskService();

@@ -36,6 +36,8 @@ function CustomizedMenus(props) {
       {"name":"workflows", "path":"/pages/workflow", "description":"Workflows"},
       {"name":"workflowActivities", "path":"/pages/workflow-activity", "description":"Workflow - Actividades"},
       {"name":"workflowDeployments", "path":"/pages/workflow-deployment", "description":"Despliegues"},
+      {"name":"workflowStarter", "path":"/pages/workflow-starter", "description":"Iniciar Proceso"},
+      {"name":"task", "path":"/pages/task", "description":"Mis Tareas"},
     ];
 
   

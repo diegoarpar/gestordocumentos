@@ -16,6 +16,10 @@ public class ActivityInformation {
 
     @Column String name;
 
+    @Column String type;
+
+    @Column String href;
+
     @Column String description;
 
     @Column boolean active;

@@ -15,6 +15,8 @@ public class WorkflowInformation {
     UUID id;
 
     @Column String name;
+    @Column String latestKeyName;
+    @Column String href;
 
     @Column String description;
 
