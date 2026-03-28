@@ -94,10 +94,17 @@ async function DeleteWorkflowDeployment(id) {
   return fetch(`/api/workflow/workflow-deployments/${id}`, { method: "DELETE" });
 }
 
+// User Tasks
+async function GetUserTasks(user) {
+  user = 'dapadi';
+  return fetch(`/api/workflow/process/task/user/${encodeURIComponent(user)}`, { method: "GET" });
+}
+
 export default {
   GetActivities, CreateActivity, UpdateActivity, DeleteActivity,
   GetWorkflows, CreateWorkflow, UpdateWorkflow, DeleteWorkflow,
   GetWorkflowActivities, CreateWorkflowActivity, DeleteWorkflowActivity,
   UploadProcessDefinition,
   GetWorkflowDeployments, CreateWorkflowDeployment, DeleteWorkflowDeployment,
+  GetUserTasks,
 };
