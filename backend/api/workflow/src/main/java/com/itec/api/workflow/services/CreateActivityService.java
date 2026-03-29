@@ -23,6 +23,7 @@ public class CreateActivityService implements BaseService<ActivityServiceRequest
         activity.setType(information.getType());
         activity.setHref(information.getHref());
         activity.setName(information.getName());
+        activity.setKeyName(information.getKeyName());
         activity.setDescription(information.getDescription());
         activity.setActive(true);
         activityServiceRepository.save(activity);

@@ -6,7 +6,6 @@ import com.data.workflow.cassandra.model.WorkflowDeploymentInformation;
 import com.data.workflow.cassandra.service.WorkflowDeploymentServiceRepository;
 import com.itec.api.workflow.model.WorkflowDeploymentServiceRequest;
 import com.itec.api.workflow.model.WorkflowDeploymentServiceResponse;
-import com.itec.api.workflow.model.WorkflowServiceRequest;
 import com.itec.utilities.service.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

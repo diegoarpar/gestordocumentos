@@ -31,5 +31,16 @@ public class ReadProcessTaskController {
         var results = readProcessTaskService.execute(processDefinitionRequest);
         return ResponseEntity.ok().body(results);
     }
+
+    @GetMapping("/{taskId}/link")
+    public ResponseEntity<Object> readInformationLink(HttpServletRequest req, @PathVariable String taskId) throws IOException {
+        String tenant = BasicObjectUtil.getTenant(req);
+        var processDefinitionRequest = new ProcessDefinitionServiceRequest();
+        Map<String, Object> processInformation = Map.of(ProcessInformation.TASK_ID.name(), taskId);
+        processDefinitionRequest.setProcessInformation(processInformation);
+        var results = readProcessTaskService.executeWithLink(processDefinitionRequest);
+
+        return ResponseEntity.ok().body(results);
+    }
 }
 

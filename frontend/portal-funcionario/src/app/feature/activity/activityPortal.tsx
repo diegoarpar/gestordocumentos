@@ -17,6 +17,7 @@ type Activity = {
   href?: string;
   type?: string;
   active: boolean;
+  keyName?: string;
 };
 
 type ActivityPayload = {
@@ -25,6 +26,7 @@ type ActivityPayload = {
   active: boolean;
   href: string;
   type: string;
+  keyName: string;
 };
 
 const SEED_ACTIVITIES: Activity[] = [
@@ -74,6 +76,7 @@ function ActivityForm({
   const [active, setActive] = useState(initial?.active ?? true);
   const [href, setHref] = useState(initial?.href ?? "");
   const [type, setType] = useState(initial?.type ?? "");
+  const [keyName, setKeyName] = useState(initial?.type ?? "");
   const valid = name.trim().length > 0;
 
   return (
@@ -93,6 +96,15 @@ function ActivityForm({
           className="ap-input"
           value={type}
           onChange={(e) => setType(e.target.value)}
+          placeholder="e.g. Type"
+        />
+      </div>
+      <div className="ap-field">
+        <label className="ap-label">Activity Key</label>
+        <input
+          className="ap-input"
+          value={keyName}
+          onChange={(e) => setKeyName(e.target.value)}
           placeholder="e.g. Type"
         />
       </div>
@@ -133,7 +145,7 @@ function ActivityForm({
           type="button"
           className="ap-btn-primary"
           disabled={!valid || isSaving}
-          onClick={() => valid && onSave({ name: name.trim(), description: description.trim(), type: type.trim(), href: href.trim(), active })}
+          onClick={() => valid && onSave({ name: name.trim(), description: description.trim(), type: type.trim(), href: href.trim(), active, keyName: keyName.trim() })}
         >
           {isSaving ? "Saving…" : initial ? "Save Changes" : "Create Activity"}
         </button>

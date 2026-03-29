@@ -9,4 +9,5 @@ public interface WorkflowRepository extends CrudRepository<WorkflowInformation, 
 
     WorkflowInformation findByName(String name);
     WorkflowInformation findById(String id);
+    WorkflowInformation findByLatestKeyName(String lastKeyName);
 }

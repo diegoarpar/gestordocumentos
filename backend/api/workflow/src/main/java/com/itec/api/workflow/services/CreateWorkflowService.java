@@ -22,6 +22,7 @@ public class CreateWorkflowService implements BaseService<WorkflowServiceRequest
         workflow.setId(UUID.randomUUID());
         workflow.setName(information.getName());
         workflow.setHref(information.getHref());
+        workflow.setLatestKeyName(information.getLatestKeyName());
         workflow.setDescription(information.getDescription());
         workflow.setActive(true);
         workflowServiceRepository.save(workflow);

@@ -15,6 +15,7 @@ type Workflow = {
   name: string;
   description?: string;
   href?: string;
+  latestKeyName?: string;
   active: boolean;
 };
 
@@ -22,6 +23,7 @@ type WorkflowPayload = {
   name: string;
   description: string;
   href: string;
+  latestKeyName: string;
   active: boolean;
 };
 
@@ -67,6 +69,7 @@ function WorkflowForm({
   isSaving: boolean;
 }) {
   const [name, setName] = useState(initial?.name ?? "");
+  const [latestKeyName, setLatestKeyName] = useState(initial?.name ?? "");
   const [description, setDescription] = useState(initial?.description ?? "");
   const [active, setActive] = useState(initial?.active ?? true);
   const [href, setHref] = useState(initial?.href ?? "");
@@ -80,6 +83,15 @@ function WorkflowForm({
           className="wfp-input"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          placeholder="e.g. Document Approval Flow"
+        />
+      </div>
+      <div className="wfp-field">
+        <label className="wfp-label">Workflow Key</label>
+        <input
+          className="wfp-input"
+          value={latestKeyName}
+          onChange={(e) => setLatestKeyName(e.target.value)}
           placeholder="e.g. Document Approval Flow"
         />
       </div>
@@ -121,7 +133,7 @@ function WorkflowForm({
           type="button"
           className="wfp-btn-primary"
           disabled={!valid || isSaving}
-          onClick={() => valid && onSave({ name: name.trim(), description: description.trim(), href: href.trim(), active })}
+          onClick={() => valid && onSave({ name: name.trim(), description: description.trim(), href: href.trim(), active, latestKeyName: latestKeyName.trim() })}
         >
           {isSaving ? "Saving…" : initial ? "Save Changes" : "Create Workflow"}
         </button>

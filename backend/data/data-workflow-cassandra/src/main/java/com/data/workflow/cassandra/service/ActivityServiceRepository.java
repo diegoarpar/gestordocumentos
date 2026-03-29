@@ -33,10 +33,26 @@ public class ActivityServiceRepository {
             var activity = new ActivityInformation();
             activity.setId(data.getId());
             activity.setName(data.getName());
+            activity.setHref(data.getHref());
+            activity.setType(data.getType());
+            activity.setKeyName(data.getKeyName());
             activity.setDescription(data.getDescription());
             activity.setActive(data.isActive());
             results.add(activity);
         });
         return results;
+    }
+
+    public ActivityInformation findByKeyName(String name) {
+        var data = repository.findByKeyName(name);
+        var activity = new ActivityInformation();
+        activity.setId(data.getId());
+        activity.setName(data.getName());
+        activity.setHref(data.getHref());
+        activity.setType(data.getType());
+        activity.setKeyName(data.getKeyName());
+        activity.setDescription(data.getDescription());
+        activity.setActive(data.isActive());
+        return data;
     }
 }
