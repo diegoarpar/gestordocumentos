@@ -32,11 +32,6 @@ const PERMISSION_COLORS: Record<string, string> = {
 
 
 const SEED_ROLES: Role[] = [
-  { id: 1, name: "Super Admin", description: "Full system access", permissions: ["read", "write", "delete", "manage_users"], usersCount: 2, createdAt: "2024-01-10" },
-  { id: 2, name: "Admin", description: "Administrative access without user management", permissions: ["read", "write", "delete"], usersCount: 5, createdAt: "2024-01-12" },
-  { id: 3, name: "Editor", description: "Can create and edit content", permissions: ["read", "write"], usersCount: 14, createdAt: "2024-02-03" },
-  { id: 4, name: "Viewer", description: "Read-only access to the platform", permissions: ["read"], usersCount: 38, createdAt: "2024-02-15" },
-  { id: 5, name: "Moderator", description: "Content moderation and user flagging", permissions: ["read", "write", "moderate"], usersCount: 7, createdAt: "2024-03-01" },
 ];
 
 

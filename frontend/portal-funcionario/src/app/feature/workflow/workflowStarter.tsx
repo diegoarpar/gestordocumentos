@@ -19,9 +19,6 @@ type Workflow = {
 };
 
 const SEED_WORKFLOWS: Workflow[] = [
-  { id: "1", name: "Radicación de documentos", description: "Flujo para radicar documentos entrantes", href: "", active: true },
-  { id: "2", name: "Aprobación de solicitudes", description: "Flujo de aprobación multinivel", href: "", active: true },
-  { id: "3", name: "Archivo digital", description: "Flujo de digitalización y archivo", href: "", active: false },
 ];
 
 const CARD_COLORS = [

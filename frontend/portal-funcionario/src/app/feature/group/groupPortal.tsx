@@ -24,10 +24,6 @@ type GroupPayload = {
 };
 
 const SEED_GROUPS: Group[] = [
-  { id: "1", name: "Administrators", description: "Full system access group", active: true },
-  { id: "2", name: "Editors", description: "Content management group", active: true },
-  { id: "3", name: "Viewers", description: "Read-only access group", active: true },
-  { id: "4", name: "Moderators", description: "Content moderation group", active: false },
 ];
 
 const ACCENT = "#3b82f6";

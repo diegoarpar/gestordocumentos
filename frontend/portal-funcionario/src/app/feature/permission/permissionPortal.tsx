@@ -24,11 +24,6 @@ type PermissionPayload = {
 };
 
 const SEED_PERMISSIONS: Permission[] = [
-  { id: "1", name: "read", description: "View resources", active: true },
-  { id: "2", name: "write", description: "Create and edit resources", active: true },
-  { id: "3", name: "delete", description: "Remove resources", active: true },
-  { id: "4", name: "manage_users", description: "Manage user accounts", active: true },
-  { id: "5", name: "export", description: "Export data", active: false },
 ];
 
 const ACCENT = "#f59e0b";

@@ -30,10 +30,6 @@ type ActivityPayload = {
 };
 
 const SEED_ACTIVITIES: Activity[] = [
-  { id: "1", name: "Revisión de documentos", description: "Revisar documentos recibidos", active: true },
-  { id: "2", name: "Aprobación", description: "Aprobar solicitudes pendientes", active: true },
-  { id: "3", name: "Notificación", description: "Enviar notificaciones al usuario", active: true },
-  { id: "4", name: "Archivo", description: "Archivar expediente completado", active: false },
 ];
 
 const ACCENT = "#3b82f6";

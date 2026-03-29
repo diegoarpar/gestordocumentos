@@ -32,14 +32,9 @@ type DeploymentPayload = {
 };
 
 const SEED_WORKFLOWS: Workflow[] = [
-  { id: "1", name: "Radicación de documentos" },
-  { id: "2", name: "Aprobación de solicitudes" },
 ];
 
 const SEED_DEPLOYMENTS: WorkflowDeployment[] = [
-  { id: "1", workflowId: "1", fileName: "radicacion-v1.bpmn", filePath: "/deployments/radicacion-v1.bpmn", deployedBy: "admin", status: "DEPLOYED", workflowName: "Radicación de documentos" },
-  { id: "2", workflowId: "2", fileName: "aprobacion-v2.bpmn", filePath: "/deployments/aprobacion-v2.bpmn", deployedBy: "admin", status: "DEPLOYED", workflowName: "Aprobación de solicitudes" },
-  { id: "3", workflowId: "1", fileName: "radicacion-v2.bpmn", filePath: "/deployments/radicacion-v2.bpmn", deployedBy: "supervisor", status: "PENDING", workflowName: "Radicación de documentos" },
 ];
 
 const STATUS_OPTIONS = ["PENDING", "DEPLOYED", "FAILED", "ARCHIVED"];

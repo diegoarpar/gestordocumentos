@@ -33,9 +33,6 @@ const SEED_ACTIVITIES: Activity[] = [
 ];
 
 const SEED_WORKFLOW_ACTIVITIES: WorkflowActivity[] = [
-  { id: "1", workflowId: "1", activityId: "1", workflowName: "Radicación de documentos", activityName: "Revisión de documentos" },
-  { id: "2", workflowId: "1", activityId: "3", workflowName: "Radicación de documentos", activityName: "Notificación" },
-  { id: "3", workflowId: "2", activityId: "2", workflowName: "Aprobación de solicitudes", activityName: "Aprobación" },
 ];
 
 const ACCENT = "#f59e0b";
