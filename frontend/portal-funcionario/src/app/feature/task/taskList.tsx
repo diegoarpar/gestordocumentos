@@ -39,6 +39,7 @@ export default function TaskList({ user }: { user: string }) {
   // panels
   const [detailTask, setDetailTask] = useState<Task | null>(null);
   const [iframeTask, setIframeTask] = useState<Task | null>(null);
+  const [iframeUrl, setIframeUrl] = useState<string | null>(null);
   const [iframeLoading, setIframeLoading] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
   const [reassignTask, setReassignTask] = useState<Task | null>(null);
@@ -79,10 +80,22 @@ export default function TaskList({ user }: { user: string }) {
   const openIframe = (task: Task) => {
     setIframeLoading(true);
     setFullscreen(false);
+    setIframeUrl(null);
     setIframeTask(task);
+    AdminServices.GetTaskFormLink(task.TASK_ID)
+      .then((res) => {
+        if (!res.ok) throw new Error(`Error ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        const url = data?.taskInformation?.[0]?.TASK_FORM_URL ?? null;
+        setIframeUrl(url);
+        if (!url) setIframeLoading(false);
+      })
+      .catch(() => setIframeLoading(false));
   };
 
-  const closeIframe = () => { setIframeTask(null); setFullscreen(false); };
+  const closeIframe = () => { setIframeTask(null); setIframeUrl(null); setFullscreen(false); };
 
   const openReassign = (task: Task) => { setReassignTask(task); setReassignUser(""); };
 
@@ -490,13 +503,15 @@ export default function TaskList({ user }: { user: string }) {
                   <span>Cargando tarea…</span>
                 </div>
               )}
-              <iframe
-                src={`/api/workflow/process/task/form?taskId=${encodeURIComponent(iframeTask.TASK_ID)}&instanceId=${encodeURIComponent(iframeTask.INSTANCE_ID)}`}
-                className="tl-iframe"
-                style={{ opacity: iframeLoading ? 0 : 1 }}
-                onLoad={() => setIframeLoading(false)}
-                title={iframeTask.TASK_NAME}
-              />
+              {iframeUrl && (
+                <iframe
+                  src={iframeUrl}
+                  className="tl-iframe"
+                  style={{ opacity: iframeLoading ? 0 : 1 }}
+                  onLoad={() => setIframeLoading(false)}
+                  title={iframeTask.TASK_NAME}
+                />
+              )}
             </div>
           </div>
         </div>

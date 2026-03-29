@@ -100,6 +100,10 @@ async function GetUserTasks(user) {
   return fetch(`/api/workflow/process/task/user/${encodeURIComponent(user)}`, { method: "GET" });
 }
 
+async function GetTaskFormLink(taskId) {
+  return fetch(`/api/workflow/process/task/information/${encodeURIComponent(taskId)}/link`, { method: "GET" });
+}
+
 export default {
   GetActivities, CreateActivity, UpdateActivity, DeleteActivity,
   GetWorkflows, CreateWorkflow, UpdateWorkflow, DeleteWorkflow,
@@ -107,4 +111,5 @@ export default {
   UploadProcessDefinition,
   GetWorkflowDeployments, CreateWorkflowDeployment, DeleteWorkflowDeployment,
   GetUserTasks,
+  GetTaskFormLink,
 };
