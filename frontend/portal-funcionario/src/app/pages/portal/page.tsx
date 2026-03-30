@@ -1,7 +1,6 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import Link from "next/link";
 import { FormEvent } from 'react'
 import Login from "@/app/api/userServices";
 import Tenant from "@/app/api/tenantServices";
@@ -38,9 +37,5 @@ export default function Page() {
   }
   const close = () => router.push("../../");
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <Portal></Portal>
-    </div>
-  );
+  return <Portal />;
 }

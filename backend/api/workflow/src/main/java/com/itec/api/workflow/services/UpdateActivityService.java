@@ -21,6 +21,7 @@ public class UpdateActivityService implements BaseService<ActivityServiceRequest
         var activity = new ActivityInformation();
         activity.setId(UUID.fromString(information.getId()));
         activity.setName(information.getName());
+        activity.setKeyName(information.getKeyName());
         activity.setType(information.getType());
         activity.setHref(information.getHref());
         activity.setDescription(information.getDescription());

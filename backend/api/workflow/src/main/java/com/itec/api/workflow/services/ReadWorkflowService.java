@@ -44,4 +44,16 @@ public class ReadWorkflowService implements BaseService<WorkflowServiceRequest, 
         response.setWorkflows(List.of(workflow));
         return response;
     }
+
+    public WorkflowServiceResponse getByKeyName(String keyName) {
+        var result = workflowServiceRepository.findByKeyName(keyName);
+        var workflow = new Workflow();
+        workflow.setId(result.getId());
+        workflow.setDescription(result.getDescription());
+        workflow.setLatestKeyName(result.getLatestKeyName());
+        workflow.setName(result.getName());
+        var response = new WorkflowServiceResponse();
+        response.setWorkflows(List.of(workflow));
+        return response;
+    }
 }

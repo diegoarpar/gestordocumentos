@@ -5,9 +5,7 @@ import Login from './views/login/login.js';
 import {  Switch, Route   } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom"
 import VentanillaRadicacion from './views/ventanilla/ventanilla';
-import CustomizedMenus from './views/menus/menu';
 import UserWaitingApproved from './views/user/userWaitingApproved';
-import Button from '@mui/material/Button';
 import ReactDOM from 'react-dom';
 
 export const SessionContext = React.createContext(GetSessionCookie());
@@ -24,9 +22,6 @@ const Routes = (props) => {
           <Route path="/login" component={Login} />
           <Route path="/ventanillaRadicacion">
              <VentanillaRadicacion/>
-          </Route>
-          <Route path="/userWatingApproved">
-             <UserWaitingApproved/>
           </Route>
           <Route path="*"  />
         </Switch>

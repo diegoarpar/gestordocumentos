@@ -10,6 +10,7 @@ public class Activity {
     private String name;
     private String href;
     private String type;
+    private String keyName;
     private String description;
     private boolean active;
 }

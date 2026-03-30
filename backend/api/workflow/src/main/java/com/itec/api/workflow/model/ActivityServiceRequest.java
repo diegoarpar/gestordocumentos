@@ -10,6 +10,7 @@ public class ActivityServiceRequest implements BaseServiceRequest {
     String instanceId;
     private String id;
     private String name;
+    private String keyName;
     private String type;
     private String href;
     private String description;

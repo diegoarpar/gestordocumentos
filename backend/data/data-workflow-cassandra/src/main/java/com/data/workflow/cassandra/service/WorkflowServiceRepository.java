@@ -44,4 +44,8 @@ public class WorkflowServiceRepository {
     public WorkflowInformation findById(String id) {
         return repository.findById(id);
     }
+
+    public WorkflowInformation findByKeyName(String keyName) {
+        return repository.findByLatestKeyName(keyName);
+    }
 }
