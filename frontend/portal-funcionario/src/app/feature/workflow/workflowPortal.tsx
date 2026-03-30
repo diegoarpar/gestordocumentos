@@ -43,11 +43,11 @@ function Modal({
   children: React.ReactNode;
 }) {
   return (
-    <div className="wfp-overlay">
-      <div className="wfp-modal">
-        <div className="wfp-modal-header">
-          <h2 className="wfp-modal-title">{title}</h2>
-          <button className="wfp-modal-close" onClick={onClose}>×</button>
+    <div className="overlay">
+      <div className="modal">
+        <div className="modal-header">
+          <h2 className="modal-title">{title}</h2>
+          <button className="modal-close" onClick={onClose}>×</button>
         </div>
         {children}
       </div>
@@ -74,62 +74,62 @@ function WorkflowForm({
   const valid = name.trim().length > 0;
 
   return (
-    <div className="wfp-form">
-      <div className="wfp-field">
-        <label className="wfp-label">Workflow Name</label>
+    <div className="form">
+      <div className="field">
+        <label className="label">Workflow Name</label>
         <input
-          className="wfp-input"
+          className="input"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="e.g. Document Approval Flow"
         />
       </div>
-      <div className="wfp-field">
-        <label className="wfp-label">Workflow Key</label>
+      <div className="field">
+        <label className="label">Workflow Key</label>
         <input
-          className="wfp-input"
+          className="input"
           value={latestKeyName}
           onChange={(e) => setLatestKeyName(e.target.value)}
           placeholder="e.g. Document Approval Flow"
         />
       </div>
-      <div className="wfp-field">
-        <label className="wfp-label">Description</label>
+      <div className="field">
+        <label className="label">Description</label>
         <textarea
-          className="wfp-input wfp-textarea"
+          className="input textarea"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Describe this workflow's purpose..."
           rows={3}
         />
       </div>
-      <div className="wfp-field">
-        <label className="wfp-label">URL</label>
+      <div className="field">
+        <label className="label">URL</label>
         <textarea
-          className="wfp-input wfp-textarea"
+          className="input textarea"
           value={href}
           onChange={(e) => setHref(e.target.value)}
           placeholder="URL..."
           rows={3}
         />
       </div>
-      <div className="wfp-field wfp-field-inline">
-        <label className="wfp-label">Active</label>
+      <div className="field field-inline">
+        <label className="label">Active</label>
         <div
-          className={`wfp-toggle ${active ? "on" : ""}`}
+          className={`toggle ${active ? "on" : ""}`}
           onClick={() => setActive((v) => !v)}
           role="switch"
           aria-checked={active}
         >
-          <div className="wfp-toggle-thumb" />
+          <div className="toggle-thumb" />
         </div>
-        <span className="wfp-toggle-label">{active ? "Active" : "Inactive"}</span>
+        <span className="toggle-label">{active ? "Active" : "Inactive"}</span>
       </div>
-      <div className="wfp-form-actions">
-        <button type="button" className="wfp-btn-ghost" onClick={onCancel}>Cancel</button>
+      <div className="form-actions">
+        <button type="button" className="btn-ghost" onClick={onCancel}>Cancel</button>
         <button
           type="button"
-          className="wfp-btn-primary"
+          className="btn-primary"
           disabled={!valid || isSaving}
           onClick={() => valid && onSave({ name: name.trim(), description: description.trim(), href: href.trim(), active, latestKeyName: latestKeyName.trim() })}
         >
@@ -265,55 +265,55 @@ export default function WorkflowPortal() {
           />
         )}
 
-        <div className="wfp-root">
+        <div className="root">
           {toast && (
-            <div className={`wfp-toast ${toast.type}`}>
+            <div className={`toast ${toast.type}`}>
               {toast.type === "ok" ? "✓ " : "⚠ "}{toast.msg}
             </div>
           )}
 
-          <div className="wfp-header">
-            <div className="wfp-header-row">
-              <div className="wfp-icon">🔄</div>
-              <h1 className="wfp-title">Workflow Management</h1>
+          <div className="header">
+            <div className="header-row">
+              <div className="icon">🔄</div>
+              <h1 className="title">Workflow Management</h1>
             </div>
-            <p className="wfp-subtitle">Create and manage workflow process definitions</p>
+            <p className="subtitle">Create and manage workflow process definitions</p>
           </div>
 
-          <div className="wfp-stats">
+          <div className="stats">
             {[
               { label: "Total Workflows", value: workflows.length, color: ACCENT },
               { label: "Active", value: activeCount, color: "#10b981" },
               { label: "Inactive", value: workflows.length - activeCount, color: "#e05c5c" },
             ].map((s) => (
-              <div key={s.label} className="wfp-stat">
-                <div className="wfp-stat-val" style={{ color: s.color }}>{s.value}</div>
-                <div className="wfp-stat-label">{s.label}</div>
+              <div key={s.label} className="stat">
+                <div className="stat-val" style={{ color: s.color }}>{s.value}</div>
+                <div className="stat-label">{s.label}</div>
               </div>
             ))}
           </div>
 
-          <div className="wfp-controls">
-            <div className="wfp-search-wrap">
-              <span className="wfp-search-icon">🔍</span>
+          <div className="controls">
+            <div className="search-wrap">
+              <span className="search-icon">🔍</span>
               <input
-                className="wfp-search"
+                className="search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search workflows…"
               />
             </div>
-            <button className="wfp-btn-primary" onClick={() => setModal("add")}>
+            <button className="btn-primary" onClick={() => setModal("add")}>
               + Add Workflow
             </button>
           </div>
 
-          <div className="wfp-table-wrap">
-            <table className="wfp-table">
+          <div className="table-wrap">
+            <table className="table">
               <thead>
                 <tr>
                   {["Name", "Description", "Status", "Actions"].map((h) => (
-                    <th key={h} className="wfp-th">{h}</th>
+                    <th key={h} className="th">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -321,27 +321,27 @@ export default function WorkflowPortal() {
                 {loading ? (
                   Array.from({ length: 3 }).map((_, i) => (
                     <tr key={i}>
-                      <td colSpan={4} className="wfp-td" style={{ padding: "8px 16px" }}>
-                        <div className="wfp-skeleton" />
+                      <td colSpan={4} className="td" style={{ padding: "8px 16px" }}>
+                        <div className="skeleton" />
                       </td>
                     </tr>
                   ))
                 ) : filtered.length === 0 ? (
-                  <tr><td colSpan={4} className="wfp-empty">No workflows found</td></tr>
+                  <tr><td colSpan={4} className="empty">No workflows found</td></tr>
                 ) : (
                   filtered.map((workflow) => (
-                    <tr key={workflow.id} className="wfp-tr">
-                      <td className="wfp-td"><div className="wfp-name">{workflow.name}</div></td>
-                      <td className="wfp-td"><div className="wfp-desc">{workflow.description ?? "—"}</div></td>
-                      <td className="wfp-td">
-                        <span className={`wfp-badge ${workflow.active ? "wfp-badge-active" : "wfp-badge-inactive"}`}>
+                    <tr key={workflow.id} className="tr">
+                      <td className="td"><div className="name">{workflow.name}</div></td>
+                      <td className="td"><div className="desc">{workflow.description ?? "—"}</div></td>
+                      <td className="td">
+                        <span className={`badge ${workflow.active ? "badge-active" : "badge-inactive"}`}>
                           {workflow.active ? "● Active" : "○ Inactive"}
                         </span>
                       </td>
-                      <td className="wfp-td">
-                        <div className="wfp-row-actions">
-                          <button className="wfp-btn-row edit" onClick={() => { setActiveWorkflow(workflow); setModal("edit"); }}>Edit</button>
-                          <button className="wfp-btn-row del" onClick={() => { setActiveWorkflow(workflow); setModal("delete"); }}>Delete</button>
+                      <td className="td">
+                        <div className="row-actions">
+                          <button className="btn-row edit" onClick={() => { setActiveWorkflow(workflow); setModal("edit"); }}>Edit</button>
+                          <button className="btn-row del" onClick={() => { setActiveWorkflow(workflow); setModal("delete"); }}>Delete</button>
                         </div>
                       </td>
                     </tr>
@@ -350,7 +350,7 @@ export default function WorkflowPortal() {
               </tbody>
             </table>
           </div>
-          <p className="wfp-footer">Showing {filtered.length} of {workflows.length} workflows</p>
+          <p className="footer">Showing {filtered.length} of {workflows.length} workflows</p>
         </div>
       </div>
 
@@ -366,16 +366,16 @@ export default function WorkflowPortal() {
       )}
       {modal === "delete" && activeWorkflow && (
         <Modal title="Delete Workflow" onClose={closeModal}>
-          <div className="wfp-delete-body">
-            <p className="wfp-delete-text">
+          <div className="delete-body">
+            <p className="delete-text">
               Are you sure you want to delete the workflow{" "}
               <strong style={{ color: "#e8edf5" }}>"{activeWorkflow.name}"</strong>?
               This will also remove all associated activities and deployments.
             </p>
           </div>
-          <div className="wfp-form-actions">
-            <button className="wfp-btn-ghost" onClick={closeModal}>Cancel</button>
-            <button className="wfp-btn-delete" onClick={handleDelete} disabled={isSaving}>
+          <div className="form-actions">
+            <button className="btn-ghost" onClick={closeModal}>Cancel</button>
+            <button className="btn-delete" onClick={handleDelete} disabled={isSaving}>
               {isSaving ? "Deleting…" : "Delete Workflow"}
             </button>
           </div>

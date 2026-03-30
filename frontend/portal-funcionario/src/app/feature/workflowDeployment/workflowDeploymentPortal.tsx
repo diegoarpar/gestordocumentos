@@ -51,11 +51,11 @@ function Modal({
   children: React.ReactNode;
 }) {
   return (
-    <div className="wdp-overlay">
-      <div className="wdp-modal">
-        <div className="wdp-modal-header">
-          <h2 className="wdp-modal-title">{title}</h2>
-          <button className="wdp-modal-close" onClick={onClose}>×</button>
+    <div className="overlay">
+      <div className="modal">
+        <div className="modal-header">
+          <h2 className="modal-title">{title}</h2>
+          <button className="modal-close" onClick={onClose}>×</button>
         </div>
         {children}
       </div>
@@ -88,11 +88,11 @@ function DeploymentForm({
   };
 
   return (
-    <div className="wdp-form">
-      <div className="wdp-field">
-        <label className="wdp-label">Workflow</label>
+    <div className="form">
+      <div className="field">
+        <label className="label">Workflow</label>
         <select
-          className="wdp-input wdp-select"
+          className="input select"
           value={workflowId}
           onChange={(e) => setWorkflowId(e.target.value)}
         >
@@ -102,15 +102,15 @@ function DeploymentForm({
           ))}
         </select>
       </div>
-      <div className="wdp-field">
-        <label className="wdp-label">Process Definition File</label>
-        <div className="wdp-file-wrap" onClick={() => fileInputRef.current?.click()}>
-          <span className="wdp-file-icon">📎</span>
-          <span className="wdp-file-name">
+      <div className="field">
+        <label className="label">Process Definition File</label>
+        <div className="file-wrap" onClick={() => fileInputRef.current?.click()}>
+          <span className="file-icon">📎</span>
+          <span className="file-name">
             {file ? file.name : "Click to select a .bpmn or .xml file…"}
           </span>
           {file && (
-            <span className="wdp-file-size">
+            <span className="file-size">
               {(file.size / 1024).toFixed(1)} KB
             </span>
           )}
@@ -123,19 +123,19 @@ function DeploymentForm({
           onChange={handleFileChange}
         />
       </div>
-      <div className="wdp-field">
-        <label className="wdp-label">Deployed By</label>
+      <div className="field">
+        <label className="label">Deployed By</label>
         <input
-          className="wdp-input"
+          className="input"
           value={deployedBy}
           onChange={(e) => setDeployedBy(e.target.value)}
           placeholder="e.g. admin"
         />
       </div>
-      <div className="wdp-field">
-        <label className="wdp-label">Status</label>
+      <div className="field">
+        <label className="label">Status</label>
         <select
-          className="wdp-input wdp-select"
+          className="input select"
           value={status}
           onChange={(e) => setStatus(e.target.value)}
         >
@@ -144,11 +144,11 @@ function DeploymentForm({
           ))}
         </select>
       </div>
-      <div className="wdp-form-actions">
-        <button type="button" className="wdp-btn-ghost" onClick={onCancel}>Cancel</button>
+      <div className="form-actions">
+        <button type="button" className="btn-ghost" onClick={onCancel}>Cancel</button>
         <button
           type="button"
-          className="wdp-btn-primary"
+          className="btn-primary"
           disabled={!valid || isSaving}
           onClick={() =>
             valid &&
@@ -170,10 +170,10 @@ function DeploymentForm({
 }
 
 function statusBadgeClass(status: string) {
-  if (status === "DEPLOYED") return "wdp-badge-deployed";
-  if (status === "PENDING") return "wdp-badge-pending";
-  if (status === "FAILED") return "wdp-badge-failed";
-  return "wdp-badge-archived";
+  if (status === "DEPLOYED") return "badge-deployed";
+  if (status === "PENDING") return "badge-pending";
+  if (status === "FAILED") return "badge-failed";
+  return "badge-archived";
 }
 
 export default function WorkflowDeploymentPortal() {
@@ -321,47 +321,47 @@ export default function WorkflowDeploymentPortal() {
           />
         )}
 
-        <div className="wdp-root">
+        <div className="root">
           {toast && (
-            <div className={`wdp-toast ${toast.type}`}>
+            <div className={`toast ${toast.type}`}>
               {toast.type === "ok" ? "✓ " : "⚠ "}{toast.msg}
             </div>
           )}
 
-          <div className="wdp-header">
-            <div className="wdp-header-row">
-              <div className="wdp-icon">🚀</div>
-              <h1 className="wdp-title">Workflow Deployments</h1>
+          <div className="header">
+            <div className="header-row">
+              <div className="icon">🚀</div>
+              <h1 className="title">Workflow Deployments</h1>
             </div>
-            <p className="wdp-subtitle">Manage and track workflow process deployments</p>
+            <p className="subtitle">Manage and track workflow process deployments</p>
           </div>
 
-          <div className="wdp-stats">
+          <div className="stats">
             {[
               { label: "Total Deployments", value: deployments.length, color: ACCENT },
               { label: "Deployed", value: deployedCount, color: "#10b981" },
               { label: "Pending", value: pendingCount, color: "#f59e0b" },
             ].map((s) => (
-              <div key={s.label} className="wdp-stat">
-                <div className="wdp-stat-val" style={{ color: s.color }}>{s.value}</div>
-                <div className="wdp-stat-label">{s.label}</div>
+              <div key={s.label} className="stat">
+                <div className="stat-val" style={{ color: s.color }}>{s.value}</div>
+                <div className="stat-label">{s.label}</div>
               </div>
             ))}
           </div>
 
-          <div className="wdp-controls">
-            <div className="wdp-controls-left">
-              <div className="wdp-search-wrap">
-                <span className="wdp-search-icon">🔍</span>
+          <div className="controls">
+            <div className="controls-left">
+              <div className="search-wrap">
+                <span className="search-icon">🔍</span>
                 <input
-                  className="wdp-search"
+                  className="search"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search deployments…"
                 />
               </div>
               <select
-                className="wdp-filter-select"
+                className="filter-select"
                 value={filterWorkflow}
                 onChange={(e) => setFilterWorkflow(e.target.value)}
               >
@@ -371,7 +371,7 @@ export default function WorkflowDeploymentPortal() {
                 ))}
               </select>
               <select
-                className="wdp-filter-select"
+                className="filter-select"
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
               >
@@ -381,17 +381,17 @@ export default function WorkflowDeploymentPortal() {
                 ))}
               </select>
             </div>
-            <button className="wdp-btn-primary" onClick={() => setModal("add")}>
+            <button className="btn-primary" onClick={() => setModal("add")}>
               + New Deployment
             </button>
           </div>
 
-          <div className="wdp-table-wrap">
-            <table className="wdp-table">
+          <div className="table-wrap">
+            <table className="table">
               <thead>
                 <tr>
                   {["File", "Workflow", "Deployed By", "Status", "Actions"].map((h) => (
-                    <th key={h} className="wdp-th">{h}</th>
+                    <th key={h} className="th">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -399,32 +399,32 @@ export default function WorkflowDeploymentPortal() {
                 {loading ? (
                   Array.from({ length: 3 }).map((_, i) => (
                     <tr key={i}>
-                      <td colSpan={5} className="wdp-td" style={{ padding: "8px 16px" }}>
-                        <div className="wdp-skeleton" />
+                      <td colSpan={5} className="td" style={{ padding: "8px 16px" }}>
+                        <div className="skeleton" />
                       </td>
                     </tr>
                   ))
                 ) : filtered.length === 0 ? (
-                  <tr><td colSpan={5} className="wdp-empty">No deployments found</td></tr>
+                  <tr><td colSpan={5} className="empty">No deployments found</td></tr>
                 ) : (
                   filtered.map((dep) => (
-                    <tr key={dep.id} className="wdp-tr">
-                      <td className="wdp-td">
-                        <div className="wdp-name">{dep.fileName}</div>
-                        {dep.filePath && <div className="wdp-meta">{dep.filePath}</div>}
+                    <tr key={dep.id} className="tr">
+                      <td className="td">
+                        <div className="name">{dep.fileName}</div>
+                        {dep.filePath && <div className="meta">{dep.filePath}</div>}
                       </td>
-                      <td className="wdp-td">
-                        <span className="wdp-tag-wf">{dep.workflowName ?? workflowName(dep.workflowId)}</span>
+                      <td className="td">
+                        <span className="tag-wf">{dep.workflowName ?? workflowName(dep.workflowId)}</span>
                       </td>
-                      <td className="wdp-td" style={{ color: "#8a9ab5", fontSize: "13px" }}>{dep.deployedBy}</td>
-                      <td className="wdp-td">
-                        <span className={`wdp-badge ${statusBadgeClass(dep.status)}`}>
+                      <td className="td" style={{ color: "#8a9ab5", fontSize: "13px" }}>{dep.deployedBy}</td>
+                      <td className="td">
+                        <span className={`badge ${statusBadgeClass(dep.status)}`}>
                           {dep.status}
                         </span>
                       </td>
-                      <td className="wdp-td">
-                        <div className="wdp-row-actions">
-                          <button className="wdp-btn-row del" onClick={() => { setActiveDeployment(dep); setModal("delete"); }}>Delete</button>
+                      <td className="td">
+                        <div className="row-actions">
+                          <button className="btn-row del" onClick={() => { setActiveDeployment(dep); setModal("delete"); }}>Delete</button>
                         </div>
                       </td>
                     </tr>
@@ -433,7 +433,7 @@ export default function WorkflowDeploymentPortal() {
               </tbody>
             </table>
           </div>
-          <p className="wdp-footer">Showing {filtered.length} of {deployments.length} deployments</p>
+          <p className="footer">Showing {filtered.length} of {deployments.length} deployments</p>
         </div>
       </div>
 
@@ -445,15 +445,15 @@ export default function WorkflowDeploymentPortal() {
 
       {modal === "delete" && activeDeployment && (
         <Modal title="Delete Deployment" onClose={closeModal}>
-          <div className="wdp-delete-body">
-            <p className="wdp-delete-text">
+          <div className="delete-body">
+            <p className="delete-text">
               Are you sure you want to delete the deployment{" "}
               <strong style={{ color: "#e8edf5" }}>"{activeDeployment.fileName}"</strong>?
             </p>
           </div>
-          <div className="wdp-form-actions">
-            <button className="wdp-btn-ghost" onClick={closeModal}>Cancel</button>
-            <button className="wdp-btn-delete" onClick={handleDelete} disabled={isSaving}>
+          <div className="form-actions">
+            <button className="btn-ghost" onClick={closeModal}>Cancel</button>
+            <button className="btn-delete" onClick={handleDelete} disabled={isSaving}>
               {isSaving ? "Deleting…" : "Delete Deployment"}
             </button>
           </div>

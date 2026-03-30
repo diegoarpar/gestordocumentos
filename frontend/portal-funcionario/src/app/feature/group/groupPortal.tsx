@@ -39,11 +39,11 @@ function Modal({
   children: React.ReactNode;
 }) {
   return (
-    <div className="gp-overlay">
-      <div className="gp-modal">
-        <div className="gp-modal-header">
-          <h2 className="gp-modal-title">{title}</h2>
-          <button className="gp-modal-close" onClick={onClose}>×</button>
+    <div className="overlay">
+      <div className="modal">
+        <div className="modal-header">
+          <h2 className="modal-title">{title}</h2>
+          <button className="modal-close" onClick={onClose}>×</button>
         </div>
         {children}
       </div>
@@ -68,43 +68,43 @@ function GroupForm({
   const valid = name.trim().length > 0;
 
   return (
-    <div className="gp-form">
-      <div className="gp-field">
-        <label className="gp-label">Group Name</label>
+    <div className="form">
+      <div className="field">
+        <label className="label">Group Name</label>
         <input
-          className="gp-input"
+          className="input"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="e.g. Operations Team"
         />
       </div>
-      <div className="gp-field">
-        <label className="gp-label">Description</label>
+      <div className="field">
+        <label className="label">Description</label>
         <textarea
-          className="gp-input gp-textarea"
+          className="input textarea"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Describe this group's purpose..."
           rows={3}
         />
       </div>
-      <div className="gp-field gp-field-inline">
-        <label className="gp-label">Active</label>
+      <div className="field field-inline">
+        <label className="label">Active</label>
         <div
-          className={`gp-toggle ${active ? "on" : ""}`}
+          className={`toggle ${active ? "on" : ""}`}
           onClick={() => setActive((v) => !v)}
           role="switch"
           aria-checked={active}
         >
-          <div className="gp-toggle-thumb" />
+          <div className="toggle-thumb" />
         </div>
-        <span className="gp-toggle-label">{active ? "Active" : "Inactive"}</span>
+        <span className="toggle-label">{active ? "Active" : "Inactive"}</span>
       </div>
-      <div className="gp-form-actions">
-        <button type="button" className="gp-btn-ghost" onClick={onCancel}>Cancel</button>
+      <div className="form-actions">
+        <button type="button" className="btn-ghost" onClick={onCancel}>Cancel</button>
         <button
           type="button"
-          className="gp-btn-primary"
+          className="btn-primary"
           disabled={!valid || isSaving}
           onClick={() => valid && onSave({ name: name.trim(), description: description.trim(), active })}
         >
@@ -240,55 +240,55 @@ export default function GroupPortal() {
           />
         )}
 
-        <div className="gp-root">
+        <div className="root">
         {toast && (
-          <div className={`gp-toast ${toast.type}`}>
+          <div className={`toast ${toast.type}`}>
             {toast.type === "ok" ? "✓ " : "⚠ "}{toast.msg}
           </div>
         )}
 
-        <div className="gp-header">
-          <div className="gp-header-row">
-            <div className="gp-icon">👥</div>
-            <h1 className="gp-title">Group Management</h1>
+        <div className="header">
+          <div className="header-row">
+            <div className="icon">👥</div>
+            <h1 className="title">Group Management</h1>
           </div>
-          <p className="gp-subtitle">Organize users into groups for access control</p>
+          <p className="subtitle">Organize users into groups for access control</p>
         </div>
 
-        <div className="gp-stats">
+        <div className="stats">
           {[
             { label: "Total Groups", value: groups.length, color: ACCENT },
             { label: "Active", value: activeCount, color: "#10b981" },
             { label: "Inactive", value: groups.length - activeCount, color: "#e05c5c" },
           ].map((s) => (
-            <div key={s.label} className="gp-stat">
-              <div className="gp-stat-val" style={{ color: s.color }}>{s.value}</div>
-              <div className="gp-stat-label">{s.label}</div>
+            <div key={s.label} className="stat">
+              <div className="stat-val" style={{ color: s.color }}>{s.value}</div>
+              <div className="stat-label">{s.label}</div>
             </div>
           ))}
         </div>
 
-        <div className="gp-controls">
-          <div className="gp-search-wrap">
-            <span className="gp-search-icon">🔍</span>
+        <div className="controls">
+          <div className="search-wrap">
+            <span className="search-icon">🔍</span>
             <input
-              className="gp-search"
+              className="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search groups…"
             />
           </div>
-          <button className="gp-btn-primary" onClick={() => setModal("add")}>
+          <button className="btn-primary" onClick={() => setModal("add")}>
             + Add Group
           </button>
         </div>
 
-        <div className="gp-table-wrap">
-          <table className="gp-table">
+        <div className="table-wrap">
+          <table className="table">
             <thead>
               <tr>
                 {["Name", "Description", "Status", "Actions"].map((h) => (
-                  <th key={h} className="gp-th">{h}</th>
+                  <th key={h} className="th">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -296,27 +296,27 @@ export default function GroupPortal() {
               {loading ? (
                 Array.from({ length: 3 }).map((_, i) => (
                   <tr key={i}>
-                    <td colSpan={4} className="gp-td" style={{ padding: "8px 16px" }}>
-                      <div className="gp-skeleton" />
+                    <td colSpan={4} className="td" style={{ padding: "8px 16px" }}>
+                      <div className="skeleton" />
                     </td>
                   </tr>
                 ))
               ) : filtered.length === 0 ? (
-                <tr><td colSpan={4} className="gp-empty">No groups found</td></tr>
+                <tr><td colSpan={4} className="empty">No groups found</td></tr>
               ) : (
                 filtered.map((group) => (
-                  <tr key={group.id} className="gp-tr">
-                    <td className="gp-td"><div className="gp-name">{group.name}</div></td>
-                    <td className="gp-td"><div className="gp-desc">{group.description ?? "—"}</div></td>
-                    <td className="gp-td">
-                      <span className={`gp-badge ${group.active ? "gp-badge-active" : "gp-badge-inactive"}`}>
+                  <tr key={group.id} className="tr">
+                    <td className="td"><div className="name">{group.name}</div></td>
+                    <td className="td"><div className="desc">{group.description ?? "—"}</div></td>
+                    <td className="td">
+                      <span className={`badge ${group.active ? "badge-active" : "badge-inactive"}`}>
                         {group.active ? "● Active" : "○ Inactive"}
                       </span>
                     </td>
-                    <td className="gp-td">
-                      <div className="gp-row-actions">
-                        <button className="gp-btn-row edit" onClick={() => { setActiveGroup(group); setModal("edit"); }}>Edit</button>
-                        <button className="gp-btn-row del" onClick={() => { setActiveGroup(group); setModal("delete"); }}>Delete</button>
+                    <td className="td">
+                      <div className="row-actions">
+                        <button className="btn-row edit" onClick={() => { setActiveGroup(group); setModal("edit"); }}>Edit</button>
+                        <button className="btn-row del" onClick={() => { setActiveGroup(group); setModal("delete"); }}>Delete</button>
                       </div>
                     </td>
                   </tr>
@@ -325,7 +325,7 @@ export default function GroupPortal() {
             </tbody>
           </table>
         </div>
-        <p className="gp-footer">Showing {filtered.length} of {groups.length} groups</p>
+        <p className="footer">Showing {filtered.length} of {groups.length} groups</p>
         </div>
       </div>
 
@@ -341,16 +341,16 @@ export default function GroupPortal() {
       )}
       {modal === "delete" && activeGroup && (
         <Modal title="Delete Group" onClose={closeModal}>
-          <div className="gp-delete-body">
-            <p className="gp-delete-text">
+          <div className="delete-body">
+            <p className="delete-text">
               Are you sure you want to delete the group{" "}
               <strong style={{ color: "#e8edf5" }}>"{activeGroup.name}"</strong>?
               This will remove all user memberships associated with it.
             </p>
           </div>
-          <div className="gp-form-actions">
-            <button className="gp-btn-ghost" onClick={closeModal}>Cancel</button>
-            <button className="gp-btn-delete" onClick={handleDelete} disabled={isSaving}>
+          <div className="form-actions">
+            <button className="btn-ghost" onClick={closeModal}>Cancel</button>
+            <button className="btn-delete" onClick={handleDelete} disabled={isSaving}>
               {isSaving ? "Deleting…" : "Delete Group"}
             </button>
           </div>

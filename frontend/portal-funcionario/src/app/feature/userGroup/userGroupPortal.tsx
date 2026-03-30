@@ -128,52 +128,52 @@ export default function UserGroupPortal() {
           />
         )}
 
-        <div className="ugp-root">
+        <div className="root">
         {toast && (
-          <div className={`ugp-toast ${toast.type}`}>
+          <div className={`toast ${toast.type}`}>
             {toast.type === "ok" ? "✓ " : "⚠ "}{toast.msg}
           </div>
         )}
 
-        <div className="ugp-header">
-          <div className="ugp-header-row">
-            <div className="ugp-icon">👤</div>
-            <h1 className="ugp-title">User Groups</h1>
+        <div className="header">
+          <div className="header-row">
+            <div className="icon">👤</div>
+            <h1 className="title">User Groups</h1>
           </div>
-          <p className="ugp-subtitle">Manage user membership in groups</p>
+          <p className="subtitle">Manage user membership in groups</p>
         </div>
 
-        <div className="ugp-stats">
+        <div className="stats">
           {[
             { label: "Total Groups", value: groups.length, color: "#3b82f6" },
             { label: "Assignments", value: assignments.length, color: ACCENT },
             { label: "Users Assigned", value: uniqueUsers, color: "#a78bfa" },
           ].map((s) => (
-            <div key={s.label} className="ugp-stat">
-              <div className="ugp-stat-val" style={{ color: s.color }}>{s.value}</div>
-              <div className="ugp-stat-label">{s.label}</div>
+            <div key={s.label} className="stat">
+              <div className="stat-val" style={{ color: s.color }}>{s.value}</div>
+              <div className="stat-label">{s.label}</div>
             </div>
           ))}
         </div>
 
         {/* Add assignment */}
-        <div className="ugp-add-card">
-          <div className="ugp-add-title">Add User to Group</div>
-          <div className="ugp-add-row">
-            <div className="ugp-field">
-              <label className="ugp-label">Username</label>
+        <div className="add-card">
+          <div className="add-title">Add User to Group</div>
+          <div className="add-row">
+            <div className="field">
+              <label className="label">Username</label>
               <input
-                className="ugp-input"
+                className="input"
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
                 placeholder="Enter username or email"
                 onKeyDown={(e) => e.key === "Enter" && handleAdd()}
               />
             </div>
-            <div className="ugp-field">
-              <label className="ugp-label">Group</label>
+            <div className="field">
+              <label className="label">Group</label>
               <select
-                className="ugp-select"
+                className="select"
                 value={selectedGroupId}
                 onChange={(e) => setSelectedGroupId(e.target.value)}
               >
@@ -184,7 +184,7 @@ export default function UserGroupPortal() {
               </select>
             </div>
             <button
-              className="ugp-btn-add"
+              className="btn-add"
               onClick={handleAdd}
               disabled={!userName.trim() || !selectedGroupId || alreadyAssigned || isSaving}
             >
@@ -192,25 +192,25 @@ export default function UserGroupPortal() {
             </button>
           </div>
           {alreadyAssigned && userName.trim() && selectedGroupId && (
-            <div className="ugp-warn">⚠ This user is already in the selected group.</div>
+            <div className="warn">⚠ This user is already in the selected group.</div>
           )}
         </div>
 
         {/* Controls */}
-        <div className="ugp-controls">
-          <div className="ugp-search-wrap">
-            <span className="ugp-search-icon">🔍</span>
+        <div className="controls">
+          <div className="search-wrap">
+            <span className="search-icon">🔍</span>
             <input
-              className="ugp-search"
+              className="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by user or group…"
             />
           </div>
-          <div className="ugp-filter-row">
-            <span className="ugp-filter-label">Filter by group:</span>
+          <div className="filter-row">
+            <span className="filter-label">Filter by group:</span>
             <select
-              className="ugp-filter-select"
+              className="filter-select"
               value={filterGroupId}
               onChange={(e) => setFilterGroupId(e.target.value)}
             >
@@ -222,12 +222,12 @@ export default function UserGroupPortal() {
           </div>
         </div>
 
-        <div className="ugp-table-wrap">
-          <table className="ugp-table">
+        <div className="table-wrap">
+          <table className="table">
             <thead>
               <tr>
                 {["User", "Group", "Action"].map((h) => (
-                  <th key={h} className="ugp-th">{h}</th>
+                  <th key={h} className="th">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -235,24 +235,24 @@ export default function UserGroupPortal() {
               {loading ? (
                 Array.from({ length: 3 }).map((_, i) => (
                   <tr key={i}>
-                    <td colSpan={3} className="ugp-td" style={{ padding: "8px 16px" }}>
-                      <div className="ugp-skeleton" />
+                    <td colSpan={3} className="td" style={{ padding: "8px 16px" }}>
+                      <div className="skeleton" />
                     </td>
                   </tr>
                 ))
               ) : filtered.length === 0 ? (
-                <tr><td colSpan={3} className="ugp-empty">No assignments found</td></tr>
+                <tr><td colSpan={3} className="empty">No assignments found</td></tr>
               ) : (
                 filtered.map((a) => (
-                  <tr key={a.id} className="ugp-tr">
-                    <td className="ugp-td">
-                      <span className="ugp-user-tag">👤 {a.userName}</span>
+                  <tr key={a.id} className="tr">
+                    <td className="td">
+                      <span className="user-tag">👤 {a.userName}</span>
                     </td>
-                    <td className="ugp-td">
-                      <span className="ugp-group-tag">{groupName(a.groupId)}</span>
+                    <td className="td">
+                      <span className="group-tag">{groupName(a.groupId)}</span>
                     </td>
-                    <td className="ugp-td">
-                      <button className="ugp-btn-remove" onClick={() => handleRemove(a)}>
+                    <td className="td">
+                      <button className="btn-remove" onClick={() => handleRemove(a)}>
                         Remove
                       </button>
                     </td>
@@ -262,7 +262,7 @@ export default function UserGroupPortal() {
             </tbody>
           </table>
         </div>
-        <p className="ugp-footer">Showing {filtered.length} of {assignments.length} assignments</p>
+        <p className="footer">Showing {filtered.length} of {assignments.length} assignments</p>
         </div>
       </div>
     </>

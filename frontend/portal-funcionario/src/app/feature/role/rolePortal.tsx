@@ -46,11 +46,11 @@ function Modal({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rp-overlay">
-      <div className="rp-modal">
-        <div className="rp-modal-header">
-          <h2 className="rp-modal-title">{title}</h2>
-          <button className="rp-modal-close" onClick={onClose}>×</button>
+    <div className="overlay">
+      <div className="modal">
+        <div className="modal-header">
+          <h2 className="modal-title">{title}</h2>
+          <button className="modal-close" onClick={onClose}>×</button>
         </div>
         {children}
       </div>
@@ -81,29 +81,29 @@ function RoleForm({
   const valid = name.trim().length > 0;
 
   return (
-    <div className="rp-form">
-      <div className="rp-field">
-        <label className="rp-label">Role Name</label>
+    <div className="form">
+      <div className="field">
+        <label className="label">Role Name</label>
         <input
-          className="rp-input"
+          className="input"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="e.g. Content Manager"
         />
       </div>
-      <div className="rp-field">
-        <label className="rp-label">Description</label>
+      <div className="field">
+        <label className="label">Description</label>
         <textarea
-          className="rp-input rp-textarea"
+          className="input textarea"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Describe this role's purpose..."
           rows={3}
         />
       </div>
-      <div className="rp-field">
-        <label className="rp-label">Permissions</label>
-        <div className="rp-perm-grid">
+      <div className="field">
+        <label className="label">Permissions</label>
+        <div className="perm-grid">
           {ALL_PERMISSIONS.map((p) => {
             const active = permissions.includes(p);
             const color = PERMISSION_COLORS[p] ?? "#5a6a85";
@@ -112,7 +112,7 @@ function RoleForm({
                 key={p}
                 type="button"
                 onClick={() => togglePerm(p)}
-                className={`rp-perm-btn ${active ? "active" : ""}`}
+                className={`perm-btn ${active ? "active" : ""}`}
                 style={{
                   borderColor: active ? color : undefined,
                   backgroundColor: active ? `${color}18` : undefined,
@@ -126,13 +126,13 @@ function RoleForm({
           })}
         </div>
       </div>
-      <div className="rp-form-actions">
-        <button type="button" className="rp-btn-ghost" onClick={onCancel}>
+      <div className="form-actions">
+        <button type="button" className="btn-ghost" onClick={onCancel}>
           Cancel
         </button>
         <button
           type="button"
-          className="rp-btn-primary"
+          className="btn-primary"
           disabled={!valid || isSaving}
           onClick={() => valid && onSave({ name: name.trim(), description: description.trim(), permissions })}
         >
@@ -294,69 +294,69 @@ export default function RolePortal() {
           />
         )}
 
-        <div className="rp-root">
+        <div className="root">
         {/* Toast */}
         {toast && (
-          <div className={`rp-toast ${toast.type}`}>
+          <div className={`toast ${toast.type}`}>
             {toast.type === "ok" ? "✓ " : "⚠ "}
             {toast.msg}
           </div>
         )}
 
         {/* Header */}
-        <div className="rp-header">
-          <div className="rp-header-row">
-            <div className="rp-icon">🛡️</div>
-            <h1 className="rp-title">Role Administration</h1>
+        <div className="header">
+          <div className="header-row">
+            <div className="icon">🛡️</div>
+            <h1 className="title">Role Administration</h1>
           </div>
-          <p className="rp-subtitle">
+          <p className="subtitle">
             Manage access control roles and permissions across your organization
           </p>
         </div>
 
         {/* Stats */}
-        <div className="rp-stats">
+        <div className="stats">
           {[
             { label: "Total Roles", value: roles.length, color: "#3ecfcf" },
             { label: "Total Users", value: roles.reduce((a, r) => a + (r.usersCount ?? 0), 0), color: "#a78bfa" },
             { label: "Permissions Defined", value: ALL_PERMISSIONS.length, color: "#f0a500" },
           ].map((s) => (
-            <div key={s.label} className="rp-stat">
-              <div className="rp-stat-val" style={{ color: s.color }}>{s.value}</div>
-              <div className="rp-stat-label">{s.label}</div>
+            <div key={s.label} className="stat">
+              <div className="stat-val" style={{ color: s.color }}>{s.value}</div>
+              <div className="stat-label">{s.label}</div>
             </div>
           ))}
         </div>
 
         {/* Controls */}
-        <div className="rp-controls">
-          <div className="rp-search-wrap">
-            <span className="rp-search-icon">🔍</span>
+        <div className="controls">
+          <div className="search-wrap">
+            <span className="search-icon">🔍</span>
             <input
-              className="rp-search"
+              className="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search roles…"
             />
           </div>
-          <div className="rp-actions">
+          <div className="actions">
             {selectedRows.length > 0 && (
-              <button className="rp-btn-danger" onClick={handleBulkDelete}>
+              <button className="btn-danger" onClick={handleBulkDelete}>
                 🗑 Delete {selectedRows.length} selected
               </button>
             )}
-            <button className="rp-btn-primary" onClick={() => setModal("add")}>
+            <button className="btn-primary" onClick={() => setModal("add")}>
               + Add Role
             </button>
           </div>
         </div>
 
         {/* Table */}
-        <div className="rp-table-wrap">
-          <table className="rp-table">
+        <div className="table-wrap">
+          <table className="table">
             <thead>
               <tr>
-                <th className="rp-th" style={{ width: 40 }}>
+                <th className="th" style={{ width: 40 }}>
                   <input
                     type="checkbox"
                     checked={selectedRows.length === filtered.length && filtered.length > 0}
@@ -364,7 +364,7 @@ export default function RolePortal() {
                   />
                 </th>
                 {["Role Name", "Description", "Permissions", "Users", "Created", "Actions"].map((h) => (
-                  <th key={h} className="rp-th">{h}</th>
+                  <th key={h} className="th">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -372,39 +372,39 @@ export default function RolePortal() {
               {loading ? (
                 Array.from({ length: 4 }).map((_, i) => (
                   <tr key={i}>
-                    <td colSpan={7} className="rp-td" style={{ padding: "8px 16px" }}>
-                      <div className="rp-skeleton" />
+                    <td colSpan={7} className="td" style={{ padding: "8px 16px" }}>
+                      <div className="skeleton" />
                     </td>
                   </tr>
                 ))
               ) : filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="rp-empty">No roles found</td>
+                  <td colSpan={7} className="empty">No roles found</td>
                 </tr>
               ) : (
                 filtered.map((role) => (
-                  <tr key={role.id} className="rp-tr">
-                    <td className="rp-td">
+                  <tr key={role.id} className="tr">
+                    <td className="td">
                       <input
                         type="checkbox"
                         checked={selectedRows.includes(role.id)}
                         onChange={() => toggleRow(role.id)}
                       />
                     </td>
-                    <td className="rp-td">
-                      <div className="rp-role-name">{role.name}</div>
+                    <td className="td">
+                      <div className="role-name">{role.name}</div>
                     </td>
-                    <td className="rp-td">
-                      <div className="rp-role-desc">{role.description}</div>
+                    <td className="td">
+                      <div className="role-desc">{role.description}</div>
                     </td>
-                    <td className="rp-td">
-                      <div className="rp-perms">
+                    <td className="td">
+                      <div className="perms">
                         {role?.permissions?.map((p) => {
                           const color = PERMISSION_COLORS[p] ?? "#5a6a85";
                           return (
                             <span
                               key={p}
-                              className="rp-perm-tag"
+                              className="perm-tag"
                               style={{
                                 background: `${color}15`,
                                 color,
@@ -417,22 +417,22 @@ export default function RolePortal() {
                         })}
                       </div>
                     </td>
-                    <td className="rp-td">
-                      <span className="rp-user-badge">👤 {role.usersCount ?? 0}</span>
+                    <td className="td">
+                      <span className="user-badge">👤 {role.usersCount ?? 0}</span>
                     </td>
-                    <td className="rp-td">
-                      <span className="rp-date">{role.createdAt}</span>
+                    <td className="td">
+                      <span className="date">{role.createdAt}</span>
                     </td>
-                    <td className="rp-td">
-                      <div className="rp-row-actions">
+                    <td className="td">
+                      <div className="row-actions">
                         <button
-                          className="rp-btn-row edit"
+                          className="btn-row edit"
                           onClick={() => { setActiveRole(role); setModal("edit"); }}
                         >
                           Edit
                         </button>
                         <button
-                          className="rp-btn-row del"
+                          className="btn-row del"
                           onClick={() => { setActiveRole(role); setModal("delete"); }}
                         >
                           Delete
@@ -446,7 +446,7 @@ export default function RolePortal() {
           </table>
         </div>
 
-        <p className="rp-footer">Showing {filtered.length} of {roles.length} roles</p>
+        <p className="footer">Showing {filtered.length} of {roles.length} roles</p>
         </div>
       </div>
 
@@ -467,21 +467,21 @@ export default function RolePortal() {
       {/* ── Delete Modal ── */}
       {modal === "delete" && activeRole && (
         <Modal title="Delete Role" onClose={closeModal}>
-          <div className="rp-delete-body">
-            <p className="rp-delete-text">
+          <div className="delete-body">
+            <p className="delete-text">
               Are you sure you want to delete the role{" "}
               <strong style={{ color: "#e8edf5" }}>"{activeRole.name}"</strong>?
             </p>
             {(activeRole.usersCount ?? 0) > 0 && (
-              <div className="rp-delete-warn">
+              <div className="delete-warn">
                 ⚠ This role is assigned to{" "}
                 <strong>{activeRole.usersCount} user(s)</strong>. Deleting it may affect their access.
               </div>
             )}
           </div>
-          <div className="rp-form-actions">
-            <button className="rp-btn-ghost" onClick={closeModal}>Cancel</button>
-            <button className="rp-btn-delete" onClick={handleDelete} disabled={isSaving}>
+          <div className="form-actions">
+            <button className="btn-ghost" onClick={closeModal}>Cancel</button>
+            <button className="btn-delete" onClick={handleDelete} disabled={isSaving}>
               {isSaving ? "Deleting…" : "Delete Role"}
             </button>
           </div>

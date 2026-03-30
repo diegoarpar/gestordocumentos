@@ -102,49 +102,49 @@ export default function WorkflowStarter() {
           />
         )}
 
-        <div className="wfd-root">
-          <div className="wfd-header">
-            <div className="wfd-header-row">
-              <div className="wfd-header-icon">🚀</div>
-              <h1 className="wfd-title">Procesos Disponibles</h1>
+        <div className="root">
+          <div className="header">
+            <div className="header-row">
+              <div className="header-icon">🚀</div>
+              <h1 className="title">Procesos Disponibles</h1>
             </div>
-            <p className="wfd-subtitle">Selecciona un proceso para iniciar una nueva instancia</p>
+            <p className="subtitle">Selecciona un proceso para iniciar una nueva instancia</p>
           </div>
 
-          <div className="wfd-stats">
+          <div className="stats">
             {[
               { label: "Total", value: workflows.length, color: "#8b5cf6" },
               { label: "Disponibles", value: activeCount, color: "#10b981" },
               { label: "Inactivos", value: workflows.length - activeCount, color: "#e05c5c" },
             ].map((s) => (
-              <div key={s.label} className="wfd-stat" style={{ "--c": s.color } as React.CSSProperties}>
-                <div className="wfd-stat-val">{s.value}</div>
-                <div className="wfd-stat-label">{s.label}</div>
+              <div key={s.label} className="stat" style={{ "--c": s.color } as React.CSSProperties}>
+                <div className="stat-val">{s.value}</div>
+                <div className="stat-label">{s.label}</div>
               </div>
             ))}
           </div>
 
-          <div className="wfd-controls">
-            <div className="wfd-search-wrap">
-              <span className="wfd-search-icon">🔍</span>
+          <div className="controls">
+            <div className="search-wrap">
+              <span className="search-icon">🔍</span>
               <input
-                className="wfd-search"
+                className="search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Buscar proceso…"
               />
             </div>
-            <span className="wfd-count">{filtered.length} proceso{filtered.length !== 1 ? "s" : ""}</span>
+            <span className="count">{filtered.length} proceso{filtered.length !== 1 ? "s" : ""}</span>
           </div>
 
-          <div className="wfd-grid">
+          <div className="grid">
             {loading
-              ? Array.from({ length: 6 }).map((_, i) => <div key={i} className="wfd-skeleton" />)
+              ? Array.from({ length: 6 }).map((_, i) => <div key={i} className="skeleton" />)
               : filtered.length === 0
               ? (
-                <div className="wfd-empty">
-                  <div className="wfd-empty-icon">📭</div>
-                  <div className="wfd-empty-text">No se encontraron procesos</div>
+                <div className="empty">
+                  <div className="empty-icon">📭</div>
+                  <div className="empty-text">No se encontraron procesos</div>
                 </div>
               )
               : filtered.map((workflow, i) => {
@@ -152,7 +152,7 @@ export default function WorkflowStarter() {
                   return (
                     <div
                       key={workflow.id}
-                      className={`wfd-card ${workflow.active ? "clickable" : "inactive"}`}
+                      className={`card ${workflow.active ? "clickable" : "inactive"}`}
                       style={{
                         "--c-from": from,
                         "--c-to": to,
@@ -164,19 +164,19 @@ export default function WorkflowStarter() {
                       tabIndex={workflow.active ? 0 : undefined}
                       onKeyDown={(e) => e.key === "Enter" && openWorkflow(workflow)}
                     >
-                      <div className="wfd-card-glow" />
-                      <div className="wfd-card-top">
-                        <div className="wfd-card-icon">🔄</div>
-                        <span className={`wfd-badge ${workflow.active ? "wfd-badge-active" : "wfd-badge-inactive"}`}>
+                      <div className="card-glow" />
+                      <div className="card-top">
+                        <div className="card-icon">🔄</div>
+                        <span className={`badge ${workflow.active ? "badge-active" : "badge-inactive"}`}>
                           {workflow.active ? "● Activo" : "○ Inactivo"}
                         </span>
                       </div>
                       <div>
-                        <p className="wfd-card-name">{workflow.name}</p>
-                        <p className="wfd-card-desc">{workflow.description ?? "Sin descripción"}</p>
+                        <p className="card-name">{workflow.name}</p>
+                        <p className="card-desc">{workflow.description ?? "Sin descripción"}</p>
                       </div>
-                      <div className="wfd-card-footer">
-                        <span className="wfd-card-cta">
+                      <div className="card-footer">
+                        <span className="card-cta">
                           Iniciar proceso
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -192,18 +192,18 @@ export default function WorkflowStarter() {
       </div>
 
       {selected && (
-        <div className="wfd-panel-overlay" onClick={(e) => e.target === e.currentTarget && closePanel()}>
-          <div className={`wfd-panel${fullscreen ? " fullscreen" : ""}`}>
-            <div className="wfd-panel-header">
-              <div className="wfd-panel-info">
-                <span className="wfd-panel-icon">🔄</span>
+        <div className="panel-overlay" onClick={(e) => e.target === e.currentTarget && closePanel()}>
+          <div className={`panel${fullscreen ? " fullscreen" : ""}`}>
+            <div className="panel-header">
+              <div className="panel-info">
+                <span className="panel-icon">🔄</span>
                 <div>
-                  <div className="wfd-panel-name">{selected.name}</div>
-                  <div className="wfd-panel-sub">Nueva instancia del proceso</div>
+                  <div className="panel-name">{selected.name}</div>
+                  <div className="panel-sub">Nueva instancia del proceso</div>
                 </div>
               </div>
-              <div className="wfd-panel-actions">
-                <button className="wfd-panel-btn" onClick={() => setFullscreen((f) => !f)} aria-label={fullscreen ? "Salir de pantalla completa" : "Pantalla completa"}>
+              <div className="panel-actions">
+                <button className="panel-btn" onClick={() => setFullscreen((f) => !f)} aria-label={fullscreen ? "Salir de pantalla completa" : "Pantalla completa"}>
                   {fullscreen ? (
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3" />
@@ -214,26 +214,26 @@ export default function WorkflowStarter() {
                     </svg>
                   )}
                 </button>
-                <button className="wfd-panel-close" onClick={closePanel} aria-label="Cerrar">×</button>
+                <button className="panel-close" onClick={closePanel} aria-label="Cerrar">×</button>
               </div>
             </div>
-            <div className="wfd-panel-body">
+            <div className="panel-body">
               {!selected.href ? (
-                <div className="wfd-no-url">
-                  <div className="wfd-no-url-icon">🔗</div>
-                  <div className="wfd-no-url-text">Este proceso no tiene URL configurada</div>
+                <div className="no-url">
+                  <div className="no-url-icon">🔗</div>
+                  <div className="no-url-text">Este proceso no tiene URL configurada</div>
                 </div>
               ) : (
                 <>
                   {iframeLoading && (
-                    <div className="wfd-panel-loading">
-                      <div className="wfd-spinner" />
+                    <div className="panel-loading">
+                      <div className="spinner" />
                       <span>Cargando formulario…</span>
                     </div>
                   )}
                   <iframe
                     src={`${selected.href}${selected.href!.includes("?") ? "&" : "?"}workflowId=${encodeURIComponent(selected.id)}&taskId=${encodeURIComponent(selected.id)}`}
-                    className="wfd-iframe"
+                    className="iframe"
                     style={{ opacity: iframeLoading ? 0 : 1 }}
                     onLoad={() => setIframeLoading(false)}
                     title={selected.name}

@@ -129,42 +129,42 @@ export default function RolePermissionPortal() {
           />
         )}
 
-        <div className="rpp-root">
+        <div className="root">
         {toast && (
-          <div className={`rpp-toast ${toast.type}`}>
+          <div className={`toast ${toast.type}`}>
             {toast.type === "ok" ? "✓ " : "⚠ "}{toast.msg}
           </div>
         )}
 
-        <div className="rpp-header">
-          <div className="rpp-header-row">
-            <div className="rpp-icon">🔗</div>
-            <h1 className="rpp-title">Role Permissions</h1>
+        <div className="header">
+          <div className="header-row">
+            <div className="icon">🔗</div>
+            <h1 className="title">Role Permissions</h1>
           </div>
-          <p className="rpp-subtitle">Assign permissions to roles to control access across the system</p>
+          <p className="subtitle">Assign permissions to roles to control access across the system</p>
         </div>
 
-        <div className="rpp-stats">
+        <div className="stats">
           {[
             { label: "Total Roles", value: roles.length, color: "#3ecfcf" },
             { label: "Total Permissions", value: permissions.length, color: "#f59e0b" },
             { label: "Assignments", value: assignments.length, color: ACCENT },
           ].map((s) => (
-            <div key={s.label} className="rpp-stat">
-              <div className="rpp-stat-val" style={{ color: s.color }}>{s.value}</div>
-              <div className="rpp-stat-label">{s.label}</div>
+            <div key={s.label} className="stat">
+              <div className="stat-val" style={{ color: s.color }}>{s.value}</div>
+              <div className="stat-label">{s.label}</div>
             </div>
           ))}
         </div>
 
         {/* Add assignment */}
-        <div className="rpp-add-card">
-          <div className="rpp-add-title">Assign Permission to Role</div>
-          <div className="rpp-add-row">
-            <div className="rpp-field">
-              <label className="rpp-label">Role</label>
+        <div className="add-card">
+          <div className="add-title">Assign Permission to Role</div>
+          <div className="add-row">
+            <div className="field">
+              <label className="label">Role</label>
               <select
-                className="rpp-select"
+                className="select"
                 value={selectedRoleId}
                 onChange={(e) => { setSelectedRoleId(e.target.value); setSelectedPermId(""); }}
               >
@@ -174,10 +174,10 @@ export default function RolePermissionPortal() {
                 ))}
               </select>
             </div>
-            <div className="rpp-field">
-              <label className="rpp-label">Permission</label>
+            <div className="field">
+              <label className="label">Permission</label>
               <select
-                className="rpp-select"
+                className="select"
                 value={selectedPermId}
                 onChange={(e) => setSelectedPermId(e.target.value)}
                 disabled={!selectedRoleId}
@@ -189,7 +189,7 @@ export default function RolePermissionPortal() {
               </select>
             </div>
             <button
-              className="rpp-btn-add"
+              className="btn-add"
               onClick={handleAdd}
               disabled={!selectedRoleId || !selectedPermId || alreadyAssigned || isSaving}
             >
@@ -197,15 +197,15 @@ export default function RolePermissionPortal() {
             </button>
           </div>
           {alreadyAssigned && selectedRoleId && selectedPermId && (
-            <div className="rpp-warn">⚠ This permission is already assigned to the selected role.</div>
+            <div className="warn">⚠ This permission is already assigned to the selected role.</div>
           )}
         </div>
 
         {/* Filter + table */}
-        <div className="rpp-filter-row">
-          <span className="rpp-filter-label">Filter by role:</span>
+        <div className="filter-row">
+          <span className="filter-label">Filter by role:</span>
           <select
-            className="rpp-filter-select"
+            className="filter-select"
             value={filterRoleId}
             onChange={(e) => setFilterRoleId(e.target.value)}
           >
@@ -216,12 +216,12 @@ export default function RolePermissionPortal() {
           </select>
         </div>
 
-        <div className="rpp-table-wrap">
-          <table className="rpp-table">
+        <div className="table-wrap">
+          <table className="table">
             <thead>
               <tr>
                 {["Role", "Permission", "Action"].map((h) => (
-                  <th key={h} className="rpp-th">{h}</th>
+                  <th key={h} className="th">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -229,24 +229,24 @@ export default function RolePermissionPortal() {
               {loading ? (
                 Array.from({ length: 3 }).map((_, i) => (
                   <tr key={i}>
-                    <td colSpan={3} className="rpp-td" style={{ padding: "8px 16px" }}>
-                      <div className="rpp-skeleton" />
+                    <td colSpan={3} className="td" style={{ padding: "8px 16px" }}>
+                      <div className="skeleton" />
                     </td>
                   </tr>
                 ))
               ) : filtered.length === 0 ? (
-                <tr><td colSpan={3} className="rpp-empty">No assignments found</td></tr>
+                <tr><td colSpan={3} className="empty">No assignments found</td></tr>
               ) : (
                 filtered.map((a) => (
-                  <tr key={a.id} className="rpp-tr">
-                    <td className="rpp-td">
-                      <span className="rpp-role-tag">{roleName(a.roleId)}</span>
+                  <tr key={a.id} className="tr">
+                    <td className="td">
+                      <span className="role-tag">{roleName(a.roleId)}</span>
                     </td>
-                    <td className="rpp-td">
-                      <span className="rpp-perm-tag">{permName(a.permissionId)}</span>
+                    <td className="td">
+                      <span className="perm-tag">{permName(a.permissionId)}</span>
                     </td>
-                    <td className="rpp-td">
-                      <button className="rpp-btn-remove" onClick={() => handleRemove(a)}>
+                    <td className="td">
+                      <button className="btn-remove" onClick={() => handleRemove(a)}>
                         Remove
                       </button>
                     </td>
@@ -256,7 +256,7 @@ export default function RolePermissionPortal() {
             </tbody>
           </table>
         </div>
-        <p className="rpp-footer">Showing {filtered.length} of {assignments.length} assignments</p>
+        <p className="footer">Showing {filtered.length} of {assignments.length} assignments</p>
         </div>
       </div>
     </>

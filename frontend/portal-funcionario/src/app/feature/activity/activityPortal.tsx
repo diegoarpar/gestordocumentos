@@ -45,11 +45,11 @@ function Modal({
   children: React.ReactNode;
 }) {
   return (
-    <div className="ap-overlay">
-      <div className="ap-modal">
-        <div className="ap-modal-header">
-          <h2 className="ap-modal-title">{title}</h2>
-          <button className="ap-modal-close" onClick={onClose}>×</button>
+    <div className="overlay">
+      <div className="modal">
+        <div className="modal-header">
+          <h2 className="modal-title">{title}</h2>
+          <button className="modal-close" onClick={onClose}>×</button>
         </div>
         {children}
       </div>
@@ -77,70 +77,70 @@ function ActivityForm({
   const valid = name.trim().length > 0;
 
   return (
-    <div className="ap-form">
-      <div className="ap-field">
-        <label className="ap-label">Activity Name</label>
+    <div className="form">
+      <div className="field">
+        <label className="label">Activity Name</label>
         <input
-          className="ap-input"
+          className="input"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="e.g. Document Review"
         />
       </div>
-      <div className="ap-field">
-        <label className="ap-label">Activity Type</label>
+      <div className="field">
+        <label className="label">Activity Type</label>
         <input
-          className="ap-input"
+          className="input"
           value={type}
           onChange={(e) => setType(e.target.value)}
           placeholder="e.g. Type"
         />
       </div>
-      <div className="ap-field">
-        <label className="ap-label">Activity Key</label>
+      <div className="field">
+        <label className="label">Activity Key</label>
         <input
-          className="ap-input"
+          className="input"
           value={keyName}
           onChange={(e) => setKeyName(e.target.value)}
           placeholder="e.g. Type"
         />
       </div>
-      <div className="ap-field">
-        <label className="ap-label">Activity Link</label>
+      <div className="field">
+        <label className="label">Activity Link</label>
         <input
-          className="ap-input"
+          className="input"
           value={href}
           onChange={(e) => setHref(e.target.value)}
           placeholder="e.g. http://"
         />
       </div>
-      <div className="ap-field">
-        <label className="ap-label">Description</label>
+      <div className="field">
+        <label className="label">Description</label>
         <textarea
-          className="ap-input ap-textarea"
+          className="input textarea"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Describe this activity's purpose..."
           rows={3}
         />
       </div>
-      <div className="ap-field ap-field-inline">
-        <label className="ap-label">Active</label>
+      <div className="field field-inline">
+        <label className="label">Active</label>
         <div
-          className={`ap-toggle ${active ? "on" : ""}`}
+          className={`toggle ${active ? "on" : ""}`}
           onClick={() => setActive((v) => !v)}
           role="switch"
           aria-checked={active}
         >
-          <div className="ap-toggle-thumb" />
+          <div className="toggle-thumb" />
         </div>
-        <span className="ap-toggle-label">{active ? "Active" : "Inactive"}</span>
+        <span className="toggle-label">{active ? "Active" : "Inactive"}</span>
       </div>
-      <div className="ap-form-actions">
-        <button type="button" className="ap-btn-ghost" onClick={onCancel}>Cancel</button>
+      <div className="form-actions">
+        <button type="button" className="btn-ghost" onClick={onCancel}>Cancel</button>
         <button
           type="button"
-          className="ap-btn-primary"
+          className="btn-primary"
           disabled={!valid || isSaving}
           onClick={() => valid && onSave({ name: name.trim(), description: description.trim(), type: type.trim(), href: href.trim(), active, keyName: keyName.trim() })}
         >
@@ -276,55 +276,55 @@ export default function ActivityPortal() {
           />
         )}
 
-        <div className="ap-root">
+        <div className="root">
           {toast && (
-            <div className={`ap-toast ${toast.type}`}>
+            <div className={`toast ${toast.type}`}>
               {toast.type === "ok" ? "✓ " : "⚠ "}{toast.msg}
             </div>
           )}
 
-          <div className="ap-header">
-            <div className="ap-header-row">
-              <div className="ap-icon">⚙️</div>
-              <h1 className="ap-title">Activity Management</h1>
+          <div className="header">
+            <div className="header-row">
+              <div className="icon">⚙️</div>
+              <h1 className="title">Activity Management</h1>
             </div>
-            <p className="ap-subtitle">Define workflow activities and their configurations</p>
+            <p className="subtitle">Define workflow activities and their configurations</p>
           </div>
 
-          <div className="ap-stats">
+          <div className="stats">
             {[
               { label: "Total Activities", value: activities.length, color: ACCENT },
               { label: "Active", value: activeCount, color: "#10b981" },
               { label: "Inactive", value: activities.length - activeCount, color: "#e05c5c" },
             ].map((s) => (
-              <div key={s.label} className="ap-stat">
-                <div className="ap-stat-val" style={{ color: s.color }}>{s.value}</div>
-                <div className="ap-stat-label">{s.label}</div>
+              <div key={s.label} className="stat">
+                <div className="stat-val" style={{ color: s.color }}>{s.value}</div>
+                <div className="stat-label">{s.label}</div>
               </div>
             ))}
           </div>
 
-          <div className="ap-controls">
-            <div className="ap-search-wrap">
-              <span className="ap-search-icon">🔍</span>
+          <div className="controls">
+            <div className="search-wrap">
+              <span className="search-icon">🔍</span>
               <input
-                className="ap-search"
+                className="search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search activities…"
               />
             </div>
-            <button className="ap-btn-primary" onClick={() => setModal("add")}>
+            <button className="btn-primary" onClick={() => setModal("add")}>
               + Add Activity
             </button>
           </div>
 
-          <div className="ap-table-wrap">
-            <table className="ap-table">
+          <div className="table-wrap">
+            <table className="table">
               <thead>
                 <tr>
                   {["Name", "Description", "Status", "Actions"].map((h) => (
-                    <th key={h} className="ap-th">{h}</th>
+                    <th key={h} className="th">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -332,27 +332,27 @@ export default function ActivityPortal() {
                 {loading ? (
                   Array.from({ length: 3 }).map((_, i) => (
                     <tr key={i}>
-                      <td colSpan={4} className="ap-td" style={{ padding: "8px 16px" }}>
-                        <div className="ap-skeleton" />
+                      <td colSpan={4} className="td" style={{ padding: "8px 16px" }}>
+                        <div className="skeleton" />
                       </td>
                     </tr>
                   ))
                 ) : filtered.length === 0 ? (
-                  <tr><td colSpan={4} className="ap-empty">No activities found</td></tr>
+                  <tr><td colSpan={4} className="empty">No activities found</td></tr>
                 ) : (
                   filtered.map((activity) => (
-                    <tr key={activity.id} className="ap-tr">
-                      <td className="ap-td"><div className="ap-name">{activity.name}</div></td>
-                      <td className="ap-td"><div className="ap-desc">{activity.description ?? "—"}</div></td>
-                      <td className="ap-td">
-                        <span className={`ap-badge ${activity.active ? "ap-badge-active" : "ap-badge-inactive"}`}>
+                    <tr key={activity.id} className="tr">
+                      <td className="td"><div className="name">{activity.name}</div></td>
+                      <td className="td"><div className="desc">{activity.description ?? "—"}</div></td>
+                      <td className="td">
+                        <span className={`badge ${activity.active ? "badge-active" : "badge-inactive"}`}>
                           {activity.active ? "● Active" : "○ Inactive"}
                         </span>
                       </td>
-                      <td className="ap-td">
-                        <div className="ap-row-actions">
-                          <button className="ap-btn-row edit" onClick={() => { setActiveActivity(activity); setModal("edit"); }}>Edit</button>
-                          <button className="ap-btn-row del" onClick={() => { setActiveActivity(activity); setModal("delete"); }}>Delete</button>
+                      <td className="td">
+                        <div className="row-actions">
+                          <button className="btn-row edit" onClick={() => { setActiveActivity(activity); setModal("edit"); }}>Edit</button>
+                          <button className="btn-row del" onClick={() => { setActiveActivity(activity); setModal("delete"); }}>Delete</button>
                         </div>
                       </td>
                     </tr>
@@ -361,7 +361,7 @@ export default function ActivityPortal() {
               </tbody>
             </table>
           </div>
-          <p className="ap-footer">Showing {filtered.length} of {activities.length} activities</p>
+          <p className="footer">Showing {filtered.length} of {activities.length} activities</p>
         </div>
       </div>
 
@@ -377,16 +377,16 @@ export default function ActivityPortal() {
       )}
       {modal === "delete" && activeActivity && (
         <Modal title="Delete Activity" onClose={closeModal}>
-          <div className="ap-delete-body">
-            <p className="ap-delete-text">
+          <div className="delete-body">
+            <p className="delete-text">
               Are you sure you want to delete the activity{" "}
               <strong style={{ color: "#e8edf5" }}>"{activeActivity.name}"</strong>?
               This will remove it from all associated workflows.
             </p>
           </div>
-          <div className="ap-form-actions">
-            <button className="ap-btn-ghost" onClick={closeModal}>Cancel</button>
-            <button className="ap-btn-delete" onClick={handleDelete} disabled={isSaving}>
+          <div className="form-actions">
+            <button className="btn-ghost" onClick={closeModal}>Cancel</button>
+            <button className="btn-delete" onClick={handleDelete} disabled={isSaving}>
               {isSaving ? "Deleting…" : "Delete Activity"}
             </button>
           </div>

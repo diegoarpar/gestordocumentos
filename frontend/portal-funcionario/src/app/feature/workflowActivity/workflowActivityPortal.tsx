@@ -48,11 +48,11 @@ function Modal({
   children: React.ReactNode;
 }) {
   return (
-    <div className="wap-overlay">
-      <div className="wap-modal">
-        <div className="wap-modal-header">
-          <h2 className="wap-modal-title">{title}</h2>
-          <button className="wap-modal-close" onClick={onClose}>×</button>
+    <div className="overlay">
+      <div className="modal">
+        <div className="modal-header">
+          <h2 className="modal-title">{title}</h2>
+          <button className="modal-close" onClick={onClose}>×</button>
         </div>
         {children}
       </div>
@@ -196,47 +196,47 @@ export default function WorkflowActivityPortal() {
           />
         )}
 
-        <div className="wap-root">
+        <div className="root">
           {toast && (
-            <div className={`wap-toast ${toast.type}`}>
+            <div className={`toast ${toast.type}`}>
               {toast.type === "ok" ? "✓ " : "⚠ "}{toast.msg}
             </div>
           )}
 
-          <div className="wap-header">
-            <div className="wap-header-row">
-              <div className="wap-icon">🔗</div>
-              <h1 className="wap-title">Workflow Activities</h1>
+          <div className="header">
+            <div className="header-row">
+              <div className="icon">🔗</div>
+              <h1 className="title">Workflow Activities</h1>
             </div>
-            <p className="wap-subtitle">Assign activities to workflows</p>
+            <p className="subtitle">Assign activities to workflows</p>
           </div>
 
-          <div className="wap-stats">
+          <div className="stats">
             {[
               { label: "Total Assignments", value: workflowActivities.length, color: ACCENT },
               { label: "Workflows", value: workflows.length, color: "#8b5cf6" },
               { label: "Activities", value: activities.length, color: "#3b82f6" },
             ].map((s) => (
-              <div key={s.label} className="wap-stat">
-                <div className="wap-stat-val" style={{ color: s.color }}>{s.value}</div>
-                <div className="wap-stat-label">{s.label}</div>
+              <div key={s.label} className="stat">
+                <div className="stat-val" style={{ color: s.color }}>{s.value}</div>
+                <div className="stat-label">{s.label}</div>
               </div>
             ))}
           </div>
 
-          <div className="wap-controls">
-            <div className="wap-controls-left">
-              <div className="wap-search-wrap">
-                <span className="wap-search-icon">🔍</span>
+          <div className="controls">
+            <div className="controls-left">
+              <div className="search-wrap">
+                <span className="search-icon">🔍</span>
                 <input
-                  className="wap-search"
+                  className="search"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search assignments…"
                 />
               </div>
               <select
-                className="wap-select"
+                className="select"
                 value={filterWorkflow}
                 onChange={(e) => setFilterWorkflow(e.target.value)}
               >
@@ -246,17 +246,17 @@ export default function WorkflowActivityPortal() {
                 ))}
               </select>
             </div>
-            <button className="wap-btn-primary" onClick={() => setModal("add")}>
+            <button className="btn-primary" onClick={() => setModal("add")}>
               + Assign Activity
             </button>
           </div>
 
-          <div className="wap-table-wrap">
-            <table className="wap-table">
+          <div className="table-wrap">
+            <table className="table">
               <thead>
                 <tr>
                   {["Workflow", "Activity", "Actions"].map((h) => (
-                    <th key={h} className="wap-th">{h}</th>
+                    <th key={h} className="th">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -264,25 +264,25 @@ export default function WorkflowActivityPortal() {
                 {loading ? (
                   Array.from({ length: 3 }).map((_, i) => (
                     <tr key={i}>
-                      <td colSpan={3} className="wap-td" style={{ padding: "8px 16px" }}>
-                        <div className="wap-skeleton" />
+                      <td colSpan={3} className="td" style={{ padding: "8px 16px" }}>
+                        <div className="skeleton" />
                       </td>
                     </tr>
                   ))
                 ) : filtered.length === 0 ? (
-                  <tr><td colSpan={3} className="wap-empty">No assignments found</td></tr>
+                  <tr><td colSpan={3} className="empty">No assignments found</td></tr>
                 ) : (
                   filtered.map((wa) => (
-                    <tr key={wa.id} className="wap-tr">
-                      <td className="wap-td">
-                        <span className="wap-tag wap-tag-wf">{wa.workflowName ?? workflowName(wa.workflowId)}</span>
+                    <tr key={wa.id} className="tr">
+                      <td className="td">
+                        <span className="tag tag-wf">{wa.workflowName ?? workflowName(wa.workflowId)}</span>
                       </td>
-                      <td className="wap-td">
-                        <span className="wap-tag wap-tag-act">{wa.activityName ?? activityName(wa.activityId)}</span>
+                      <td className="td">
+                        <span className="tag tag-act">{wa.activityName ?? activityName(wa.activityId)}</span>
                       </td>
-                      <td className="wap-td">
-                        <div className="wap-row-actions">
-                          <button className="wap-btn-row del" onClick={() => { setActiveItem(wa); setModal("delete"); }}>Remove</button>
+                      <td className="td">
+                        <div className="row-actions">
+                          <button className="btn-row del" onClick={() => { setActiveItem(wa); setModal("delete"); }}>Remove</button>
                         </div>
                       </td>
                     </tr>
@@ -291,16 +291,16 @@ export default function WorkflowActivityPortal() {
               </tbody>
             </table>
           </div>
-          <p className="wap-footer">Showing {filtered.length} of {workflowActivities.length} assignments</p>
+          <p className="footer">Showing {filtered.length} of {workflowActivities.length} assignments</p>
         </div>
       </div>
 
       {modal === "add" && (
         <Modal title="Assign Activity to Workflow" onClose={closeModal}>
-          <div className="wap-field">
-            <label className="wap-label">Workflow</label>
+          <div className="field">
+            <label className="label">Workflow</label>
             <select
-              className="wap-modal-select"
+              className="modal-select"
               value={selectedWorkflow}
               onChange={(e) => { setSelectedWorkflow(e.target.value); setSelectedActivity(""); }}
             >
@@ -310,10 +310,10 @@ export default function WorkflowActivityPortal() {
               ))}
             </select>
           </div>
-          <div className="wap-field">
-            <label className="wap-label">Activity</label>
+          <div className="field">
+            <label className="label">Activity</label>
             <select
-              className="wap-modal-select"
+              className="modal-select"
               value={selectedActivity}
               onChange={(e) => setSelectedActivity(e.target.value)}
               disabled={!selectedWorkflow}
@@ -324,13 +324,13 @@ export default function WorkflowActivityPortal() {
               ))}
             </select>
             {isDuplicate && (
-              <div className="wap-warning">⚠ This activity is already assigned to the selected workflow.</div>
+              <div className="warning">⚠ This activity is already assigned to the selected workflow.</div>
             )}
           </div>
-          <div className="wap-form-actions">
-            <button className="wap-btn-ghost" onClick={closeModal}>Cancel</button>
+          <div className="form-actions">
+            <button className="btn-ghost" onClick={closeModal}>Cancel</button>
             <button
-              className="wap-btn-primary"
+              className="btn-primary"
               disabled={!selectedWorkflow || !selectedActivity || !!isDuplicate || isSaving}
               onClick={handleAdd}
             >
@@ -342,17 +342,17 @@ export default function WorkflowActivityPortal() {
 
       {modal === "delete" && activeItem && (
         <Modal title="Remove Assignment" onClose={closeModal}>
-          <div className="wap-delete-body">
-            <p className="wap-delete-text">
+          <div className="delete-body">
+            <p className="delete-text">
               Are you sure you want to remove the activity{" "}
               <strong style={{ color: "#fbbf24" }}>"{activeItem.activityName ?? activityName(activeItem.activityId)}"</strong>{" "}
               from workflow{" "}
               <strong style={{ color: "#a78bfa" }}>"{activeItem.workflowName ?? workflowName(activeItem.workflowId)}"</strong>?
             </p>
           </div>
-          <div className="wap-form-actions">
-            <button className="wap-btn-ghost" onClick={closeModal}>Cancel</button>
-            <button className="wap-btn-delete" onClick={handleDelete} disabled={isSaving}>
+          <div className="form-actions">
+            <button className="btn-ghost" onClick={closeModal}>Cancel</button>
+            <button className="btn-delete" onClick={handleDelete} disabled={isSaving}>
               {isSaving ? "Removing…" : "Remove Assignment"}
             </button>
           </div>
