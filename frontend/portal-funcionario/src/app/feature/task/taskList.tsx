@@ -88,7 +88,7 @@ export default function TaskList({ user }: { user: string }) {
         return res.json();
       })
       .then((data) => {
-        const url = data?.taskInformation?.[0]?.TASK_FORM_URL ?? null;
+        const url = (data?.taskInformation?.[0]?.TASK_FORM_URL ?? null)  + "?&taskId=" + task.TASK_ID;
         setIframeUrl(url);
         if (!url) setIframeLoading(false);
       })
