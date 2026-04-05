@@ -16,13 +16,15 @@ async function GetTask(data){
     })
 }
 async function AssignTask(data){
-    var headers={'Content-Type': 'application/json'}
-    headers.Authentication="Bearer "+GetSessionCookie().access_token;
-    headers.Tenant=GetSessionCookieTenant().tenant;
-    return axios.post(hostServices+"/workflowmanager/processTask/assign",data,{headers:headers})
-    .then(data =>{
-        return data.data
-    })
+    const session = GetSessionCookie();
+    const res = await fetch(`/api/workflow/process/task/assign/${data.taskId}/${data.user}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authentication': 'Bearer ' + session.access_token,
+        },
+    });
+    return res.json();
 }
 async function getHistory(data){
     var headers={'Content-Type': 'application/json'}

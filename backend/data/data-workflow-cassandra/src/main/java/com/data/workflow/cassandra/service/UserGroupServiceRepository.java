@@ -37,4 +37,8 @@ public class UserGroupServiceRepository {
         repository.findAll().forEach(results::add);
         return results;
     }
+
+    public List<UserGroupInformation> findByUserName(String userName) {
+        return repository.findByUserName(userName);
+    }
 }

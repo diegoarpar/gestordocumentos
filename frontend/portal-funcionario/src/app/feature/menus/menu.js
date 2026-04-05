@@ -25,19 +25,30 @@ import DeviceHubIcon from '@mui/icons-material/DeviceHub';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import SettingsIcon from '@mui/icons-material/Settings';
+import SchemaIcon from '@mui/icons-material/Schema';
+import GroupIcon from '@mui/icons-material/Group';
+import GroupsIcon from '@mui/icons-material/Groups';
 
 export const DRAWER_WIDTH = 240;
 
-export const adminSubItems = [
-  { name: 'roles',              path: '/pages/role',               description: 'Roles',                   icon: AdminPanelSettingsIcon, color: '#6366f1' },
-  { name: 'permissions',        path: '/pages/permission',         description: 'Permisos',                icon: LockIcon,               color: '#f59e0b' },
-  { name: 'rolesPermissions',   path: '/pages/role-permission',    description: 'Roles - Permisos',        icon: LinkIcon,               color: '#10b981' },
-  { name: 'userRoles',          path: '/pages/user-role',          description: 'Usuarios - Roles',        icon: PersonAddIcon,          color: '#ec4899' },
-  { name: 'activities',         path: '/pages/activity',           description: 'Actividades',             icon: TaskAltIcon,            color: '#8b5cf6' },
-  { name: 'workflows',          path: '/pages/workflow',           description: 'Workflows',               icon: AccountTreeIcon,        color: '#14b8a6' },
-  { name: 'workflowActivities', path: '/pages/workflow-activity',  description: 'Workflows - Actividades', icon: DeviceHubIcon,          color: '#f97316' },
-  { name: 'deployment',         path: '/pages/workflow-deployment', description: 'Despliegues',            icon: RocketLaunchIcon,       color: '#ef4444' },
+export const platformAdminItems = [
+  { name: 'roles',            path: '/pages/role',            description: 'Roles',            icon: AdminPanelSettingsIcon, color: '#6366f1' },
+  { name: 'permissions',      path: '/pages/permission',      description: 'Permisos',         icon: LockIcon,               color: '#f59e0b' },
+  { name: 'rolesPermissions', path: '/pages/role-permission', description: 'Roles - Permisos', icon: LinkIcon,               color: '#10b981' },
+  { name: 'userRoles',        path: '/pages/user-role',       description: 'Usuarios - Roles', icon: PersonAddIcon,          color: '#ec4899' },
 ];
+
+export const workflowAdminItems = [
+  { name: 'activities',         path: '/pages/activity',           description: 'Actividades',             icon: TaskAltIcon,     color: '#8b5cf6' },
+  { name: 'workflows',          path: '/pages/workflow',           description: 'Workflows',               icon: AccountTreeIcon, color: '#14b8a6' },
+  { name: 'workflowActivities', path: '/pages/workflow-activity',  description: 'Workflows - Actividades', icon: DeviceHubIcon,   color: '#f97316' },
+  { name: 'deployment',         path: '/pages/workflow-deployment', description: 'Despliegues',            icon: RocketLaunchIcon, color: '#ef4444' },
+  { name: 'groups',             path: '/pages/group',               description: 'Grupos',                 icon: GroupIcon,        color: '#0ea5e9' },
+  { name: 'workflowUserGroups', path: '/pages/user-group', description: 'Grupos - Usuarios',      icon: GroupsIcon,       color: '#a855f7' },
+];
+
+export const adminSubItems = [...platformAdminItems, ...workflowAdminItems];
 
 export const otherItems = [
   { name: 'workflowStarter', path: '/pages/workflow-starter', description: 'Iniciar Proceso', icon: PlayCircleIcon,  color: '#22c55e' },
@@ -52,8 +63,44 @@ const itemBtnSx = {
   '&:hover': { bgcolor: '#334155' },
 };
 
+function SubMenu({ label, icon: Icon, iconColor, items, open, onToggle, indent = 3 }) {
+  return (
+    <>
+      <ListItem disablePadding>
+        <ListItemButton onClick={onToggle} sx={itemBtnSx}>
+          <ListItemIcon sx={{ minWidth: 36 }}>
+            <Icon sx={{ fontSize: 20, color: iconColor }} />
+          </ListItemIcon>
+          <ListItemText primary={label} primaryTypographyProps={{ fontSize: 13, color: '#cbd5e1' }} />
+          {open
+            ? <ExpandLess sx={{ color: '#64748b', fontSize: 18 }} />
+            : <ExpandMore sx={{ color: '#64748b', fontSize: 18 }} />}
+        </ListItemButton>
+      </ListItem>
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <List dense disablePadding>
+          {items.map((item) => {
+            const ItemIcon = item.icon;
+            return (
+              <ListItem key={item.name} disablePadding>
+                <ListItemButton component="a" href={item.path} sx={{ ...itemBtnSx, pl: indent }}>
+                  <ListItemIcon sx={{ minWidth: 32 }}>
+                    <ItemIcon sx={{ fontSize: 18, color: item.color }} />
+                  </ListItemIcon>
+                  <ListItemText primary={item.description} primaryTypographyProps={{ fontSize: 12, color: '#94a3b8' }} />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
+        </List>
+      </Collapse>
+    </>
+  );
+}
+
 function AppMenu({ sidebarOpen, setSidebarOpen }) {
-  const [adminOpen, setAdminOpen] = useState(false);
+  const [platformOpen, setPlatformOpen] = useState(false);
+  const [workflowOpen, setWorkflowOpen] = useState(false);
 
   return (
     <Drawer
@@ -91,35 +138,22 @@ function AppMenu({ sidebarOpen, setSidebarOpen }) {
           Administración
         </Typography>
         <List dense>
-          <ListItem disablePadding>
-            <ListItemButton onClick={() => setAdminOpen(o => !o)} sx={itemBtnSx}>
-              <ListItemIcon sx={{ minWidth: 36 }}>
-                <AdminPanelSettingsIcon sx={{ fontSize: 20, color: '#6366f1' }} />
-              </ListItemIcon>
-              <ListItemText primary="Administración" primaryTypographyProps={{ fontSize: 13, color: '#cbd5e1' }} />
-              {adminOpen
-                ? <ExpandLess sx={{ color: '#64748b', fontSize: 18 }} />
-                : <ExpandMore sx={{ color: '#64748b', fontSize: 18 }} />}
-            </ListItemButton>
-          </ListItem>
-
-          <Collapse in={adminOpen} timeout="auto" unmountOnExit>
-            <List dense disablePadding>
-              {adminSubItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <ListItem key={item.name} disablePadding>
-                    <ListItemButton component="a" href={item.path} sx={{ ...itemBtnSx, pl: 3 }}>
-                      <ListItemIcon sx={{ minWidth: 32 }}>
-                        <Icon sx={{ fontSize: 18, color: item.color }} />
-                      </ListItemIcon>
-                      <ListItemText primary={item.description} primaryTypographyProps={{ fontSize: 12, color: '#94a3b8' }} />
-                    </ListItemButton>
-                  </ListItem>
-                );
-              })}
-            </List>
-          </Collapse>
+          <SubMenu
+            label="Administración de Plataforma"
+            icon={SettingsIcon}
+            iconColor="#6366f1"
+            items={platformAdminItems}
+            open={platformOpen}
+            onToggle={() => setPlatformOpen(o => !o)}
+          />
+          <SubMenu
+            label="Administración de Workflow"
+            icon={SchemaIcon}
+            iconColor="#14b8a6"
+            items={workflowAdminItems}
+            open={workflowOpen}
+            onToggle={() => setWorkflowOpen(o => !o)}
+          />
         </List>
 
         <Divider sx={{ borderColor: '#334155', mx: 2, my: 1 }} />

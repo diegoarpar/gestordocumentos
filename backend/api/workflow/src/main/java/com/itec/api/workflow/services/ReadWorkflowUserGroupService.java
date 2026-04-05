@@ -28,4 +28,18 @@ public class ReadWorkflowUserGroupService implements BaseService<UserGroupServic
         response.setUserGroups(userGroups);
         return response;
     }
+
+    public UserGroupServiceResponse findByUserId(String userId) {
+        var results = userGroupServiceRepository.findByUserName(userId);
+        var userGroups = results.stream().map(ug -> {
+            var userGroup = new UserGroup();
+            userGroup.setId(ug.getId());
+            userGroup.setUserName(ug.getUserName());
+            userGroup.setGroupId(ug.getGroupId());
+            return userGroup;
+        }).toList();
+        var response = new UserGroupServiceResponse();
+        response.setUserGroups(userGroups);
+        return response;
+    }
 }

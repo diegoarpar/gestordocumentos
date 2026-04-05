@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/MoreVert";
 import NavMenu from "@/app/feature/menus/menu";
 import AdminServices from "@/app/api/adminServices";
+import ProcessTaskServices from "@/app/api/processTaskServices";
 import "./taskList.css";
 
 type Task = {
@@ -233,7 +234,11 @@ export default function TaskList({ user }: { user: string }) {
                             </button>
                             <button
                               className="action-btn action-btn-take"
-                              onClick={() => openIframe(task)}
+                              onClick={() =>
+                                task.USER_NAME
+                                  ? openIframe(task)
+                                  : ProcessTaskServices.AssignTask({ taskId: task.TASK_ID, user: "" }).then(() => fetchTasks(user))
+                              }
                             >
                               {task.USER_NAME ? "Continuar" : "Tomar"}
                             </button>
@@ -399,8 +404,9 @@ export default function TaskList({ user }: { user: string }) {
                 className="reassign-confirm"
                 disabled={!reassignUser.trim()}
                 onClick={() => {
-                  // TODO: call reassign API with reassignTask.TASK_ID and reassignUser
-                  setReassignTask(null);
+                  ProcessTaskServices.AssignTask({ taskId: reassignTask.TASK_ID, user: reassignUser.trim() })
+                    .then(() => fetchTasks(user))
+                    .finally(() => setReassignTask(null));
                 }}
               >
                 Confirmar reasignación
