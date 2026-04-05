@@ -49,23 +49,22 @@ public class ProcessTaskService {
         Map<String,Object> inputValues = new HashMap<String,Object>();
         TaskService taskService = processEngine.getTaskService();
 
-        List<Task> taks = new ArrayList<>(taskService.createTaskQuery().taskAssignee(user).list());
-        for (int i=0;i < roles.size(); i++) {
-            String role= roles.get(i);
-            taks.addAll(taskService.createTaskQuery()
-                    .taskCandidateGroup(role).list());
+        var tasks = new ArrayList<>(taskService.createTaskQuery().taskCandidateOrAssigned(user).list());
+        for (String role : roles) {
+            var candidateGroupTask = taskService.createTaskQuery()
+                    .taskCandidateGroup(role).list();
+            tasks.addAll(candidateGroupTask);
         }
-        for (int i = 0; i < taks.size(); i++) {
+        for (Task task : tasks) {
             Map<String, Object> item = new HashMap<>();
-            org.activiti.engine.task.Task task = taks.get(i);
             item.put(ProcessInformation.TASK_NAME.name(), task.getName());
-            item.put(ProcessInformation.TASK_ID.name(),task.getId());
-            item.put(ProcessInformation.TASK_DEFINITION_KEY.name(),task.getTaskDefinitionKey());
-            item.put(ProcessInformation.INSTANCE_ID.name(),task.getProcessInstanceId());
-            item.put(ProcessInformation.TASK_DUE_DATE.name(),task.getDueDate());
-            item.put(ProcessInformation.TASK_PRIORITY.name(),task.getPriority() + "");
-            item.put(ProcessInformation.USER_NAME.name(),task.getAssignee());
-            item.put(ProcessInformation.PROCESS_DEFINITION_ID.name(),task.getProcessDefinitionId());
+            item.put(ProcessInformation.TASK_ID.name(), task.getId());
+            item.put(ProcessInformation.TASK_DEFINITION_KEY.name(), task.getTaskDefinitionKey());
+            item.put(ProcessInformation.INSTANCE_ID.name(), task.getProcessInstanceId());
+            item.put(ProcessInformation.TASK_DUE_DATE.name(), task.getDueDate());
+            item.put(ProcessInformation.TASK_PRIORITY.name(), task.getPriority() + "");
+            item.put(ProcessInformation.USER_NAME.name(), task.getAssignee());
+            item.put(ProcessInformation.PROCESS_DEFINITION_ID.name(), task.getProcessDefinitionId());
 
             rta.add(item);
         }

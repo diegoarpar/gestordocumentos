@@ -44,4 +44,10 @@ public class GroupServiceRepository {
         });
         return results;
     }
+
+    public List<GroupInformation> findById(UUID id) {
+        var results = new ArrayList<GroupInformation>();
+        repository.findById(id).ifPresent(results::add);
+        return results;
+    }
 }

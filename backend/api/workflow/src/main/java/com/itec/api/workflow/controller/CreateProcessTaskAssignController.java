@@ -32,6 +32,5 @@ public class CreateProcessTaskAssignController {
         createProcessTaskService.execute(request);
         return ResponseEntity.ok().build();
     }
-
 }
 

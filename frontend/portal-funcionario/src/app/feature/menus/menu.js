@@ -27,6 +27,8 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SchemaIcon from '@mui/icons-material/Schema';
+import GroupIcon from '@mui/icons-material/Group';
+import GroupsIcon from '@mui/icons-material/Groups';
 
 export const DRAWER_WIDTH = 240;
 
@@ -42,6 +44,8 @@ export const workflowAdminItems = [
   { name: 'workflows',          path: '/pages/workflow',           description: 'Workflows',               icon: AccountTreeIcon, color: '#14b8a6' },
   { name: 'workflowActivities', path: '/pages/workflow-activity',  description: 'Workflows - Actividades', icon: DeviceHubIcon,   color: '#f97316' },
   { name: 'deployment',         path: '/pages/workflow-deployment', description: 'Despliegues',            icon: RocketLaunchIcon, color: '#ef4444' },
+  { name: 'groups',             path: '/pages/group',               description: 'Grupos',                 icon: GroupIcon,        color: '#0ea5e9' },
+  { name: 'workflowUserGroups', path: '/pages/user-group', description: 'Grupos - Usuarios',      icon: GroupsIcon,       color: '#a855f7' },
 ];
 
 export const adminSubItems = [...platformAdminItems, ...workflowAdminItems];

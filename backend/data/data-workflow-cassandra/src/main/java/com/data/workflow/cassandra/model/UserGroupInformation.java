@@ -1,6 +1,7 @@
 package com.data.workflow.cassandra.model;
 
 import lombok.Data;
+import org.springframework.data.cassandra.core.mapping.Indexed;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
@@ -16,6 +17,7 @@ public class UserGroupInformation {
     UUID id;
 
     @PrimaryKeyColumn(name = "userName", type = PARTITIONED)
+    @Indexed
     String userName;
 
     @PrimaryKeyColumn(name = "groupId", type = PARTITIONED)
