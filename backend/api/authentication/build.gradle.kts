@@ -16,6 +16,7 @@ dependencies {
     implementation(project(":data:data-user-information"))
     implementation ("org.springframework.boot:spring-boot-starter-test")
     implementation (project(":utilities:util-model"))
+    implementation (project(":utilities:util-crypto"))
     implementation (project(":utilities:util-authorization"))
     compileOnly ("org.projectlombok:lombok:1.18.30")
     annotationProcessor  ("org.projectlombok:lombok:1.18.30")

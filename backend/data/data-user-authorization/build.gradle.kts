@@ -11,7 +11,8 @@ repositories {
 
 dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-test")
-    implementation ("org.springframework.boot:spring-boot-starter-data-cassandra")
+    implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation ("org.postgresql:postgresql:42.7.3")
     compileOnly ("org.projectlombok:lombok:1.18.30")
     annotationProcessor ("org.projectlombok:lombok:1.18.30")
 }

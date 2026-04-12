@@ -1,13 +1,17 @@
 package com.data.authorization.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Data;
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.Table;
 
 @Data
-@Table
+@Entity
 public class DataAuthorizationModel {
-    private @PrimaryKey Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String jwt;
     private String userRelationId;
     private String userAuthenticatorId;
