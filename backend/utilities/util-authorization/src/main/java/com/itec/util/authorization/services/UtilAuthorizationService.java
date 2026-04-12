@@ -20,9 +20,17 @@ public class UtilAuthorizationService {
 
     public Map<String, Object> getUserToken(Map<String, String> headers) {
         return rawClient.post()
-                .uri(TOKEN_URL)
+                .uri(TOKEN_URL + "/user/token")
                 .headers(restHeaders -> headers.forEach((key, value)-> restHeaders.set(key, value)))
                 .body(Map.of())
+                .retrieve()
+                .body(Map.class);
+    }
+
+    public Map<String, Object> getUserTokenInformation(Map<String, String> headers) {
+        return rawClient.get()
+                .uri(TOKEN_URL + "/user/token")
+                .headers(restHeaders -> headers.forEach((key, value)-> restHeaders.set(key, value)))
                 .retrieve()
                 .body(Map.class);
     }

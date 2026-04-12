@@ -1,17 +1,15 @@
 package com.itec.api.authorization.services;
 
+import com.auth0.jwt.JWT;
 import com.itec.api.authorization.model.TokenServiceRequest;
 import com.itec.api.authorization.model.TokenServiceResponse;
+import com.itec.util.crypto.services.CryptoUtil;
+import com.itec.util.jwt.services.helper.JWTUtil;
 import com.itec.utilities.service.BaseService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import java.io.UnsupportedEncodingException;
-import java.util.Base64;
+import java.util.List;
 
 /**
  * Create a credential.
@@ -22,18 +20,11 @@ import java.util.Base64;
 @RequiredArgsConstructor
 public class ReadUserTokenService implements BaseService<TokenServiceRequest, TokenServiceResponse> {
 
-    Cipher decrypt;
-    Cipher encrypt;
-    public ReadUserTokenService(@Qualifier("Decrypt") Cipher decrypt,
-                                @Qualifier("Encrypt") Cipher encrpyt) throws IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
-        byte[] cipherText = encrpyt.doFinal("Hello World".getBytes());
-        var encryptedText = Base64.getEncoder().encodeToString(cipherText);
+    private final JWTUtil jwtUtil;
 
-        var decodeText = Base64.getDecoder().decode(encryptedText);
-        System.out.println(cipherText.toString());
-        var decrypted = new String(decrypt.doFinal(decodeText), "UTF-8");
-        System.out.println(decrypted);
-    }
+    private final ReadConsumerService readConsumerService;
+
+    private final CryptoUtil cryptoUtil;
 
     /**
      * Execute the service
@@ -41,6 +32,15 @@ public class ReadUserTokenService implements BaseService<TokenServiceRequest, To
      */
     @Override
     public TokenServiceResponse execute(TokenServiceRequest information) {
-        return new TokenServiceResponse();
+        var consumer = readConsumerService.readByConsumerId(information.getConsumerId()).getConsumers().getFirst();
+        var crypto = CryptoUtil.builder().secret(consumer.getSecret()).build();
+        var encryptedInformation = crypto.decrypt(information.getUserAuthorization());
+
+        var receivedJwt = jwtUtil.validateToken(encryptedInformation);
+        var decryptedJwt = receivedJwt.getClaim("extra").asString();
+        var user = cryptoUtil.decrypt(decryptedJwt);
+        var response = new TokenServiceResponse();
+        response.setUserAuthorization(user);
+        return response;
     }
 }
