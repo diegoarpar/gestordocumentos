@@ -5,6 +5,8 @@ import com.itec.api.authorization.services.CreateApplicationTokenService;
 import com.itec.utilities.BasicObjectUtil;
 import com.itec.utilities.service.BaseController;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.boot.web.server.Cookie;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,8 +54,17 @@ public class CreateApplicationTokenController extends BaseController<CreateAppli
             }
         });
         var result = service.execute(userAuthenticationServiceRequest);
+        var cookie = ResponseCookie
+                .from("app_authorization", result.getAppAuthorization())
+                .path("/")
+                .httpOnly(true)
+                .secure(true) // Required for SameSite=None
+                .sameSite("Lax")
+                .maxAge(3600)
+                .build();
+
         return ResponseEntity.ok()
-                .header(SET_COOKIE, "app_authorization=" + result.getAppAuthorization())
+                .header(SET_COOKIE, cookie.toString())
                 .body(result);
     }
 

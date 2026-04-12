@@ -9,13 +9,15 @@ async function  LogIn(data) {
     return await fetch("/api/authentication/login",{
         method: 'POST',
         headers: {Authorization: [data], 'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        credentials: 'include',
     });
 }
 async function  GetData() {
     return await fetch("/authentication/users/",{
         method: 'GET',
-        headers: {Authorization: [data]}
+        headers: {Authorization: [data]},
+        credentials: 'include',
     });
 }
 async function  GetUser(data) {
@@ -23,7 +25,7 @@ async function  GetUser(data) {
         method: 'post',
         headers: {Authorization: [data]},
         body: data,
-
+        credentials: 'include',
     });
 }
 async function  CreateUser(data) {
@@ -31,6 +33,7 @@ async function  CreateUser(data) {
         method: 'post',
         headers: {Authorization: [data]},
         body: data,
+        credentials: 'include',
     });
 }
 async function  UpdateUser(data) {
@@ -38,6 +41,7 @@ async function  UpdateUser(data) {
         method: 'post',
         headers: {Authorization: [data]},
         body: data,
+        credentials: 'include',
     });
 }
 async function  ChangePassword(data) {
@@ -45,6 +49,7 @@ async function  ChangePassword(data) {
         method: 'post',
         headers: {Authorization: [data]},
         body: data,
+        credentials: 'include',
     });
 }
 
@@ -53,12 +58,14 @@ async function GetRoles(data) {
         method: 'get',
         headers: {Authorization: [data]},
         body: data,
+        credentials: 'include',
     });
 }
 async function GetRolesProcess(data) {
     return await fetch("/api/workflow/roles/",{
         method: 'get',
         headers: {Authorization: [data]},
+        credentials: 'include',
     });
 }
 
@@ -67,6 +74,7 @@ async function DeleteRolesProcess(data) {
     return await fetch(path,{
         method: 'delete',
         headers: {Authorization: [data]},
+        credentials: 'include',
     });
 }
 
@@ -75,6 +83,7 @@ async function CreateRolesProcess(data) {
         method: 'post',
         headers: {Authorization: [data], 'Content-Type': 'application/json'},
         body: JSON.stringify(data),
+        credentials: 'include',
     });
 }
 
@@ -83,6 +92,7 @@ async function  GetTenant(data) {
         method: 'get',
         headers: {Authorization: [data]},
         body: {data},
+        credentials: 'include',
     });
 }
 
@@ -92,6 +102,7 @@ async function GetPortals(data) {
         method: 'get',
         headers: {Authorization: [data]},
         body: data,
+        credentials: 'include',
     });
 }
 

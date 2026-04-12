@@ -1,12 +1,13 @@
 // Activities
 async function GetActivities() {
-  return fetch("/api/workflow/activities", { method: "GET" });
+  return fetch("/api/workflow/activities", { method: "GET", credentials: 'include' });
 }
 async function CreateActivity(data) {
   return fetch("/api/workflow/activities", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
+    credentials: 'include',
   });
 }
 async function UpdateActivity(id, data) {
@@ -14,21 +15,23 @@ async function UpdateActivity(id, data) {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
+    credentials: 'include',
   });
 }
 async function DeleteActivity(id) {
-  return fetch(`/api/workflow/activities/${id}`, { method: "DELETE" });
+  return fetch(`/api/workflow/activities/${id}`, { method: "DELETE", credentials: 'include' });
 }
 
 // Workflows
 async function GetWorkflows() {
-  return fetch("/api/workflow/workflows", { method: "GET" });
+  return fetch("/api/workflow/workflows", { method: "GET", credentials: 'include' });
 }
 async function CreateWorkflow(data) {
   return fetch("/api/workflow/workflows", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
+    credentials: 'include',
   });
 }
 async function UpdateWorkflow(id, data) {
@@ -36,10 +39,11 @@ async function UpdateWorkflow(id, data) {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
+    credentials: 'include',
   });
 }
 async function DeleteWorkflow(id) {
-  return fetch(`/api/workflow/workflows/${id}`, { method: "DELETE" });
+  return fetch(`/api/workflow/workflows/${id}`, { method: "DELETE", credentials: 'include' });
 }
 
 // Workflow Activities
@@ -47,17 +51,18 @@ async function GetWorkflowActivities(workflowId) {
   const url = workflowId
     ? `/api/workflow/workflow-activities?workflowId=${workflowId}`
     : "/api/workflow/workflow-activities";
-  return fetch(url, { method: "GET" });
+  return fetch(url, { method: "GET", credentials: 'include' });
 }
 async function CreateWorkflowActivity(data) {
   return fetch("/api/workflow/workflow-activities", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
+    credentials: 'include',
   });
 }
 async function DeleteWorkflowActivity(id) {
-  return fetch(`/api/workflow/workflow-activities/${id}`, { method: "DELETE" });
+  return fetch(`/api/workflow/workflow-activities/${id}`, { method: "DELETE", credentials: 'include' });
 }
 
 // Process Definition upload (multipart)
@@ -67,6 +72,7 @@ async function UploadProcessDefinition(file) {
   return fetch("/api/workflow/process/definition", {
     method: "POST",
     body: formData,
+    credentials: 'include',
   });
 }
 
@@ -75,7 +81,7 @@ async function GetWorkflowDeployments(workflowId) {
   const url = workflowId
     ? `/api/workflow/workflow-deployments?workflowId=${workflowId}`
     : "/api/workflow/workflow-deployments";
-  return fetch(url, { method: "GET" });
+  return fetch(url, { method: "GET", credentials: 'include' });
 }
 async function CreateWorkflowDeployment(data) {
   const formData = new FormData();
@@ -88,20 +94,21 @@ async function CreateWorkflowDeployment(data) {
   return fetch("/api/workflow/workflow-deployments", {
     method: "POST",
     body: formData,
+    credentials: 'include',
   });
 }
 async function DeleteWorkflowDeployment(id) {
-  return fetch(`/api/workflow/workflow-deployments/${id}`, { method: "DELETE" });
+  return fetch(`/api/workflow/workflow-deployments/${id}`, { method: "DELETE", credentials: 'include' });
 }
 
 // User Tasks
 async function GetUserTasks(user) {
   user = 'dapadi';
-  return fetch(`/api/workflow/process/task/user/${encodeURIComponent(user)}`, { method: "GET" });
+  return fetch(`/api/workflow/process/task/user/${encodeURIComponent(user)}`, { method: "GET", credentials: 'include' });
 }
 
 async function GetTaskFormLink(taskId) {
-  return fetch(`/api/workflow/process/task/information/${encodeURIComponent(taskId)}/link`, { method: "GET" });
+  return fetch(`/api/workflow/process/task/information/${encodeURIComponent(taskId)}/link`, { method: "GET", credentials: 'include' });
 }
 
 export default {
