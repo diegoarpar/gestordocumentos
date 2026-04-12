@@ -1,7 +1,7 @@
 package com.data.workflow.cassandra.repostory;
 
-import com.data.workflow.cassandra.model.ProcessInformation;
-import com.data.workflow.cassandra.respository.ProcessRepository;
+import com.data.workflow.rd.model.ProcessInformation;
+import com.data.workflow.rd.respository.ProcessRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

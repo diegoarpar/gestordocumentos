@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.UUID;
+
 @Controller
 @RequestMapping("/workflow/workflows")
 public class UpdateWorkflowController {
@@ -22,7 +24,7 @@ public class UpdateWorkflowController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> update(HttpServletRequest req, @PathVariable String id, @RequestBody WorkflowServiceRequest request) {
+    public ResponseEntity<Object> update(HttpServletRequest req, @PathVariable UUID id, @RequestBody WorkflowServiceRequest request) {
         request.setId(id);
         service.execute(request);
         return ResponseEntity.ok().build();

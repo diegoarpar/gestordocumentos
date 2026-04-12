@@ -1,6 +1,6 @@
 package com.itec.api.workflow.services;
 
-import com.data.workflow.cassandra.service.GroupServiceRepository;
+import com.data.workflow.rd.service.GroupServiceRepository;
 import com.itec.api.workflow.model.Group;
 import com.itec.api.workflow.model.GroupServiceRequest;
 import com.itec.api.workflow.model.GroupServiceResponse;

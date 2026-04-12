@@ -41,8 +41,8 @@ public class WorkflowServiceRepository {
         return results;
     }
 
-    public WorkflowInformation findById(String id) {
-        return repository.findById(id);
+    public WorkflowInformation findById(UUID id) {
+        return repository.findById(id).orElse(null);
     }
 
     public WorkflowInformation findByKeyName(String keyName) {

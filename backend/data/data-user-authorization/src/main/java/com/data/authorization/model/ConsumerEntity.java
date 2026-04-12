@@ -16,4 +16,5 @@ public class ConsumerEntity {
     private String username;
     private String password;
     private String secret;
+    private String scopes;
 }

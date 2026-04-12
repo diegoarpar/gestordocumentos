@@ -8,6 +8,5 @@ import java.util.UUID;
 public interface WorkflowRepository extends CrudRepository<WorkflowInformation, UUID> {
 
     WorkflowInformation findByName(String name);
-    WorkflowInformation findById(String id);
     WorkflowInformation findByLatestKeyName(String lastKeyName);
 }

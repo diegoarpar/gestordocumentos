@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.itec.util.authorization.helper.Constants.CLAIM_USER;
+
 /**
  * Create a credential.
  *
@@ -37,7 +39,7 @@ public class ReadUserTokenService implements BaseService<TokenServiceRequest, To
         var encryptedInformation = crypto.decrypt(information.getUserAuthorization());
 
         var receivedJwt = jwtUtil.validateToken(encryptedInformation);
-        var decryptedJwt = receivedJwt.getClaim("extra").asString();
+        var decryptedJwt = receivedJwt.getClaim(CLAIM_USER).asString();
         var user = cryptoUtil.decrypt(decryptedJwt);
         var response = new TokenServiceResponse();
         response.setUserAuthorization(user);

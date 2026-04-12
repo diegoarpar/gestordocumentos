@@ -1,7 +1,7 @@
 package com.itec.api.workflow.services;
 
-import com.data.workflow.cassandra.model.ActivityInformation;
-import com.data.workflow.cassandra.service.ActivityServiceRepository;
+import com.data.workflow.rd.model.ActivityInformation;
+import com.data.workflow.rd.service.ActivityServiceRepository;
 import com.itec.api.workflow.model.ActivityServiceRequest;
 import com.itec.api.workflow.model.ActivityServiceResponse;
 import com.itec.utilities.service.BaseService;
@@ -19,7 +19,6 @@ public class CreateActivityService implements BaseService<ActivityServiceRequest
     @Override
     public ActivityServiceResponse execute(ActivityServiceRequest information) {
         var activity = new ActivityInformation();
-        activity.setId(UUID.randomUUID());
         activity.setType(information.getType());
         activity.setHref(information.getHref());
         activity.setName(information.getName());

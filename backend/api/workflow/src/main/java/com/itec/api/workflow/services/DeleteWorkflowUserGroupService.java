@@ -1,6 +1,6 @@
 package com.itec.api.workflow.services;
 
-import com.data.workflow.cassandra.service.UserGroupServiceRepository;
+import com.data.workflow.rd.service.UserGroupServiceRepository;
 import com.itec.api.workflow.model.UserGroupServiceRequest;
 import com.itec.api.workflow.model.UserGroupServiceResponse;
 import com.itec.utilities.service.BaseService;

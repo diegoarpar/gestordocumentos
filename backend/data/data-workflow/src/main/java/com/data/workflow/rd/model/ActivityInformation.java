@@ -1,30 +1,31 @@
 package com.data.workflow.rd.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.ToString;
-import org.springframework.data.cassandra.core.mapping.*;
 
 import java.util.UUID;
 
 @Data
-@Table(value = "activity")
+@Entity
 @ToString
 public class ActivityInformation {
 
-    @PrimaryKey
-    UUID id;
+    @Id @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-    @Column String name;
+    private String name;
 
-    @Column
-            @Indexed
-    String keyName;
+    private String keyName;
 
-    @Column String type;
+    private String type;
 
-    @Column String href;
+    private String href;
 
-    @Column String description;
+    private String description;
 
-    @Column boolean active;
+    private boolean active;
 }

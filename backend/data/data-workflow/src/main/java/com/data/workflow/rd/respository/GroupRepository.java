@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.UUID;
 
-public interface GroupRepository extends CrudRepository<GroupInformation, UUID>, CustomSave<GroupInformation> {
+public interface GroupRepository extends CrudRepository<GroupInformation, UUID> {
     GroupInformation findByName(String name);
 }

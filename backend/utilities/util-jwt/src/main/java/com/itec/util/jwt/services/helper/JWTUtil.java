@@ -40,7 +40,7 @@ public class JWTUtil {
                 .withExpiresAt(Date.from(now.plusSeconds(TTL))) // "exp"
                 .withClaim("scopes", scopes)                  // custom claim: scopes
                 .withClaim("token_type", "access")
-                .withClaim("extra", cryptoUtil.encrypt(username))
+                .withClaim("userId", cryptoUtil.encrypt(username))
                 .sign(algorithm);
     }
 

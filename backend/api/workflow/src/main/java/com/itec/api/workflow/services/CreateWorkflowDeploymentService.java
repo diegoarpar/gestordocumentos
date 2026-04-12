@@ -2,8 +2,8 @@ package com.itec.api.workflow.services;
 
 import com.data.workflow.activity.model.ProcessDefinitionRequest;
 import com.data.workflow.activity.service.ProcessDefinitionService;
-import com.data.workflow.cassandra.model.WorkflowDeploymentInformation;
-import com.data.workflow.cassandra.service.WorkflowDeploymentServiceRepository;
+import com.data.workflow.rd.model.WorkflowDeploymentInformation;
+import com.data.workflow.rd.service.WorkflowDeploymentServiceRepository;
 import com.itec.api.workflow.model.WorkflowDeploymentServiceRequest;
 import com.itec.api.workflow.model.WorkflowDeploymentServiceResponse;
 import com.itec.utilities.service.BaseService;
@@ -37,11 +37,10 @@ public class CreateWorkflowDeploymentService implements BaseService<WorkflowDepl
         try {
             processDefinitionRequest.setInputStream(file.getInputStream());
             var result = processDefinitionService.execute(processDefinitionRequest);
-            updateWorkflowService.updateLatestVersion(information.getWorkflowId(), result.getName());
+            updateWorkflowService.updateLatestVersion(UUID.fromString(information.getWorkflowId()), result.getName());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        deployment.setId(UUID.randomUUID());
         deployment.setWorkflowId(UUID.fromString(information.getWorkflowId()));
         deployment.setFileName(information.getFileName());
         deployment.setFilePath(information.getFilePath());

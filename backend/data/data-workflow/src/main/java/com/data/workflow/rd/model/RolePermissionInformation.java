@@ -1,24 +1,20 @@
 package com.data.workflow.rd.model;
 
+import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
-import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.util.UUID;
 
-import static org.springframework.data.cassandra.core.cql.PrimaryKeyType.PARTITIONED;
-
 @Data
-@Table(value = "role_permission")
+@Entity
 public class RolePermissionInformation {
 
-    @PrimaryKeyColumn(name = "id", type = PARTITIONED)
-    UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-    @PrimaryKeyColumn(name = "roleId", type = PARTITIONED)
-    UUID roleId;
+    private UUID roleId;
 
-    @PrimaryKeyColumn(name = "permissionId", type = PARTITIONED)
-    UUID permissionId;
+    private UUID permissionId;
 
 }

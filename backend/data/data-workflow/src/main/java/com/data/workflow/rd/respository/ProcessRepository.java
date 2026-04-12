@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.UUID;
 
-public interface ProcessRepository extends CrudRepository<ProcessInformation, UUID>, CustomSave<ProcessInformation> {
+public interface ProcessRepository extends CrudRepository<ProcessInformation, UUID> {
     ProcessInformation findByName(String name);
 
 }

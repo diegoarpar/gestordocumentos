@@ -1,26 +1,20 @@
 package com.data.workflow.rd.model;
 
+import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.data.cassandra.core.mapping.Indexed;
-import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
-import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.util.UUID;
 
-import static org.springframework.data.cassandra.core.cql.PrimaryKeyType.PARTITIONED;
-
 @Data
-@Table(value = "user_group")
+@Entity
 public class UserGroupInformation {
 
-    @PrimaryKeyColumn(name = "id", type = PARTITIONED)
-    UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-    @PrimaryKeyColumn(name = "userName", type = PARTITIONED)
-    @Indexed
     String userName;
 
-    @PrimaryKeyColumn(name = "groupId", type = PARTITIONED)
-    UUID groupId;
+    private UUID groupId;
 
 }

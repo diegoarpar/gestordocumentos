@@ -1,7 +1,7 @@
 package com.itec.api.workflow.services;
 
-import com.data.workflow.cassandra.model.WorkflowInformation;
-import com.data.workflow.cassandra.service.WorkflowServiceRepository;
+import com.data.workflow.rd.model.WorkflowInformation;
+import com.data.workflow.rd.service.WorkflowServiceRepository;
 import com.itec.api.workflow.model.WorkflowServiceRequest;
 import com.itec.api.workflow.model.WorkflowServiceResponse;
 import com.itec.utilities.service.BaseService;
@@ -19,7 +19,7 @@ public class UpdateWorkflowService implements BaseService<WorkflowServiceRequest
     @Override
     public WorkflowServiceResponse execute(WorkflowServiceRequest information) {
         var workflow = new WorkflowInformation();
-        workflow.setId(UUID.fromString(information.getId()));
+        workflow.setId(information.getId());
         workflow.setName(information.getName());
         workflow.setHref(information.getHref());
         workflow.setDescription(information.getDescription());
@@ -28,7 +28,7 @@ public class UpdateWorkflowService implements BaseService<WorkflowServiceRequest
         return new WorkflowServiceResponse();
     }
 
-    public WorkflowServiceResponse updateLatestVersion(String id, String latestVersion) {
+    public WorkflowServiceResponse updateLatestVersion(UUID id, String latestVersion) {
         var workflow = workflowServiceRepository.findById(id);
         workflow.setLatestKeyName(latestVersion);
         workflowServiceRepository.save(workflow);
