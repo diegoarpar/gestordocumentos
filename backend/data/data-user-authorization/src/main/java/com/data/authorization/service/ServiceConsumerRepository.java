@@ -11,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ServiceConsumerRepository {
 
-    ConsumerRepository repository;
+    private final ConsumerRepository repository;
 
     public ConsumerEntity save(ConsumerEntity model) {
         return repository.save(model);
@@ -21,11 +21,19 @@ public class ServiceConsumerRepository {
         return null;
     }
 
+    public List<ConsumerEntity> readByConsumerId(String consumerId) {
+        return repository.findByConsumerId(consumerId);
+    }
+
     public ConsumerEntity readByOrigin(ConsumerEntity model) {
         return null;
     }
 
     public List<ConsumerEntity> readAll(ConsumerEntity model) {
         return (List<ConsumerEntity>) repository.findAll();
+    }
+
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 }

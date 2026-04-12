@@ -43,6 +43,8 @@ public class CreateUserTokenController extends BaseController<CreateUserTokenSer
                                           @RequestBody TokenServiceRequest userAuthenticationServiceRequest) {
         String tenant = BasicObjectUtil.getTenant(req);
         var authorization = req.getHeader(AUTHORIZATION);
+        var consumerId = req.getHeader("consumer-id");
+        userAuthenticationServiceRequest.setConsumerId(consumerId);
         var authorizationClaims = authorization.split(";");
         Stream.of(authorizationClaims).forEach(claim -> {
             if (claim.contains(USER_AUTHORIZATION_HEADER)) {

@@ -20,4 +20,7 @@ public class TokenServiceRequest implements BaseServiceRequest {
 
     @JsonIgnore
     private String applicationAuthorization;
+
+    @JsonIgnore
+    private String consumerId;
 }
