@@ -70,17 +70,9 @@ public class JWTUtil {
         }
     }
 
-    public String renewAccessToken(String refreshToken, List<String> scopes) {
+    public String renewAccessToken(String refreshToken, String userName, List<String> scopes) {
         var decoded = validateToken(refreshToken);
-
-        // Guard: make sure it really is a refresh token
-        var tokenType = decoded.getClaim("token_type").asString();
-        if (!"refresh".equals(tokenType)) {
-            throw new RuntimeException("Expected a refresh token, got: " + tokenType);
-        }
-
-        var username = decoded.getSubject();
-        return issueAccessToken(username, scopes);
+        return issueAccessToken(userName, scopes);
     }
 
     public boolean hasScope(DecodedJWT token, String requiredScope) {

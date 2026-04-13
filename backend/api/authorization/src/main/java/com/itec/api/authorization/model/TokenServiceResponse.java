@@ -15,5 +15,6 @@ public class TokenServiceResponse implements BaseServiceResponse {
     private String tenant;
     private String userAuthorization;
     private String appAuthorization;
+    private String userId;
 
 }

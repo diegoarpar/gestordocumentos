@@ -15,6 +15,7 @@ dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-actuator")
     implementation ("org.springframework.boot:spring-boot-starter-test")
     implementation (project(":utilities:util-model"))
+    implementation (project(":utilities:util-crypto"))
     implementation("com.auth0:java-jwt:4.5.1")
     compileOnly ("org.projectlombok:lombok:1.18.30")
     annotationProcessor  ("org.projectlombok:lombok:1.18.30")

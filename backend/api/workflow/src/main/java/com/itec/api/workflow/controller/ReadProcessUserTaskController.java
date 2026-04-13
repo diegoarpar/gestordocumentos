@@ -26,7 +26,8 @@ public class ReadProcessUserTaskController {
     @GetMapping("/{userId}")
     public ResponseEntity<Object> readInformation(HttpServletRequest req, @PathVariable String userId) throws IOException {
         String tenant = BasicObjectUtil.getTenant(req);
-        Map<String, Object> processInformation = Map.of(ProcessInformation.USER_NAME.name(), userId);
+        var userid = req.getAttribute("userId");
+        Map<String, Object> processInformation = Map.of(ProcessInformation.USER_NAME.name(), userid);
         var processDefinitionRequest = new ProcessDefinitionServiceRequest();
         processDefinitionRequest.setProcessInformation(processInformation);
         var results = readProcessTaskService.execute(processDefinitionRequest);

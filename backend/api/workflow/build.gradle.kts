@@ -17,6 +17,8 @@ dependencies {
     implementation(project(":data:data-workflow-activity"))
     implementation ("org.springframework.boot:spring-boot-starter-test")
     implementation (project(":utilities:util-model"))
+    implementation (project(":utilities:util-authorization"))
+    implementation (project(":utilities:util-crypto"))
     compileOnly ("org.projectlombok:lombok:1.18.30")
     annotationProcessor  ("org.projectlombok:lombok:1.18.30")
 }
