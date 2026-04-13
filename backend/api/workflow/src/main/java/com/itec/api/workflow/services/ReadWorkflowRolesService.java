@@ -1,6 +1,6 @@
 package com.itec.api.workflow.services;
 
-import com.data.workflow.cassandra.service.RoleServiceRepository;
+import com.data.workflow.rd.service.RoleServiceRepository;
 import com.itec.api.workflow.model.Role;
 import com.itec.api.workflow.model.RoleServiceRequest;
 import com.itec.api.workflow.model.RoleServiceResponse;

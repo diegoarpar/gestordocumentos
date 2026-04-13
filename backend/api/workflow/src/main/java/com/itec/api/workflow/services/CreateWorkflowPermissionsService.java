@@ -1,7 +1,7 @@
 package com.itec.api.workflow.services;
 
-import com.data.workflow.cassandra.model.PermissionInformation;
-import com.data.workflow.cassandra.service.PermissionServiceRepository;
+import com.data.workflow.rd.model.PermissionInformation;
+import com.data.workflow.rd.service.PermissionServiceRepository;
 import com.itec.api.workflow.model.PermissionServiceRequest;
 import com.itec.api.workflow.model.PermissionServiceResponse;
 import com.itec.utilities.service.BaseService;
@@ -19,7 +19,6 @@ public class CreateWorkflowPermissionsService implements BaseService<PermissionS
     @Override
     public PermissionServiceResponse execute(PermissionServiceRequest information) {
         var permission = new PermissionInformation();
-        permission.setId(UUID.randomUUID());
         permission.setName(information.getName());
         permission.setDescription(information.getDescription());
         permission.setActive(information.isActive());

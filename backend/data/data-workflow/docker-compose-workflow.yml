@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  workflow-db:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=workflow
+      - POSTGRES_PASSWORD=workflow
+      - POSTGRES_DB=workflow
+    ports:
+      - "5437:5432"
+    volumes:
+      - db_data_workflow:/var/lib/postgresql
+
+volumes:
+  db_data_workflow:
+    driver: local

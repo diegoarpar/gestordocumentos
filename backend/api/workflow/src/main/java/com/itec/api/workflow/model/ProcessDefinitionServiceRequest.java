@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.io.InputStream;
 import java.util.Map;
+import java.util.UUID;
 
 @Data
 public class ProcessDefinitionServiceRequest implements BaseServiceRequest {
@@ -13,6 +14,6 @@ public class ProcessDefinitionServiceRequest implements BaseServiceRequest {
     private InputStream inputStream;
     private String originalName;
     private String workflowName;
-    private String workflowId;
+    private UUID workflowId;
     private Map<String, Object> processInformation;
 }

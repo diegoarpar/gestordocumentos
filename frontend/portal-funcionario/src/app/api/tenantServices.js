@@ -5,7 +5,8 @@ async function tenant(data){
     var headers={};
     return await fetch("/api/tenant",{
         method: 'GET',
-        headers: {Authorization: [data]}
+        headers: {Authorization: [data]},
+        credentials: 'include',
     });
 }
 

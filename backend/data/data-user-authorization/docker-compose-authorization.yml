@@ -1,18 +1,17 @@
 version: "3.8"
 services:
-  cassandra-authorization:
-    image: cassandra:latest
-    container_name: cassandra-container-authorization
-    ports:
-      - "9046:9042" # CQL native protocol port
+  authorization-db:
+    image: postgres:latest
+    restart: always
     environment:
-      - CASSANDRA_USER=casandra
-      - CASSANDRA_PASSWORD=casandra
-      - CASSANDRA_CLUSTER_NAME=authorization-cluster
-      - MAX_HEAP_SIZE=512M
-      - HEAP_NEWSIZE=128M
+      - POSTGRES_USER=authorization
+      - POSTGRES_PASSWORD=authorization
+      - POSTGRES_DB=authorization
+    ports:
+      - "5436:5432"
     volumes:
-      - cassandra_data_2:/var/lib/cassandra # Persistent volume for data
+      - db_data_authorizationz:/var/lib/postgresql
+
 volumes:
-  cassandra_data_2:
+  db_data_authorizationz:
     driver: local

@@ -1,0 +1,37 @@
+plugins {
+    id ("java")
+    id ("org.springframework.boot") version "3.5.3"
+}
+
+plugins.apply("io.spring.dependency-management")
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+    implementation ("org.springframework.boot:spring-boot-starter-web")
+    implementation ("org.springframework.boot:spring-boot-starter-actuator")
+    implementation ("org.springframework.boot:spring-boot-starter-test")
+    implementation (project(":utilities:util-model"))
+    implementation (project(":utilities:util-authorization"))
+    implementation (project(":utilities:util-jwt"))
+    implementation (project(":utilities:util-crypto"))
+    implementation("org.bouncycastle:bcpkix-jdk18on:1.83")
+    implementation("com.auth0:java-jwt:4.5.1")
+    compileOnly ("org.projectlombok:lombok:1.18.30")
+    annotationProcessor  ("org.projectlombok:lombok:1.18.30")
+    implementation(project(":data:data-user-authorization"))
+
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+tasks.test {
+    useJUnitPlatform()
+}

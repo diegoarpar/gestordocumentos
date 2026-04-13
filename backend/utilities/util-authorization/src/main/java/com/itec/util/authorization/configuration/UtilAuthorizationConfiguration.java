@@ -1,14 +1,10 @@
 package com.itec.util.authorization.configuration;
 
-import com.data.authorization.configuration.DataAuthorizationConfigurationApp;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
+import org.springframework.web.client.RestClient;
 
 @Configuration
-@Import(DataAuthorizationConfigurationApp.class)
 @ComponentScan(basePackages = "com.itec.util.authorization")
 @PropertySource("classpath:util-authorization.properties")
 public class UtilAuthorizationConfiguration {
@@ -16,5 +12,10 @@ public class UtilAuthorizationConfiguration {
 
     public UtilAuthorizationConfiguration(Environment environment) {
         this.environment = environment;
+    }
+
+    @Bean
+    public RestClient restClient() {
+        return RestClient.create();
     }
 }

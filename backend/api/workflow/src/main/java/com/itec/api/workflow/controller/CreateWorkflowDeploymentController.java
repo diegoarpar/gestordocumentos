@@ -2,6 +2,7 @@ package com.itec.api.workflow.controller;
 
 import com.itec.api.workflow.model.WorkflowDeploymentServiceRequest;
 import com.itec.api.workflow.services.CreateWorkflowDeploymentService;
+import com.itec.utilities.service.BaseController;
 import com.itec.utilities.service.BaseService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
@@ -16,12 +17,10 @@ import org.springframework.web.multipart.support.StandardMultipartHttpServletReq
 
 @Controller
 @RequestMapping("/workflow/workflow-deployments")
-public class CreateWorkflowDeploymentController {
-
-    BaseService service;
+public class CreateWorkflowDeploymentController extends BaseController<CreateWorkflowDeploymentService> {
 
     public CreateWorkflowDeploymentController(CreateWorkflowDeploymentService service) {
-        this.service = service;
+       super(service);
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

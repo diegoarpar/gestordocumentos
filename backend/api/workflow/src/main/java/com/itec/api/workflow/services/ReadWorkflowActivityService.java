@@ -1,6 +1,6 @@
 package com.itec.api.workflow.services;
 
-import com.data.workflow.cassandra.service.WorkflowActivityServiceRepository;
+import com.data.workflow.rd.service.WorkflowActivityServiceRepository;
 import com.itec.api.workflow.model.WorkflowActivity;
 import com.itec.api.workflow.model.WorkflowActivityServiceRequest;
 import com.itec.api.workflow.model.WorkflowActivityServiceResponse;

@@ -23,6 +23,7 @@ async function AssignTask(data){
             'Content-Type': 'application/json',
             'Authentication': 'Bearer ' + session.access_token,
         },
+        credentials: 'include',
     });
     return res.json();
 }

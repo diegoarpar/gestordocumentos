@@ -1,7 +1,7 @@
 package com.itec.api.workflow.services;
 
-import com.data.workflow.cassandra.model.UserGroupInformation;
-import com.data.workflow.cassandra.service.UserGroupServiceRepository;
+import com.data.workflow.rd.model.UserGroupInformation;
+import com.data.workflow.rd.service.UserGroupServiceRepository;
 import com.itec.api.workflow.model.UserGroupServiceRequest;
 import com.itec.api.workflow.model.UserGroupServiceResponse;
 import com.itec.utilities.service.BaseService;
@@ -19,7 +19,6 @@ public class CreateWorkflowUserGroupService implements BaseService<UserGroupServ
     @Override
     public UserGroupServiceResponse execute(UserGroupServiceRequest information) {
         var userGroup = new UserGroupInformation();
-        userGroup.setId(UUID.randomUUID());
         userGroup.setUserName(information.getUserName());
         userGroup.setGroupId(UUID.fromString(information.getGroupId()));
         userGroupServiceRepository.save(userGroup);

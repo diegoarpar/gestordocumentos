@@ -1,6 +1,6 @@
 package com.itec.api.workflow.services;
 
-import com.data.workflow.cassandra.service.RolePermissionServiceRepository;
+import com.data.workflow.rd.service.RolePermissionServiceRepository;
 import com.itec.api.workflow.model.RolePermissionServiceRequest;
 import com.itec.api.workflow.model.RolePermissionServiceResponse;
 import com.itec.utilities.service.BaseService;

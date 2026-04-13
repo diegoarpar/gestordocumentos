@@ -1,7 +1,7 @@
 package com.itec.api.workflow.services;
 
-import com.data.workflow.cassandra.model.RoleInformation;
-import com.data.workflow.cassandra.service.RoleServiceRepository;
+import com.data.workflow.rd.model.RoleInformation;
+import com.data.workflow.rd.service.RoleServiceRepository;
 import com.itec.api.workflow.model.RoleServiceRequest;
 import com.itec.api.workflow.model.RoleServiceResponse;
 import com.itec.utilities.service.BaseService;
@@ -19,7 +19,6 @@ public class CreateWorkflowRolesService implements BaseService<RoleServiceReques
     @Override
     public RoleServiceResponse execute(RoleServiceRequest information) {
         var roleInformation = new RoleInformation();
-        roleInformation.setId(UUID.randomUUID());
         roleInformation.setName(information.getName());
         roleServiceRepository.save(roleInformation);
         return new RoleServiceResponse();

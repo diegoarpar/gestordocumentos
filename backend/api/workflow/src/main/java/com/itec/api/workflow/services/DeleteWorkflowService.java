@@ -1,6 +1,6 @@
 package com.itec.api.workflow.services;
 
-import com.data.workflow.cassandra.service.WorkflowServiceRepository;
+import com.data.workflow.rd.service.WorkflowServiceRepository;
 import com.itec.api.workflow.model.WorkflowServiceRequest;
 import com.itec.api.workflow.model.WorkflowServiceResponse;
 import com.itec.utilities.service.BaseService;
@@ -17,7 +17,7 @@ public class DeleteWorkflowService implements BaseService<WorkflowServiceRequest
 
     @Override
     public WorkflowServiceResponse execute(WorkflowServiceRequest information) {
-        workflowServiceRepository.deleteById(UUID.fromString(information.getId()));
+        workflowServiceRepository.deleteById(information.getId());
         return new WorkflowServiceResponse();
     }
 }
