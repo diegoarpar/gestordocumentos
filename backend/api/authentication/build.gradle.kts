@@ -18,6 +18,7 @@ dependencies {
     implementation (project(":utilities:util-model"))
     implementation (project(":utilities:util-crypto"))
     implementation (project(":utilities:util-authorization"))
+    implementation (project(":utilities:util-secrets"))
     compileOnly ("org.projectlombok:lombok:1.18.30")
     annotationProcessor  ("org.projectlombok:lombok:1.18.30")
 }

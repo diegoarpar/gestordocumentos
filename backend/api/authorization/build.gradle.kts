@@ -18,6 +18,7 @@ dependencies {
     implementation (project(":utilities:util-authorization"))
     implementation (project(":utilities:util-jwt"))
     implementation (project(":utilities:util-crypto"))
+    implementation (project(":utilities:util-secrets"))
     implementation("org.bouncycastle:bcpkix-jdk18on:1.83")
     implementation("com.auth0:java-jwt:4.5.1")
     compileOnly ("org.projectlombok:lombok:1.18.30")
