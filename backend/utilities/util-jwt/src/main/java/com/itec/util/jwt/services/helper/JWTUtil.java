@@ -6,14 +6,11 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.itec.util.crypto.services.CryptoUtil;
-import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
-
+import lombok.Builder;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
-@Component
 public class JWTUtil {
 
     private final CryptoUtil cryptoUtil;
@@ -21,11 +18,10 @@ public class JWTUtil {
     private final int TTL;
     private final String ISSUER = "COMPANY";
 
-
-    public JWTUtil(Environment environment, CryptoUtil cryptoUtil) {
-        var jwtSecret = environment.getRequiredProperty("secret.key.jwt");
-        TTL = environment.getRequiredProperty("ttl.key.jwt", Integer.class);
-        this.algorithm = Algorithm.HMAC256(jwtSecret);
+    @Builder
+    public JWTUtil(CryptoUtil cryptoUtil, String secret, String ttl) {
+        TTL = Integer.parseInt(ttl);
+        this.algorithm = Algorithm.HMAC256(secret);
         this.cryptoUtil = cryptoUtil;
     }
 

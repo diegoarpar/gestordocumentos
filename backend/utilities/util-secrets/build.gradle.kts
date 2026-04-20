@@ -13,13 +13,8 @@ repositories {
 dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-web")
     implementation ("org.springframework.boot:spring-boot-starter-actuator")
-    implementation(project(":data:data-workflow"))
-    implementation(project(":data:data-workflow-activity"))
     implementation ("org.springframework.boot:spring-boot-starter-test")
     implementation (project(":utilities:util-model"))
-    implementation (project(":utilities:util-authorization"))
-    implementation (project(":utilities:util-crypto"))
-    implementation (project(":utilities:util-secrets"))
     compileOnly ("org.projectlombok:lombok:1.18.30")
     annotationProcessor  ("org.projectlombok:lombok:1.18.30")
 }
