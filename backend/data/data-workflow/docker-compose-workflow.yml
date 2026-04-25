@@ -8,7 +8,7 @@ services:
       - POSTGRES_PASSWORD=workflow
       - POSTGRES_DB=workflow
     ports:
-      - "5437:5432"
+      - "5438:5432"
     volumes:
       - db_data_workflow:/var/lib/postgresql
 
