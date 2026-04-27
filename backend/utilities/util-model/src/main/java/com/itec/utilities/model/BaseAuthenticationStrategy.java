@@ -1,4 +1,5 @@
 package com.itec.utilities.model;
 
-public class BaseAuthenticationStrategy {
+public interface BaseAuthenticationStrategy {
+    boolean authenticate(String username, String password);
 }

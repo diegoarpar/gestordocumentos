@@ -23,7 +23,7 @@ export default function Page() {
     event.preventDefault()
  
     const formData = new FormData(event.currentTarget);
-    const dataInfo = {user: {name: formData.get("email"), credential: [{name: "password: ", value: formData.get("password")}]}};
+    const dataInfo = {user: {name: formData.get("email"), credentials: [{name: "password: ", value: formData.get("password")}]}};
     const dataRaw = JSON.stringify(dataInfo);
     console.log(dataInfo);
     const response = await Login.LogIn(dataInfo);

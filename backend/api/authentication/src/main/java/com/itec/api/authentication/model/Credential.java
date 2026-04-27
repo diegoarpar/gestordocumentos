@@ -21,6 +21,11 @@ public class Credential {
     private String name;
 
     /**
+     * The role value.
+     */
+    private String value;
+
+    /**
      * Credential type.
      */
     private CredentialType type;

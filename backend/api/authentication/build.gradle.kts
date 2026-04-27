@@ -14,6 +14,7 @@ dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-web")
     implementation ("org.springframework.boot:spring-boot-starter-actuator")
     implementation(project(":data:data-user-information"))
+    implementation(project(":data:data-user-ldap"))
     implementation ("org.springframework.boot:spring-boot-starter-test")
     implementation (project(":utilities:util-model"))
     implementation (project(":utilities:util-crypto"))
