@@ -14,6 +14,7 @@ dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-data-cassandra")
     annotationProcessor ("org.projectlombok:lombok:1.18.30") // Use the latest stable version
     compileOnly ("org.projectlombok:lombok:1.18.30")
+    implementation (project(":utilities:util-secrets"))
 }
 
 java {

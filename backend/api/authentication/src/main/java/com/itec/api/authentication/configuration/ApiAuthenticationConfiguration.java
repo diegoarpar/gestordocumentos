@@ -1,5 +1,6 @@
 package com.itec.api.authentication.configuration;
 
+import com.data.ldap.user.config.DataLdapUsersConfigurationApp;
 import com.data.user.config.DataUsersConfigurationApp;
 import com.itec.util.authorization.configuration.UtilAuthorizationConfiguration;
 import com.itec.util.crypto.configuration.UtilCryptoConfiguration;
@@ -18,6 +19,7 @@ import org.springframework.core.env.Environment;
 @ComponentScan("com.itec.api.authentication")
 @Configuration
 @Import({DataUsersConfigurationApp.class,
+        DataLdapUsersConfigurationApp.class,
         UtilAuthorizationConfiguration.class,
         UtilCryptoConfiguration.class,
         UtilSecretsConfiguration.class})

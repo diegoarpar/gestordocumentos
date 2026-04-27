@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  openldap:
+    image: osixia/openldap:latest
+    container_name: my-openldap
+    ports:
+      - "3389:389"
+      - "6636:636"
+    environment:
+      LDAP_ORGANISATION: "My Organization"
+      LDAP_DOMAIN: "example.com"
+      LDAP_ADMIN_PASSWORD: "adminpassword"
+    restart: unless-stopped
+

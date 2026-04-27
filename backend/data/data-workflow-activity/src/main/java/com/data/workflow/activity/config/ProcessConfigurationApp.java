@@ -1,12 +1,11 @@
 package com.data.workflow.activity.config;
 
+import com.itec.util.secret.configuration.UtilSecretsConfiguration;
+import com.itec.util.secret.services.UtilSecretService;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngineConfiguration;
 import org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 
 import java.io.IOException;
@@ -16,21 +15,23 @@ import java.util.Map;
 @Configuration
 @PropertySource("classpath:workflow-activity.properties")
 @ComponentScan("com.data.workflow.activity")
+@Import(UtilSecretsConfiguration.class)
 public class ProcessConfigurationApp {
     private final Environment environment;
-    public ProcessConfigurationApp(Environment environment) {
+    public ProcessConfigurationApp(Environment environment, UtilSecretService utilSecretService) {
         this.environment = environment;
+        utilSecretService.loadSecrets();
     }
 
     @Bean(name = "processEngine")
     public Map<String, ProcessEngine> initProcessEngine() throws IOException {
         Map<String, ProcessEngine> processEngineMap = new HashMap<String, ProcessEngine>();
         ProcessEngineConfiguration cfg = new StandaloneProcessEngineConfiguration()
-                .setJdbcUrl(environment.getProperty("spring.datasource.url"))
-                .setJdbcUsername(environment.getProperty("spring.datasource.username"))
-                .setJdbcPassword(environment.getProperty("spring.datasource.password"))
-                .setJdbcDriver(environment.getProperty("spring.datasource.driver-class-name"))
-                .setDatabaseSchemaUpdate(environment.getProperty("spring.jpa.hibernate.ddl-auto"));
+                .setJdbcUrl(environment.getProperty("data.workflow-activity.url"))
+                .setJdbcUsername(environment.getProperty("data.workflow-activity.username"))
+                .setJdbcPassword(environment.getProperty("data.workflow-activity.password"))
+                .setJdbcDriver(environment.getProperty("data.workflow-activity.driver"))
+                .setDatabaseSchemaUpdate(environment.getProperty("data.workflow-activity.ddl"));
         ProcessEngine processEngine = cfg.buildProcessEngine();
         String pName = processEngine.getName();
         String ver = ProcessEngine.VERSION;

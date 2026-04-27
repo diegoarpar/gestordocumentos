@@ -17,6 +17,7 @@ dependencies {
     implementation ("org.activiti:activiti-image-generator:7.1.0.M6")
     annotationProcessor ("org.projectlombok:lombok:1.18.30") // Use the latest stable version
     compileOnly ("org.projectlombok:lombok:1.18.30")
+    implementation (project(":utilities:util-secrets"))
 }
 
 java {
